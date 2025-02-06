@@ -1,12 +1,12 @@
 <aside style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://picsum.photos/id/1043/800/600); background-size: cover; background-position: center;"
-       class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl shadow-none bg-slate-850 max-w-64 ease-nav-brand z-990 xl:left-0 xl:translate-x-0"
-       aria-expanded="false" id="sideBar">
+    class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl shadow-none bg-slate-850 max-w-64 ease-nav-brand z-990 xl:left-0 xl:translate-x-0"
+    aria-expanded="false" id="sideBar">
 
     <div class="h-24 border-b-white border-b-[1px]">
         <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-white  xl:hidden" sidenav-close onclick="document.getElementById('sideBar').classList.toggle('-translate-x-full')"></i>
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-white text-slate-700" href="{{route('dashboard')}}" target="_blank">
             <img src="{{asset('assets/images/logo.png')}}" class=" h-full max-w-full transition-all duration-200 inline ease-nav-brand max-h-16" alt="main_logo" />
-            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand text-xl" >One Nation</span>
+            <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand text-xl">One Nation</span>
         </a>
     </div>
 
@@ -15,7 +15,7 @@
     <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
         <ul class="flex flex-col pl-0 mb-0">
             <li class="mt-0.5 w-full">
-                <a href="{{route('dashboard')}}" class="{{Route::currentRouteName()==='dashboard'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('dashboard')}}" class="{{Route::currentRouteName()==='dashboard'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa fa-tv"></i>
                     </div>
@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()==='designations.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()==='designations.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-regular fa-id-badge"></i>
                     </div>
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('office.index')}}" class="{{Route::currentRouteName()==='office.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('office.index')}}" class="{{Route::currentRouteName()==='office.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-regular fa-building"></i>
                     </div>
@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('office.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('employees.index')}}" class="{{Route::currentRouteName()==='employees.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-solid fa-users"></i>
                     </div>
@@ -47,7 +47,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('members.index')}}" class="{{Route::currentRouteName()==='members.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-solid fa-people-group"></i>
                     </div>
@@ -55,7 +55,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-solid fa-calendar-days"></i>
                     </div>
@@ -63,7 +63,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-solid fa-file"></i>
                     </div>
@@ -71,7 +71,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-solid fa-gear"></i>
                     </div>
@@ -79,7 +79,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors" >
+                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-solid fa-user-gear"></i>
                     </div>
@@ -105,7 +105,7 @@
             <button class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-primaryDark border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px"><i class="fa fa-right-from-bracket mr-2"></i>Logout</button>
 
         </form>
-     </div>
+    </div>
 
 
 </aside>
