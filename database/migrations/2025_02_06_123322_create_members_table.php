@@ -25,10 +25,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('postcode');
             $table->string('address');
-            $table->string('country')->constrained('countries');
-            $table->string('county')->constrained('counties');
-            $table->string('city');
-            $table->string('constituency')->constrained('constituencies');
+            $table->foreignId('country_id')->constrained('countries');
+            $table->foreignId('county_id')->constrained('counties');
+            $table->foreignId('city_id')->constrained('cities');
+            $table->foreignId('constituency_id')->constrained('constituencies');
             $table->timestamps();
         });
     }
