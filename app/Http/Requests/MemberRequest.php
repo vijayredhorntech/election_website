@@ -28,13 +28,14 @@ class MemberRequest extends FormRequest
             'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
             'alternate_mobile_number' => 'required|numeric|digits:10|unique:members,alternate_mobile_number',
             'email' => 'required|email|unique:members,email',
-            'code' => 'required',
+            'referrer_code' => 'required',
+            'postcode' => 'required',
             'address' => 'required',
             'country' => 'required',
             'county' => 'required',
             'city' => 'required',
             'constituency' => 'required',
-            'referral_code' => 'required',
+            // 'referral_code' => 'required',
         ];
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Member;
 use App\Http\Requests\MemberRequest;
+use App\Models\Country;
+use App\Models\User;
 
 class MemberController extends Controller
 {
@@ -18,17 +20,32 @@ class MemberController extends Controller
         ];
 
         $Members = Member::all();
+        $countries = Country::all();
 
-        return view('admin.members.index')->with('formData', $formData)->with('members', $Members);
+        return view('admin.members.index')->with('formData', $formData)->with('members', $Members)->with('countries', $countries);
     }
 
 
     public function store(MemberRequest $request)
     {
-        // dd($request->all());
         $validatedData = $request->validated();
-        $member = Member::create($validatedData);
-        return redirect()->route('members.index')->with('success', 'Member created successfully');
+
+        try {
+            if ($validatedData['referrer_code']) {
+                $referrer = User::where('referral_code', $validatedData['referrer_code'])->first();
+
+                if (!$referrer) {
+                    return redirect()->route('members.index')->with('error', 'Invalid Referral Code');
+                }
+                $validatedData['referrer_id'] = $referrer->id;
+            }
+
+            $validatedData['enrollment_date'] = now();
+            Member::create($validatedData);
+            return redirect()->route('members.index')->with('success', 'Member created successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('members.index')->with('error', 'An error occurred while creating the member');
+        }
     }
 
     public function edit($id)

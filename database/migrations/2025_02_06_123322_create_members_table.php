@@ -13,19 +13,22 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('referrer_id')->nullable()->constrained('users');
+            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->date('enrollment_date');
             $table->string('title');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('primary_mobile_number');
             $table->string('alternate_mobile_number');
             $table->string('email');
-            $table->string('code');
+            $table->string('postcode');
             $table->string('address');
-            $table->string('country');
-            $table->string('county');
+            $table->string('country')->constrained('countries');
+            $table->string('county')->constrained('counties');
             $table->string('city');
-            $table->string('constituency');
-            $table->string('referral_code')->nullable();
+            $table->string('constituency')->constrained('constituencies');
             $table->timestamps();
         });
     }

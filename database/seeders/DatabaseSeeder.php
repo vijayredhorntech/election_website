@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\FinancialYear;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,14 +16,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Seed roles
-        $this->call(RoleSeeder::class);
+        $this->call([
+            RoleSeeder::class,
+            CountrySeeder::class,
+            ConstituencySeeder::class,
+            TitleSeeder::class,
+        ]);
 
         // Seed a Super Admin user
         User::factory()->create([
             'name' => 'Super Admin',
             'email' => 'admin@admin.com',
-            'role' => 'admin'
-
+            'role' => 'admin',
+            'referral_code' => 'ADMINX',
         ]);
 
         // Seed financial years from 2025-2026 to 2039-2040
