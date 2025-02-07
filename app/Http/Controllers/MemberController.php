@@ -60,6 +60,14 @@ class MemberController extends Controller
         $member = Member::find($id);
         return view('admin.members.index')->with('member', $member)->with('formData', $formData)->with('members', $Members);
     }
+
+    public function view($id)
+    {
+        $member = Member::find($id);
+        return view('admin.members.view')->with('member', $member);
+    }
+
+
     public function update(MemberRequest $request, $id)
     {
         $validatedData = $request->validated();
