@@ -177,8 +177,10 @@
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Email Id</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Phone </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Rereferal Code</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Referral Code</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Referred By</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Constituency</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Members Added</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Actions</td>
                             </tr>
                         </thead>
@@ -189,10 +191,12 @@
                                 <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[200px]">{{$member->title}} {{$member->first_name}} {{$member->last_name}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member->email}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member->primary_mobile_number}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member->referral_code}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member->user->referral_code}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member->referrer->name}} ({{$member->referrer->referral_code}})</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member->constituency}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member->referredMembers->count()}}</td>
 
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm ">
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm w-[200px]">
                                     <div class="flex h-full">
                                         <a href="{{route('member.edit',['id'=>$member->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Member"><i class="fa fa-pen text-xs"></i></a>
                                         <a href="{{route('member.view',['id'=>$member->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Member"><i class="fa fa-eye text-xs"></i></a>

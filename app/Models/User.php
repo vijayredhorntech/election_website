@@ -65,4 +65,10 @@ class User extends Authenticatable
 
         return $code;
     }
+
+    public function referredMembers()
+    {
+        return $this->hasMany(Member::class, 'referrer_id');
+    }
+
 }
