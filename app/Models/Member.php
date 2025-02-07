@@ -45,4 +45,16 @@ class Member extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referrer_id');
+    }
+
+    public function referredMembers()
+    {
+        return $this->hasMany(Member::class, 'referrer_id', 'user_id');
+    }
+
+
 }
