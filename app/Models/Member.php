@@ -26,6 +26,11 @@ class Member extends Model
         'county_id',
         'city',
         'constituency_id',
+        'date_of_birth',
+        'gender',
+        'marital_status',
+        'qualification',
+        'profession',
     ];
 
     protected static function boot()

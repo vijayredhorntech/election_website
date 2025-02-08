@@ -7,7 +7,7 @@
 <div class="w-full">
     <div class="flex flex-col gap-1">
         <label for="address" class="font-semibold text-sm text-black">Address <span class="text-danger">*</span></label>
-        <input type="text" id="address" name="address" value="{{ isset($member->address) ? $member->address : '' }}" placeholder="Enter address....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+        <input type="text" id="address" name="address" value="{{ isset($member->address) ? $member->address : old('address') }}" placeholder="Enter address....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
     </div>
 </div>
 <div class="w-full">
@@ -16,7 +16,7 @@
         <select id="country" name="country" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
             <option value="">Select country</option>
             @foreach ($countries as $country)
-            <option value="{{$country->code}}">{{$country->name}}</option>
+            <option value="{{isset($member->country) ? $member->country->code : $country->code}}">{{isset($member->country) ? $member->country->name : $country->name}}</option>
             @endforeach
         </select>
     </div>
@@ -32,7 +32,7 @@
 <div class="w-full">
     <div class="flex flex-col gap-1">
         <label for="city" class="font-semibold text-sm text-black">City <span class="text-danger">*</span></label>
-        <input type="text" name="city" value="{{ isset($member->city) ? $member->city : '' }}" placeholder="Enter city....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+        <input type="text" name="city" value="{{ isset($member->city) ? $member->city : old('city') }}" placeholder="Enter city....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
     </div>
 </div>
 <div class="w-full">

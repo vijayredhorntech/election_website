@@ -11,6 +11,8 @@ use App\Models\County;
 use App\Models\Constituency;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use App\DTOs\DateOfBirthDTO;
+use Illuminate\Validation\ValidationException;
 
 class MemberController extends Controller
 {
@@ -33,17 +35,19 @@ class MemberController extends Controller
     {
         $validatedData = $request->validated();
 
+        $date_of_birth = new DateOfBirthDTO($validatedData['day'], $validatedData['month'], $validatedData['year']);
+
+        if ($validatedData['referrer_code']) {
+            $referrer = User::where('referral_code', $validatedData['referrer_code'])->first();
+
+            if (!$referrer) {
+                return ValidationException::withMessages(['referrer_code' => 'Invalid Referral Code.']);
+            }
+            $validatedData['referrer_id'] = $referrer->id;
+        }
+
         try {
             $member = [];
-
-            if ($validatedData['referrer_code']) {
-                $referrer = User::where('referral_code', $validatedData['referrer_code'])->first();
-
-                if (!$referrer) {
-                    return redirect()->route('members.index')->with('error', 'Invalid Referral Code');
-                }
-                $validatedData['referrer_id'] = $referrer->id;
-            }
 
             $member['referrer_id'] = $validatedData['referrer_id'];
             $member['enrollment_date'] = now();
@@ -59,6 +63,11 @@ class MemberController extends Controller
             $member['county_id'] = County::where('code', $validatedData['county'])->first()->id;
             $member['city'] = $validatedData['city'];
             $member['constituency_id'] = Constituency::where('name', $validatedData['constituency'])->first()->id;
+            $member['date_of_birth'] = $date_of_birth->toString();
+            $member['gender'] = $validatedData['gender'];
+            $member['marital_status'] = $validatedData['marital_status'];
+            $member['qualification'] = $validatedData['qualification'];
+            $member['profession'] = $validatedData['profession'];
 
             Member::create($member);
             return redirect()->route('members.index')->with('success', 'Member created successfully');

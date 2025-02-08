@@ -22,7 +22,7 @@ class MemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
+            'title' => 'required|exists:titles,name',
             'first_name' => 'required',
             'last_name' => 'required',
             'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
@@ -38,7 +38,13 @@ class MemberRequest extends FormRequest
             'county' => 'required|exists:counties,code',
             'city' => 'required',
             'constituency' => 'required|exists:constituencies,name',
-            // 'referral_code' => 'required',
+            'day' => 'required|integer|min:1|max:31',
+            'month' => 'required|integer|min:1|max:12',
+            'year' => 'required|integer|min:1900|max:' . now()->year,
+            'gender' => 'required',
+            'marital_status' => 'required',
+            'qualification' => 'required',
+            'profession' => 'required',
         ];
     }
 }

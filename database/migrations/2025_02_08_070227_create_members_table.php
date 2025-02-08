@@ -29,6 +29,11 @@ return new class extends Migration
             $table->foreignId('county_id')->constrained('counties');
             $table->string('city');
             $table->foreignId('constituency_id')->constrained('constituencies');
+            $table->date('date_of_birth');
+            $table->string('gender');
+            $table->string('marital_status');
+            $table->string('qualification');
+            $table->string('profession');
             $table->timestamps();
         });
     }

@@ -51,18 +51,106 @@
                             <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Personal Information</h2>
                             <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
                                 <div class="w-full">
-                                    <x-title />
+                                    <x-title title="{{ $member->title ?? old('title') }}" />
                                 </div>
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
                                         <label for="first_name" class="font-semibold text-sm text-black">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="first_name" value="{{ isset($member->first_name) ? $member->first_name : '' }}" placeholder="Enter first name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                        <input type="text" name="first_name" value="{{ $member->first_name ?? old('first_name') }}" placeholder="Enter first name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     </div>
                                 </div>
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
                                         <label for="last_name" class="font-semibold text-sm text-black">Last Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="last_name" value="{{ isset($member->last_name) ? $member->last_name : '' }}" placeholder="Enter last name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                        <input type="text" name="last_name" value="{{ $member->last_name ?? old('last_name') }}" placeholder="Enter last name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="flex flex-col gap-1">
+                                        <label for="date_of_birth" class="font-semibold text-sm text-black">Date of Birth <span class="text-danger">*</span></label>
+                                        <div class="flex gap-2">
+                                            <select name="day" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                                <option value="">Day</option>
+                                                <!-- Generate days (1-31) -->
+                                                @for ($i = 1; $i <= 31; $i++)
+                                                    <option value="{{ $i }}" {{ isset($member->day) && $member->day == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                                    @endfor
+                                            </select>
+
+                                            <select name="month" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                                <option value="">Month</option>
+                                                <!-- Generate months (1-12) -->
+                                                @for ($i = 1; $i <= 12; $i++)
+                                                    <option value="{{ $i }}" {{ isset($member->month) && $member->month == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                                    @endfor
+                                            </select>
+
+                                            <select name="year" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                                <option value="">Year</option>
+                                                <!-- Generate years (e.g., from 1900 to the current year) -->
+                                                @for ($i = 1900; $i <= date('Y'); $i++)
+                                                    <option value="{{ $i }}" {{ isset($member->year) && $member->year == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                                    @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full">
+                                    <div class="flex flex-col gap-1">
+                                        <label for="gender" class="font-semibold text-sm text-black">Gender <span class="text-danger">*</span></label>
+                                        <select name="gender" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                            <option value="">Select Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="flex flex-col gap-1">
+                                        <label for="marital_status" class="font-semibold text-sm text-black">Marital Status <span class="text-danger">*</span></label>
+                                        <select name="marital_status" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                            <option value="">Select Marital Status</option>
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Divorced">Divorced</option>
+                                            <option value="Widowed">Widowed</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="flex flex-col gap-1">
+                                        <label for="qualification" class="font-semibold text-sm text-black">Qualification <span class="text-danger">*</span></label>
+                                        <select name="qualification" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                            <option value="">Select Qualification</option>
+                                            <option value="Primary">Primary</option>
+                                            <option value="Secondary">Secondary</option>
+                                            <option value="Higher Secondary">Higher Secondary</option>
+                                            <option value="Graduate">Graduate</option>
+                                            <option value="Post Graduate">Post Graduate</option>
+                                            <option value="Doctorate">Doctorate</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="flex flex-col gap-1">
+                                        <label for="profession" class="font-semibold text-sm text-black">Profession <span class="text-danger">*</span></label>
+                                        <select name="profession" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                            <option value="">Select Profession</option>
+                                            <option value="Student">Student</option>
+                                            <option value="Employee">Employee</option>
+                                            <option value="Business">Business</option>
+                                            <option value="Self Employed">Self Employed</option>
+                                            <option value="Housewife">Housewife</option>
+                                            <option value="Retired">Retired</option>
+                                            <option value="Lawyer">Lawyer</option>
+                                            <option value="Doctor">Doctor</option>
+                                            <option value="Teacher">Teacher</option>
+                                            <option value="Other">Other</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -75,19 +163,19 @@
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
                                         <label for="primary_mobile_number" class="font-semibold text-sm text-black">Primary Mobile Number <span class="text-danger">*</span></label>
-                                        <input type="text" name="primary_mobile_number" value="{{ isset($member->primary_mobile_number) ? $member->primary_mobile_number : '' }}" placeholder="Enter primary mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                        <input type="text" name="primary_mobile_number" value="{{ $member->primary_mobile_number ?? old('primary_mobile_number') }}" placeholder="Enter primary mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     </div>
                                 </div>
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
                                         <label for="alternate_mobile_number" class="font-semibold text-sm text-black">Alternate Mobile Number <span class="text-danger">*</span></label>
-                                        <input type="text" name="alternate_mobile_number" value="{{ isset($member->alternate_mobile_number) ? $member->alternate_mobile_number : '' }}" placeholder="Enter alternate mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                        <input type="text" name="alternate_mobile_number" value="{{ $member->alternate_mobile_number ?? old('alternate_mobile_number') }}" placeholder="Enter alternate mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     </div>
                                 </div>
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
                                         <label for="email" class="font-semibold text-sm text-black">Email <span class="text-danger">*</span></label>
-                                        <input type="email" name="email" value="{{ isset($member->email) ? $member->email : '' }}" placeholder="Enter email....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                        <input type="email" name="email" value="{{ $member->email ?? old('email') }}" placeholder="Enter email....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +196,7 @@
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
                                         <label for="referrer_code" class="font-semibold text-sm text-black">Referral Code <span class="text-danger">*</span></label>
-                                        <input type="text" name="referrer_code" value="{{ isset($member->referrer_code) ? $member->referrer_code : '' }}" placeholder="Enter referral code....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                        <input type="text" name="referrer_code" value="{{ $member->referrer_code ?? old('referrer_code') }}" placeholder="Enter referral code....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     </div>
                                 </div>
                             </div>
