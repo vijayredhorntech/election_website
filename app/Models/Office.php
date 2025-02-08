@@ -9,10 +9,26 @@ class Office extends Model
     protected $fillable = [
         'name',
         'description',
+        'postcode',
         'address',
+        'country_id',
+        'county_id',
         'city',
-        'code',
-        'constituency',
-        'country',
+        'constituency_id',
     ];
+
+    public function constituency()
+    {
+        return $this->belongsTo(Constituency::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function county()
+    {
+        return $this->belongsTo(County::class);
+    }
 }

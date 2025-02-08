@@ -44,21 +44,21 @@
                         @endforeach
                     </ul>
                     @endif
-                    <form id="createNewOfficeDiv" action="{{$formData['url']}}" method="{{$formData['method']}}" class="{{$formData['type']==='Create'?'hidden':''}} w-full grid lg:grid-col-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 bg-white mt-4 gap-4 pb-4">
+                    <form id="createNewOfficeDiv" action="{{$formData['url']}}" method="{{$formData['method']}}" class="{{$formData['type']==='Create' && !$errors->any() ?'hidden':''}} w-full grid lg:grid-col-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 bg-white mt-4 gap-4 pb-4">
                         @csrf
                         <div class="w-full">
                             <div class="flex flex-col gap-1 ">
                                 <label for="name" class="font-semibold text-sm text-black">Office Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" value="{{ isset($office->name) ? $office->name : '' }}" placeholder="Enter name....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                <input type="text" name="name" value="{{ $office->name ?? old('name') }}" placeholder="Enter name....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                             </div>
                         </div>
                         <div class="w-full">
                             <div class="flex flex-col gap-1 ">
                                 <label for="name" class="font-semibold text-sm text-black">Office Description <span class="text-danger">*</span></label>
-                                <input type="text" name="description" value="{{ isset($office->description) ? $office->description : '' }}" placeholder="Enter description....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                <input type="text" name="description" value="{{ $office->description ?? old('description') }}" placeholder="Enter description....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                             </div>
                         </div>
-                        <x-address />
+                        <x-address :data="$office ?? null" />
                         <div class="w-full">
                             <div class="flex flex-col gap-1  ">
                                 <label for="name" class="font-semibold text-sm text-black">&nbsp</label>
@@ -101,9 +101,9 @@
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{ $office->created_at->format('d-m-Y') }}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{ Str::words($office->address,2, '...') }}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->city}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->code}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->constituency}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->country}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->postcode}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->constituency->name}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->country->name}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
                                     <a href="{{route('office.status',['id'=>$office->id])}}" class="bg-{{$office->status?"success":"danger"}}/10 border-[1px] border-{{$office->status?"success":"danger"}} font-bold text-{{$office->status?"success":"danger"}} px-4 py-0.5 rounded-[3px]"> {{$office->status?"Active":"Inactive"}}</a>
                                 </td>

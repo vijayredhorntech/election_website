@@ -11,11 +11,12 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('postcode');
             $table->string('address');
+            $table->foreignId('country_id')->constrained('countries');
+            $table->foreignId('county_id')->constrained('counties');
             $table->string('city');
-            $table->string('code');
-            $table->string('constituency');
-            $table->string('country');
+            $table->foreignId('constituency_id')->constrained('constituencies');
             $table->string('status')->default('1');
             $table->timestamps();
         });
