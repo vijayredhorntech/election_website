@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use App\DTOs\DateOfBirthDTO;
 use Illuminate\Validation\ValidationException;
+use App\Http\Requests\MemberUpdateRequest;
 
 class MemberController extends Controller
 {
@@ -97,12 +98,37 @@ class MemberController extends Controller
     }
 
 
-    public function update(MemberRequest $request, $id)
+    public function update(MemberUpdateRequest $request, $id)
     {
         $validatedData = $request->validated();
-        $member = Member::find($id);
-        $member->update($validatedData);
-        return redirect()->route('members.index')->with('success', 'Member updated successfully');
+
+        $date_of_birth = new DateOfBirthDTO($validatedData['day'], $validatedData['month'], $validatedData['year']);
+
+        try {
+            $member = Member::findOrFail($id);
+            $updateData = [
+                'title' => $validatedData['title'],
+                'first_name' => $validatedData['first_name'],
+                'last_name' => $validatedData['last_name'],
+                'postcode' => $validatedData['postcode'],
+                'address' => $validatedData['address'],
+                'country_id' => Country::where('code', $validatedData['country'])->first()->id,
+                'county_id' => County::where('code', $validatedData['county'])->first()->id,
+                'city' => $validatedData['city'],
+                'constituency_id' => Constituency::where('name', $validatedData['constituency'])->first()->id,
+                'date_of_birth' => $date_of_birth->toString(),
+                'gender' => $validatedData['gender'],
+                'marital_status' => $validatedData['marital_status'],
+                'qualification' => $validatedData['qualification'],
+                'profession' => $validatedData['profession'],
+            ];
+
+            $member->update($updateData);
+            return redirect()->route('members.index')->with('success', 'Member updated successfully');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('members.index')->with('error', 'An error occurred while updating the member');
+        }
     }
 
     public function delete($id)

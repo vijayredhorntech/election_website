@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-1 relative">
     <label for="constituency" class="font-semibold text-sm text-black">Constituency <span class="text-danger">*</span></label>
-    <input type="text" id="constituency" name="constituency" value="{{ isset($member->constituency) ? $member->constituency : old('constituency') }}" placeholder="Enter constituency..." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-200">
+    <input type="text" id="constituency" name="constituency" value="{{ $data->name ?? old('constituency') }}" placeholder="Enter constituency..." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-200">
     <div>
         <ul id="constituency-results" class="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full hidden"></ul>
     </div>

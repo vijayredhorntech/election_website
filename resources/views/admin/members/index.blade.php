@@ -51,7 +51,7 @@
                             <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Personal Information</h2>
                             <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
                                 <div class="w-full">
-                                    <x-title title="{{ $member->title ?? old('title') }}" />
+                                    <x-title :title="$member->title ?? old('title')" />
                                 </div>
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
@@ -101,9 +101,9 @@
                                         <label for="gender" class="font-semibold text-sm text-black">Gender <span class="text-danger">*</span></label>
                                         <select name="gender" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                             <option value="">Select Gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
+                                            <option value="Male" {{ (old('gender', $member->gender ?? '') == 'Male') ? 'selected' : '' }}>Male</option>
+                                            <option value="Female" {{ (old('gender', $member->gender ?? '') == 'Female') ? 'selected' : '' }}>Female</option>
+                                            <option value="Other" {{ (old('gender', $member->gender ?? '') == 'Other') ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -112,11 +112,11 @@
                                         <label for="marital_status" class="font-semibold text-sm text-black">Marital Status <span class="text-danger">*</span></label>
                                         <select name="marital_status" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                             <option value="">Select Marital Status</option>
-                                            <option value="Single">Single</option>
-                                            <option value="Married">Married</option>
-                                            <option value="Divorced">Divorced</option>
-                                            <option value="Widowed">Widowed</option>
-                                            <option value="Other">Other</option>
+                                            <option value="Single" {{ (old('marital_status', $member->marital_status ?? '') == 'Single') ? 'selected' : '' }}>Single</option>
+                                            <option value="Married" {{ (old('marital_status', $member->marital_status ?? '') == 'Married') ? 'selected' : '' }}>Married</option>
+                                            <option value="Divorced" {{ (old('marital_status', $member->marital_status ?? '') == 'Divorced') ? 'selected' : '' }}>Divorced</option>
+                                            <option value="Widowed" {{ (old('marital_status', $member->marital_status ?? '') == 'Widowed') ? 'selected' : '' }}>Widowed</option>
+                                            <option value="Other" {{ (old('marital_status', $member->marital_status ?? '') == 'Other') ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -125,13 +125,13 @@
                                         <label for="qualification" class="font-semibold text-sm text-black">Qualification <span class="text-danger">*</span></label>
                                         <select name="qualification" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                             <option value="">Select Qualification</option>
-                                            <option value="Primary">Primary</option>
-                                            <option value="Secondary">Secondary</option>
-                                            <option value="Higher Secondary">Higher Secondary</option>
-                                            <option value="Graduate">Graduate</option>
-                                            <option value="Post Graduate">Post Graduate</option>
-                                            <option value="Doctorate">Doctorate</option>
-                                            <option value="Other">Other</option>
+                                            <option value="Primary" {{ (old('qualification', $member->qualification ?? '') == 'Primary') ? 'selected' : '' }}>Primary</option>
+                                            <option value="Secondary" {{ (old('qualification', $member->qualification ?? '') == 'Secondary') ? 'selected' : '' }}>Secondary</option>
+                                            <option value="Higher Secondary" {{ (old('qualification', $member->qualification ?? '') == 'Higher Secondary') ? 'selected' : '' }}>Higher Secondary</option>
+                                            <option value="Graduate" {{ (old('qualification', $member->qualification ?? '') == 'Graduate') ? 'selected' : '' }}>Graduate</option>
+                                            <option value="Post Graduate" {{ (old('qualification', $member->qualification ?? '') == 'Post Graduate') ? 'selected' : '' }}>Post Graduate</option>
+                                            <option value="Doctorate" {{ (old('qualification', $member->qualification ?? '') == 'Doctorate') ? 'selected' : '' }}>Doctorate</option>
+                                            <option value="Other" {{ (old('qualification', $member->qualification ?? '') == 'Other') ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -140,16 +140,16 @@
                                         <label for="profession" class="font-semibold text-sm text-black">Profession <span class="text-danger">*</span></label>
                                         <select name="profession" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                             <option value="">Select Profession</option>
-                                            <option value="Student">Student</option>
-                                            <option value="Employee">Employee</option>
-                                            <option value="Business">Business</option>
-                                            <option value="Self Employed">Self Employed</option>
-                                            <option value="Housewife">Housewife</option>
-                                            <option value="Retired">Retired</option>
-                                            <option value="Lawyer">Lawyer</option>
-                                            <option value="Doctor">Doctor</option>
-                                            <option value="Teacher">Teacher</option>
-                                            <option value="Other">Other</option>
+                                            <option value="Student" {{ (old('profession', $member->profession ?? '') == 'Student') ? 'selected' : '' }}>Student</option>
+                                            <option value="Employee" {{ (old('profession', $member->profession ?? '') == 'Employee') ? 'selected' : '' }}>Employee</option>
+                                            <option value="Business" {{ (old('profession', $member->profession ?? '') == 'Business') ? 'selected' : '' }}>Business</option>
+                                            <option value="Self Employed" {{ (old('profession', $member->profession ?? '') == 'Self Employed') ? 'selected' : '' }}>Self Employed</option>
+                                            <option value="Housewife" {{ (old('profession', $member->profession ?? '') == 'Housewife') ? 'selected' : '' }}>Housewife</option>
+                                            <option value="Retired" {{ (old('profession', $member->profession ?? '') == 'Retired') ? 'selected' : '' }}>Retired</option>
+                                            <option value="Lawyer" {{ (old('profession', $member->profession ?? '') == 'Lawyer') ? 'selected' : '' }}>Lawyer</option>
+                                            <option value="Doctor" {{ (old('profession', $member->profession ?? '') == 'Doctor') ? 'selected' : '' }}>Doctor</option>
+                                            <option value="Teacher" {{ (old('profession', $member->profession ?? '') == 'Teacher') ? 'selected' : '' }}>Teacher</option>
+                                            <option value="Other" {{ (old('profession', $member->profession ?? '') == 'Other') ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
                         <div class="mb-6">
                             <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Address</h2>
                             <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                                <x-address />
+                                <x-address :data="$member ?? null" />
                             </div>
                         </div>
 
@@ -196,7 +196,7 @@
                                 <div class="w-full">
                                     <div class="flex flex-col gap-1">
                                         <label for="referrer_code" class="font-semibold text-sm text-black">Referral Code <span class="text-danger">*</span></label>
-                                        <input type="text" name="referrer_code" value="{{ $member->referrer_code ?? old('referrer_code') }}" placeholder="Enter referral code....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                        <input type="text" name="referrer_code" value="{{ $member->referrer->referral_code ?? old('referrer_code') }}" placeholder="Enter referral code....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     </div>
                                 </div>
                             </div>

@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class Constituency extends Component
 {
+    public $data;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -21,6 +22,6 @@ class Constituency extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.constituency');
+        return view('components.constituency')->with('data', $this->data);
     }
 }

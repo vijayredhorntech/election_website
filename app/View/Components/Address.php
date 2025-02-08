@@ -9,12 +9,13 @@ use App\Models\Country;
 
 class Address extends Component
 {
+    public $data;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -23,6 +24,6 @@ class Address extends Component
     public function render(): View|Closure|string
     {
         $countries = Country::all();
-        return view('components.address')->with('countries', $countries);
+        return view('components.address')->with('countries', $countries)->with('data', $this->data);
     }
 }
