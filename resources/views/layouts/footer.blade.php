@@ -8,7 +8,7 @@
                         document.write(new Date().getFullYear() + ",");
                     </script>
                     Developed by
-                    <a href="https://www.himsoftsolution.com" class="font-semibold text-primary" target="_blank">Him Soft Solution</a>
+                    <a href="https://www.himsoftsolution.com" class="font-semibold text-primaryLight" target="_blank">Him Soft Solution</a>
                 </div>
             </div>
         </div>
