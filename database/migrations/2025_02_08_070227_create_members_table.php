@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('address');
             $table->foreignId('country_id')->constrained('countries');
             $table->foreignId('county_id')->constrained('counties');
-            $table->foreignId('city_id')->constrained('cities');
+            $table->string('city');
             $table->foreignId('constituency_id')->constrained('constituencies');
             $table->timestamps();
         });

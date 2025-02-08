@@ -22,10 +22,10 @@ class Member extends Model
         'email',
         'postcode',
         'address',
-        'country',
-        'county',
+        'country_id',
+        'county_id',
         'city',
-        'constituency',
+        'constituency_id',
     ];
 
     protected static function boot()
@@ -56,5 +56,18 @@ class Member extends Model
         return $this->hasMany(Member::class, 'referrer_id', 'user_id');
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
+    public function county()
+    {
+        return $this->belongsTo(County::class);
+    }
+
+    public function constituency()
+    {
+        return $this->belongsTo(Constituency::class);
+    }
 }

@@ -29,12 +29,15 @@ class MemberRequest extends FormRequest
             'alternate_mobile_number' => 'required|numeric|digits:10|unique:members,alternate_mobile_number',
             'email' => 'required|email|unique:members,email',
             'referrer_code' => 'required',
-            'postcode' => 'required',
+            'postcode' => [
+                'required',
+                'regex:/^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i'
+            ],
             'address' => 'required',
-            'country' => 'required',
-            'county' => 'required',
+            'country' => 'required|exists:countries,code',
+            'county' => 'required|exists:counties,code',
             'city' => 'required',
-            'constituency' => 'required',
+            'constituency' => 'required|exists:constituencies,name',
             // 'referral_code' => 'required',
         ];
     }

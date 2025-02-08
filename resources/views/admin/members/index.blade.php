@@ -95,7 +95,10 @@
 
                         <!-- Address Section -->
                         <div class="mb-6">
-                            <x-address />
+                            <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Address</h2>
+                            <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                                <x-address />
+                            </div>
                         </div>
 
                         <!-- Referral Code Section -->
@@ -151,7 +154,7 @@
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member->primary_mobile_number}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member->user->referral_code}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member->referrer->name}} ({{$member->referrer->referral_code}})</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member->constituency}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member->constituency->name}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member->referredMembers->count()}}</td>
 
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm w-[200px]">

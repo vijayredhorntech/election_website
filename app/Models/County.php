@@ -12,4 +12,9 @@ class County extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
 }
