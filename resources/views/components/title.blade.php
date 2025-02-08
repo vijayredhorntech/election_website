@@ -1,6 +1,17 @@
-<div class="flex flex-col gap-1">
-    <label for="title" class="font-semibold text-sm text-black">Title <span class="text-danger">*</span></label>
-    <input type="text" id="title" name="title" value="{{ isset($member->title) ? $member->title : '' }}" placeholder="Enter title..." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-200">
+<div class="relative flex flex-col gap-1">
+    <label for="title" class="font-semibold text-sm text-black">
+        Title <span class="text-danger">*</span>
+    </label>
+
+    <input
+        type="text"
+        id="title"
+        name="title"
+        value="{{ $title }}"
+        placeholder="Enter title..."
+        class="text-sm px-4 py-1.5 rounded-[3px] border border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-200">
+
+    <!-- Suggestions List -->
     <div>
         <ul id="title-results" class="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full hidden"></ul>
     </div>
