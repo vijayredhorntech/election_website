@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\OfficeController;
@@ -15,6 +16,10 @@ use App\Http\Controllers\TitleController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -23,9 +28,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
-    Route::post('/setFinancialYear', [AdminController::class, 'setFinancialYear'])->name('set-financial-year');
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
     Route::get('/counties', [CountyController::class, 'index'])->name('counties');
@@ -35,6 +38,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/titles/{name}', [TitleController::class, 'getTitleByName']);
 
     Route::prefix('admin')->group(function () {
+
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::post('/setFinancialYear', [AdminDashboardController::class, 'setFinancialYear'])->name('set-financial-year');
+
+
         Route::name('designations.')->group(function () {
             Route::get('/designations', [DesignationController::class, 'index'])->name('index');
             Route::post('/designations/store', [DesignationController::class, 'store'])->name('store');
@@ -64,7 +72,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::name('employees.')->group(function () {
             Route::get('/employees', [EmployeeController::class, 'index'])->name('index');
+            Route::post('/employees/store', [EmployeeController::class, 'store'])->name('store');
             Route::get('/employees/view', [EmployeeController::class, 'view'])->name('view');
+            Route::get('/employees/status/{id}', [EmployeeController::class, 'status'])->name('status');
+
         });
 
         Route::name('members.')->group(function () {

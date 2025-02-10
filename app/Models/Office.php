@@ -36,4 +36,9 @@ class Office extends Model
     {
         return $this->hasMany(Constituency::class);
     }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }

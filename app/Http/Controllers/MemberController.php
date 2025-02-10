@@ -25,10 +25,13 @@ class MemberController extends Controller
             'type' => 'Create',
         ];
 
-        $Members = Member::all();
+
+        // fetch all user with role of member
+        $members = User::where('role', 'member')->get();
+
         $countries = Country::all();
 
-        return view('admin.members.index')->with('formData', $formData)->with('members', $Members)->with('countries', $countries);
+        return view('admin.members.index')->with('formData', $formData)->with('members', $members)->with('countries', $countries);
     }
 
 
