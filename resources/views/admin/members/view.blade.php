@@ -150,32 +150,40 @@
                     <div class="w-full">
                         <div class="w-full p-4 ">
                             <div class="border-[1px] border-primaryDark/10">
-                                <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg">
+                                <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg flex justify-between">
                                     <span>Total Members Enrolled ({{$member->referredMembers->count()}})</span>
+                                    <button class="text-xs bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</button>
+
                                 </div>
                                 <div class="p-2 ">
                                     <p class="text-sm text-primaryLight">Latest 10 Enrollments by the member</p>
                                     <div class="flex flex-wrap gap-2">
-                                        @foreach($member->referredMembers()->orderBy('created_at', 'desc')->take(10)->get() as $referredMember)
-                                        <a class="text-sm px-4 py-0.5 border-[1px] border-primaryDark/30 rounded-full text-primaryDark  hover:bg-primaryDark hover:text-white transition ease-in duration-2000" href="{{route('member.view',['id'=>$referredMember->id])}}"> {{$referredMember->title}} {{$referredMember->first_name}} {{$referredMember->last_name}}</a>
-                                        @endforeach
+                                        @forelse($member->referredMembers()->orderBy('created_at', 'desc')->take(10)->get() as $referredMember)
+                                           <a class="text-sm px-4 py-0.5 border-[1px] border-primaryDark/30 rounded-full text-primaryDark  hover:bg-primaryDark hover:text-white transition ease-in duration-2000" href="{{route('member.view',['id'=>$referredMember->id])}}"> {{$referredMember->title}} {{$referredMember->first_name}} {{$referredMember->last_name}}</a>
+                                        @empty
+                                           <p class="text-md text-primaryDark">No member enrolled yet</p>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
 
 
                             <div class="border-[1px] border-primaryDark/10 mt-10">
-                                <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg">
+                                <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg flex justify-between">
                                     <span>Total Donation ({{$member->referredMembers->count()}})</span>
+
+                                    <button class="text-xs bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</button>
                                 </div>
                                 <div class="p-2 ">
                                     <p class="text-sm text-primaryLight">Latest 10 Donation Amount </p>
                                     <div class="flex flex-wrap gap-2">
-                                        @foreach($member->referredMembers()->orderBy('created_at', 'desc')->take(10)->get() as $referredMember)
+                                        @forelse($member->referredMembers()->orderBy('created_at', 'desc')->take(10)->get() as $referredMember)
                                         <a class="text-sm px-4 py-0.5 border-[1px] border-primaryDark/30 rounded-full text-primaryDark  hover:bg-primaryDark hover:text-white transition ease-in duration-2000" href="{{route('member.view',['id'=>$referredMember->id])}}">
                                             £ {{$referredMember->id}}
                                         </a>
-                                        @endforeach
+                                            @empty
+                                             <p class="text-md text-primaryDark">No donation made yet</p>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
