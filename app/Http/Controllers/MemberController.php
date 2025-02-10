@@ -45,12 +45,31 @@ class MemberController extends Controller
             $referrer = User::where('referral_code', $validatedData['referrer_code'])->first();
 
             if (!$referrer) {
-                return ValidationException::withMessages(['referrer_code' => 'Invalid Referral Code.']);
+                throw ValidationException::withMessages(['referrer_code' => 'Invalid Referral Code.']);
             }
             $validatedData['referrer_id'] = $referrer->id;
         }
 
         try {
+            $country = Country::where('code', $validatedData['country'])->first();
+            $county = County::where('code', $validatedData['county'])->first();
+            $constituency = Constituency::where('name', $validatedData['constituency'])->first();
+
+            // $partial_member_id = $country->code . $county->code . $constituency->code;
+
+            // // Get the last member ID that matches the partial pattern
+            // $last_member = Member::where('member_id', 'like', $partial_member_id . '%')->latest()->first();
+
+            // // Extract the last 6 digits, increment, and pad with zeros
+            // if ($last_member) {
+            //     $last_number = (int) substr($last_member->member_id, -6); // Convert last 6 digits to number
+            //     $new_number = str_pad($last_number + 1, 6, '0', STR_PAD_LEFT); // Increment and pad
+            // } else {
+            //     $new_number = '000001'; // Default starting value
+            // }
+
+            // $member_id = $partial_member_id . $new_number;
+
             $member = [];
 
             $member['referrer_id'] = $validatedData['referrer_id'];
@@ -63,15 +82,16 @@ class MemberController extends Controller
             $member['email'] = $validatedData['email'];
             $member['postcode'] = $validatedData['postcode'];
             $member['address'] = $validatedData['address'];
-            $member['country_id'] = Country::where('code', $validatedData['country'])->first()->id;
-            $member['county_id'] = County::where('code', $validatedData['county'])->first()->id;
+            $member['country_id'] = $country->id;
+            $member['county_id'] = $county->id;
             $member['city'] = $validatedData['city'];
-            $member['constituency_id'] = Constituency::where('name', $validatedData['constituency'])->first()->id;
+            $member['constituency_id'] = $constituency->id;
             $member['date_of_birth'] = $date_of_birth->toString();
             $member['gender'] = $validatedData['gender'];
             $member['marital_status'] = $validatedData['marital_status'];
             $member['qualification'] = $validatedData['qualification'];
             $member['profession'] = $validatedData['profession'];
+            // $member['member_id'] = $member_id;
 
             Member::create($member);
             return redirect()->route('members.index')->with('success', 'Member created successfully');
@@ -139,5 +159,124 @@ class MemberController extends Controller
         $member = Member::find($id);
         $member->delete();
         return redirect()->route('members.index')->with('success', 'Member deleted successfully');
+    }
+
+    public function referred($id)
+    {
+        $member = Member::find($id);
+        $data = $member->referredMembers()->orderBy('created_at', 'desc')->get();
+        $routes = [
+            [
+                'label' => 'Edit',
+                'route' => 'member.edit',
+                'params' => ['id' => 'row->id'],
+                'class' => 'bg-info text-white px-3 py-1 rounded-[3px]',
+                'icon' => 'fa fa-edit',
+            ],
+            [
+                'label' => 'View',
+                'route' => 'member.view',
+                'params' => ['id' => 'row->id'],
+                'class' => 'bg-success text-white px-3 py-1 rounded-[3px] ml-0.5',
+                'icon' => 'fa fa-eye',
+            ],
+        ];
+
+        $columns = [
+            [
+                'label' => 'Sr. No.',
+                'expression' => 'index + 1',
+            ],
+            [
+                'label' => 'Name',
+                'expression' => 'row->title . " " . row->first_name . " " . row->last_name',
+            ],
+            [
+                'label' => 'Email Id',
+                'expression' => 'row->email',
+            ],
+            [
+                'label' => 'Phone',
+                'expression' => 'row->primary_mobile_number',
+            ],
+            [
+                'label' => 'Referral Code',
+                'expression' => 'row->user->referral_code',
+            ],
+            [
+                'label' => 'Referred By',
+                'expression' => 'row->referrer->name',
+            ],
+            [
+                'label' => 'Constituency',
+                'expression' => 'row->constituency->name',
+            ],
+            [
+                'label' => 'Members Added',
+                'expression' => 'row->referredMembers()->count()',
+            ],
+
+        ];
+
+        return view('admin.members.view-all')->with('member', $member)->with('data', $data)->with('columns', $columns)->with('routes', $routes);
+    }
+
+    public function donations($id)
+    {
+        $member = Member::find($id);
+
+        // TODO: Get the donations for the member
+
+        $data = $member->referredMembers()->orderBy('created_at', 'desc')->get();
+
+        $routes = [
+            [
+                'label' => 'Download Invoice',
+                'route' => 'member.edit',
+                'params' => ['id' => 'row->id'],
+                'class' => 'bg-info text-white px-3 py-1 rounded-[3px]',
+                'icon' => 'fa fa-download',
+            ],
+            [
+                'label' => 'View Invoice',
+                'route' => 'member.view',
+                'params' => ['id' => 'row->id'],
+                'class' => 'bg-success text-white px-3 py-1 rounded-[3px] ml-0.5',
+                'icon' => 'fa fa-eye',
+            ],
+        ];
+
+        $columns = [
+            [
+                'label' => 'Sr. No.',
+                'expression' => 'index + 1',
+            ],
+            [
+                'label' => 'Donor Name',
+                'expression' => 'row->donor_name',
+            ],
+            [
+                'label' => 'Email',
+                'expression' => 'row->email',
+            ],
+            [
+                'label' => 'Constituency',
+                'expression' => 'row->constituency_id',
+            ],
+            [
+                'label' => 'Amount',
+                'expression' => 'row->amount',
+            ],
+            [
+                'label' => 'Donation Date',
+                'expression' => 'row->donation_date',
+            ],
+            [
+                'label' => 'Status',
+                'expression' => 'row->status',
+            ],
+        ];
+
+        return view('admin.members.view-all')->with('member', $member)->with('data', $data)->with('columns', $columns)->with('routes', $routes);
     }
 }

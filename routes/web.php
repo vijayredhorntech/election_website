@@ -66,6 +66,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/member/store', [MemberController::class, 'store'])->name('store');
             Route::get('/member/edit/{id}', [MemberController::class, 'edit'])->name('edit');
             Route::get('/member/view/{id}', [MemberController::class, 'view'])->name('view');
+            Route::get('/member/view/{id}/referred', [MemberController::class, 'referred'])->name('referred');
+            Route::get('/member/view/{id}/donations', [MemberController::class, 'donations'])->name('donations');
             Route::post('/member/update/{id}', [MemberController::class, 'update'])->name('update');
             Route::get('/member/delete/{id}', [MemberController::class, 'delete'])->name('delete');
         });
@@ -86,12 +88,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('donation.')->group(function () {
             Route::get('/donation', [DonationController::class, 'index'])->name('index');
             Route::post('/donation/store', [DonationController::class, 'store'])->name('store');
-            Route::get('/donation/edit/{id}', [DonationController::class, 'edit'])->name('edit');
-            Route::get('/donation/status/{id}', [DonationController::class, 'status'])->name('status');
-            Route::get('/donation/view/{id}', [DonationController::class, 'view'])->name('view');
-            // Route::get('/donation/show/{id}', [DonationController::class, 'show'])->name('show');
-            Route::post('/donation/update/{id}', [DonationController::class, 'update'])->name('update');
-            Route::get('/donation/delete/{id}', [DonationController::class, 'delete'])->name('delete');
         });
 
 

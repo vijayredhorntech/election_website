@@ -225,6 +225,7 @@
                             <tr class="bg-primaryDark/30">
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
                                 </td>
+                                <!-- <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Member ID</td> -->
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Email Id</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Phone </td>
@@ -255,9 +256,9 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7"
+                                <td colspan="9"
                                     class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
-                                    No office found
+                                    No members found
                                 </td>
                             </tr>
                             @endforelse
