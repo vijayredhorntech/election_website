@@ -31,4 +31,9 @@ class Office extends Model
     {
         return $this->belongsTo(County::class);
     }
+
+    public function constituencies()
+    {
+        return $this->hasMany(Constituency::class);
+    }
 }

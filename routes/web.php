@@ -9,8 +9,8 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CountyController;
 use App\Http\Controllers\ConstituencyController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\TitleController;
-use App\Http\Controllers\Csrf;
 use Illuminate\Support\Facades\Route;
 
 
@@ -71,7 +71,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
 
-
+        Route::name('donation.')->group(function () {
+            Route::get('/donation', [DonationController::class, 'index'])->name('index');
+            Route::post('/donation/store', [DonationController::class, 'store'])->name('store');
+            Route::get('/donation/edit/{id}', [DonationController::class, 'edit'])->name('edit');
+            Route::get('/donation/status/{id}', [DonationController::class, 'status'])->name('status');
+            Route::get('/donation/view/{id}', [DonationController::class, 'view'])->name('view');
+            // Route::get('/donation/show/{id}', [DonationController::class, 'show'])->name('show');
+            Route::post('/donation/update/{id}', [DonationController::class, 'update'])->name('update');
+            Route::get('/donation/delete/{id}', [DonationController::class, 'delete'])->name('delete');
+        });
     });
 });
 
