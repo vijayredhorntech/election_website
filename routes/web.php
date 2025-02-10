@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\ProfileController;
@@ -80,6 +81,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
             // Route::get('/donation/show/{id}', [DonationController::class, 'show'])->name('show');
             Route::post('/donation/update/{id}', [DonationController::class, 'update'])->name('update');
             Route::get('/donation/delete/{id}', [DonationController::class, 'delete'])->name('delete');
+        });
+
+
+        Route::name('budget.')->group(function () {
+            Route::get('/budget', [BudgetController::class, 'index'])->name('index');
+            Route::post('/budget/store', [BudgetController::class, 'store'])->name('store');
+            Route::get('/budget/edit/{id}', [BudgetController::class, 'edit'])->name('edit');
+            Route::get('/budget/status/{id}', [BudgetController::class, 'status'])->name('status');
+            Route::get('/budget/view/{id}', [BudgetController::class, 'view'])->name('view');
+            // Route::get('/budget/show/{id}', [\App\Http\Controllers\BudgetController::class, 'show'])->name('show');
+            Route::post('/budget/update/{id}', [BudgetController::class, 'update'])->name('update');
+            Route::get('/budget/delete/{id}', [BudgetController::class, 'delete'])->name('delete');
         });
     });
 });
