@@ -192,10 +192,65 @@
                 <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
                     <span class="text-white font-semibold lg:text-xl ">Members (Constituency wise)</span>
                 </div>
-                <div class="flex-auto p-4">
-                    <div style="height: 300px; display: flex; justify-content: center; align-items: center">
-                        <canvas id="constituencyMembersChart" height="200"></canvas>
-                    </div>
+                <div class="flex-auto p-4 overflow-x-auto">
+                    <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
+                        <thead>
+                        <tr class="bg-primaryDark/30">
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
+                            </td>
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Email Id</td>
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Phone </td>
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Constituency</td>
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Donations</td>
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Members Added</td>
+                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Actions</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @php
+
+                                $members = [
+                                    [ 'name' => 'John', 'email' => 'jogn@gmail.com', 'phone' => '9876543210', 'constituency' => 'Los Angeles', 'donations' => '£ 5,000', 'members' => '5'],
+                                    [ 'name' => 'Doe', 'email' => 'doe@gmail.com', 'phone' => '8765432109', 'constituency' => 'London', 'donations' => '£ 0', 'members' => '2'],
+                                    [ 'name' => 'Mark', 'email' => 'mark@gmail.com  ', 'phone' => '7654321098', 'constituency' => 'Chicago', 'donations' => '£ 12,000', 'members' => '3'],
+                                    [ 'name' => 'Smith', 'email' => 'smith@gmail.com', 'phone' => '6543210987', 'constituency' => 'Toronto', 'donations' => '£ 3,000', 'members' => '3'],
+                                    [ 'name' => 'David', 'email' => 'david@gmail.com', 'phone' => '5432109876', 'constituency' => 'Sydney', 'donations' => '£ 1,000', 'members' => '2'],
+                                ];  // this is just a dummy data
+                                @endphp
+
+                        @forelse ($members as $member)
+                            <tr>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{$loop->iteration}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[200px]">{{$member['name']}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member['email']}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['phone']}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['constituency']}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['donations']}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['members']}}</td>
+
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm w-[200px]">
+                                    <div class="flex h-full">
+                                        <a href="{{route('member.view',['id'=>$loop->iteration])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Member"><i class="fa fa-eye text-xs"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7"
+                                    class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
+                                    No office found
+                                </td>
+                            </tr>
+                        @endforelse
+
+
+
+
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
