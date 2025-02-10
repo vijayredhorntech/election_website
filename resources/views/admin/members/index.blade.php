@@ -69,7 +69,8 @@
                                     <div class="flex flex-col gap-1">
                                         <label for="date_of_birth" class="font-semibold text-sm text-black">Date of Birth <span class="text-danger">*</span></label>
                                         <div class="flex gap-2">
-                                            <select name="day" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+
+                                            <select name="day" class="text-sm w-full px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                                 <option value="">Day</option>
                                                 <!-- Generate days (1-31) -->
                                                 @for ($i = 1; $i <= 31; $i++)
@@ -77,7 +78,7 @@
                                                     @endfor
                                             </select>
 
-                                            <select name="month" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                            <select name="month" class="text-sm w-full px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                                 <option value="">Month</option>
                                                 <!-- Generate months (1-12) -->
                                                 @for ($i = 1; $i <= 12; $i++)
@@ -85,13 +86,14 @@
                                                     @endfor
                                             </select>
 
-                                            <select name="year" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                            <select name="year" class="text-sm w-full px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                                 <option value="">Year</option>
                                                 <!-- Generate years (e.g., from 1900 to the current year) -->
                                                 @for ($i = 1900; $i <= date('Y'); $i++)
                                                     <option value="{{ $i }}" {{ isset($member->year) && $member->year == $i ? 'selected' : '' }}>{{ $i }}</option>
                                                     @endfor
                                             </select>
+
                                         </div>
                                     </div>
                                 </div>

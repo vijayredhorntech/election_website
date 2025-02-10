@@ -31,7 +31,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/counties/{countryCode}', [CountyController::class, 'getCountiesByCountryCode']);
     Route::get('/constituencies', [ConstituencyController::class, 'index'])->name('constituencies');
     Route::get('/constituencies/{name}', [ConstituencyController::class, 'getConstituencyByName']);
-
     Route::get('/titles/{name}', [TitleController::class, 'getTitleByName']);
 
     Route::prefix('admin')->group(function () {
@@ -64,11 +63,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::name('employees.')->group(function () {
             Route::get('/employees', [EmployeeController::class, 'index'])->name('index');
+            Route::get('/employees/view', [EmployeeController::class, 'view'])->name('view');
         });
 
         Route::name('members.')->group(function () {
             Route::get('/members', [MemberController::class, 'index'])->name('index');
         });
+
+
+
     });
 });
 

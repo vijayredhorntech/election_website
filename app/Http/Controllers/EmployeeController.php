@@ -74,4 +74,9 @@ class EmployeeController extends Controller
 
     //     return redirect()->route('office.index')->with('success', 'Office deleted successfully!');
     // }
+
+    public function view()
+    {
+        return view('admin.employees.view');
+    }
 }
