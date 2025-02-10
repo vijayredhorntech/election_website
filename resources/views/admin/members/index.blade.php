@@ -249,7 +249,7 @@
 
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm w-[200px]">
                                     <div class="flex h-full">
-                                        <a href="{{route('member.view',['id'=>$member->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Member"><i class="fa fa-eye text-xs"></i></a>
+                                        <a href="{{route('member.view',['id'=>$member->member->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Member"><i class="fa fa-eye text-xs"></i></a>
                                     </div>
                                 </td>
                             </tr>
