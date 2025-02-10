@@ -112,10 +112,8 @@
 
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm ">
                                     <div class="flex h-full">
-                                        <a href="{{route('donation.edit',['id'=>$donation->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Donation"><i class="fa fa-pen text-xs"></i></a>
-                                        <a href="{{route('donation.view',['id'=>$donation->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Donation"><i class="fa fa-eye text-xs"></i></a>
-                                        <a href="{{route('donation.delete',['id'=>$donation->id])}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Donation"><i class="fa fa-trash text-xs"></i></a>
-
+                                        <a href="{{route('member.edit',['id'=>$donation->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Download Invoice"><i class="fa fa-download text-xs"></i></a>
+                                        <a href="{{route('member.view',['id'=>$donation->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Invoice"><i class="fa fa-eye text-xs"></i></a>
                                     </div>
                                 </td>
                             </tr>

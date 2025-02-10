@@ -10,7 +10,7 @@ class Member extends Model
 {
     protected $fillable = [
         'user_id',
-        'member_id',
+        // 'member_id',
         'referrer_id',
         'status',
         'enrollment_date',

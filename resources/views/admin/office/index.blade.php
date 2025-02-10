@@ -81,13 +81,12 @@
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
                                 </td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Description</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Created At</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Address</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">City</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Post Code</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Budget</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Remaining Budget</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Employees</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Events</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Constituency </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Country</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Status</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Actions</td>
                             </tr>
@@ -97,13 +96,12 @@
                             <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{$loop->iteration}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[200px]">{{$office->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{ Str::words($office->description, 2, '...') }}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{ $office->created_at->format('d-m-Y') }}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{ Str::words($office->address,2, '...') }}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->city}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->postcode}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">£ 1000</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">£ 1000</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">17</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">3</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->constituency->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$office->country->name}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
                                     <a href="{{route('office.status',['id'=>$office->id])}}" class="bg-{{$office->status?"success":"danger"}}/10 border-[1px] border-{{$office->status?"success":"danger"}} font-bold text-{{$office->status?"success":"danger"}} px-4 py-0.5 rounded-[3px]"> {{$office->status?"Active":"Inactive"}}</a>
                                 </td>
