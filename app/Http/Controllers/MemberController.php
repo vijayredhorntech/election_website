@@ -84,6 +84,7 @@ class MemberController extends Controller
                     'marital_status' => $validatedData['marital_status'],
                     'qualification' => $validatedData['qualification'],
                     'profession' => $validatedData['profession'],
+                    'national_insurance_number' => $validatedData['national_insurance_number'],
                 ]);
 
                 return redirect()->route('members.index')->with('success', 'Member created successfully');
