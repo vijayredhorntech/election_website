@@ -22,6 +22,15 @@ Route::get('/donate', [PageController::class, 'donate'])->name('donate');
 Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
 
+
+Route::get('/join_us', [PageController::class, 'joinUs'])->name('joinUs');
+Route::get('/otp_verification', [PageController::class, 'otpVerification'])->name('otpVerification');
+Route::get('/membership_plans', [PageController::class, 'membershipPlans'])->name('membershipPlans');
+Route::get('/member_basic-info', [PageController::class, 'memberBasicInfo'])->name('memberBasicInfo');
+Route::get('/member_address_info', [PageController::class, 'memberAddressInfo'])->name('memberAddressInfo');
+Route::get('/donation_section', [PageController::class, 'donationSection'])->name('donationSection');
+Route::get('/payment_section', [PageController::class, 'paymentSection'])->name('paymentSection');
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');

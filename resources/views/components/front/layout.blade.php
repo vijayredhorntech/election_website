@@ -69,9 +69,9 @@
 {{--                </li>--}}
 
             </ul>
-            <button class="mx-auto lg:mx-0 hover:underline bg-black text-gray-100 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            <a href="{{route('joinUs')}}" class="mx-auto lg:mx-0 hover:underline bg-black text-gray-100 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                 Join Us
-            </button>
+            </a>
             <a href="{{route('donate')}}" id="navAction" class="mx-auto hover:underline ml-2 bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                 Donate <i class="fa fa-angle-right"></i>
             </a>
