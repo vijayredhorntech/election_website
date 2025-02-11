@@ -20,7 +20,7 @@ class Employee extends Model
 
     public function getCustomIdPrefix(): string
     {
-        return 'ONE';
+        return 'ONE0';
     }
 
     public function user()
