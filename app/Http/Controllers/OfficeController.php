@@ -111,7 +111,7 @@ class OfficeController extends Controller
     public function delete($id)
     {
         $office = Office::findOrFail($id);
-        $office->delete();
+        $office->employees()->count() > 0 ? redirect()->route('office.index')->with('error', 'Office cannot be deleted as it has employees!') : $office->delete();
 
         return redirect()->route('office.index')->with('success', 'Office deleted successfully!');
     }

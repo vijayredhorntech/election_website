@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\HasCustomId;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class Member extends Model
 {
+    use HasCustomId;
+
     protected $fillable = [
         'user_id',
+        'custom_id',
         // 'member_id',
         'referrer_id',
         'status',
@@ -36,14 +40,6 @@ class Member extends Model
     protected static function boot()
     {
         parent::boot();
-
-        static::creating(function ($member) {
-            $member->user_id = User::create([
-                'name' => $member->first_name . ' ' . $member->last_name,
-                'email' => $member->email,
-                'password' => Hash::make('password'),
-            ])->id;
-        });
     }
 
     public function user()
@@ -74,5 +70,10 @@ class Member extends Model
     public function constituency()
     {
         return $this->belongsTo(Constituency::class);
+    }
+
+    public function getCustomIdPrefix(): string
+    {
+        return 'ONM';
     }
 }

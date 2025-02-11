@@ -8,14 +8,14 @@ use Illuminate\View\Component;
 
 class Title extends Component
 {
-    public $title;
+    public $data;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($title = null)
+    public function __construct($data = null)
     {
-        $this->title = $title;
+        $this->data = $data;
     }
 
     /**
@@ -23,6 +23,6 @@ class Title extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.title');
+        return view('components.title')->with('data', $this->data);
     }
 }

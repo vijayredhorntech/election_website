@@ -7,7 +7,22 @@
 <div class="w-full">
     <div class="flex flex-col gap-1">
         <label for="address" class="font-semibold text-sm text-black">Address <span class="text-danger">*</span></label>
-        <input type="text" id="address" name="address" value="{{ $data->address ?? old('address') }}" placeholder="Enter address....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+        <select id="address" name="address"
+            class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+            <option value="">Select address</option>
+        </select>
+    </div>
+</div>
+<div class="w-full">
+    <div class="flex flex-col gap-1">
+        <label for="street" class="font-semibold text-sm text-black">Street <span class="text-danger">*</span></label>
+        <input type="text" id="street" name="street" value="{{ $data->street ?? old('street') }}" placeholder="Enter street....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+    </div>
+</div>
+<div class="w-full">
+    <div class="flex flex-col gap-1">
+        <label for="city" class="font-semibold text-sm text-black">Town <span class="text-danger">*</span></label>
+        <input type="text" name="city" value="{{ $data->city ?? old('city') }}" placeholder="Enter city....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
     </div>
 </div>
 <div class="w-full">
@@ -35,13 +50,6 @@
         </select>
     </div>
 </div>
-
-<div class="w-full">
-    <div class="flex flex-col gap-1">
-        <label for="city" class="font-semibold text-sm text-black">City <span class="text-danger">*</span></label>
-        <input type="text" name="city" value="{{ $data->city ?? old('city') }}" placeholder="Enter city....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-    </div>
-</div>
 <div class="w-full">
     <x-constituency :data="$data->constituency ?? null" />
 </div>
@@ -49,14 +57,19 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        let countrySelect = document.getElementById('country');
-        let countySelect = document.getElementById('county');
+        const postcodeInput = document.getElementById('postcode');
+        const addressSelect = document.getElementById('address');
+        const streetInput = document.getElementById('street');
+        const cityInput = document.getElementsByName('city')[0]; // Assuming there's one city input field
+        const countrySelect = document.getElementById('country');
+        const countySelect = document.getElementById('county');
 
         function updateCounties(countryCode, selectedCountyCode = null) {
+            console.log(countryCode);
             countySelect.innerHTML = '<option value="">Select county</option>';
 
             if (countryCode) {
-                fetch(`/counties/${countryCode}`)
+                fetch(`/counties/${countryCode}`) // Fetch counties based on selected country
                     .then(response => response.json())
                     .then(data => {
                         data.forEach(county => {
@@ -73,6 +86,51 @@
             }
         }
 
+        postcodeInput.addEventListener('blur', function() {
+            let postcode = this.value.trim();
+
+            if (!postcode) return;
+
+            fetch(`https://api.os.uk/search/places/v1/postcode?postcode=${postcode}&key=w5BpfTQcT8orZALfM9kvBzhP9FknhnZc`)
+                .then(response => response.json())
+                .then(data => {
+                    addressSelect.innerHTML = '<option value="">Select address</option>';
+
+                    if (data.results) {
+                        data.results.forEach(result => {
+                            const dpa = result.DPA;
+                            console.log(dpa);
+                            let option = document.createElement('option');
+                            option.value = dpa.ADDRESS;
+                            option.textContent = dpa.ADDRESS;
+                            addressSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching address:', error));
+        });
+
+        addressSelect.addEventListener('change', function() {
+            let selectedData = this.value ? JSON.parse(this.value) : null;
+
+            if (selectedData) {
+                streetInput.value = selectedData.THOROUGHFARE_NAME || '';
+                cityInput.value = selectedData.POST_TOWN || '';
+
+                // Auto-select country from the database
+                let countryCode = selectedData.COUNTRY_CODE || '';
+                if (countryCode) {
+                    for (let option of countrySelect.options) {
+                        if (option.value === countryCode) {
+                            option.selected = true;
+                            updateCounties(countryCode); // Update counties dropdown based on country
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
         // Listen for changes in country dropdown
         countrySelect.addEventListener('change', function() {
             updateCounties(this.value);
@@ -84,28 +142,6 @@
 
         if (preselectedCountry) {
             updateCounties(preselectedCountry, preselectedCounty);
-        }
-    });
-
-
-    document.getElementById('postcode').addEventListener('blur', function() {
-        let postcode = this.value;
-        let addressField = document.getElementById('address');
-
-
-        if (postcode) {
-            fetch(`https://api.postcodes.io/postcodes/${postcode}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 200) {
-                        let result = data.result;
-                        let address = `${result.parliamentary_constituency}, ${result.admin_district}, ${result.region}, ${result.country}`;
-                        addressField.value = address;
-                    } else {
-                        addressField.placeholder = 'Invalid postcode enter manually';
-                    }
-                })
-                .catch(error => console.error('Error fetching address:', error));
         }
     });
 </script>

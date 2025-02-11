@@ -81,9 +81,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('employees.')->group(function () {
             Route::get('/employees', [EmployeeController::class, 'index'])->name('index');
             Route::post('/employees/store', [EmployeeController::class, 'store'])->name('store');
-            Route::get('/employees/view', [EmployeeController::class, 'view'])->name('view');
+            Route::get('/employees/view/{id}', [EmployeeController::class, 'view'])->name('view');
             Route::get('/employees/status/{id}', [EmployeeController::class, 'status'])->name('status');
-
         });
 
         Route::name('members.')->group(function () {

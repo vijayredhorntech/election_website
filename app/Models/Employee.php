@@ -2,17 +2,26 @@
 
 namespace App\Models;
 
+use App\Traits\HasCustomId;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
+    use HasCustomId;
+
     protected $fillable = [
         'user_id',
+        'custom_id',
         'office_id',
         'designation_id',
         'joining_date',
         'status',
     ];
+
+    public function getCustomIdPrefix(): string
+    {
+        return 'ONE';
+    }
 
     public function user()
     {

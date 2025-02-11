@@ -36,18 +36,25 @@
                 <div class="w-full grid lg:grid-cols-2">
                     <div class="w-full p-4 ">
                         <div class="border-[1px] border-primaryDark/10">
+
                             <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg">
                                 <span>Personal Information</span>
                             </div>
                             <div class="p-2">
+                                <img src="{{asset('assets/images/profile.png')}}" alt="Member Image" class="h-48 mb-6 w-40 rounded-[5px] object-cover">
+
                                 <table class="w-full ">
+                                    <tr>
+                                        <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Member ID</td>
+                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->custom_id}}</td>
+                                    </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Name</td>
                                         <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->title}} {{$member->first_name}} {{$member->last_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">DOB</td>
-                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->date_of_birth}}</td>
+                                        <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Date of Birth</td>
+                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{ \Carbon\Carbon::parse($member->date_of_birth)->format('d-m-Y') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Gender</td>
@@ -67,7 +74,7 @@
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Enrolled On</td>
-                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->enrollment_date}}</td>
+                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{ \Carbon\Carbon::parse($member->enrollment_date)->format('d-m-Y') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Referral Code</td>
@@ -152,7 +159,7 @@
                             <div class="border-[1px] border-primaryDark/10">
                                 <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg flex justify-between">
                                     <span>Total Members Enrolled ({{$member->referredMembers->count()}})</span>
-                                    <a href="{{route('member.referred',['id'=>$member->id])}}" class="text-xs bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</a>
+                                    <a href="{{route('member.referred',['id'=>$member->id])}}" class="text-xs flex items-center bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</a>
 
                                 </div>
                                 <div class="p-2 ">
@@ -172,7 +179,7 @@
                                 <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg flex justify-between">
                                     <span>Total Donation ({{$member->referredMembers->count()}})</span>
 
-                                    <a href="{{route('member.donations',['id'=>$member->id])}}" class="text-xs bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</a>
+                                    <a href="{{route('member.donations',['id'=>$member->id])}}" class="text-xs flex items-center bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</a>
                                 </div>
                                 <div class="p-2 ">
                                     <p class="text-sm text-primaryLight">Latest 10 Donation Amount </p>

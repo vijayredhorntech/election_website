@@ -11,9 +11,10 @@ use App\Models\County;
 use App\Models\Constituency;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
-use App\DTOs\DateOfBirthDTO;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\MemberUpdateRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class MemberController extends Controller
 {
@@ -27,11 +28,11 @@ class MemberController extends Controller
 
 
         // fetch all user with role of member
-        $members = User::where('role', 'member')->get();
+        $users = User::where('role', 'member')->orWhere('role', 'employee')->get();
 
         $countries = Country::all();
 
-        return view('admin.members.index')->with('formData', $formData)->with('members', $members)->with('countries', $countries);
+        return view('admin.members.index')->with('formData', $formData)->with('users', $users)->with('countries', $countries);
     }
 
 
@@ -39,11 +40,8 @@ class MemberController extends Controller
     {
         $validatedData = $request->validated();
 
-        $date_of_birth = new DateOfBirthDTO($validatedData['day'], $validatedData['month'], $validatedData['year']);
-
         if ($validatedData['referrer_code']) {
             $referrer = User::where('referral_code', $validatedData['referrer_code'])->first();
-
             if (!$referrer) {
                 throw ValidationException::withMessages(['referrer_code' => 'Invalid Referral Code.']);
             }
@@ -51,50 +49,45 @@ class MemberController extends Controller
         }
 
         try {
-            $country = Country::where('code', $validatedData['country'])->first();
-            $county = County::where('code', $validatedData['county'])->first();
-            $constituency = Constituency::where('name', $validatedData['constituency'])->first();
 
-            // $partial_member_id = $country->code . $county->code . $constituency->code;
+            // dd($validatedData['address']);
+            return DB::transaction(function () use ($validatedData) {
+                // Create user first
+                $user = User::create([
+                    'name' => $validatedData['first_name'] . ' ' . $validatedData['last_name'],
+                    'email' => $validatedData['email'],
+                    'password' => Hash::make('password'),
+                ]);
 
-            // // Get the last member ID that matches the partial pattern
-            // $last_member = Member::where('member_id', 'like', $partial_member_id . '%')->latest()->first();
+                $country = Country::where('code', $validatedData['country'])->first();
+                $county = County::where('code', $validatedData['county'])->first();
+                $constituency = Constituency::where('name', $validatedData['constituency'])->first();
 
-            // // Extract the last 6 digits, increment, and pad with zeros
-            // if ($last_member) {
-            //     $last_number = (int) substr($last_member->member_id, -6); // Convert last 6 digits to number
-            //     $new_number = str_pad($last_number + 1, 6, '0', STR_PAD_LEFT); // Increment and pad
-            // } else {
-            //     $new_number = '000001'; // Default starting value
-            // }
+                $member = Member::create([
+                    'user_id' => $user->id,
+                    'referrer_id' => $validatedData['referrer_id'] ?? null,
+                    'enrollment_date' => now(),
+                    'title' => $validatedData['title'],
+                    'first_name' => $validatedData['first_name'],
+                    'last_name' => $validatedData['last_name'],
+                    'primary_mobile_number' => $validatedData['primary_mobile_number'],
+                    'alternate_mobile_number' => $validatedData['alternate_mobile_number'],
+                    'email' => $validatedData['email'],
+                    'postcode' => $validatedData['postcode'],
+                    'address' => $validatedData['address'],
+                    'country_id' => $country->id,
+                    'county_id' => $county->id,
+                    'city' => $validatedData['city'],
+                    'constituency_id' => $constituency->id,
+                    'date_of_birth' => $validatedData['date_of_birth'],
+                    'gender' => $validatedData['gender'],
+                    'marital_status' => $validatedData['marital_status'],
+                    'qualification' => $validatedData['qualification'],
+                    'profession' => $validatedData['profession'],
+                ]);
 
-            // $member_id = $partial_member_id . $new_number;
-
-            $member = [];
-
-            $member['referrer_id'] = $validatedData['referrer_id'];
-            $member['enrollment_date'] = now();
-            $member['title'] = $validatedData['title'];
-            $member['first_name'] = $validatedData['first_name'];
-            $member['last_name'] = $validatedData['last_name'];
-            $member['primary_mobile_number'] = $validatedData['primary_mobile_number'];
-            $member['alternate_mobile_number'] = $validatedData['alternate_mobile_number'];
-            $member['email'] = $validatedData['email'];
-            $member['postcode'] = $validatedData['postcode'];
-            $member['address'] = $validatedData['address'];
-            $member['country_id'] = $country->id;
-            $member['county_id'] = $county->id;
-            $member['city'] = $validatedData['city'];
-            $member['constituency_id'] = $constituency->id;
-            $member['date_of_birth'] = $date_of_birth->toString();
-            $member['gender'] = $validatedData['gender'];
-            $member['marital_status'] = $validatedData['marital_status'];
-            $member['qualification'] = $validatedData['qualification'];
-            $member['profession'] = $validatedData['profession'];
-            // $member['member_id'] = $member_id;
-
-            Member::create($member);
-            return redirect()->route('members.index')->with('success', 'Member created successfully');
+                return redirect()->route('members.index')->with('success', 'Member created successfully');
+            });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->route('members.index')->with('error', 'An error occurred while creating the member');
@@ -116,6 +109,7 @@ class MemberController extends Controller
 
     public function view($id)
     {
+        // dd($id);
         $member = Member::find($id);
         return view('admin.members.view')->with('member', $member);
     }
@@ -124,8 +118,6 @@ class MemberController extends Controller
     public function update(MemberUpdateRequest $request, $id)
     {
         $validatedData = $request->validated();
-
-        $date_of_birth = new DateOfBirthDTO($validatedData['day'], $validatedData['month'], $validatedData['year']);
 
         try {
             $member = Member::findOrFail($id);
@@ -139,7 +131,7 @@ class MemberController extends Controller
                 'county_id' => County::where('code', $validatedData['county'])->first()->id,
                 'city' => $validatedData['city'],
                 'constituency_id' => Constituency::where('name', $validatedData['constituency'])->first()->id,
-                'date_of_birth' => $date_of_birth->toString(),
+                'date_of_birth' => $validatedData['date_of_birth'],
                 'gender' => $validatedData['gender'],
                 'marital_status' => $validatedData['marital_status'],
                 'qualification' => $validatedData['qualification'],

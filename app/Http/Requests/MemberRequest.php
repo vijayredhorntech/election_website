@@ -22,13 +22,13 @@ class MemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|exists:titles,name',
+            'title' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
             'alternate_mobile_number' => 'required|numeric|digits:10|unique:members,alternate_mobile_number',
             'email' => 'required|email|unique:members,email',
-            'referrer_code' => 'required',
+            'referrer_code' => 'nullable',
             'postcode' => [
                 'required',
                 'regex:/^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i'
@@ -38,9 +38,7 @@ class MemberRequest extends FormRequest
             'county' => 'required|exists:counties,code',
             'city' => 'required',
             'constituency' => 'required|exists:constituencies,name',
-            'day' => 'required|integer|min:1|max:31',
-            'month' => 'required|integer|min:1|max:12',
-            'year' => 'required|integer|min:1900|max:' . now()->year,
+            'date_of_birth' => 'required|date|before:16 years ago',
             'gender' => 'required',
             'marital_status' => 'required',
             'qualification' => 'required',
