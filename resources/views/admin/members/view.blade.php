@@ -37,12 +37,18 @@
                     <div class="w-full p-4 ">
                         <div class="border-[1px] border-primaryDark/10">
 
-                            <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg">
+                            <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg cursor-pointer flex justify-between items-center"
+                                 onclick="document.getElementById('personalInfoDiv').classList.toggle('hidden')">
                                 <span>Personal Information</span>
+                                <i class="fa fa-angle-down"></i>
                             </div>
-                            <div class="p-2">
-                                <img src="{{asset('assets/images/profile.png')}}" alt="Member Image" class="h-48 mb-6 w-40 rounded-[5px] object-cover">
+                            <div class="p-2" id="personalInfoDiv">
 
+                                @if($member->profile_photo!=null)
+                                <img src="{{asset('storage/'. $member->profile_photo)}}" alt="Member Image" class="h-48 mb-6 w-40 rounded-[5px] object-cover">
+                                @else
+                                <img src="{{asset('assets/images/download.jpg')}}" alt="Member Image" class="h-48 mb-6 w-40 rounded-[5px] object-cover">
+                                @endif
                                 <table class="w-full ">
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Member ID</td>
@@ -92,10 +98,14 @@
                         </div>
 
                         <div class="border-[1px] border-primaryDark/10 mt-4">
-                            <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg">
+                            <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg cursor-pointer flex justify-between items-center"
+                            onclick="document.getElementById('contactInfoDiv').classList.toggle('hidden')">
                                 <span>Contact Information</span>
+
+                                <i class="fa fa-angle-down"></i>
+
                             </div>
-                            <div class="p-2">
+                            <div class="p-2 hidden" id="contactInfoDiv">
                                 <table class="w-full ">
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Mobile Number</td>
@@ -115,10 +125,14 @@
                         </div>
 
                         <div class="border-[1px] border-primaryDark/10 mt-4">
-                            <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg">
+                            <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg cursor-pointer flex justify-between items-center"
+                                 onclick="document.getElementById('addressInfoDiv').classList.toggle('hidden')">
                                 <span>Address Information</span>
+
+                                <i class="fa fa-angle-down"></i>
+
                             </div>
-                            <div class="p-2">
+                            <div class="p-2 hidden" id="addressInfoDiv">
                                 <table class="w-full ">
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Address</td>
@@ -160,7 +174,6 @@
                                 <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg flex justify-between">
                                     <span>Total Members Enrolled ({{$member->referredMembers->count()}})</span>
                                     <a href="{{route('member.referred',['id'=>$member->id])}}" class="text-xs flex items-center bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</a>
-
                                 </div>
                                 <div class="p-2 ">
                                     <p class="text-sm text-primaryLight">Latest 10 Enrollments by the member</p>
@@ -178,7 +191,6 @@
                             <div class="border-[1px] border-primaryDark/10 mt-10">
                                 <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg flex justify-between">
                                     <span>Total Donation ({{$member->referredMembers->count()}})</span>
-
                                     <a href="{{route('member.donations',['id'=>$member->id])}}" class="text-xs flex items-center bg-primaryDark/60 text-white px-4 rounded-[3px] hover:bg-primaryDark transition ease-in duration-2000">View all</a>
                                 </div>
                                 <div class="p-2 ">

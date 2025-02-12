@@ -37,7 +37,6 @@ Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::clas
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-
     Route::get('/member_basic_information', [MemberRegistrationController::class, 'memberBasicInformation'])->name('memberBasicInformation');
     Route::post('/member_basic_information', [MemberRegistrationController::class, 'storeMemberBasicInformation'])->name('storeMemberBasicInformation');
     Route::get('/member_address_information', [MemberRegistrationController::class, 'memberAddressInformation'])->name('memberAddressInformation');

@@ -137,6 +137,7 @@
                                     <div class="flex h-full">
                                         <a href="{{route('member.view',['id'=>$employeeData->member->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Profile"><i class="fa fa-eye text-xs"></i></a>
                                         <a href="{{route('employees.view',['id'=>$employeeData->employee->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Dashboard"><i class="fa fa-tv text-xs"></i></a>
+
                                     </div>
                                 </td>
                             </tr>

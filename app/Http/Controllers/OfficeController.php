@@ -65,6 +65,17 @@ class OfficeController extends Controller
         return view('admin.office.index')->with('formData', $formData)->with('office', $office)->with('offices', $offices);
     }
 
+
+    public function view($id)
+    {
+        $office = Office::findOrFail($id);
+        $officeEmployees = $office->employees()->get();
+        return view('admin.office.view')
+            ->with('office', $office)
+            ->with('officeEmployees', $officeEmployees)
+            ;
+    }
+
     public function update(Request $request, $id)
     {
         $validatedData =  $request->validate([
