@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Mail\MemberShipMail;
 use App\Mail\OtpMail;
 use App\Models\Member;
+use App\Models\Country;
+use App\Models\County;
+use App\Models\Constituency;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class MemberRegistrationController extends Controller
 {
@@ -39,7 +43,7 @@ class MemberRegistrationController extends Controller
             Mail::to($request->email)->send(new OtpMail($otp));
             session()->flash('success', 'OTP sent successfully');
             session(['email' => $request->email]);
-            session (['name' => $request->name]);
+            session(['name' => $request->name]);
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to send OTP');
         }
@@ -103,7 +107,6 @@ class MemberRegistrationController extends Controller
         $email = session('email');
         $memberShip = collect($memberShipPlans)->where('id', $request->memberShip)->first();
         return view('front.membership-payment')->with('memberShip', $memberShip)->with('email', $email);
-
     }
 
     public function paymentGateway($email, $id)
@@ -129,22 +132,19 @@ class MemberRegistrationController extends Controller
             ],
 
         ];
-        $memberShip = collect($memberShipPlans)->where('id', $id)->first();
-
-        {
+        $memberShip = collect($memberShipPlans)->where('id', $id)->first(); {
             try {
                 Mail::to($email)->send(new MemberShipMail($memberShip));
             } catch (\Exception $e) {
-
             }
-            $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 10);
+            $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
             $user = User::create([
                 'name' => session('name'),
                 'email' => $email,
                 'password' => bcrypt($otp),
             ]);
             if ($user) {
-                 Member::create([
+                Member::create([
                     'user_id' => $user->id,
                     'enrollment_date' => now(),
                     'first_name' => session('name'),
@@ -155,7 +155,6 @@ class MemberRegistrationController extends Controller
                 try {
                     Mail::to($email)->send(new OtpMail($otp));
                 } catch (\Exception $e) {
-
                 }
                 session()->forget('name');
                 session()->forget('email');
@@ -165,9 +164,6 @@ class MemberRegistrationController extends Controller
             } else {
                 return redirect()->route('memberShipPayment')->with('error', 'Something went wrong. Please try again later.');
             }
-
-
-
         }
     }
 
@@ -190,7 +186,7 @@ class MemberRegistrationController extends Controller
             'profession' => 'required',
             'primary_mobile_number' => 'required',
             'alternate_mobile_number' => 'required',
-    ]);
+        ]);
         $member = Member::where('user_id', auth()->user()->id)->first();
 
         $dateOfBirth = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dob)->format('Y-m-d');
@@ -222,22 +218,32 @@ class MemberRegistrationController extends Controller
 
     public function storeMemberAddressInformation(Request $request)
     {
-
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'country_id' => 'required',
             'county_id' => 'required',
             'constituency_id' => 'required',
             'address' => 'required',
             'postcode' => 'required',
-            'city' => 'required',
+            'house_name_number' => 'required',
+            'street' => 'required',
+            'town_city' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            // Print the errors in the console or log for debugging
+            // dd($validator->errors()); // This will dump all the error messages
+
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $member = Member::where('user_id', auth()->user()->id)->first();
 
         $member->update([
-            'country_id' => $request->country_id,
-            'county_id' => $request->county_id,
-            'constituency_id' => $request->constituency_id,
+            'country_id' => Country::where('code', $request->country_id)->first()->id,
+            'county_id' => County::where('code', $request->county_id)->first()->id,
+            'constituency_id' => Constituency::where('name', $request->constituency_id)->first()->id,
             'address' => $request->address,
             'postcode' => $request->postcode,
             'city' => $request->city,
@@ -252,6 +258,4 @@ class MemberRegistrationController extends Controller
     {
         return view('front.member-address-information');
     }
-
-
 }
