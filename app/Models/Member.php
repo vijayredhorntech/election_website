@@ -76,6 +76,6 @@ class Member extends Model
 
     public function getCustomIdPrefix(): string
     {
-        return 'ONM';
+        return 'ONM0';
     }
 }

@@ -129,6 +129,12 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="w-full">
+                                    <div class="flex flex-col gap-1">
+                                        <label for="national_insurance_number" class="font-semibold text-sm text-black">National Insurance Number </label>
+                                        <input type="text" name="national_insurance_number" id="national_insurance_number" value="{{ $member->national_insurance_number ?? old('national_insurance_number') }}" placeholder="Enter national insurance number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

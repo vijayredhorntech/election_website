@@ -129,7 +129,7 @@
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$employeeData->member->email}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$employeeData->member->primary_mobile_number}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$employeeData->member->constituency->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$employeeData->employee->joining_date}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{ \Carbon\Carbon::parse($employeeData->employee->joining_date)->format('d-m-Y') }}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
                                     <a href="{{route('employees.status',['id'=>$employeeData->employee->id])}}" class="bg-{{$office->status?"success":"danger"}}/10 border-[1px] border-{{$employeeData->employee->status?"success":"danger"}} font-bold text-{{$employeeData->employee->status?"success":"danger"}} px-4 py-0.5 rounded-[3px]"> {{$employeeData->employee->status?"Active":"Inactive"}}</a>
                                 </td>

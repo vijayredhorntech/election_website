@@ -8,10 +8,19 @@ trait HasCustomId
     {
         static::creating(function ($model) {
             $prefix = $model->getCustomIdPrefix();
-            $lastRecord = static::latest('id')->first();
+            $lastRecord = static::where($model->getCustomIdColumn(), 'LIKE', "{$prefix}%")
+                ->latest($model->getCustomIdColumn())
+                ->first();
 
-            $nextId = $lastRecord ? (int)substr($lastRecord->{$model->getCustomIdColumn()}, strlen($prefix)) + 1 : 1;
-            $model->{$model->getCustomIdColumn()} = $prefix . str_pad($nextId, 8, '0', STR_PAD_LEFT);
+            if ($lastRecord) {
+                // Extract numeric part after the prefix
+                $numericPart = (int)substr($lastRecord->{$model->getCustomIdColumn()}, strlen($prefix));
+                $nextId = $numericPart + 1; // Generate a growing random ID
+            } else {
+                $nextId = 1; // Start from 1 if no previous record exists
+            }
+
+            $model->{$model->getCustomIdColumn()} = $prefix . $nextId;
         });
     }
 

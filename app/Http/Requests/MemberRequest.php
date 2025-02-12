@@ -43,6 +43,7 @@ class MemberRequest extends FormRequest
             'marital_status' => 'required',
             'qualification' => 'required',
             'profession' => 'required',
+            'national_insurance_number' => 'nullable|unique:members,national_insurance_number',
         ];
     }
 }
