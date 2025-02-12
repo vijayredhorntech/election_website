@@ -1,0 +1,25 @@
+[10-Feb-2025 05:41:25 UTC] PHP Warning:  require(/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:41:25 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vinumuum/onenation.himsoft.online/public/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Warning:  require(/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vinumuum/onenation.himsoft.online/public/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Warning:  require(/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vinumuum/onenation.himsoft.online/public/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Warning:  require(/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vinumuum/onenation.himsoft.online/public/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Warning:  require(/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
+[10-Feb-2025 05:43:22 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/vinumuum/onenation.himsoft.online/public/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/vinumuum/onenation.himsoft.online/public/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/vinumuum/onenation.himsoft.online/public/index.php on line 13
