@@ -35,7 +35,6 @@ class MemberController extends Controller
         return view('admin.members.index')->with('formData', $formData)->with('users', $users)->with('countries', $countries);
     }
 
-
     public function store(MemberRequest $request)
     {
         $validatedData = $request->validated();
@@ -113,7 +112,6 @@ class MemberController extends Controller
         $member = Member::find($id);
         return view('admin.members.view')->with('member', $member);
     }
-
 
     public function update(MemberUpdateRequest $request, $id)
     {
@@ -270,5 +268,33 @@ class MemberController extends Controller
         ];
 
         return view('admin.members.view-all')->with('member', $member)->with('data', $data)->with('columns', $columns)->with('routes', $routes);
+    }
+
+    public function memberProfile()
+    {
+
+        if (auth()->user()->member->profile_status==='active')
+        {
+            $memberDetails = auth()->user()->member;
+            return view('front.member-profile')->with('memberDetails', $memberDetails);
+        }
+        else
+        {
+            return redirect()->route('memberBasicInformation');
+        }
+    }
+
+    public function securityInfoUpdate(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        $user = auth()->user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('memberProfile')->with('success', 'Password updated successfully');
     }
 }

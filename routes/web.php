@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\MemberRegistrationController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -23,15 +24,28 @@ Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('d
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
 
 
-Route::get('/join_us', [PageController::class, 'joinUs'])->name('joinUs');
-Route::get('/otp_verification', [PageController::class, 'otpVerification'])->name('otpVerification');
-Route::get('/membership_plans', [PageController::class, 'membershipPlans'])->name('membershipPlans');
-Route::get('/member_basic-info', [PageController::class, 'memberBasicInfo'])->name('memberBasicInfo');
-Route::get('/member_address_info', [PageController::class, 'memberAddressInfo'])->name('memberAddressInfo');
-Route::get('/donation_section', [PageController::class, 'donationSection'])->name('donationSection');
-Route::get('/payment_section', [PageController::class, 'paymentSection'])->name('paymentSection');
+
+
+Route::get('/join_us', [MemberRegistrationController::class, 'index'])->name('joinUs');
+Route::get('/email_verification_otp', [MemberRegistrationController::class, 'sendEmailVerificationOtp'])->name('sendEmailVerificationOtp');
+Route::post('/verify_otp', [MemberRegistrationController::class, 'verifyOtp'])->name('verifyOtp');
+Route::get('/select_membership_plan', [MemberRegistrationController::class, 'selectMemberShipPlan'])->name('selectMemberShipPlan');
+Route::get('/membership_payment', [MemberRegistrationController::class, 'memberShipPayment'])->name('memberShipPayment');
+Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::class, 'paymentGateway'])->name('paymentGateway');
+
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
+
+
+    Route::get('/member_basic_information', [MemberRegistrationController::class, 'memberBasicInformation'])->name('memberBasicInformation');
+    Route::post('/member_basic_information', [MemberRegistrationController::class, 'storeMemberBasicInformation'])->name('storeMemberBasicInformation');
+    Route::get('/member_address_information', [MemberRegistrationController::class, 'memberAddressInformation'])->name('memberAddressInformation');
+    Route::post('/member_address_information', [MemberRegistrationController::class, 'storeMemberAddressInformation'])->name('storeMemberAddressInformation');
+    Route::get('/members_profile', [MemberController::class, 'memberProfile'])->name('memberProfile');
+    Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
+
+
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
     Route::get('/counties', [CountyController::class, 'index'])->name('counties');

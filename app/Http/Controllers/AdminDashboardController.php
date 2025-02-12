@@ -11,6 +11,10 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->role == 'member') {
+            return redirect()->route('memberProfile');
+        }
+
         $officeCount = Office::count();
         $employeeCount = User::where('role', 'employee')->count();
         $memberCount = User::where('role', 'member')->count();

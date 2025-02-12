@@ -35,6 +35,8 @@ class Member extends Model
         'marital_status',
         'qualification',
         'profession',
+        'profile_photo',
+        'profile_status',
     ];
 
     protected static function boot()

@@ -39,7 +39,7 @@
                         <h2 class="text-[#d53369] text-xl font-bold mb-4">Donation Amount £10 </h2>
 
                         <!-- Payment Options -->
-                        <div class="space-y-4">
+                        <form  class="space-y-4">
                             <!-- Credit/Debit Card Button -->
                             <button class="cursor-pointer w-full bg-blue-500 text-white py-4 px-6 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg">
                                 Pay with Credit/Debit Card
@@ -54,7 +54,7 @@
                             <button class="cursor-pointer w-full bg-black text-white py-4 px-6 rounded-lg flex items-center justify-center hover:opacity-90 transition-all duration-300 shadow-lg">
                                 <img src="{{asset('assets/images/pngwing.com (1).png')}}" alt="Google Pay" class="h-6 mr-2"> Pay with Google Pay
                             </button>
-                        </div>
+                        </form>
                     </div>
 
 
