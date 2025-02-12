@@ -39,6 +39,7 @@
                                 @error('city')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
                             </div> -->
                         </div>
+
                         <div class="mt-4 flex flex-col items-start w-full gap-1">
                             <label for="" class="text-gray-500 text-sm">Address</label>
                             <select id="addressSelect" name=""

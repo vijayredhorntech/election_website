@@ -55,7 +55,7 @@
                 </a>
             </li>
             <li class="mt-0.5 w-full">
-                <a href="{{route('designations.index')}}" class="{{Route::currentRouteName()===''?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
+                <a href="{{route('events.index')}}" class="{{Route::currentRouteName()==='events.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
                     <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
                         <i class="fa-solid fa-calendar-days"></i>
                     </div>

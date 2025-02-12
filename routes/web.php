@@ -15,6 +15,7 @@ use App\Http\Controllers\CountyController;
 use App\Http\Controllers\ConstituencyController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\TitleController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -117,6 +118,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             // Route::get('/budget/show/{id}', [\App\Http\Controllers\BudgetController::class, 'show'])->name('show');
             Route::post('/budget/update/{id}', [BudgetController::class, 'update'])->name('update');
             Route::get('/budget/delete/{id}', [BudgetController::class, 'delete'])->name('delete');
+        });
+
+        Route::name('events.')->group(function () {
+            Route::get('/events', [EventController::class, 'index'])->name('index');
+            Route::post('/events/store', [EventController::class, 'store'])->name('store');
         });
     });
 });
