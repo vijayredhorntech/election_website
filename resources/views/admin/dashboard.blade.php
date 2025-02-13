@@ -471,18 +471,28 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Office Employees Pie Chart
+        const officeDataFromBackend = @json($officeData);
+        const officeLabels = officeDataFromBackend.map(office => office.name);
+        const employeeCountData = officeDataFromBackend.map(office => office.employees_count);
+
+        const backgroundColors = [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(199, 199, 199, 0.6)'
+        ];
+
         const officeData = {
-            labels: ['New York', 'San Francisco', 'Chicago', 'Boston', 'Seattle'],
+            labels: officeLabels,
             datasets: [{
                 label: 'Number of Employees',
-                data: [150, 100, 75, 50, 125],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)'
-                ]
+                data: employeeCountData,
+                backgroundColor: backgroundColors.slice(0, officeLabels.length),
+                borderColor: backgroundColors.map(color => color.replace('0.6', '1')),
+                borderWidth: 1
             }]
         };
 
@@ -493,7 +503,7 @@
                 responsive: true,
                 plugins: {
                     title: {
-                        display: false,
+                        display: true,
                         text: 'Employee Distribution Across Offices'
                     },
                     legend: {

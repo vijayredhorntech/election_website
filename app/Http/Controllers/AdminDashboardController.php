@@ -21,15 +21,19 @@ class AdminDashboardController extends Controller
         $employeeCount = User::where('role', 'employee')->count();
         $memberCount = User::where('role', 'member')->count();
         $events = Event::latest()->get();
+        $officeData = Office::withCount('employees')->get();
+
         $topConstituencies = Constituency::withCount('members')
             ->orderByDesc('members_count')
             ->limit(14)
             ->get();
-        return view('admin.dashboard', compact('topConstituencies'))
+        return view('admin.dashboard')
             ->with('officeCount', $officeCount)
             ->with('employeeCount', $employeeCount)
             ->with('memberCount', $memberCount)
-            ->with('events', $events);
+            ->with('events', $events)
+            ->with('topConstituencies', $topConstituencies)
+            ->with('officeData', $officeData);
     }
     public function setFinancialYear(Request $request)
     {
