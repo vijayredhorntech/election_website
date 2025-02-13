@@ -54,7 +54,7 @@
 
     <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
     @include('layouts.sidebar')
-    <main class="relative h-full min-h-screen transition-all duration-200 ease-in-out xl:ml-64 " style="background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.5)), url(https://picsum.photos/id/1043/800/600); background-size: cover; background-position: center;">
+    <main class="relative h-full min-h-screen transition-all duration-200 ease-in-out xl:ml-64 " style="background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.68)), url({{asset('assets/img/bg1.jpg')}}); background-size: cover; background-position: center;">
 
         @include('layouts.navbar')
         <div class="w-full p-6 mx-auto min-h-screen ">

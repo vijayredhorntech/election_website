@@ -1,4 +1,4 @@
-<aside style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://picsum.photos/id/1043/800/600); background-size: cover; background-position: center;"
+<aside style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{asset('assets/img/bg1.jpg')}}); background-size: cover; background-position: center;"
     class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl shadow-none bg-slate-850 max-w-64 ease-nav-brand z-990 xl:left-0 xl:translate-x-0"
     aria-expanded="false" id="sideBar">
 
