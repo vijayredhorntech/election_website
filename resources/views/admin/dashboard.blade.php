@@ -432,34 +432,24 @@
                             <tr class="bg-primaryDark/40">
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
                                 </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Venue
-                                </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">
-                                    Date & Time
-                                </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Contact Person
-                                </td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Title</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Description</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Date & Time</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Location</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Status</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                            $events = [
-                            ['name' => 'Tech Conference', 'venue' => 'San Francisco', 'dateTime' => '02/15/2024, 10:30am', 'contactPerson' => '9876543210'],
-                            ['name' => 'Music Festival', 'venue' => 'Los Angeles', 'dateTime' => '03/22/2024, 05:00pm', 'contactPerson' => '8765432109'],
-                            ['name' => 'Startup Meetup', 'venue' => 'Chicago', 'dateTime' => '04/10/2024, 02:15pm', 'contactPerson' => '7654321098'],
-                            ['name' => 'Art Exhibition', 'venue' => 'London', 'dateTime' => '05/05/2024, 11:45am', 'contactPerson' => '6543210987'],
-                            ['name' => 'Business Summit', 'venue' => 'Dubai', 'dateTime' => '06/18/2024, 09:00am', 'contactPerson' => '5432109876']
-                            ];
-                            @endphp
 
                             @forelse($events as $event)
                             <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$loop->iteration}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['name']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['venue']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['dateTime']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['contactPerson']}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event->title}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event->description}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{\Carbon\Carbon::parse($event->start_datetime)->format('d/m/Y, h:i a')}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event->location}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event->status}}</td>
+                            </tr>
                             </tr>
                             @empty
                             <tr>
@@ -481,18 +471,28 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Office Employees Pie Chart
+        const officeDataFromBackend = @json($officeData);
+        const officeLabels = officeDataFromBackend.map(office => office.name);
+        const employeeCountData = officeDataFromBackend.map(office => office.employees_count);
+
+        const backgroundColors = [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(199, 199, 199, 0.6)'
+        ];
+
         const officeData = {
-            labels: ['New York', 'San Francisco', 'Chicago', 'Boston', 'Seattle'],
+            labels: officeLabels,
             datasets: [{
                 label: 'Number of Employees',
-                data: [150, 100, 75, 50, 125],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)'
-                ]
+                data: employeeCountData,
+                backgroundColor: backgroundColors.slice(0, officeLabels.length),
+                borderColor: backgroundColors.map(color => color.replace('0.6', '1')),
+                borderWidth: 1
             }]
         };
 
@@ -503,7 +503,7 @@
                 responsive: true,
                 plugins: {
                     title: {
-                        display: false,
+                        display: true,
                         text: 'Employee Distribution Across Offices'
                     },
                     legend: {
@@ -514,30 +514,18 @@
         };
 
         // Constituency Members Bar Chart
+        const constituencyDataFromBackend = @json($topConstituencies);
+        const constituencyLabels = constituencyDataFromBackend.map(item => item.name);
+        const membersCountData = constituencyDataFromBackend.map(item => item.members_count);
+
         const constituencyData = {
-            labels: [
-                'North Delhi', 'South Delhi', 'East Delhi', 'West Delhi',
-                'Central Delhi', 'New Delhi', 'Mumbai North', 'Mumbai South',
-                'Kolkata East', 'Kolkata West', 'Chennai Central', 'Chennai North',
-                'Bangalore Urban', 'Hyderabad Central'
-            ],
+            labels: constituencyLabels,
             datasets: [{
                 label: 'Registered Members',
-                data: [
-                    45000, 52000, 38000, 41000,
-                    35000, 49000, 67000, 59000,
-                    42000, 37000, 44000, 51000,
-                    55000, 48000
-                ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)',
-                    'rgba(199, 199, 199, 0.6)', 'rgba(83, 102, 255, 0.6)',
-                    'rgba(40, 159, 64, 0.6)', 'rgba(210, 99, 132, 0.6)',
-                    'rgba(90, 162, 235, 0.6)', 'rgba(255, 77, 77, 0.6)',
-                    'rgba(64, 224, 208, 0.6)', 'rgba(255, 193, 7, 0.6)'
-                ]
+                data: membersCountData,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)', // Blue shade
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
             }]
         };
 
@@ -548,7 +536,7 @@
                 responsive: true,
                 plugins: {
                     title: {
-                        display: false,
+                        display: true,
                         text: 'Registered Members by Constituency'
                     }
                 },

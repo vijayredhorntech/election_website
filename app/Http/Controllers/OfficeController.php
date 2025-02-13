@@ -24,6 +24,7 @@ class OfficeController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData =  $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -32,9 +33,11 @@ class OfficeController extends Controller
                 'regex:/^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i'
             ],
             'address' => 'required',
+            'house_name_number' => 'required',
+            'street' => 'required',
+            'town_city' => 'required',
             'country' => 'required|exists:countries,code',
             'county' => 'required|exists:counties,code',
-            'city' => 'required',
             'constituency' => 'required|exists:constituencies,name',
         ]);
 
@@ -45,7 +48,7 @@ class OfficeController extends Controller
             'address' => $validatedData['address'],
             'country_id' => Country::where('code', $validatedData['country'])->first()->id,
             'county_id' => County::where('code', $validatedData['county'])->first()->id,
-            'city' => $validatedData['city'],
+            'city' => $validatedData['town_city'],
             'constituency_id' => Constituency::where('name', $validatedData['constituency'])->first()->id,
         ];
 
@@ -73,7 +76,7 @@ class OfficeController extends Controller
         return view('admin.office.view')
             ->with('office', $office)
             ->with('officeEmployees', $officeEmployees)
-            ;
+        ;
     }
 
     public function update(Request $request, $id)

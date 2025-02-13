@@ -34,9 +34,11 @@ class MemberRequest extends FormRequest
                 'regex:/^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i'
             ],
             'address' => 'required',
+            'house_name_number' => 'required',
+            'street' => 'required',
+            'town_city' => 'required',
             'country' => 'required|exists:countries,code',
             'county' => 'required|exists:counties,code',
-            'city' => 'required',
             'constituency' => 'required|exists:constituencies,name',
             'date_of_birth' => 'required|date|before:16 years ago',
             'gender' => 'required',
