@@ -11,14 +11,25 @@
                 aria-current="page">Employee Dashboard
             </li>
         </ol>
+
         <h6 class="mb-0 font-bold text-black capitalize">Employee Dashboard</h6>
     </nav>
     @endsection
 
 
-    {{-- dashboard stats heading and content here--}}
-    <div class="w-full bg-primaryHeading  rounded-[3px] p-4">
-        <span class="text-white font-semibold lg:text-xl">Dashboard Stats <i>(Employee name)</i></span>
+    <div class="w-full flex gap-2 flex-wrap">
+         <div class="w-max px-6 text-sm py-0.5 rounded-[3px] bg-primaryLight text-white/90">
+              Total Present Days: 25
+         </div>
+         <div class="w-max px-6 text-sm py-0.5 rounded-[3px] bg-primaryLight text-white/90">
+              Total Absent Days: 2
+         </div>
+         <div class="w-max px-6 text-sm py-0.5 rounded-[3px] bg-primaryLight text-white/90">
+              Total Leaves: 4
+         </div>
+    </div>
+    <div class="w-full bg-primaryHeading  rounded-[3px] p-4 mt-2">
+        <span class="text-white font-semibold lg:text-xl">{{$employee->user->member->first_name}} Dashboard</span>
     </div>
     <div class="flex flex-wrap -mx-3 mt-4">
         <!-- card1 -->
@@ -241,7 +252,7 @@
         </div>
 
     </div>
-    {{-- dashboard stats heading and content here--}}
+     dashboard stats heading and content here
     <div class="flex flex-wrap mt-6 -mx-3">
         <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-1/3 lg:flex-none">
             <div
@@ -348,7 +359,7 @@
         </div>
     </div>
 
-    {{-- employee and other chart section here--}}
+     employee and other chart section here
     <div class="flex flex-wrap -mx-3">
         <div class="w-full max-w-full px-3 mt-6  lg:flex-none">
             <div
@@ -420,7 +431,7 @@
         </div>
 
     </div>
-    {{-- employee and other chart section here--}}
+     employee and other chart section here
 
 
 </x-app-layout>

@@ -109,7 +109,6 @@ class MemberController extends Controller
 
     public function view($id)
     {
-        // dd($id);
         $member = Member::find($id);
         return view('admin.members.view')->with('member', $member);
     }
