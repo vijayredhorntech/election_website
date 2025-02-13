@@ -350,7 +350,7 @@
             <div
                 class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-[3px] border-0 border-solid bg-white bg-clip-border">
                 <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
-                    <span class="text-white font-semibold lg:text-xl ">Employees (Office wise)</span>
+                    <span class="text-white font-semibold lg:text-xl ">Employees (Referral wise)</span>
                 </div>
                 <div class="flex-auto p-4">
                     <div style="height: 300px; display: flex; justify-content: center; align-items: center">
@@ -553,26 +553,26 @@
         };
 
         // Top Users Bar Chart
+        const topUsersFromBackend = @json($topUsers);
+        const userLabels = topUsersFromBackend.map(user => user.name);
+        const referralCounts = topUsersFromBackend.map(user => user.referred_members_count);
+
+        // const backgroundColors = [
+        //     'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)',
+        //     'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)',
+        //     'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)',
+        //     'rgba(199, 199, 199, 0.6)', 'rgba(83, 102, 255, 0.6)',
+        //     'rgba(40, 159, 64, 0.6)', 'rgba(210, 99, 132, 0.6)'
+        // ];
+
         const topUsersData = {
-            labels: [
-                'Rajesh Kumar', 'Priya Singh', 'Amit Patel', 'Deepa Sharma',
-                'Vikram Reddy', 'Anita Mehta', 'Sanjay Gupta', 'Neha Verma',
-                'Rahul Desai', 'Meera Iyer'
-            ],
+            labels: userLabels,
             datasets: [{
                 label: 'Registered Employees',
-                data: [
-                    275, 240, 215, 190,
-                    180, 165, 150, 135,
-                    120, 105
-                ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)',
-                    'rgba(199, 199, 199, 0.6)', 'rgba(83, 102, 255, 0.6)',
-                    'rgba(40, 159, 64, 0.6)', 'rgba(210, 99, 132, 0.6)'
-                ]
+                data: referralCounts,
+                backgroundColor: backgroundColors.slice(0, userLabels.length),
+                borderColor: backgroundColors.map(color => color.replace('0.6', '1')),
+                borderWidth: 1
             }]
         };
 
@@ -583,7 +583,7 @@
                 responsive: true,
                 plugins: {
                     title: {
-                        display: false,
+                        display: true,
                         text: 'Top Users by Registered Employees'
                     }
                 },

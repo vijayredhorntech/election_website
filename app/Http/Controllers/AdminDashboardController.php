@@ -27,13 +27,20 @@ class AdminDashboardController extends Controller
             ->orderByDesc('members_count')
             ->limit(14)
             ->get();
+
+        $topUsers = User::withCount('referredMembers')
+            ->orderByDesc('referred_members_count')
+            ->take(10) // Fetch top 10 users
+            ->get();
+
         return view('admin.dashboard')
             ->with('officeCount', $officeCount)
             ->with('employeeCount', $employeeCount)
             ->with('memberCount', $memberCount)
             ->with('events', $events)
             ->with('topConstituencies', $topConstituencies)
-            ->with('officeData', $officeData);
+            ->with('officeData', $officeData)
+            ->with('topUsers', $topUsers);
     }
     public function setFinancialYear(Request $request)
     {

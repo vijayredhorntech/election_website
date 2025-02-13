@@ -41,4 +41,9 @@ class Office extends Model
     {
         return $this->hasMany(Employee::class);
     }
+
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class);
+    }
 }

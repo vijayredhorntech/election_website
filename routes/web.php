@@ -111,7 +111,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::name('budget.')->group(function () {
             Route::get('/budget', [BudgetController::class, 'index'])->name('index');
-            Route::post('/budget/store', [BudgetController::class, 'store'])->name('store');
+            Route::post('/budget/allot', [BudgetController::class, 'allotBudget'])->name('allot');
             Route::get('/budget/edit/{id}', [BudgetController::class, 'edit'])->name('edit');
             Route::get('/budget/status/{id}', [BudgetController::class, 'status'])->name('status');
             Route::get('/budget/view/{id}', [BudgetController::class, 'view'])->name('view');
