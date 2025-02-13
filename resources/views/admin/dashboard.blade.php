@@ -504,30 +504,18 @@
         };
 
         // Constituency Members Bar Chart
+        const constituencyDataFromBackend = @json($topConstituencies);
+        const constituencyLabels = constituencyDataFromBackend.map(item => item.name);
+        const membersCountData = constituencyDataFromBackend.map(item => item.members_count);
+
         const constituencyData = {
-            labels: [
-                'North Delhi', 'South Delhi', 'East Delhi', 'West Delhi',
-                'Central Delhi', 'New Delhi', 'Mumbai North', 'Mumbai South',
-                'Kolkata East', 'Kolkata West', 'Chennai Central', 'Chennai North',
-                'Bangalore Urban', 'Hyderabad Central'
-            ],
+            labels: constituencyLabels,
             datasets: [{
                 label: 'Registered Members',
-                data: [
-                    45000, 52000, 38000, 41000,
-                    35000, 49000, 67000, 59000,
-                    42000, 37000, 44000, 51000,
-                    55000, 48000
-                ],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)',
-                    'rgba(199, 199, 199, 0.6)', 'rgba(83, 102, 255, 0.6)',
-                    'rgba(40, 159, 64, 0.6)', 'rgba(210, 99, 132, 0.6)',
-                    'rgba(90, 162, 235, 0.6)', 'rgba(255, 77, 77, 0.6)',
-                    'rgba(64, 224, 208, 0.6)', 'rgba(255, 193, 7, 0.6)'
-                ]
+                data: membersCountData,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)', // Blue shade
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
             }]
         };
 
@@ -538,7 +526,7 @@
                 responsive: true,
                 plugins: {
                     title: {
-                        display: false,
+                        display: true,
                         text: 'Registered Members by Constituency'
                     }
                 },

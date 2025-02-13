@@ -76,7 +76,7 @@ class MemberController extends Controller
                     'address' => $validatedData['address'],
                     'country_id' => $country->id,
                     'county_id' => $county->id,
-                    'city' => $validatedData['city'],
+                    'city' => $validatedData['town_city'],
                     'constituency_id' => $constituency->id,
                     'date_of_birth' => $validatedData['date_of_birth'],
                     'gender' => $validatedData['gender'],
@@ -274,13 +274,10 @@ class MemberController extends Controller
     public function memberProfile()
     {
 
-        if (auth()->user()->member->profile_status==='active')
-        {
+        if (auth()->user()->member->profile_status === 'active') {
             $memberDetails = auth()->user()->member;
             return view('front.member-profile')->with('memberDetails', $memberDetails);
-        }
-        else
-        {
+        } else {
             return redirect()->route('memberBasicInformation');
         }
     }
