@@ -149,7 +149,7 @@
                             </tr>
                             <tr>
                                 <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5">City</td>
-                                <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->town_city}}</td>
+                                <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->city}}</td>
                             </tr>
                             <tr>
                                 <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5">County</td>

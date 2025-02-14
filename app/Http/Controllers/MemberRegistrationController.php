@@ -246,7 +246,7 @@ class MemberRegistrationController extends Controller
             'constituency_id' => Constituency::where('name', $request->constituency_id)->first()->id,
             'address' => $request->address,
             'postcode' => $request->postcode,
-            'city' => $request->city,
+            'city' => $request->town_city,
             'profile_status' => 'active',
         ]);
 
