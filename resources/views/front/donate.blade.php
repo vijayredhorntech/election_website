@@ -4,6 +4,7 @@
             .gradient-bg {
                 background: linear-gradient(to right, #d53369, #daae51);
             }
+
         </style>
    @endpush
 

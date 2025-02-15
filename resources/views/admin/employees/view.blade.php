@@ -27,6 +27,9 @@
          <div class="w-max px-6 text-sm py-0.5 rounded-[3px] bg-primaryLight text-white/90">
               Total Leaves: 4
          </div>
+         <div class="w-max px-6 text-sm py-0.5 rounded-[3px] bg-primaryLight text-white/90">
+              Working Hours: 6
+         </div>
     </div>
     <div class="w-full bg-primaryHeading  rounded-[3px] p-4 mt-2">
         <span class="text-white font-semibold lg:text-xl">{{$employee->user->member->first_name}} Dashboard</span>
@@ -82,59 +85,6 @@
                             <path d="M567.66289,711.848c-.06775-.18823-.12933-.37866-.19616-.56726-.13251.1167-.25947.23718-.40314.34619Z" transform="translate(-211.84 -67.97468)" fill="#2f2e41" />
                             <path d="M640.15813,683.694a24.742,24.742,0,0,0-9.239-18.05884c-2.00568-1.58618-4.32581-2.92566-5.65369-5.1109a34.96632,34.96632,0,0,1-1.92059-4.78961c-2.64191-6.28833-10.17127-9.63038-16.92523-8.67817s-12.599,5.4953-16.536,11.06519a11.255,11.255,0,0,0-15.73957,13.04584c-3.49756-2.81757-9.15509-.56378-11.33838,3.36114-2.18322,3.92487-1.83673,8.72754-1.18762,13.17169a124.45892,124.45892,0,0,0,5.84864,23.58039c3.40551-2.9989,3.19622-8.46027,2.78-13.07691-.43243-4.7962-.17334-10.652,4.02069-13.01873,4.05207-2.28656,8.97016.22381,13.438,1.52227a25.39644,25.39644,0,0,0,21.00812-3.3045c2.32739-1.57477,4.39935-3.54712,6.90826-4.81275s5.7016-1.70513,8.03748-.143c2.13318,1.42657,3.00061,4.0874,3.72644,6.54883q2.58042,8.75043,5.16077,17.50079A24.74173,24.74173,0,0,0,640.15813,683.694Z" transform="translate(-211.84 -67.97468)" fill="#2f2e41" />
                             <path d="M368.94671,398.03333a89.42151,89.42151,0,0,0,.38928-9.07709,42.72607,42.72607,0,0,0-3.22284-17.495,26.88311,26.88311,0,0,0-14.06629-13.589,25.66544,25.66544,0,0,0-19.24261.01684c-5.57-3.5191-11.75873-6.30889-18.27631-6.65448-6.51764-.34552-13.40863,2.07245-17.42511,7.39509a28.44043,28.44043,0,0,1-3.04431,3.955c-3.22857,2.98987-8.13513,2.5586-12.42645,1.94727q2.88711,2.47449,5.77576,4.94891-3.49485.91306-6.9903,1.826,4.07868,2.47358,8.15662,4.94727c-7.89331,4.73773-11.481,15.07849-10.53327,24.47009.89655,8.8916,5.18933,17.0224,10.321,24.24927,2.04706-4.31989,1.606-9.489,1.5722-14.35443a32.48709,32.48709,0,0,1,.28809-4.71967c17.34265,4.15723,35.46356,6.82526,53.84033.22266l3.68787-9.02582c.51751.05322,1.03534.10321,1.55261.1582l2.13653,8.876c4.844,1.97992,9.69812,3.71033,14.55414,1.892.23627,1.371.37854,2.77014.48786,4.11493.41674-1.60858.77832-3.22907,1.10437-4.856a14.35868,14.35868,0,0,0,1.83862-1.1745A39.5123,39.5123,0,0,0,368.94671,398.03333Z" transform="translate(-211.84 -67.97468)" fill="#2f2e41" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-            <div class="w-full bg-white rounded-[3px] p-4 relative">
-                <div class="mt-4 flex">
-                    <div class="grow flex flex-col justify-center ">
-                        <span class="text-black font-medium text-lg">Total Revenue</span>
-                        <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl"> £ 1,50,000</span>
-                    </div>
-                    <div class="flex-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 0 955.95262 639.22428" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" artist="Katerina Limpitsouni" source="https://undraw.co/">
-                            <rect x="0.30042" y="0.39886" width="703.57562" height="450.60114" fill="#e6e6e6" />
-                            <rect x="20.419" y="56.91548" width="663.33851" height="171.77293" fill="#fff" />
-                            <rect x="185.4182" y="81.72713" width="140.28123" height="8.05267" fill="#e6e6e6" />
-                            <rect x="185.4182" y="111.10108" width="216.62477" height="8.05267" fill="#F72C5B" />
-                            <rect x="185.4182" y="138.7756" width="176.54439" height="8.05267" fill="#e6e6e6" />
-                            <rect x="185.4182" y="166.34557" width="103.06377" height="8.05267" fill="#e6e6e6" />
-                            <rect x="185.4182" y="193.9155" width="155.54994" height="8.05267" fill="#e6e6e6" />
-                            <rect x="121.4805" y="78.86424" width="17.17729" height="17.17729" fill="#e6e6e6" />
-                            <rect x="121.4805" y="106.53877" width="17.17729" height="17.17729" fill="#F72C5B" />
-                            <rect x="121.4805" y="134.2133" width="17.17729" height="17.17729" fill="#e6e6e6" />
-                            <rect x="121.4805" y="161.88783" width="17.17729" height="17.17729" fill="#e6e6e6" />
-                            <rect x="121.4805" y="189.56235" width="17.17729" height="17.17729" fill="#e6e6e6" />
-                            <rect x="533.73553" y="117.9903" width="57.25763" height="57.25764" fill="#e6e6e6" />
-                            <rect x="20.419" y="252.54576" width="663.33851" height="171.77293" fill="#fff" />
-                            <rect x="151.06361" y="267.81207" width="17.17729" height="17.17728" fill="#e6e6e6" />
-                            <rect x="121.4805" y="267.81207" width="17.17729" height="17.17728" fill="#F72C5B" />
-                            <path d="M534.74755,435.76326a65.04556,65.04556,0,0,0-105.003-9.69992l-4.18616-3.65793a70.59368,70.59368,0,0,1,113.973,10.52622Z" transform="translate(-122.02369 -130.38786)" fill="#e6e6e6" />
-                            <path d="M537.36724,508.18169l-4.6134-3.102a65.07765,65.07765,0,0,0,1.99371-69.31644l4.78387-2.83166a70.63742,70.63742,0,0,1-2.16418,75.25012Z" transform="translate(-122.02369 -130.38786)" fill="#F72C5B" />
-                            <path d="M426.13766,515.92644a70.58952,70.58952,0,0,1-.57926-93.52106l4.18616,3.65793a65.03087,65.03087,0,0,0,.53366,86.15415Z" transform="translate(-122.02369 -130.38786)" fill="#F72C5B" />
-                            <path d="M478.73772,539.44023a70.70869,70.70869,0,0,1-52.6-23.51382l4.14056-3.709a65.04339,65.04339,0,0,0,102.47562-7.13779l4.6134,3.102A70.55387,70.55387,0,0,1,478.73772,539.44023Z" transform="translate(-122.02369 -130.38786)" fill="#F72C5B" />
-                            <rect x="533.73553" y="305.03195" width="57.25763" height="57.25763" fill="#e6e6e6" />
-                            <rect x="119.09476" y="342.24939" width="57.25764" height="57.25763" fill="#e6e6e6" />
-                            <rect width="703.57562" height="29.89047" fill="#F72C5B" />
-                            <circle cx="22.21219" cy="15.28159" r="5.53997" fill="#fff" />
-                            <circle cx="43.24053" cy="15.28159" r="5.53997" fill="#fff" />
-                            <circle cx="64.26886" cy="15.28159" r="5.53997" fill="#fff" />
-                            <polygon points="817.168 623.704 831.411 623.704 838.188 568.764 817.165 568.765 817.168 623.704" fill="#ffb8b8" />
-                            <path d="M935.5583,749.44184l28.05079-.00113h.00113a17.87713,17.87713,0,0,1,17.87616,17.87587v.5809l-45.92723.00171Z" transform="translate(-122.02369 -130.38786)" fill="#2f2e41" />
-                            <polygon points="781.694 569.766 792.205 579.379 834.284 543.411 818.771 529.224 781.694 569.766" fill="#ffb8b8" />
-                            <path d="M904.17525,694.2705,924.875,713.201l.00084.00077a17.87711,17.87711,0,0,1,1.12667,25.25538l-.392.42866L891.71907,707.891Z" transform="translate(-122.02369 -130.38786)" fill="#2f2e41" />
-                            <polygon points="839.555 430.772 835.518 511.511 845.611 599.316 815.333 603.353 796.158 492.336 790.102 416.642 839.555 430.772" fill="#2f2e41" />
-                            <path d="M1009.01348,531.89159s12.111,79.73029-13.12018,105.97064-59.54541,72.66559-59.54541,72.66559L912.126,680.25048l61.5639-65.60089-12.111-44.40668-49.453-23.21265,8.074-55.50842,72.66559-1.00925Z" transform="translate(-122.02369 -130.38786)" fill="#2f2e41" />
-                            <circle cx="831.41549" cy="192.09457" r="24.71744" fill="#ffb8b8" />
-                            <polygon points="851.917 227.224 855.703 232.96 865.796 261.219 857.722 371.226 810.287 372.236 804.232 246.08 816.917 230.224 851.917 227.224" fill="#ccc" />
-                            <path d="M907.07976,379.49569l-8.074-1.00925s-2.01849,1.00925-3.02771,8.07394-13.12018,69.63785-13.12018,69.63785l16.14789,76.70258,18.16638-24.22187L906.07055,466.2907l11.10168-42.38828Z" transform="translate(-122.02369 -130.38786)" fill="#2f2e41" />
-                            <polygon points="887.999 248.099 894.054 248.099 909.193 329.847 895.064 393.43 880.934 370.217 884.971 344.986 882.953 322.783 875.888 309.662 887.999 248.099" fill="#2f2e41" />
-                            <path d="M968.045,322.48242l-4.49409-1.12353s-3.37053-19.09984-11.23522-16.8528-28.088,4.49409-28.088-4.49409,19.09985-16.8528,30.335-15.72928,25.58427,4.85076,29.21152,21.34686c5.81465,26.444-11.997,33.12341-11.997,33.12341l.29641-.96282a14.9957,14.9957,0,0,0-4.02865-15.30775Z" transform="translate(-122.02369 -130.38786)" fill="#2f2e41" />
-                            <path d="M900.01507,378.48644l32.29583-13.12018,7.56934-5.55084,22.708,100.4198,15.13867-45.416-4.54163-58.03155,41.88361,21.69876-14.12939,68.6286-2.0185,26.24036,6.05548,21.19412s21.19409,15.13867,14.1294,31.28656-15.13867,17.15716-15.13867,17.15716-34.31434-32.2958-36.33277-40.36978-5.0462-22.20337-5.0462-22.20337-17.15717,64.59165-37.342,63.58237-20.18488-22.20337-20.18488-22.20337l5.04621-22.20337,8.074-23.21261-4.037-38.35129Z" transform="translate(-122.02369 -130.38786)" fill="#2f2e41" />
-                            <path d="M1076.97631,769.61214h-268a1,1,0,0,1,0-2h268a1,1,0,0,1,0,2Z" transform="translate(-122.02369 -130.38786)" fill="#ccc" />
                         </svg>
                     </div>
                 </div>
@@ -250,188 +200,148 @@
                 </div>
             </div>
         </div>
-
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+            <div class="w-full bg-white rounded-[3px] p-4 relative">
+                <div class="mt-4 flex">
+                    <div class="grow flex flex-col justify-center ">
+                        <span class="text-black font-medium text-lg">Pending Tasks</span>
+                        <span
+                            class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">2</span>
+                    </div>
+                    <div class="flex-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 0 866.33071 605.73993" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" artist="Katerina Limpitsouni" source="https://undraw.co/">
+                            <path d="M898.30315,567.7887a9.14581,9.14581,0,0,1,1.93088-13.89051l-7.25159-31.682,15.8187,5.91773,4.46105,29.1785a9.19542,9.19542,0,0,1-14.959,10.47626Z" transform="translate(-166.83465 -147.13004)" fill="#ffb8b8" />
+                            <path d="M897.20867,542.64389l-13.906-26.88477,1.88062-67.69726.89355,1.88281c1.041,2.19336,25.44019,53.84619,23.7,71.13819l2.78882,15.80224Z" transform="translate(-166.83465 -147.13004)" fill="#3f3d56" />
+                            <polygon points="721.307 594.201 732.458 594.201 737.762 551.192 721.305 551.193 721.307 594.201" fill="#ffb8b8" />
+                            <path d="M885.29761,737.691l21.95908-.00089h.00155a13.99379,13.99379,0,0,1,13.99352,13.99352v.45476l-35.95371.00177Z" transform="translate(-166.83465 -147.13004)" fill="#2f2e41" />
+                            <polygon points="611.134 585.727 621.877 588.714 638.511 548.699 622.655 544.29 611.134 585.727" fill="#ffb8b8" />
+                            <path d="M776.20352,728.58778,797.36,734.47044l.00149.00042a13.99378,13.99378,0,0,1,9.7326,17.23118l-.12184.43813-34.63966-9.63139Z" transform="translate(-166.83465 -147.13004)" fill="#2f2e41" />
+                            <path d="M877.02434,724.5643l-22.50366-161.126L805.91619,723.65317l-38.21692-13.04981,54.77454-214.53271.36035-.02539,57.38061-3.99121,41.45679,219.48779Z" transform="translate(-166.83465 -147.13004)" fill="#2f2e41" />
+                            <path d="M871.07293,420.14509s-20.91878-10.91415-49.11366-6.36659c0,0-15.007,36.205,0,50.61758l4.0928,36.24085s38.19952,22.7378,50.93269-3.63805l-1.819-30.01391s9.09512-14.39464,1.819-24.93281A34.82081,34.82081,0,0,1,871.07293,420.14509Z" transform="translate(-166.83465 -147.13004)" fill="#F72C5B" />
+                            <path d="M873.72307,584.98666l3.67163-76.188-10.39135-90.63379.47705-.07227c13.63086-2.05517,18.00268,21.42774,18.18213,22.42822l23.72583,134.14209Z" transform="translate(-166.83465 -147.13004)" fill="#3f3d56" />
+                            <path d="M827.46624,585.78061l-41.94336-4.66016.011-.45849c.14869-6.20948,3.75879-152.2041,13.87452-162.54395,10.17553-10.40137,29.37719-5.90088,30.18969-5.70312l.40479.09765-3.45142,61.77637Z" transform="translate(-166.83465 -147.13004)" fill="#3f3d56" />
+                            <path d="M835.19144,498.52321a9.14584,9.14584,0,0,1-11.90719-7.409l-31.89489-6.24893,11.83539-12.04883,28.47343,7.7813a9.19542,9.19542,0,0,1,3.49326,17.92547Z" transform="translate(-166.83465 -147.13004)" fill="#ffb8b8" />
+                            <path d="M818.17132,491.20932,807.77874,488.975c-15.34229,4.61425-42.12219-11.62989-52.94593-18.84522-2.03662-1.35742-2.69726-4.04736-1.9635-7.99365a23.30978,23.30978,0,0,1,8.567-13.915l38.11975-30.2251,9.62158-1.60889,2.85791,16.19483L787.74822,458.6683l35.75244,19.46Z" transform="translate(-166.83465 -147.13004)" fill="#3f3d56" />
+                            <path d="M814.06094,400.06826v-21a33.5,33.5,0,1,1,67,0v21a4.50508,4.50508,0,0,1-4.5,4.5h-58A4.50507,4.50507,0,0,1,814.06094,400.06826Z" transform="translate(-166.83465 -147.13004)" fill="#2f2e41" />
+                            <circle cx="679.37983" cy="232.67051" r="24.56103" fill="#ffb8b8" />
+                            <path d="M820.97939,379.706a2.50023,2.50023,0,0,1-.5852-1.99317l2.90942-20.25976a2.50362,2.50362,0,0,1,1.41455-1.91895c14.85034-6.95019,29.90967-6.959,44.76-.02637a2.51921,2.51921,0,0,1,1.42871,2.03614L872.849,377.83a2.49954,2.49954,0,0,1-2.48877,2.73828h-4.92553a2.50966,2.50966,0,0,1-2.26539-1.44238l-2.12573-4.55469a1.49989,1.49989,0,0,0-2.84765.44824l-.41993,3.3584a2.50359,2.50359,0,0,1-2.48071,2.19043H822.8688A2.50013,2.50013,0,0,1,820.97939,379.706Z" transform="translate(-166.83465 -147.13004)" fill="#2f2e41" />
+                            <rect y="40.3663" width="551" height="343.11356" fill="#e6e6e6" />
+                            <rect x="36.94894" y="106.46612" width="100.91574" height="65.59524" fill="#fff" />
+                            <rect x="162.34439" y="106.46612" width="100.91574" height="65.59524" fill="#fff" />
+                            <rect x="287.73987" y="106.46612" width="100.91577" height="65.59524" fill="#fff" />
+                            <rect x="413.13531" y="106.46612" width="100.91577" height="65.59524" fill="#fff" />
+                            <rect x="36.94894" y="199.30861" width="100.91574" height="65.59523" fill="#fff" />
+                            <rect x="162.34439" y="199.30861" width="100.91574" height="65.59523" fill="#fff" />
+                            <rect x="287.73987" y="199.30861" width="100.91577" height="65.59523" fill="#fff" />
+                            <rect x="413.13531" y="199.30861" width="100.91577" height="65.59523" fill="#fff" />
+                            <rect x="36.94894" y="292.15109" width="100.91574" height="65.59525" fill="#fff" />
+                            <rect x="162.34439" y="292.15109" width="100.91574" height="65.59525" fill="#fff" />
+                            <rect x="287.73987" y="292.15109" width="100.91577" height="65.59525" fill="#fff" />
+                            <rect x="413.13531" y="292.15109" width="100.91577" height="65.59525" fill="#fff" />
+                            <circle cx="144.30951" cy="65.59524" r="15.13736" fill="#fff" />
+                            <circle cx="394.58057" cy="65.59524" r="15.13734" fill="#fff" />
+                            <rect x="138.25458" width="12.10989" height="69.63187" fill="#e6e6e6" />
+                            <rect x="388.52563" width="12.10986" height="69.63187" fill="#e6e6e6" />
+                            <path d="M653.24859,286.39377a22.75657,22.75657,0,1,1-3.52686-12.19043A22.7566,22.7566,0,0,1,653.24859,286.39377Z" transform="translate(-166.83465 -147.13004)" fill="#F72C5B" />
+                            <path d="M649.72173,274.20337l-22.46387,22.45975c-1.41186-2.18579-9.27765-12.34394-9.27765-12.34394A31.82748,31.82748,0,0,1,621.2,281.477l6.52259,8.69678,19.36853-19.36856A22.72652,22.72652,0,0,1,649.72173,274.20337Z" transform="translate(-166.83465 -147.13004)" fill="#fff" />
+                            <path d="M402.45763,379.23627a22.75655,22.75655,0,1,1-3.52685-12.19043A22.7566,22.7566,0,0,1,402.45763,379.23627Z" transform="translate(-166.83465 -147.13004)" fill="#F72C5B" />
+                            <path d="M398.93078,367.04584l-22.46387,22.45974c-1.41187-2.18579-9.27765-12.34393-9.27765-12.34393a31.82748,31.82748,0,0,1,3.21979-2.84222l6.52258,8.69677,19.36859-19.36856A22.72613,22.72613,0,0,1,398.93078,367.04584Z" transform="translate(-166.83465 -147.13004)" fill="#fff" />
+                            <path d="M277.06218,379.23627a22.75667,22.75667,0,1,1-3.52685-12.19043A22.75667,22.75667,0,0,1,277.06218,379.23627Z" transform="translate(-166.83465 -147.13004)" fill="#F72C5B" />
+                            <path d="M273.53533,367.04584l-22.46387,22.45974c-1.41186-2.18579-9.27765-12.34393-9.27765-12.34393a31.82748,31.82748,0,0,1,3.21979-2.84222l6.52258,8.69677,19.3686-19.36856A22.72673,22.72673,0,0,1,273.53533,367.04584Z" transform="translate(-166.83465 -147.13004)" fill="#fff" />
+                            <path d="M1032.16535,752.87h-381a1,1,0,0,1,0-2h381a1,1,0,0,1,0,2Z" transform="translate(-166.83465 -147.13004)" fill="#3f3d56" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-     dashboard stats heading and content here
     <div class="flex flex-wrap mt-6 -mx-3">
         <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-1/3 lg:flex-none">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-[3px] bg-clip-border">
-                <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
-                    <span class="text-white font-semibold lg:text-xl ">Members (Constituency Wise)</span>
+                <div class="w-full bg-primaryHeading rounded-t-[3px] py-2 px-2">
+                    <span class="text-white font-semibold lg:text-xl ">Work Report</span>
                 </div>
                 <div class="overflow-x-auto p-2">
-                    <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
-                        <thead>
-                            <tr class="bg-primaryDark/40">
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
-                                </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Constituency</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Members
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $donations=[
-                            ['constituency' => 'Los Angeles', 'members' => '50'],
-                            ['constituency' => 'London', 'members' => '20'],
-                            ['constituency' => 'Chicago', 'members' => '30'],
-                            ['constituency' => 'Toronto', 'members' => '38'],
-                            ['constituency' => 'Sydney', 'members' => '20'],
-                            ]
+                    <table class="w-full ">
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Shift time</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> 10:00 AM - 06:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Working days</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> Mon - Sat</td>
+                        </tr>
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Role</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> Employee</td>
+                        </tr>
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Teams</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> Team 1, Team 4</td>
+                        </tr>
 
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 text-md">Reporting Manager</td>
+                            <td class="text-black py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> Mr. John</td>
+                        </tr>
 
-                            @endphp
-
-                            @forelse($donations as $donation)
-                            <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$loop->iteration}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$donation['constituency']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$donation['members']}}</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="5"
-                                    class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
-                                    No members found
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
         <div class="w-full max-w-full px-3 mt-0 lg:w-2/3 lg:flex-none">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-[3px] bg-clip-border">
-                <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
-                    <span class="text-white font-semibold lg:text-xl ">Upcoming Events</span>
+                <div class="w-full bg-primaryHeading rounded-t-[3px] py-2 px-2">
+                    <span class="text-white font-semibold lg:text-xl ">Task Status</span>
                 </div>
                 <div class="overflow-x-auto p-2">
-                    <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
-                        <thead>
-                            <tr class="bg-primaryDark/40">
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
-                                </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Venue
-                                </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">
-                                    Date & Time
-                                </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Contact Person
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $events = [
-                            ['name' => 'Tech Conference', 'venue' => 'San Francisco', 'dateTime' => '02/15/2024, 10:30am', 'contactPerson' => '9876543210'],
-                            ['name' => 'Music Festival', 'venue' => 'Los Angeles', 'dateTime' => '03/22/2024, 05:00pm', 'contactPerson' => '8765432109'],
-                            ['name' => 'Startup Meetup', 'venue' => 'Chicago', 'dateTime' => '04/10/2024, 02:15pm', 'contactPerson' => '7654321098'],
-                            ['name' => 'Art Exhibition', 'venue' => 'London', 'dateTime' => '05/05/2024, 11:45am', 'contactPerson' => '6543210987'],
-                            ['name' => 'Business Summit', 'venue' => 'Dubai', 'dateTime' => '06/18/2024, 09:00am', 'contactPerson' => '5432109876']
-                            ];
-                            @endphp
+                    <table class="w-full ">
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Assignemnts</td>
+                            <td class="font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md"> Assigned by</td>
+                            <td class="font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md"> Issue Date</td>
+                            <td class="font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md"> End Date</td>
+                            <td class="font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md"> Status</td>
+                        </tr>
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Task 1</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Manager</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 15-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 16-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Pending</td>
+                        </tr>
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Task 2</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Manager</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 15-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 16-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Pending</td>
+                        </tr>
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Task 3</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Manager</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 15-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 16-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Pending</td>
+                        </tr>
 
-                            @forelse($events as $event)
-                            <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$loop->iteration}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['name']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['venue']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['dateTime']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$event['contactPerson']}}</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="5"
-                                    class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
-                                    No upcoming events found
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
+                        <tr>
+                            <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Task 4</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Manager</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 15-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> 16-01-2025</td>
+                            <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"> Pending</td>
+                        </tr>
+
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-     employee and other chart section here
-    <div class="flex flex-wrap -mx-3">
-        <div class="w-full max-w-full px-3 mt-6  lg:flex-none">
-            <div
-                class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-[3px] border-0 border-solid bg-white bg-clip-border">
-                <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
-                    <span class="text-white font-semibold lg:text-xl ">Members (Constituency wise)</span>
-                </div>
-                <div class="flex-auto p-4 overflow-x-auto">
-                    <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
-                        <thead>
-                            <tr class="bg-primaryDark/30">
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
-                                </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Email Id</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Phone </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Constituency</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Donations</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Members Added</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Actions</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @php
-
-                            $members = [
-                            [ 'name' => 'John', 'email' => 'jogn@gmail.com', 'phone' => '9876543210', 'constituency' => 'Los Angeles', 'donations' => '£ 5,000', 'members' => '5'],
-                            [ 'name' => 'Doe', 'email' => 'doe@gmail.com', 'phone' => '8765432109', 'constituency' => 'London', 'donations' => '£ 0', 'members' => '2'],
-                            [ 'name' => 'Mark', 'email' => 'mark@gmail.com ', 'phone' => '7654321098', 'constituency' => 'Chicago', 'donations' => '£ 12,000', 'members' => '3'],
-                            [ 'name' => 'Smith', 'email' => 'smith@gmail.com', 'phone' => '6543210987', 'constituency' => 'Toronto', 'donations' => '£ 3,000', 'members' => '3'],
-                            [ 'name' => 'David', 'email' => 'david@gmail.com', 'phone' => '5432109876', 'constituency' => 'Sydney', 'donations' => '£ 1,000', 'members' => '2'],
-                            ]; // this is just a dummy data
-                            @endphp
-
-                            @forelse ($members as $member)
-                            <tr>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{$loop->iteration}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[200px]">{{$member['name']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$member['email']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['phone']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['constituency']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['donations']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$member['members']}}</td>
-
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm w-[200px]">
-                                    <div class="flex h-full">
-                                        <a href="{{route('member.view',['id'=>$loop->iteration])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Member"><i class="fa fa-eye text-xs"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="7"
-                                    class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
-                                    No office found
-                                </td>
-                            </tr>
-                            @endforelse
-
-
-
-
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-     employee and other chart section here
 
 
 </x-app-layout>
