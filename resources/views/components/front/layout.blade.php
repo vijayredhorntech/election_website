@@ -106,26 +106,41 @@
                     <p class="uppercase text-gray-500 md:mb-6">Links</p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">FAQ</a>
+                            <a onclick="toggleFaqModal()" class="no-underline hover:underline text-gray-800 hover:text-pink-500 cursor-pointer">FAQ</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
+                            <a onclick="toggleHelpModal()" class="no-underline hover:underline text-gray-800 hover:text-pink-500 cursor-pointer">Help</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
+                            <a onclick="toggleSupportModal()" class="no-underline hover:underline text-gray-800 hover:text-pink-500 cursor-pointer">Support</a>
                         </li>
                     </ul>
+                </div>
+                <div id="faqModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+                    <x-popup type="faq" onclick="toggleFaqModal()" />
+                </div>
+                <div id="helpModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+                    <x-popup type="help" onclick="toggleHelpModal()" />
+                </div>
+                <div id="supportModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+                    <x-popup type="support" onclick="toggleSupportModal()" />
                 </div>
                 <div class="flex-1">
                     <p class="uppercase text-gray-500 md:mb-6">Legal</p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy Policy</a>
+                            <a onclick="togglePrivacyModal()" class="no-underline hover:underline text-gray-800 hover:text-pink-500 cursor-pointer">Privacy Policy</a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Terms & Conditions</a>
+                            <a onclick="toggleTermsModal()" class="no-underline hover:underline text-gray-800 hover:text-pink-500 cursor-pointer">Terms & Conditions</a>
                         </li>
                     </ul>
+                </div>
+                <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+                    <x-popup type="privacy" onclick="togglePrivacyModal()" />
+                </div>
+                <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+                    <x-popup type="terms" onclick="toggleTermsModal()" />
                 </div>
                 <div class="flex-1">
                     <p class="uppercase text-gray-500 md:mb-6">Social</p>
@@ -206,6 +221,30 @@
     //         navcontent.classList.add("bg-gray-100");
     //     }
     // });
+    function togglePrivacyModal() {
+        const modal = document.getElementById('privacyModal');
+        modal.classList.toggle('hidden');
+    }
+
+    function toggleTermsModal() {
+        const modal = document.getElementById('termsModal');
+        modal.classList.toggle('hidden');
+    }
+
+    function toggleFaqModal() {
+        const modal = document.getElementById('faqModal');
+        modal.classList.toggle('hidden');
+    }
+
+    function toggleHelpModal() {
+        const modal = document.getElementById('helpModal');
+        modal.classList.toggle('hidden');
+    }
+
+    function toggleSupportModal() {
+        const modal = document.getElementById('supportModal');
+        modal.classList.toggle('hidden');
+    }
 </script>
 <script>
     /*Toggle dropdown list*/

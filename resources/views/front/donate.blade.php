@@ -29,9 +29,15 @@
                     </p>
 
                     <p class="text-gray-600 mb-8">
-                        <a href="" class="underline">Privacy Policy</a> &nbsp <a href="" class="underline"> Terms &
+                        <a onclick="togglePrivacyModal()" class="underline cursor-pointer">Privacy Policy</a> &nbsp <a onclick="toggleTermsModal()" class="underline cursor-pointer"> Terms &
                             Conditions</a>
                     </p>
+                </div>
+                <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+                    <x-popup type="privacy" onclick="togglePrivacyModal()" />
+                </div>
+                <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+                    <x-popup type="terms" onclick="toggleTermsModal()" />
                 </div>
                 <div class="w-full lg:w-1/2 lgp-20 md:p-20 p-6">
                     <div class="bg-white p-6 rounded-md ">
@@ -157,6 +163,16 @@
                 });
             });
         });
+
+        function togglePrivacyModal() {
+            const modal = document.getElementById('privacyModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function toggleTermsModal() {
+            const modal = document.getElementById('termsModal');
+            modal.classList.toggle('hidden');
+        }
     </script>
     @endpush
 </x-front.layout>

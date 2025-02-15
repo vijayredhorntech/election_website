@@ -67,17 +67,7 @@
 
                 <!-- Privacy Policy Modal -->
                 <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-                    <div class="bg-white p-8 rounded-lg max-w-md mx-4">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-xl font-bold">Privacy Policy</h2>
-                            <button onclick="togglePrivacyModal()" class="text-gray-500 hover:text-gray-700">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            We are committed to protecting your personal information and ensuring your privacy. Any data you provide, including your name, contact details, and address, will be securely stored and used solely for managing your membership and related political activities. We do not sell or share your information with third parties without your consent, except as required by law. By using our platform, you agree to our data collection and usage policies. If you have any concerns or wish to request data removal, please contact us.
-                        </p>
-                    </div>
+                    <x-popup type="privacy" onclick="togglePrivacyModal()" />
                 </div>
 
                 <div class="bg-gray-100 border-[1px] border-gray-200 px-4 py-8 mt-12 rounded-[10px] flex flex-col items-start gap-4 w-full">
@@ -87,20 +77,7 @@
 
                 <!-- Membership Info Modal -->
                 <div id="membershipModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-                    <div class="bg-white p-8 rounded-lg max-w-md mx-4">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-xl font-bold">What is Membership?</h2>
-                            <button onclick="toggleMembershipModal()" class="text-gray-500 hover:text-gray-700">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            Becoming a member means joining a community of dedicated individuals working together to create a better future. As a member, you'll have access to events, discussions, and campaigns that shape policies and drive meaningful change. Whether you want to support initiatives, engage with like-minded individuals, or even stand for election, your membership gives you the tools and opportunities to make a difference.
-                        </p>
-                        <p class="text-gray-600 text-sm leading-relaxed mt-4">
-                            By joining, you become part of a collective effort to build a stronger and fairer society, where your voice matters and your participation helps shape the direction of our movement.
-                        </p>
-                    </div>
+                    <x-popup type="membership" onclick="toggleMembershipModal()" />
                 </div>
 
             </div>
