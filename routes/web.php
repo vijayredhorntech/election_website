@@ -24,7 +24,7 @@ Route::get('/donate', [PageController::class, 'donate'])->name('donate');
 Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
 
-
+Route::get('/constituencies/{name}', [ConstituencyController::class, 'getConstituencyByName']);
 
 
 Route::get('/join_us', [MemberRegistrationController::class, 'index'])->name('joinUs');
@@ -51,7 +51,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/counties', [CountyController::class, 'index'])->name('counties');
     Route::get('/counties/{countryCode}', [CountyController::class, 'getCountiesByCountryCode']);
     Route::get('/constituencies', [ConstituencyController::class, 'index'])->name('constituencies');
-    Route::get('/constituencies/{name}', [ConstituencyController::class, 'getConstituencyByName']);
     Route::get('/titles/{name}', [TitleController::class, 'getTitleByName']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

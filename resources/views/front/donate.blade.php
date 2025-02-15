@@ -1,12 +1,11 @@
 <x-front.layout>
-   @push('styles')
-        <style>
-            .gradient-bg {
-                background: linear-gradient(to right, #d53369, #daae51);
-            }
-
-        </style>
-   @endpush
+    @push('styles')
+    <style>
+        .gradient-bg {
+            background: linear-gradient(to right, #d53369, #daae51);
+        }
+    </style>
+    @endpush
 
     <section class="bg-gray-100 py-8 mt-24">
         <div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">
@@ -41,14 +40,14 @@
                             <label class="inline-flex items-center">
                                 <input type="radio" name="donationType" value="once" class="hidden" checked>
                                 <span class="donation-type-btn px-6 py-3 rounded-full cursor-pointer border-2 gradient-bg text-white border-[#d53369]" data-type="once">
-                                Give Once
-                            </span>
+                                    Give Once
+                                </span>
                             </label>
                             <label class="inline-flex items-center">
                                 <input type="radio" name="donationType" value="monthly" class="hidden">
                                 <span class="donation-type-btn px-6 py-3 rounded-full cursor-pointer border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-type="monthly">
-                                Monthly
-                            </span>
+                                    Monthly
+                                </span>
                             </label>
                         </div>
 
@@ -72,15 +71,6 @@
                             <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="500">
                                 £500
                             </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="750">
-                                £750
-                            </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="1000">
-                                £1000
-                            </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="2000">
-                                £2000
-                            </button>
                         </div>
 
                         <!-- Custom Amount Input -->
@@ -88,8 +78,8 @@
                             <div class="relative">
                                 <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#d53369]">£</span>
                                 <input type="number" id="customAmount" value="10"
-                                       class="w-full px-8 py-3 rounded-lg border-2 border-[#d53369] focus:border-[#daae51] focus:outline-none text-[#d53369] placeholder-[#d53369]/50"
-                                       placeholder="Enter amount">
+                                    class="w-full px-8 py-3 rounded-lg border-2 border-[#d53369] focus:border-[#daae51] focus:outline-none text-[#d53369] placeholder-[#d53369]/50"
+                                    placeholder="Enter amount">
                             </div>
                         </div>
 
@@ -108,65 +98,65 @@
     </section>
 
     @push('scripts')
-       <script>
-               document.addEventListener('DOMContentLoaded', function() {
-                   const amountBtns = document.querySelectorAll('.amount-btn');
-                   const customAmount = document.getElementById('customAmount');
-                   const donationTypeBtns = document.querySelectorAll('input[name="donationType"]');
-                   const donateBtn = document.getElementById('donateBtn');
-                   let selectedAmount = 10;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const customAmount = document.getElementById('customAmount');
+            const donationTypeBtns = document.querySelectorAll('input[name="donationType"]');
+            const donateBtn = document.getElementById('donateBtn');
+            let selectedAmount = 10;
 
-                   // Handle amount button clicks
-                   amountBtns.forEach(btn => {
-                       btn.addEventListener('click', function() {
-                           // Reset all buttons
-                           amountBtns.forEach(b => {
-                               b.classList.remove('gradient-bg', 'text-white');
-                               b.classList.add('bg-white', 'text-[#d53369]');
-                           });
+            // Handle amount button clicks
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Reset all buttons
+                    amountBtns.forEach(b => {
+                        b.classList.remove('gradient-bg', 'text-white');
+                        b.classList.add('bg-white', 'text-[#d53369]');
+                    });
 
-                           // Highlight selected button
-                           this.classList.remove('bg-white', 'text-[#d53369]');
-                           this.classList.add('gradient-bg', 'text-white');
+                    // Highlight selected button
+                    this.classList.remove('bg-white', 'text-[#d53369]');
+                    this.classList.add('gradient-bg', 'text-white');
 
-                           // Update custom amount input
-                           selectedAmount = this.dataset.amount;
-                           customAmount.value = selectedAmount;
-                       });
-                   });
+                    // Update custom amount input
+                    selectedAmount = this.dataset.amount;
+                    customAmount.value = selectedAmount;
+                });
+            });
 
-                   // Handle custom amount input
-                   customAmount.addEventListener('input', function() {
-                       // Reset all amount buttons
-                       amountBtns.forEach(btn => {
-                           btn.classList.remove('gradient-bg', 'text-white');
-                           btn.classList.add('bg-white', 'text-[#d53369]');
-                       });
-                       selectedAmount = this.value;
-                   });
+            // Handle custom amount input
+            customAmount.addEventListener('input', function() {
+                // Reset all amount buttons
+                amountBtns.forEach(btn => {
+                    btn.classList.remove('gradient-bg', 'text-white');
+                    btn.classList.add('bg-white', 'text-[#d53369]');
+                });
+                selectedAmount = this.value;
+            });
 
-                   // Handle donation type selection
-                   donationTypeBtns.forEach(btn => {
-                       btn.addEventListener('change', function() {
-                           const donationType = this.value;
-                           const allTypeButtons = document.querySelectorAll('.donation-type-btn');
+            // Handle donation type selection
+            donationTypeBtns.forEach(btn => {
+                btn.addEventListener('change', function() {
+                    const donationType = this.value;
+                    const allTypeButtons = document.querySelectorAll('.donation-type-btn');
 
-                           // Update button styles
-                           allTypeButtons.forEach(typeBtn => {
-                               if (typeBtn.dataset.type === donationType) {
-                                   typeBtn.classList.remove('bg-white', 'text-[#d53369]');
-                                   typeBtn.classList.add('gradient-bg', 'text-white');
-                               } else {
-                                   typeBtn.classList.remove('gradient-bg', 'text-white');
-                                   typeBtn.classList.add('bg-white', 'text-[#d53369]');
-                               }
-                           });
+                    // Update button styles
+                    allTypeButtons.forEach(typeBtn => {
+                        if (typeBtn.dataset.type === donationType) {
+                            typeBtn.classList.remove('bg-white', 'text-[#d53369]');
+                            typeBtn.classList.add('gradient-bg', 'text-white');
+                        } else {
+                            typeBtn.classList.remove('gradient-bg', 'text-white');
+                            typeBtn.classList.add('bg-white', 'text-[#d53369]');
+                        }
+                    });
 
-                           // Update donate button text
-                           donateBtn.textContent = `Donate ${donationType === 'monthly' ? 'Monthly' : 'Once'}`;
-                       });
-                   });
-               });
-           </script>
+                    // Update donate button text
+                    donateBtn.textContent = `Donate ${donationType === 'monthly' ? 'Monthly' : 'Once'}`;
+                });
+            });
+        });
+    </script>
     @endpush
 </x-front.layout>
