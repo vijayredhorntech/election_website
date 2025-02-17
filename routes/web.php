@@ -16,6 +16,9 @@ use App\Http\Controllers\ConstituencyController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\TitleController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\AccountSetting;
+use App\Http\Controllers\ExpenseCategoryController;
+use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -122,6 +125,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('events.')->group(function () {
             Route::get('/events', [EventController::class, 'index'])->name('index');
             Route::post('/events/store', [EventController::class, 'store'])->name('store');
+        });
+
+        Route::name('account-setting.')->group(function () {
+            Route::get('/account-setting', [AccountSetting::class, 'index'])->name('index');
+            Route::get('/account-setting/edit/expense/{id}', [AccountSetting::class, 'editExpenseCategory'])->name('edit.expense.category');
+        });
+
+        Route::name('expense.')->group(function () {
+            Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');
+            // Route::get('/expense/edit/{id}', [ExpenseController::class, 'edit'])->name('edit');
+            Route::post('/expense/update/{id}', [ExpenseCategoryController::class, 'update'])->name('update');
+        });
+
+        Route::name('expense.category.')->group(function () {
+            Route::get('/expense/category/store', [ExpenseCategoryController::class, 'store'])->name('store');
         });
     });
 });
