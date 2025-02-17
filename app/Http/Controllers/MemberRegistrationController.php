@@ -74,7 +74,9 @@ class MemberRegistrationController extends Controller
 
     public function selectMemberShipPlan()
     {
-        return view('front.select-membership-plan');
+        $email = session('email');
+
+        return view('front.select-membership-plan')->with('email', $email);
     }
 
     public function memberShipPayment(Request $request)

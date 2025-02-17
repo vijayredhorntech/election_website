@@ -34,7 +34,6 @@ Route::get('/join_us', [MemberRegistrationController::class, 'index'])->name('jo
 Route::get('/email_verification_otp', [MemberRegistrationController::class, 'sendEmailVerificationOtp'])->name('sendEmailVerificationOtp');
 Route::post('/verify_otp', [MemberRegistrationController::class, 'verifyOtp'])->name('verifyOtp');
 Route::get('/select_membership_plan', [MemberRegistrationController::class, 'selectMemberShipPlan'])->name('selectMemberShipPlan');
-Route::get('/membership_payment', [MemberRegistrationController::class, 'memberShipPayment'])->name('memberShipPayment');
 Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::class, 'paymentGateway'])->name('paymentGateway');
 
 

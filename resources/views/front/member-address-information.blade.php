@@ -7,110 +7,162 @@
     </style>
     @endpush
 
-    <section class="bg-gray-100 lg:py-40 md:py-24 sm:py-24 py-16 mt-24 px-4 bg-center bg-cover"
-        style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{asset('assets/images/GettyImages-2157434514.jpg')}})">
-        <div class="container lg:max-w-3xl  bg-white mx-auto  text-gray-800 rounded-[5px]">
-            <div class="bg-white px-4 py-12 flex flex-col items-center text-center rounded-[5px] shadow-lg shadow-gray-800">
-                <span class="text-black font-bold text-2xl">Fill your address information</span>
-                <span class="text-gray-500 font-medium text-sm mt-2">
-                    We need your address information to send you the membership card and other important information.
-                </span>
-                @if(session('error'))
-                <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
-                @endif @if(session('success'))
-                <div class="text-green-600 text-sm font-semibold mt-4">{{session('success')}}</div>
-                @endif
-                <form action="{{route('storeMemberAddressInformation')}}" enctype="multipart/form-data" method="POST" class="w-full mt-8 lg:px-8">
-                    @csrf
-                    <div class=" w-full flex flex-col items-start">
-                        <div class="mt-4 w-full gap-4 grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1">
-                            <div class="flex flex-col items-start w-full gap-1 lg:col-span-2 md:col-span-2 col-span-1">
-                                <label for="" class="text-gray-500 text-sm">Post Code</label>
-                                <input type="text" name="postcode" id="postcode" value="{{old('postcode')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" placeholder="Post Code.....">
-                                @error('postcode')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div>
-                            <div class="flex flex-col items-start w-full gap-1">
-                                <label for="" class="text-gray-500 text-sm">&nbsp;</label>
-                                <button type="button" id="searchAddress" class="w-full text-center bg-red-500 px-4 py-3 rounded-[5px] text-white font-semibold hover:bg-red-700 transition ease-in duration-200 cursor-pointer">Search</button>
-                            </div>
-                            <!-- <div class="flex flex-col items-start w-full gap-1">
-                                <label for="" class="text-gray-500 text-sm">City</label>
-                                <input type="text" name="city" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" placeholder="City.....">
-                                @error('city')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div> -->
-                        </div>
 
-                        <div class="mt-4 flex flex-col items-start w-full gap-1">
-                            <label for="" class="text-gray-500 text-sm">Address</label>
-                            <select id="addressSelect" name=""
-                                class="w-full bg-gray-100 rounded-[3px] border-[1px] px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black border-red-600">
-                                <option value="">Select Address</option>
-                            </select>
-                            <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="hidden">
-                            <!-- <input type="text" name="address" id="addrconess" value="{{old('address')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" placeholder="Address....."> -->
-                            @error('address')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
+        <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="about-inner donation-single">
+                            <h1 class="title">Address Information</h1>
                         </div>
-                        <div class="mt-4 w-full gap-4 grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1">
-                            <div class="flex flex-col items-start w-full gap-1">
-                                <label for="" class="text-gray-500 text-sm">House Name/Number</label>
-                                <input type="text" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" placeholder="Enter your house name/number.....">
-                                @error('house_name_number')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div>
-                            <div class="flex flex-col items-start w-full gap-1">
-                                <label for="" class="text-gray-500 text-sm">Street</label>
-                                <input type="text" name="street" id="street" value="{{old('street')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" placeholder="Enter your street.....">
-                                @error('street')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div>
-                            <div class="flex flex-col items-start w-full gap-1">
-                                <label for="" class="text-gray-500 text-sm">Town/City</label>
-                                <input type="text" name="town_city" id="town_city" value="{{old('town_city')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" placeholder="Enter your town/city.....">
-                                @error('town_city')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div>
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{{route('index')}}">Home</a></li>
+                                <li><a href="{{route('joinUs')}}">Address Information</a></li>
+                            </ul>
                         </div>
-
-                        <div class="mt-4 w-full gap-4 grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1">
-                            <div class="flex flex-col items-start w-full gap-1">
-                                <label for="" class="text-gray-500 text-sm">Country</label>
-                                <select name="country_id" id="country" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black">
-                                    <option value="">Select Country</option>
-                                </select>
-                                @error('country_id')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div>
-                            <div class="flex flex-col items-start w-full gap-1">
-                                <label for="" class="text-gray-500 text-sm">County</label>
-                                <select name="county_id" id="county" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black">
-                                    <option value="">Select County</option>
-                                </select>
-                                @error('county_id')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div>
-                            <div class="flex flex-col items-start w-full gap-1 relative">
-                                <label for="" class="text-gray-500 text-sm">Constituency</label>
-                                <input type="text" name="constituency_id" id="constituency" value="{{ old('constituency_id') }}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black">
-                                <div>
-                                    <ul id="constituency-results" class="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full hidden"></ul>
-                                </div>
-                                @error('constituency_id')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="w-full flex mt-8">
-                        <button type="submit" class="w-full text-center bg-red-500 px-4 py-3 rounded-full text-white font-semibold hover:bg-red-700 transition ease-in duration-200 cursor-pointer"> Save and Continue <i class="fa fa-persson ml-2"></i></button>
-                    </div>
-                </form>
-
-                <span class="text-gray-500 font-medium text-sm mt-2"> Read more about how we use your data in our <a
-                        href="" class="text-red-600">privacy policy</a> here. You can unsubscribe at any time.</span>
-
-                <div class="bg-gray-100 border-[1px] border-gray-200 px-4 py-8 mt-12 rounded-[10px] flex flex-col items-start gap-4 w-full">
-                    <span class="font-semibold text-black text-xl">What is Membership?</span>
-                    <a href="" class="text-red-600">Learn More <i class="fa fa-angle-right"></i> </a>
                 </div>
-
             </div>
-
         </div>
-    </section>
+
+        <div class="donation-content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="volunteer-form style-01">
+                            <div class="donate-programm">
+                                <div class="content">
+                                    <h6 class="subtitle">Fill your address information</h6>
+                                    <p class="description style-01">
+                                        We need your address information to send you the membership card and other important information.
+                                    </p>
+
+                                    @if(session('error'))
+                                        <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
+                                    @endif @if(session('success'))
+                                        <div class="text-green-600 text-sm font-semibold mt-4">{{session('success')}}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="contact-form style-01">
+                                <form action="{{route('storeMemberAddressInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Post Code</label>
+                                                <input type="text" name="postcode" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true">
+                                                @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                            <div class="flex flex-col items-start w-full gap-1">
+                                                <label for="" class="text-gray-500 text-sm">&nbsp;</label>
+                                                <button type="button" id="searchAddress" class="w-full text-center bg-red-500 px-4 py-3 rounded-[5px] text-white font-semibold hover:bg-red-700 transition ease-in duration-200 cursor-pointer">Search</button>
+                                                @error('city')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Address</label>
+
+                                                <select class="form-control" id="addressSelect" name="">
+                                                    <option value="">Select Address</option>
+                                                </select>
+                                                <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="hidden">
+                                                @error('address')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">House Name/Number</label>
+
+                                                <input type="text" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true">
+                                                @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Street</label>
+                                                <input type="text" name="street" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true">
+                                                @error('street')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Town/City</label>
+                                                <input type="text" name="town_city" id="town_city" value="{{old('town_city')}}" class="form-control" required="" aria-required="true">
+                                                @error('town_city')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Country</label>
+
+                                                <select name="country_id" id="country" class="form-control" required="" aria-required="true">
+                                                    <option value="">Select Country</option>
+                                                </select>
+                                                @error('country_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">County</label>
+
+                                                <select name="county_id" id="county" class="form-control" required="" aria-required="true">
+                                                    <option value="">Select Country</option>
+                                                </select>
+                                                @error('county_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Constituency</label>
+
+                                                <input type="text" name="constituency_id" id="constituency" value="{{ old('constituency_id') }}" value="{{old('national_insurance_number')}}" class="form-control" required="" aria-required="true">
+                                                <div>
+                                                    <ul id="constituency-results" class="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full hidden"></ul>
+                                                </div>
+                                                @error('constituency_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">Primary Mobile Number</label>
+
+                                                <input type="number" name="primary_mobile_number" placeholder="Primary mobile number" value="{{old('primary_mobile_number')}}" class="form-control" required="" aria-required="true">
+                                                @error('primary_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="">ALternate Mobile Number</label>
+
+                                                <input type="number" name="alternate_mobile_number" placeholder="Alternate mobile number" value="{{old('alternate_mobile_number')}}" class="form-control" required="" aria-required="true">
+                                                @error('alternate_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
+                                        <button type="submit" class="boxed-btn btn-sanatory"> Save basic informations  <span class="icon-paper-plan"></span></button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     @push('scripts')
     <script>
