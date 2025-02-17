@@ -8,7 +8,7 @@
 # Normalize
 --------------------------------------------------------------*/
 :root {
-  --main-color-one:#DD131A;
+  --main-color-one: #b30d00;
   --main-color-two: #000565;
   --secondary-color: #0E115A;
   --heading-color: #04072E;
@@ -79,7 +79,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--heading-color);
+  color: var(--main-color-one);
   font-family: var(--heading-font);
 }
 
@@ -1218,8 +1218,8 @@ ul {
 }
 .btn-wrapper .boxed-btn.btn-sanatory.style-02 {
   background-color: transparent;
-  color: var(--heading-color);
-  border: 2px solid var(--heading-color);
+  color: var(--main-color-one);
+  border: 2px solid var(--main-color-one);
   -webkit-box-shadow: none;
           box-shadow: none;
   text-transform: capitalize;
@@ -1233,15 +1233,15 @@ ul {
   margin-left: 0;
 }
 .btn-wrapper .boxed-btn.btn-sanatory.style-02:hover {
-  background-color: var(--heading-color);
-  border-color: var(--heading-color);
+  background-color: var(--main-color-one);
+  border-color: var(--main-color-one);
   color: #fff;
 }
 .btn-wrapper .boxed-btn.btn-sanatory.style-03 {
-  background-color: var(--heading-color);
+  background-color: var(--main-color-one);
   width: 100%;
   padding-top: 14px;
-  border: 1px solid var(--heading-color);
+  border: 1px solid var(--main-color-one);
   -webkit-transition: 0.7s all ease;
   transition: 0.7s all ease;
 }
@@ -8383,7 +8383,7 @@ input[type=checkbox] {
   font-size: 65px;
   line-height: 85px;
   font-weight: 700;
-  color: #000565;
+  color: var(--main-color-one);
   margin-bottom: 20px;
   max-width: 600px;
 }
@@ -8981,7 +8981,7 @@ input[type=checkbox] {
   width: 93%;
   height: 60px;
   z-index: -1;
-  background-color: var(--secondary-color);
+  background-color: var(--main-color-one);
   border-radius: 0px 0px 0px 10px;
 }
 .header-top .row {
@@ -8999,11 +8999,11 @@ input[type=checkbox] {
 .header-top .top-social-share i {
   width: 30px;
   height: 30px;
-  background: var(--main-color-two);
+  background: #fff;
   line-height: 30px;
   text-align: center;
   border-radius: 50%;
-  color: #fff;
+  color: var(--main-color-one);
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
@@ -12591,7 +12591,7 @@ input[type=checkbox] {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 120px 0px 135px 0px;
+  padding: 50px 0px 60px 0px;
   position: relative;
 }
 .about-us-section-area.about-bg::before {

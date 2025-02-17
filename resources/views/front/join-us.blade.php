@@ -1,4 +1,5 @@
 <x-front.layout>
+
     @push('styles')
     <style>
         .gradient-bg {

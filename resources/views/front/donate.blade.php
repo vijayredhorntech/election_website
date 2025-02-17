@@ -7,172 +7,122 @@
     </style>
     @endpush
 
-    <section class="bg-gray-100 py-8 mt-24">
-        <div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">
-            <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-                Secure Donation
-            </h1>
-            <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-            </div>
 
-
-            <div class="flex flex-wrap lg:flex-row flex-col-reverse">
-                <div class="w-full lg:w-1/2 p-6">
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                        Help build One Nation's campaign fund
-                    </h3>
-
-                    <img class="rounded-md py-6 w-full h-auto " src="{{asset('assets/images/GettyImages-2157434514.jpg')}}" alt="">
-                    <p class="text-gray-600 mb-4">
-                        Copyright One Nation Party. All rights reserved.
-                    </p>
-
-                    <p class="text-gray-600 mb-8">
-                        <a onclick="togglePrivacyModal()" class="underline cursor-pointer">Privacy Policy</a> &nbsp <a onclick="toggleTermsModal()" class="underline cursor-pointer"> Terms &
-                            Conditions</a>
-                    </p>
-                </div>
-                <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-                    <x-popup type="privacy" onclick="togglePrivacyModal()" />
-                </div>
-                <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-                    <x-popup type="terms" onclick="toggleTermsModal()" />
-                </div>
-                <div class="w-full lg:w-1/2 lgp-20 md:p-20 p-6">
-                    <div class="bg-white p-6 rounded-md ">
-                        <!-- Donation Type Selection -->
-                        <div class="flex justify-center space-x-4 mb-8">
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="donationType" value="once" class="hidden" checked>
-                                <span class="donation-type-btn px-6 py-3 rounded-full cursor-pointer border-2 gradient-bg text-white border-[#d53369]" data-type="once">
-                                    Give Once
-                                </span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="donationType" value="monthly" class="hidden">
-                                <span class="donation-type-btn px-6 py-3 rounded-full cursor-pointer border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-type="monthly">
-                                    Monthly
-                                </span>
-                            </label>
+        <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="about-inner donation-single">
+                            <h1 class="title">Donations</h1>
                         </div>
-
-                        <!-- Amount Buttons -->
-                        <div class="grid grid-cols-3 gap-4 mb-6">
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 gradient-bg text-white border-[#d53369]" data-amount="10">
-                                £10
-                            </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="20">
-                                £20
-                            </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="50">
-                                £50
-                            </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="100">
-                                £100
-                            </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="250">
-                                £250
-                            </button>
-                            <button class="amount-btn py-3 px-4 rounded-lg border-2 bg-white text-[#d53369] border-[#d53369] hover:border-[#daae51]" data-amount="500">
-                                £500
-                            </button>
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{{route('index')}}">Home</a></li>
+                                <li><a href="{{route('donate')}}">Donation</a></li>
+                            </ul>
                         </div>
-
-                        <!-- Custom Amount Input -->
-                        <div class="mb-6">
-                            <div class="relative">
-                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#d53369]">£</span>
-                                <input type="number" id="customAmount" value="10"
-                                    class="w-full px-8 py-3 rounded-lg border-2 border-[#d53369] focus:border-[#daae51] focus:outline-none text-[#d53369] placeholder-[#d53369]/50"
-                                    placeholder="Enter amount">
-                            </div>
-                        </div>
-
-                        <!-- Donate Button -->
-                        <div class="w-full flex justify-end">
-                            <a href="{{route('donnerDetails')}}" id="donateBtn" class="w-full text-center gradient-bg text-white py-4 px-6 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg">
-                                Donate Once
-                            </a>
-                        </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
-    </section>
 
-    @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const amountBtns = document.querySelectorAll('.amount-btn');
-            const customAmount = document.getElementById('customAmount');
-            const donationTypeBtns = document.querySelectorAll('input[name="donationType"]');
-            const donateBtn = document.getElementById('donateBtn');
-            let selectedAmount = 10;
+        <div class="donation-content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="volunteer-form style-01">
+                            <div class="donate-programm">
+                                <div class="content">
+                                    <h6 class="subtitle">Thanks for Donating</h6>
+                                    <p class="description style-01">
+                                        Your donation will help us to build a better nation. We are grateful for your support.
+                                    </p>
 
-            // Handle amount button clicks
-            amountBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Reset all buttons
-                    amountBtns.forEach(b => {
-                        b.classList.remove('gradient-bg', 'text-white');
-                        b.classList.add('bg-white', 'text-[#d53369]');
-                    });
+                                    <div class="amount">
+                                        <div class="btn-wrapper">
+                                            <span class="price-btn">£25</span>
+                                            <span class="price-btn">£50</span>
+                                            <span class="price-btn">£100</span>
+                                            <span class="price-btn">£200</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" name="fname" placeholder="Custom amount" class="form-control" required="" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-form style-01">
+                                <form action="request.html" class="contact-page-form" novalidate="novalidate">
+                                    <h6 class="title">Fill the following information for Donation.</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="fname" placeholder="First Name" class="form-control" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="lname" placeholder="Last Name" class="form-control" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="Email" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="telephone" placeholder="Phone Number" class="form-control" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="fname" placeholder="Address line 1" class="form-control" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="fname" placeholder="Address line 2" class="form-control" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="fname" placeholder="City" class="form-control" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="fname" placeholder="State*" class="form-control" required="" aria-required="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="form-question">
+                                <div class="check-box-wrapper">
+                                    <div class="check-box">
+                                        <label class="container-box">
+                                            Agree to the terms and conditions
+                                            <input type="checkbox" checked="checked">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-wrapper">
+                                <a href="#" class="boxed-btn btn-sanatory">Donation Now <span class="icon-paper-plan"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    // Highlight selected button
-                    this.classList.remove('bg-white', 'text-[#d53369]');
-                    this.classList.add('gradient-bg', 'text-white');
 
-                    // Update custom amount input
-                    selectedAmount = this.dataset.amount;
-                    customAmount.value = selectedAmount;
-                });
-            });
 
-            // Handle custom amount input
-            customAmount.addEventListener('input', function() {
-                // Reset all amount buttons
-                amountBtns.forEach(btn => {
-                    btn.classList.remove('gradient-bg', 'text-white');
-                    btn.classList.add('bg-white', 'text-[#d53369]');
-                });
-                selectedAmount = this.value;
-            });
 
-            // Handle donation type selection
-            donationTypeBtns.forEach(btn => {
-                btn.addEventListener('change', function() {
-                    const donationType = this.value;
-                    const allTypeButtons = document.querySelectorAll('.donation-type-btn');
 
-                    // Update button styles
-                    allTypeButtons.forEach(typeBtn => {
-                        if (typeBtn.dataset.type === donationType) {
-                            typeBtn.classList.remove('bg-white', 'text-[#d53369]');
-                            typeBtn.classList.add('gradient-bg', 'text-white');
-                        } else {
-                            typeBtn.classList.remove('gradient-bg', 'text-white');
-                            typeBtn.classList.add('bg-white', 'text-[#d53369]');
-                        }
-                    });
 
-                    // Update donate button text
-                    donateBtn.textContent = `Donate ${donationType === 'monthly' ? 'Monthly' : 'Once'}`;
-                });
-            });
-        });
 
-        function togglePrivacyModal() {
-            const modal = document.getElementById('privacyModal');
-            modal.classList.toggle('hidden');
-        }
 
-        function toggleTermsModal() {
-            const modal = document.getElementById('termsModal');
-            modal.classList.toggle('hidden');
-        }
-    </script>
-    @endpush
 </x-front.layout>
