@@ -1,18 +1,18 @@
 <x-app-layout>
 
     @section('breadcrumb')
-        <nav>
-            <!-- breadcrumb -->
-            <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
-                <li class="text-sm leading-normal">
-                    <a class="text-black opacity-50" {{route('dashboard')}}>Dashboard</a>
-                </li>
-                <li class="text-sm pl-2 capitalize leading-normal text-black before:float-left before:pr-2 before:text-black before:content-['/']"
-                    aria-current="page">Office Dashboard
-                </li>
-            </ol>
-            <h6 class="mb-0 font-bold text-black capitalize">{{$office->name}} Dashboard</h6>
-        </nav>
+    <nav>
+        <!-- breadcrumb -->
+        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+            <li class="text-sm leading-normal">
+                <a class="text-black opacity-50" {{route('dashboard')}}>Dashboard</a>
+            </li>
+            <li class="text-sm pl-2 capitalize leading-normal text-black before:float-left before:pr-2 before:text-black before:content-['/']"
+                aria-current="page">Office Dashboard
+            </li>
+        </ol>
+        <h6 class="mb-0 font-bold text-black capitalize">{{$office->name}} Dashboard</h6>
+    </nav>
     @endsection
 
 
@@ -318,94 +318,86 @@
     </div>
     {{-- dashboard stats heading and content here--}}
 
-     <div class=" w-full overflow-x-auto">
-            @if ($errors->any())
-                <ul class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                        <li class="text-red-600 font-semibold text-sm">*{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
-            <form id="addExpanseForm" action="" method="" class="p-4 rounded-[3px] hidden w-full grid lg:grid-col-2 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 bg-white mt-4 gap-4 pb-4">
-                @csrf
-                <div class="w-full">
-                    <div class="flex flex-col gap-1 ">
-                        <label for="name" class="font-semibold text-sm text-black">Category <span class="text-danger">*</span></label>
-                        <select type="text" name="name"  class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                            <option value="">--Select Category--</option>
-                        </select>
-                    </div>
+    <div class=" w-full overflow-x-auto">
+        @if ($errors->any())
+        <ul class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+            <li class="text-red-600 font-semibold text-sm">*{{ $error }}</li>
+            @endforeach
+        </ul>
+        @endif
+        <form id="addExpanseForm" action="{{ route('expense.store') }}" method="POST" class="p-4 rounded-[3px] hidden w-full grid lg:grid-col-2 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 bg-white mt-4 gap-4 pb-4">
+            @csrf
+            <div class="w-full">
+                <div class="flex flex-col gap-1 ">
+                    <label for="name" class="font-semibold text-sm text-black">Category <span class="text-danger">*</span></label>
+                    <select type="text" name="category" class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                        <option value="">--Select Category--</option>
+                        @foreach ($officeExpenseCategories as $expenseCategory)
+                        <option value="{{$expenseCategory->id}}">{{$expenseCategory->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="w-full">
-                    <div class="flex flex-col gap-1 ">
-                        <label for="name" class="font-semibold text-sm text-black">Amount <span class="text-danger">*</span></label>
-                        <input type="text" name="amount" value="{{ $expanse->amount ?? old('amount') }}" placeholder="Enter amount....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                    </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1 ">
+                    <label for="name" class="font-semibold text-sm text-black">Amount <span class="text-danger">*</span></label>
+                    <input type="number" name="amount" value="{{ old('amount') }}" placeholder="Enter amount....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                 </div>
-                <div class="w-full lg:col-span-2 md:col-span-2 ">
-                    <div class="flex flex-col gap-1 ">
-                        <label for="name" class="font-semibold text-sm text-black">Remark <span class="text-danger">*</span></label>
-                        <textarea type="text" name="remark" placeholder="Enter remark....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                {{ $expanse->amount ?? old('remark') }}
-                                </textarea>
-                    </div>
+            </div>
+            <input type="hidden" name="office_id" value="{{ $office->id }}">
+            <div class="w-full">
+                <div class="flex flex-col gap-1 ">
+                    <label for="name" class="font-semibold text-sm text-black">Date <span class="text-danger">*</span></label>
+                    <input type="date" name="date" value="{{ $expanse->date ?? old('date') }}" placeholder="Enter date....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                 </div>
-                <div class="w-full lg:col-span-2 md:col-span-2 flex justify-end">
-                    <div class="flex flex-col gap-1 ">
-                        <label for="name" class="font-semibold text-sm text-black">&nbsp</label>
-                        <button class="w-max px-4 py-1.5 rounded-[3px] text-white bg-success hover:bg-primaryLight transition ease-in duration-2000 text-md font-semibold">Add</button>
-                    </div>
+            </div>
+            <div class="w-full lg:col-span-2 md:col-span-2 ">
+                <div class="flex flex-col gap-1 ">
+                    <label for="name" class="font-semibold text-sm text-black">Remark <span class="text-danger">*</span></label>
+                    <textarea type="text" name="description" placeholder="Enter remark....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                    {{ $expanse->description ?? old('description') }}
+                    </textarea>
                 </div>
-            </form>
-        </div>
-     <div class="flex flex-wrap mt-6 w-full">
+            </div>
+            <div class="w-full lg:col-span-2 md:col-span-2 flex justify-end">
+                <div class="flex flex-col gap-1 ">
+                    <label for="name" class="font-semibold text-sm text-black">&nbsp</label>
+                    <button class="w-max px-4 py-1.5 rounded-[3px] text-white bg-success hover:bg-primaryLight transition ease-in duration-2000 text-md font-semibold">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="flex flex-wrap mt-6 w-full">
         <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-2/3 lg:flex-none">
             <div class=" flex flex-col min-w-0 break-words bg-white  border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-[3px] bg-clip-border">
                 <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2 flex justify-between items-center relative">
                     <span class="text-white font-semibold lg:text-xl ">Expanse Management</span>
                     <button class="bg-white text-sm font-semibold px-3 py-0.5 rounded-[3px] text-primaryLight hover:bg-primaryLight hover:text-white transition ease-in duration-2000"
-                            onclick=" document.getElementById('addExpanseForm').classList.toggle('hidden')" >Add Expanse</button>
+                        onclick=" document.getElementById('addExpanseForm').classList.toggle('hidden')">Add Expanse</button>
                 </div>
                 <div class="overflow-x-auto  p-2 ">
                     <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
                         <thead>
-                        <tr class="bg-primaryDark/40">
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. No
-                            </td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Date</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Category</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Amount</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Remark</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Action</td>
-                        </tr>
+                            <tr class="bg-primaryDark/40">
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. No
+                                </td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Date</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Category</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Amount</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Remark</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Action</td>
+                            </tr>
                         </thead>
                         <tbody>
-
-                        @php
-                            $expanses = [
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-                                ['date'=>'2021-10-10', 'category'=>'Office Rent', 'amount'=>'£ 1,500.00', 'remark'=>'Office Rent for the month of October 2021'],
-
-                            ];
-                        @endphp
-
-
-                        @forelse($expanses as $expanse)
+                            @forelse($officeExpenses as $expanse)
                             <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$loop->iteration}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse['date']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse['category']}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse['amount']}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse->date}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse->expenseCategory->name}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse->amount}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">
-                                    {{Str::words($expanse['remark'], 3, '...')}}
+                                    {{Str::words($expanse->description, 3, '...')}}
 
                                 </td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">
@@ -414,14 +406,14 @@
 
                                 </td>
                             </tr>
-                        @empty
+                            @empty
                             <tr>
                                 <td colspan="6"
                                     class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
                                     No transactions found
                                 </td>
                             </tr>
-                        @endforelse
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -433,12 +425,11 @@
                     <span class="text-white font-semibold lg:text-xl ">Office Details</span>
 
                     <div class="w-max"
-                         onclick="
+                        onclick="
                             document.getElementById('officeDetailsDiv').classList.toggle('hidden');
                             document.getElementById('showDetails').classList.toggle('hidden');
                             document.getElementById('hideDetails').classList.toggle('hidden');
-                         "
-                    >
+                         ">
                         <i id="showDetails" class="fa fa-eye text-white"></i>
                         <i id="hideDetails" class="fa fa-eye-slash text-white hidden"></i>
                     </div>
@@ -455,27 +446,32 @@
                         <tr>
                             <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-primaryDark/10 text-md">Description</td>
                             <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span>
-                                {{$office->description}} </td>
+                                {{$office->description}}
+                            </td>
                         </tr>
                         <tr>
                             <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-primaryDark/10 text-md">Address</td>
                             <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span>
-                                {{$office->address}} </td>
+                                {{$office->address}}
+                            </td>
                         </tr>
                         <tr>
                             <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-primaryDark/10 text-md">Post Code</td>
                             <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span>
-                                {{$office->postcode}} </td>
+                                {{$office->postcode}}
+                            </td>
                         </tr>
                         <tr>
                             <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-primaryDark/10 text-md">City/ County</td>
                             <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span>
-                                {{$office->city}}, {{$office->county->name}}</td>
+                                {{$office->city}}, {{$office->county->name}}
+                            </td>
                         </tr>
                         <tr>
                             <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-primaryDark/10 text-md">Constituency</td>
                             <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span>
-                                {{$office->constituency->name}}</td>
+                                {{$office->constituency->name}}
+                            </td>
                         </tr>
                         <tr>
                             <td class="w-[150px] font-semibold text-black text-md">Country</td>
@@ -492,52 +488,52 @@
     </div>
 
     <div class="mt-4 flex flex-col break-words bg-white border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-[3px] bg-clip-border">
-                <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
-                    <span class="text-white font-semibold lg:text-xl ">Employees</span>
-                </div>
-                <div class="overflow-x-auto p-2">
-                    <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
-                        <thead>
-                        <tr class="bg-primaryDark/40">
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. No
-                            </td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Email</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Phone</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Designation</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Wage</td>
-                            <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Action</td>
-                        </tr>
-                        </thead>
-                        <tbody>
+        <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
+            <span class="text-white font-semibold lg:text-xl ">Employees</span>
+        </div>
+        <div class="overflow-x-auto p-2">
+            <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
+                <thead>
+                    <tr class="bg-primaryDark/40">
+                        <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. No
+                        </td>
+                        <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
+                        <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Email</td>
+                        <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Phone</td>
+                        <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Designation</td>
+                        <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Wage</td>
+                        <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Action</td>
+                    </tr>
+                </thead>
+                <tbody>
 
 
-                        @forelse($officeEmployees as $employee)
-                            <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$loop->iteration}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->title}} {{$employee->user->member->first_name}} {{$employee->user->member->last_name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->email}} </td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->primary_mobile_number}} </td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->designation->name}} </td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm"> £ 1,500.00</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
-                                    <a href="{{route('member.view',['id'=>$employee->user->member->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Profile"><i class="fa fa-eye text-xs"></i></a>
+                    @forelse($officeEmployees as $employee)
+                    <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$loop->iteration}}</td>
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->title}} {{$employee->user->member->first_name}} {{$employee->user->member->last_name}}</td>
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->email}} </td>
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->primary_mobile_number}} </td>
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->designation->name}} </td>
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm"> £ 1,500.00</td>
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
+                            <a href="{{route('member.view',['id'=>$employee->user->member->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Profile"><i class="fa fa-eye text-xs"></i></a>
 
-                                    <a href="{{route('employees.view',['id'=>$employee->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Dashboard"><i class="fa fa-tv text-xs"></i></a>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5"
-                                    class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
-                                    No employee found
-                                </td>
-                            </tr>
-                        @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                            <a href="{{route('employees.view',['id'=>$employee->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Dashboard"><i class="fa fa-tv text-xs"></i></a>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="5"
+                            class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
+                            No employee found
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 
