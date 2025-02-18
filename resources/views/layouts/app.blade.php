@@ -23,6 +23,8 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Main Styling -->
     <link href="{{asset('assets/css/argon-dashboard-tailwind.css')}}" rel="stylesheet" />
+    @yield('extraLib')
+
     <style>
         /* width */
         ::-webkit-scrollbar {

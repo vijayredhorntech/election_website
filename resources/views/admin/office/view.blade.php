@@ -119,7 +119,7 @@
                 <div class="mt-4 flex">
                     <div class="grow flex flex-col justify-center ">
                         <span class="text-black font-medium text-lg">Office Budget</span>
-                        <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ 500.00</span>
+                        <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ 0.00</span>
                     </div>
                     <div class="flex-none">
                         <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 0 809.67538 462.57748" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" artist="Katerina Limpitsouni" source="https://undraw.co/">
@@ -355,9 +355,7 @@
             <div class="w-full lg:col-span-2 md:col-span-2 ">
                 <div class="flex flex-col gap-1 ">
                     <label for="name" class="font-semibold text-sm text-black">Remark <span class="text-danger">*</span></label>
-                    <textarea type="text" name="description" placeholder="Enter remark....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                    {{ $expanse->description ?? old('description') }}
-                    </textarea>
+                    <textarea type="text" name="description" placeholder="Enter remark....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">{{ $expanse->description ?? old('description') }}</textarea>
                 </div>
             </div>
             <div class="w-full lg:col-span-2 md:col-span-2 flex justify-end">
@@ -395,7 +393,7 @@
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$loop->iteration}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse->date}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse->expenseCategory->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">{{$expanse->amount}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">£ {{$expanse->amount}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">
                                     {{Str::words($expanse->description, 3, '...')}}
 
@@ -524,7 +522,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5"
+                        <td colspan="7"
                             class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
                             No employee found
                         </td>

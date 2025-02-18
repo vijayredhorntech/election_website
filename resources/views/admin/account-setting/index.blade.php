@@ -15,6 +15,92 @@
     </nav>
     @endsection
 
+    @section('extraLib')
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    @endsection
+
+    <!-- Modal for creating new expense category -->
+    <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-black">
+                        Create New Expense Category
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-black hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form id="expense-category-form" class="p-4 md:p-5" action="{{route('expense.category.store')}}" method="POST">
+                    @csrf
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Name</label>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type category name" required="">
+                        </div>
+                    </div>
+                    <button type="submit" class="text-black inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        Add Expense Category
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for creating new constituency -->
+    <div id="constituency-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-black">
+                        Create New Constituency
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-black hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form id="constituency-form" class="p-4 md:p-5" action="{{route('constituencies.store')}}" method="POST">
+                    @csrf
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Name</label>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type category name" required="">
+                        </div>
+                    </div>
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Code</label>
+                            <input type="text" name="code" id="code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type constituency code" required="">
+                        </div>
+                    </div>
+                    <button type="submit" class="text-black inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        Add new category
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     @section('alertBox')
     @if (session('success'))
     <x-alert-box :message="session('success')" :type="'success'" />
@@ -57,42 +143,50 @@
                     <span class="text-white font-semibold lg:text-xl ">Expense Setting</span>
                 </div>
                 <div class="flex-auto p-4">
-                    <div style="display: flex; justify-content: center; align-items: center">
-                        <!-- <canvas id="officeWiseBuddgetChart" height="142"></canvas> -->
-                        <!-- add expense category form here -->
-                        <form action="{{$formData['url']}}" method="{{$formData['method']}}">
-                            @csrf
-                            <div class="form-group">
-                                <label for="name">Expense Category</label>
-                                <input type="text" name="name" value="{{$expense->name ?? old('name')}}" class="form-control">
-                            </div>
-                            <button type="submit" class="btn btn-primary">{{$formData['type']}}</button>
-                        </form>
-                    </div>
+                    <!-- Add Expense Category Button -->
+                    <!-- <button type="" onclick="" class="btn btn-primary">Add</button> -->
+                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                        Add Expense Category
+                    </button>
+                    <!-- <button id="openModal" class="block text-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Add Expense Category
+                    </button> -->
                     <!-- existing categories -->
                     <div class="mt-4">
                         <h4 class="text-lg font-bold">Existing Categories</h4>
                         <ul class="list-disc pl-5">
-                            @foreach ($expenses as $expense)
-                            <li>{{$expense->name}}
-                                <a href="{{route('account-setting.edit.expense.category', $expense->id)}}" class="text-blue-500">Edit</a>
+                            @foreach ($expenseCategories as $expenseCategory)
+                            <li>{{$expenseCategory->name}}
+                                <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="text-blue-500" onclick="editExpenseCategory({{$expenseCategory}})">Edit</button>
                             </li>
                             @endforeach
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
+        <!-- popup for editing  -->
         <div class="w-full max-w-full px-3  lg:w-1/3 lg:flex-none">
             <div
                 class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-[3px] border-0 border-solid bg-white bg-clip-border">
                 <div class="w-full bg-primaryHeading rounded-t-[3px] py-4 px-2">
-                    <span class="text-white font-semibold lg:text-xl ">Budget Details (Financial Wise)</span>
+                    <span class="text-white font-semibold lg:text-xl ">Constituecies Setting</span>
                 </div>
                 <div class="flex-auto p-4">
-                    <div style="display: flex;  justify-content: center; align-items: center">
-                        <canvas id="financialYearWiseOfficeDetails"> </canvas>
+                    <button data-modal-target="constituency-modal" data-modal-toggle="constituency-modal" class="block text-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                        Add Constituency
+                    </button>
+                    <div style="display: flex; justify-content: center; align-items: center">
+                        <h4 class="text-lg font-bold">Existing Constituencies</h4>
+                        <ul class="list-disc pl-5" id="constituencies-list">
+                            @foreach ($constituencies as $constituency)
+                            <li>{{$constituency->name}} ({{$constituency->code}})
+                            </li>
+                            @endforeach
+                        </ul>
+                        <div class="flex justify-center">
+                            <button id="load-more" class="btn btn-primary" data-page="1" data-limit="10">Load More</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,152 +194,29 @@
     </div>
 
     @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script>
-        // Function to initialize both charts
-        function initializeCharts() {
-            // Office Budget Chart
-            const officeCtx = document.getElementById('officeWiseBuddgetChart').getContext('2d');
+        let name = document.getElementById('name');
+        let expenseCategoryForm = document.getElementById('expense-category-form');
 
-            const officeData = {
-                labels: ['Office 1', 'Office 2', 'Office 3', 'Office 4', 'Office 5', 'Office 6', 'Office 7', 'Office 8', 'Office 9', 'Office 10'],
-                datasets: [{
-                        label: 'Total Budget',
-                        data: [100000, 120000, 90000, 150000, 80000, 90000, 150000, 100000, 120000, 90000, 150000],
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Used Budget',
-                        data: [70000, 80000, 60000, 100000, 50000, 50000, 40000, 30000, 40000, 30000, 50000],
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Remaining Budget',
-                        data: [30000, 40000, 30000, 50000, 30000, 40000, 110000, 70000, 80000, 60000, 100000],
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            };
-
-            const officeConfig = {
-                type: 'bar',
-                data: officeData,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: false,
-                            text: 'Office-wise Budget Distribution'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return '₹' + value.toLocaleString();
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            // Create office budget chart
-            new Chart(officeCtx, officeConfig);
-
-            // Financial Year Chart
-            const yearCtx = document.getElementById('financialYearWiseOfficeDetails').getContext('2d');
-
-            // Generate financial years
-            const generateFinancialYears = () => {
-                const years = [];
-                for (let i = 2025; i <= 2039; i++) {
-                    years.push(`${i}-${i + 1}`);
-                }
-                return years;
-            };
-
-            // Generate colors
-            const generateColors = (count) => {
-                const colors = [];
-                for (let i = 0; i < count; i++) {
-                    const hue = (i * 360) / count;
-                    colors.push(`hsla(${hue}, 70%, 60%, 0.8)`);
-                }
-                return colors;
-            };
-
-            const financialYears = generateFinancialYears();
-            const colors = generateColors(financialYears.length);
-
-            const yearData = {
-                labels: financialYears,
-                datasets: [{
-                    data: [
-                        1000000, 1200000, 1500000, 1800000, 2000000,
-                        2200000, 2500000, 2800000, 3000000, 3200000,
-                        3500000, 3800000, 4000000, 4200000, 4500000
-                    ],
-                    backgroundColor: colors,
-                    borderColor: colors.map(color => color.replace('0.8', '1')),
-                    borderWidth: 1
-                }]
-            };
-
-            const yearConfig = {
-                type: 'pie',
-                data: yearData,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    size: 11
-                                }
-                            }
-                        },
-                        title: {
-                            display: false,
-                            text: 'Budget Allocation by Financial Year',
-                            font: {
-                                size: 16
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const label = context.label || '';
-                                    const value = context.formattedValue;
-                                    return `${label}: ₹${parseInt(value).toLocaleString()}`;
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            // Create financial year chart
-            new Chart(yearCtx, yearConfig);
+        function editExpenseCategory(expense) {
+            let url = "{{route('expense.category.update', ':id')}}";
+            url = url.replace(':id', expense.id);
+            name.value = expense.name;
+            expenseCategoryForm.action = url;
         }
 
-        // Initialize charts when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initializeCharts);
+        let constituencyName = document.getElementById('constituency-name');
+        let constituencyCode = document.getElementById('constituency-code');
+        let constituencyForm = document.getElementById('constituency-form');
+
+        function editConstituency(constituency) {
+            console.log(constituency);
+            let url = "{{route('constituencies.update', ':id')}}";
+            url = url.replace(':id', constituency.id);
+            constituencyName.value = constituency.name;
+            constituencyCode.value = constituency.code;
+            constituencyForm.action = url;
+        }
     </script>
     @endpush
-
-
-
 </x-app-layout>

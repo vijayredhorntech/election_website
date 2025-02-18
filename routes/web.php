@@ -28,7 +28,7 @@ Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('d
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
 
 Route::get('/constituencies/{name}', [ConstituencyController::class, 'getConstituencyByName']);
-
+Route::get('/constituencies/next', [ConstituencyController::class, 'getPaginatedConstituency'])->name('constituencies.next');
 
 Route::get('/join_us', [MemberRegistrationController::class, 'index'])->name('joinUs');
 Route::get('/email_verification_otp', [MemberRegistrationController::class, 'sendEmailVerificationOtp'])->name('sendEmailVerificationOtp');
@@ -100,11 +100,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/employees/status/{id}', [EmployeeController::class, 'status'])->name('status');
         });
 
-        Route::name('members.')->group(function () {
-            Route::get('/members', [MemberController::class, 'index'])->name('index');
-        });
-
-
         Route::name('donation.')->group(function () {
             Route::get('/donation', [DonationController::class, 'index'])->name('index');
             Route::post('/donation/store', [DonationController::class, 'store'])->name('store');
@@ -138,7 +133,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         Route::name('expense.category.')->group(function () {
-            Route::get('/expense/category/store', [ExpenseCategoryController::class, 'store'])->name('store');
+            Route::post('/expense/category/store', [ExpenseCategoryController::class, 'store'])->name('store');
+            Route::post('/expense/category/update/{id}', [ExpenseCategoryController::class, 'update'])->name('update');
+        });
+
+        Route::name('constituencies.')->group(function () {
+            Route::get('/constituencies/next', [ConstituencyController::class, 'getPaginatedConstituency'])
+                ->name('next');
+            Route::post('/constituencies/store', [ConstituencyController::class, 'store'])->name('store');
+            Route::post('/constituencies/update/{id}', [ConstituencyController::class, 'update'])->name('update');
         });
     });
 });
