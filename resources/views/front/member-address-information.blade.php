@@ -49,18 +49,21 @@
                             <form action="{{route('storeMemberAddressInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-8 col-12">
+                                    <div class="col-md-9 col-12">
                                         <div class="form-group">
                                             <label for="">Post Code</label>
                                             <input type="text" name="postcode" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true">
                                             @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
-                                        <div class="flex flex-col items-start w-full gap-1">
-                                            <label for="" class="text-gray-500 text-sm">&nbsp;</label>
-                                            <button type="button" id="searchAddress" class="w-full text-center bg-red-500 px-4 py-3 rounded-[5px] text-white font-semibold hover:bg-red-700 transition ease-in duration-200 cursor-pointer">Search</button>
-                                            @error('city')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
 
+
+                                    </div>
+                                    <div class="col-md-3 col-12 " style="display: flex; align-items: end;">
+                                        <div class="btn-wrapper" style="margin-bottom: 20px; ">
+                                            <button type="button" id="searchAddress" class="boxed-btn btn-sanatory"> Search <span class="icon-paper-plan"></span></button>
                                         </div>
+
+
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -69,7 +72,7 @@
                                             <select class="form-control" id="addressSelect" name="">
                                                 <option value="">Select Address</option>
                                             </select>
-                                            <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="hidden">
+                                            <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="hidden" style="display: none;">
                                             @error('address')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -123,12 +126,12 @@
 
 
                                     <div class="col-md-6 col-12">
-                                        <div class="form-group">
+                                        <div class="form-group relative">
                                             <label for="">Constituency</label>
 
                                             <input type="text" name="constituency_id" id="constituency" value="{{ old('constituency_id') }}" value="{{old('national_insurance_number')}}" class="form-control" required="" aria-required="true">
-                                            <div>
-                                                <ul id="constituency-results" class="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full hidden"></ul>
+                                            <div style="position: absolute; top: 90%; left: 0; width: 100%; height:max-content; z-index: 10;  padding: 0px 20px; border-radius: 4px;">
+                                                <ul id="constituency-results" style="background-color: white; max-height: 200px; overflow-y: auto;"></ul>
                                             </div>
                                             @error('constituency_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -181,24 +184,25 @@
                 .then(data => {
                     resultsContainer.innerHTML = '';
                     if (data.length > 0) {
-                        resultsContainer.classList.remove('hidden');
+                        resultsContainer.style.display = 'block';
                         data.forEach(constituency => {
                             let div = document.createElement('div');
                             div.classList.add('py-2', 'cursor-pointer', 'text-sm', 'hover:bg-gray-100', 'border-b-[1px]', 'border-b-gray-200');
                             div.textContent = `${constituency.name} (${constituency.code})`;
                             div.addEventListener('click', function() {
                                 document.getElementById('constituency').value = constituency.name;
-                                resultsContainer.classList.add('hidden');
+                                // resultsContainer.classList.add('hidden');
+                                resultsContainer.style.display = 'none';
                             });
                             resultsContainer.appendChild(div);
                         });
                     } else {
-                        resultsContainer.classList.add('hidden');
+                        resultsContainer.style.display = 'none';
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching constituencies:', error);
-                    resultsContainer.classList.add('hidden');
+                    resultsContainer.style.display = 'none';
                 });
         });
         document.addEventListener("DOMContentLoaded", function() {
