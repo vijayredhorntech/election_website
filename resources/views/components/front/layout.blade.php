@@ -44,6 +44,12 @@
         input[type="number"] {
             -moz-appearance: textfield;
         }
+
+        .disabled-link {
+            pointer-events: none;
+            color: grey;
+            opacity: 0.6;
+        }
     </style>
 </head>
 
@@ -178,7 +184,7 @@
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav political">
                         <li class="menu-item-has-children current-menu-item">
-                            <a href="{{route('index')}}">Home</a>
+                            <a href="{{ route('index') }}">Home</a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -186,7 +192,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{route('index')}}0">About</a>
+                            <a href="{{ route('index') }}">About</a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -194,7 +200,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{route('index')}}">Events</a>
+                            <a href="{{ route('index') }}">Events</a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -202,7 +208,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{route('index')}}">News</a>
+                            <a href="{{ route('index') }}">News</a>
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -210,7 +216,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{route('index')}}">Media</a>
+                            <a href="{{ route('index') }}">Media</a>
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -218,8 +224,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{route('index')}}">Contact</a>
-
+                            <a href="{{ route('index') }}">Contact</a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -227,8 +232,10 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{route('joinUs')}}">Join Us</a>
-
+                            <a href="{{ route('joinUs') }}"
+                                class="{{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
+                                Join Us
+                            </a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -236,15 +243,16 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{route('login')}}">Login</a>
-
+                            <a href="{{ route('login') }}"
+                                class="{{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
+                                Login
+                            </a>
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-
                     </ul>
                 </div>
                 <div class="nav-right-content">
