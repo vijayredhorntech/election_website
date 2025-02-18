@@ -205,7 +205,16 @@
                         </div>
                     </li>
                     <li class="menu-item-has-children">
-                        <a href="{{route('index')}}0">Contact</a>
+                        <a href="{{route('index')}}">Contact</a>
+
+                        <div class="line">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot style-02"></span>
+                        </div>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="{{route('joinUs')}}">Join Us</a>
 
                         <div class="line">
                             <span class="dot"></span>
@@ -216,12 +225,13 @@
                     <li class="menu-item-has-children">
                         <a href="{{route('login')}}">Login</a>
 
-                        <div class="line">
+                        <div class="line style-01">
                             <span class="dot"></span>
                             <span class="dot"></span>
                             <span class="dot style-02"></span>
                         </div>
                     </li>
+
                 </ul>
             </div>
             <div class="nav-right-content">
@@ -236,6 +246,8 @@
                         <i class="icon-paper-plan"></i>
                     </a>
                 </div>
+
+
             </div>
         </div>
     </nav>

@@ -37,17 +37,18 @@
                                         Join hundreds of thousands of party members as we fix the foundations and rebuild UK.
                                     </p>
 
-                                    @if(session('error'))
-                                        <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
-                                    @endif @if(session('success'))
-                                        <div class="text-green-600 text-sm font-semibold mt-4">{{session('success')}}</div>
-                                    @endif
+
                                 </div>
                             </div>
                             <div class="contact-form style-01">
                                 <form action="{{$formData['url']}}" method="{{$formData['method']}}" class="contact-page-form" novalidate="novalidate">
                                     @csrf
                                     <h6 class="title">Fill the following information to join us.</h6>
+                                    @if(session('error'))
+                                        <div class="text-red-600 text-sm font-semibold mt-4"  style="font-weight: bold ; color: orangered; font-size: 15px">*{{session('error')}}</div>
+                                    @endif @if(session('success'))
+                                        <div class="text-green-600 text-sm font-semibold mt-4"  style="font-weight: bold ; color: green; font-size: 15px">*{{session('success')}}</div>
+                                    @endif
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
