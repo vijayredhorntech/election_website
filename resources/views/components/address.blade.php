@@ -53,54 +53,68 @@
     </select>
     @error('county')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
 </div>
-<div class="w-full relative">
+<div class="w-full">
+    <label for="" class="text-gray-500 text-sm">Region</label>
+    <select name="region" id="region" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black">
+        <option value="">Select Region</option>
+    </select>
+    @error('region')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
+</div>
+<div class="w-full">
+    <label for="" class="text-gray-500 text-sm">Constituency</label>
+    <select name="constituency" id="constituency" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black">
+        <option value="">Select Constituency</option>
+    </select>
+    @error('constituency')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
+</div>
+<!-- <div class="w-full relative">
     <label for="" class="text-gray-500 text-sm">Constituency</label>
     <input type="text" name="constituency" id="constituency" value="{{ old('constituency') }}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black">
     <div>
         <ul id="constituency-results" class="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full hidden"></ul>
     </div>
     @error('constituency')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-</div>
+</div> -->
 <!-- </div> -->
 
 <!-- </div> -->
 
 <script>
-    document.getElementById('constituency').addEventListener('input', function() {
-        let constituencyName = this.value.trim();
-        let resultsContainer = document.getElementById('constituency-results');
+    // document.getElementById('constituency').addEventListener('input', function() {
+    //     let constituencyName = this.value.trim();
+    //     let resultsContainer = document.getElementById('constituency-results');
 
-        if (constituencyName.length < 2) { // Avoid unnecessary API calls for short inputs
-            resultsContainer.innerHTML = '';
-            resultsContainer.classList.add('hidden');
-            return;
-        }
+    //     if (constituencyName.length < 2) { // Avoid unnecessary API calls for short inputs
+    //         resultsContainer.innerHTML = '';
+    //         resultsContainer.classList.add('hidden');
+    //         return;
+    //     }
 
-        fetch(`/constituencies/${constituencyName}`)
-            .then(response => response.json())
-            .then(data => {
-                resultsContainer.innerHTML = '';
-                if (data.length > 0) {
-                    resultsContainer.classList.remove('hidden');
-                    data.forEach(constituency => {
-                        let div = document.createElement('div');
-                        div.classList.add('py-2', 'cursor-pointer', 'text-sm', 'hover:bg-gray-100', 'border-b-[1px]', 'border-b-gray-200');
-                        div.textContent = `${constituency.name} (${constituency.code})`;
-                        div.addEventListener('click', function() {
-                            document.getElementById('constituency').value = constituency.name;
-                            resultsContainer.classList.add('hidden');
-                        });
-                        resultsContainer.appendChild(div);
-                    });
-                } else {
-                    resultsContainer.classList.add('hidden');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching constituencies:', error);
-                resultsContainer.classList.add('hidden');
-            });
-    });
+    //     fetch(`/constituencies/${constituencyName}`)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             resultsContainer.innerHTML = '';
+    //             if (data.length > 0) {
+    //                 resultsContainer.classList.remove('hidden');
+    //                 data.forEach(constituency => {
+    //                     let div = document.createElement('div');
+    //                     div.classList.add('py-2', 'cursor-pointer', 'text-sm', 'hover:bg-gray-100', 'border-b-[1px]', 'border-b-gray-200');
+    //                     div.textContent = `${constituency.name} (${constituency.code})`;
+    //                     div.addEventListener('click', function() {
+    //                         document.getElementById('constituency').value = constituency.name;
+    //                         resultsContainer.classList.add('hidden');
+    //                     });
+    //                     resultsContainer.appendChild(div);
+    //                 });
+    //             } else {
+    //                 resultsContainer.classList.add('hidden');
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching constituencies:', error);
+    //             resultsContainer.classList.add('hidden');
+    //         });
+    // });
     document.addEventListener("DOMContentLoaded", function() {
         const countrySelect = document.getElementById("country");
 
@@ -167,6 +181,8 @@
 
     const countrySelect = document.getElementById('country');
     const countySelect = document.getElementById('county');
+    const regionSelect = document.getElementById('region');
+    const constituencySelect = document.getElementById('constituency');
 
     function updateCounties(countryCode, selectedCountyCode = null) {
         console.log(countryCode);
@@ -187,9 +203,70 @@
                     });
                 })
                 .catch(error => console.error('Error fetching counties:', error));
+            // fetch(`/regions/${countryCode}`)
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         data.forEach(region => {
+            //             let option = document.createElement('option');
+            //             option.value = region.code;
+            //             option.textContent = region.name;
+            //             regionSelect.appendChild(option);
+            //         });
+            //     })
+            //     .catch(error => console.error('Error fetching regions:', error));
+            // fetch(`/constituencies/${countryCode}`)
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         console.log(data);
+            //     })
+            //     .catch(error => console.error('Error fetching constituencies:', error));
+        }
+    }
+
+    function updateRegions(countryCode, selectedRegionCode = null) {
+        console.log(countryCode);
+        regionSelect.innerHTML = '<option value="">Select Region</option>';
+        if (countryCode) {
+            fetch(`/regions/${countryCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(region => {
+                        let option = document.createElement('option');
+                        option.value = region.code;
+                        option.textContent = region.name;
+                        if (selectedRegionCode && region.code === selectedRegionCode) {
+                            option.selected = true;
+                        }
+                        regionSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching regions:', error));
+        }
+    }
+
+    function updateConstituencies(countryCode, selectedConstituencyCode = null) {
+        console.log(countryCode);
+        constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
+        if (countryCode) {
+            fetch(`/constituencies/${countryCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(constituency => {
+                        let option = document.createElement('option');
+                        option.value = constituency.code;
+                        option.textContent = constituency.name;
+                        if (selectedConstituencyCode && constituency.code === selectedConstituencyCode) {
+                            option.selected = true;
+                        }
+                        constituencySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching constituencies:', error));
         }
     }
     countrySelect.addEventListener('change', function() {
         updateCounties(this.value);
+        updateRegions(this.value);
+        updateConstituencies(this.value);
     });
 </script>

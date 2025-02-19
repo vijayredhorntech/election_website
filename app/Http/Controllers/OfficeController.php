@@ -40,7 +40,7 @@ class OfficeController extends Controller
             'town_city' => 'required',
             'country' => 'required|exists:countries,code',
             'county' => 'required|exists:counties,code',
-            'constituency' => 'required|exists:constituencies,name',
+            'constituency' => 'required|exists:constituencies,code',
         ]);
 
         $office = [
@@ -51,7 +51,7 @@ class OfficeController extends Controller
             'country_id' => Country::where('code', $validatedData['country'])->first()->id,
             'county_id' => County::where('code', $validatedData['county'])->first()->id,
             'city' => $validatedData['town_city'],
-            'constituency_id' => Constituency::where('name', $validatedData['constituency'])->first()->id,
+            'constituency_id' => Constituency::where('code', $validatedData['constituency'])->first()->id,
         ];
 
         Office::create($office);
@@ -97,7 +97,7 @@ class OfficeController extends Controller
             'country' => 'required|exists:countries,code',
             'county' => 'required|exists:counties,code',
             'city' => 'required',
-            'constituency' => 'required|exists:constituencies,name',
+            'constituency' => 'required|exists:constituencies,code',
         ]);
 
         $office = Office::findOrFail($id);
@@ -110,7 +110,7 @@ class OfficeController extends Controller
             'country_id' => Country::where('code', $validatedData['country'])->first()->id,
             'county_id' => County::where('code', $validatedData['county'])->first()->id,
             'city' => $validatedData['city'],
-            'constituency_id' => Constituency::where('name', $validatedData['constituency'])->first()->id,
+            'constituency_id' => Constituency::where('code', $validatedData['constituency'])->first()->id,
         ];
 
         $office->update($newOffice);

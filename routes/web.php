@@ -19,6 +19,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\AccountSetting;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\RegionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,7 +28,8 @@ Route::get('/donate', [PageController::class, 'donate'])->name('donate');
 Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
 
-Route::get('/constituencies/{name}', [ConstituencyController::class, 'getConstituencyByName']);
+// Route::get('/constituencies/{name}', [ConstituencyController::class, 'getConstituencyByName']);
+Route::get('/constituencies/{countryCode}', [ConstituencyController::class, 'getConstituenciesByCountryCode']);
 Route::get('/constituencies/next', [ConstituencyController::class, 'getPaginatedConstituency'])->name('constituencies.next');
 
 Route::get('/join_us', [MemberRegistrationController::class, 'index'])->name('joinUs');
@@ -52,7 +54,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
     Route::get('/counties', [CountyController::class, 'index'])->name('counties');
     Route::get('/counties/{countryCode}', [CountyController::class, 'getCountiesByCountryCode']);
-    Route::get('/constituencies', [ConstituencyController::class, 'index'])->name('constituencies');
+    Route::get('/regions/{countryCode}', [RegionController::class, 'getRegionsByCountryCode']);
+    Route::get('/constituencies/{countryCode}', [ConstituencyController::class, 'getConstituenciesByCountryCode']);
     Route::get('/titles/{name}', [TitleController::class, 'getTitleByName']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

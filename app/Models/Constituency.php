@@ -9,7 +9,9 @@ class Constituency extends Model
     protected $fillable = [
         'name',
         'code',
-        'office_id'
+        'office_id',
+        'region_id',
+        'country_id'
     ];
 
     public function members()
@@ -25,5 +27,15 @@ class Constituency extends Model
     public function office()
     {
         return $this->belongsTo(Office::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }
