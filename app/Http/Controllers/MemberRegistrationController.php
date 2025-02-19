@@ -46,7 +46,7 @@ class MemberRegistrationController extends Controller
             session(['email' => $request->email]);
             session(['name' => $request->name]);
         } catch (\Exception $e) {
-            Log::error($e);
+            dd($e);
             return back()->with('error', 'Failed to send OTP');
         }
 
