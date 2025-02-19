@@ -10,6 +10,7 @@ use App\Models\County;
 use App\Models\Constituency;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,6 +46,7 @@ class MemberRegistrationController extends Controller
             session(['email' => $request->email]);
             session(['name' => $request->name]);
         } catch (\Exception $e) {
+            Log::error($e);
             return back()->with('error', 'Failed to send OTP');
         }
 
