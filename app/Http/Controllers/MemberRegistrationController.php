@@ -245,7 +245,7 @@ class MemberRegistrationController extends Controller
         $member->update([
             'country_id' => Country::where('code', $request->country_id)->first()->id,
             'county_id' => County::where('code', $request->county_id)->first()->id,
-            'constituency_id' => Constituency::where('name', $request->constituency_id)->first()->id,
+            'constituency_id' => Constituency::where('code', $request->constituency_id)->first()->id,
             'address' => $request->address,
             'postcode' => $request->postcode,
             'city' => $request->town_city,

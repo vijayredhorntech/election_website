@@ -118,14 +118,32 @@
                                             <label for="">County</label>
 
                                             <select name="county_id" id="county" class="form-control" required="" aria-required="true">
-                                                <option value="">Select Country</option>
+                                                <option value="">Select County</option>
                                             </select>
                                             @error('county_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
-
-
                                     <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="">Region</label>
+
+                                            <select name="region" id="region" class="form-control" required="" aria-required="true">
+                                                <option value="">Select Region</option>
+                                            </select>
+                                            @error('region')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="">Constituency</label>
+
+                                            <select name="constituency_id" id="constituency" class="form-control" required="" aria-required="true">
+                                                <option value="">Select Constituency</option>
+                                            </select>
+                                            @error('constituency_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-6 col-12">
                                         <div class="form-group relative">
                                             <label for="">Constituency</label>
 
@@ -135,7 +153,7 @@
                                             </div>
                                             @error('constituency_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Primary Mobile Number</label>
@@ -169,42 +187,42 @@
 
     @push('scripts')
     <script>
-        document.getElementById('constituency').addEventListener('input', function() {
-            let constituencyName = this.value.trim();
-            let resultsContainer = document.getElementById('constituency-results');
+        // document.getElementById('constituency').addEventListener('input', function() {
+        //     let constituencyName = this.value.trim();
+        //     let resultsContainer = document.getElementById('constituency-results');
 
-            if (constituencyName.length < 2) { // Avoid unnecessary API calls for short inputs
-                resultsContainer.innerHTML = '';
-                resultsContainer.classList.add('hidden');
-                return;
-            }
+        //     if (constituencyName.length < 2) { // Avoid unnecessary API calls for short inputs
+        //         resultsContainer.innerHTML = '';
+        //         resultsContainer.classList.add('hidden');
+        //         return;
+        //     }
 
-            fetch(`/constituencies/${constituencyName}`)
-                .then(response => response.json())
-                .then(data => {
-                    resultsContainer.innerHTML = '';
-                    if (data.length > 0) {
-                        resultsContainer.style.display = 'block';
-                        data.forEach(constituency => {
-                            let div = document.createElement('div');
-                            div.classList.add('py-2', 'cursor-pointer', 'text-sm', 'hover:bg-gray-100', 'border-b-[1px]', 'border-b-gray-200');
-                            div.textContent = `${constituency.name} (${constituency.code})`;
-                            div.addEventListener('click', function() {
-                                document.getElementById('constituency').value = constituency.name;
-                                // resultsContainer.classList.add('hidden');
-                                resultsContainer.style.display = 'none';
-                            });
-                            resultsContainer.appendChild(div);
-                        });
-                    } else {
-                        resultsContainer.style.display = 'none';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching constituencies:', error);
-                    resultsContainer.style.display = 'none';
-                });
-        });
+        //     fetch(`/constituencies/${constituencyName}`)
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             resultsContainer.innerHTML = '';
+        //             if (data.length > 0) {
+        //                 resultsContainer.style.display = 'block';
+        //                 data.forEach(constituency => {
+        //                     let div = document.createElement('div');
+        //                     div.classList.add('py-2', 'cursor-pointer', 'text-sm', 'hover:bg-gray-100', 'border-b-[1px]', 'border-b-gray-200');
+        //                     div.textContent = `${constituency.name} (${constituency.code})`;
+        //                     div.addEventListener('click', function() {
+        //                         document.getElementById('constituency').value = constituency.name;
+        //                         // resultsContainer.classList.add('hidden');
+        //                         resultsContainer.style.display = 'none';
+        //                     });
+        //                     resultsContainer.appendChild(div);
+        //                 });
+        //             } else {
+        //                 resultsContainer.style.display = 'none';
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching constituencies:', error);
+        //             resultsContainer.style.display = 'none';
+        //         });
+        // });
         document.addEventListener("DOMContentLoaded", function() {
             const countrySelect = document.getElementById("country");
 
@@ -271,6 +289,8 @@
 
         const countrySelect = document.getElementById('country');
         const countySelect = document.getElementById('county');
+        const regionSelect = document.getElementById('region');
+        const constituencySelect = document.getElementById('constituency');
 
         function updateCounties(countryCode, selectedCountyCode = null) {
             console.log(countryCode);
@@ -293,8 +313,53 @@
                     .catch(error => console.error('Error fetching counties:', error));
             }
         }
+
+        function updateRegions(countryCode, selectedRegionCode = null) {
+            console.log(countryCode);
+            regionSelect.innerHTML = '<option value="">Select region</option>';
+            if (countryCode) {
+                fetch(`/regions/${countryCode}`) // Fetch regions based on selected country
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(region => {
+                            let option = document.createElement('option');
+                            option.value = region.code;
+                            option.textContent = region.name;
+                            if (selectedRegionCode && region.code === selectedRegionCode) {
+                                option.selected = true;
+                            }
+                            regionSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching regions:', error));
+            }
+        }
+
+        function updateConstituencies(countryCode, selectedConstituencyCode = null) {
+            console.log(countryCode);
+            constituencySelect.innerHTML = '<option value="">Select constituency</option>';
+            if (countryCode) {
+                fetch(`/constituencies/${countryCode}`) // Fetch constituencies based on selected country
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(constituency => {
+                            let option = document.createElement('option');
+                            option.value = constituency.code;
+                            option.textContent = constituency.name;
+                            if (selectedConstituencyCode && constituency.code === selectedConstituencyCode) {
+                                option.selected = true;
+                            }
+                            constituencySelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching constituencies:', error));
+            }
+        }
+
         countrySelect.addEventListener('change', function() {
             updateCounties(this.value);
+            updateRegions(this.value);
+            updateConstituencies(this.value);
         });
     </script>
     @endpush

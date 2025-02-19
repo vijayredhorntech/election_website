@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Constituency;
+use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ConstituencyController extends Controller
 {
@@ -11,12 +13,6 @@ class ConstituencyController extends Controller
     {
         $constituencies = Constituency::all();
         return response()->json($constituencies);
-    }
-
-    public function getConstituencyByName($name)
-    {
-        $constituency = Constituency::where('name', 'like', '%' . $name . '%')->get();
-        return response()->json($constituency);
     }
 
     public function getPaginatedConstituency(Request $request)
@@ -41,5 +37,14 @@ class ConstituencyController extends Controller
         // dd($request->all());
         Constituency::create($request->all());
         return redirect()->back()->with('success', 'Constituency created successfully');
+    }
+
+    public function getConstituenciesByCountryCode($countryCode)
+    {
+        // dd($countryCode);
+        Log::info($countryCode);
+        $country = Country::where('code', $countryCode)->first();
+        $constituencies = Constituency::where('country_id', $country->id)->get();
+        return response()->json($constituencies);
     }
 }

@@ -17,4 +17,14 @@ class Country extends Model
     {
         return $this->hasMany(Member::class);
     }
+
+    public function constituencies()
+    {
+        return $this->hasMany(Constituency::class);
+    }
+
+    public function regions()
+    {
+        return $this->hasMany(Region::class);
+    }
 }
