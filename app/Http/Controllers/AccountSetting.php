@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
+use App\Http\Controllers\ConstituencyController;
+use App\Models\Constituency;
 
 class AccountSetting extends Controller
 {
@@ -20,8 +22,21 @@ class AccountSetting extends Controller
             'url' => route('expense.category.store')
         ];
 
-        $expenses = ExpenseCategory::orderBy('created_at', 'desc')->get();
-        return view('admin.account-setting.index')->with('expenses', $expenses)->with('formData', $formData);
+        $expenseCategories = ExpenseCategory::orderBy('created_at', 'desc')->get();
+
+        // Create a request instance to use with getPaginatedConstituency
+        $request = new Request([
+            'limit' => 10,
+            'page' => 1
+        ]);
+
+        $constituencies = app(ConstituencyController::class)->getPaginatedConstituency($request);
+        $constituencies = json_decode($constituencies->getContent());
+
+        return view('admin.account-setting.index')
+            ->with('expenseCategories', $expenseCategories)
+            ->with('constituencies', $constituencies->data)
+            ->with('formData', $formData);
     }
 
     /**

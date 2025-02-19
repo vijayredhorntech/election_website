@@ -21,7 +21,7 @@ class ExpenseCategoryController extends Controller
 
         ExpenseCategory::create($request->all() + ['user_id' => auth()->user()->id]);
 
-        return redirect()->route('account-setting.index')->with('success', 'Expense Category Created Successfully');
+        return back()->with('success', 'Expense Category Created Successfully');
     }
 
     /**

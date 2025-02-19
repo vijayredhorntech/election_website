@@ -76,7 +76,7 @@ class OfficeController extends Controller
         $office = Office::findOrFail($id);
         $officeEmployees = $office->employees()->get();
         $officeExpenses = Expense::where('office_id', $id)->orderBy('created_at', 'desc')->get();
-        $officeExpenseCategories = ExpenseCategory::orderBy('created_at', 'desc')->limit(5)->get();
+        $officeExpenseCategories = ExpenseCategory::orderBy('created_at', 'desc')->get();
         return view('admin.office.view')
             ->with('office', $office)
             ->with('officeEmployees', $officeEmployees)

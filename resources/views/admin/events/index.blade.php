@@ -149,7 +149,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="8"
+                                <td colspan="10"
                                     class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
                                     No events found
                                 </td>

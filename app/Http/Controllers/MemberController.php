@@ -32,7 +32,7 @@ class MemberController extends Controller
 
         $countries = Country::all();
 
-        return view('admin.members.index')->with('formData', $formData)->with('users', $users)->with('countries', $countries);
+        return view('admin.member.index')->with('formData', $formData)->with('users', $users)->with('countries', $countries);
     }
 
     public function store(MemberRequest $request)
@@ -86,11 +86,11 @@ class MemberController extends Controller
                     'national_insurance_number' => $validatedData['national_insurance_number'],
                 ]);
 
-                return redirect()->route('members.index')->with('success', 'Member created successfully');
+                return redirect()->route('member.index')->with('success', 'Member created successfully');
             });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('members.index')->with('error', 'An error occurred while creating the member');
+            return redirect()->route('member.index')->with('error', 'An error occurred while creating the member');
         }
     }
 
@@ -104,7 +104,7 @@ class MemberController extends Controller
 
         $Members = Member::all();
         $member = Member::find($id);
-        return view('admin.members.index')->with('member', $member)->with('formData', $formData)->with('members', $Members);
+        return view('admin.member.index')->with('member', $member)->with('formData', $formData)->with('members', $Members);
     }
 
     public function view($id)
@@ -137,10 +137,10 @@ class MemberController extends Controller
             ];
 
             $member->update($updateData);
-            return redirect()->route('members.index')->with('success', 'Member updated successfully');
+            return redirect()->route('member.index')->with('success', 'Member updated successfully');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('members.index')->with('error', 'An error occurred while updating the member');
+            return redirect()->route('member.index')->with('error', 'An error occurred while updating the member');
         }
     }
 
@@ -148,7 +148,7 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
         $member->delete();
-        return redirect()->route('members.index')->with('success', 'Member deleted successfully');
+        return redirect()->route('member.index')->with('success', 'Member deleted successfully');
     }
 
     public function referred($id)
