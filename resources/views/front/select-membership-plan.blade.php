@@ -49,29 +49,14 @@
                             <div class="contact-form style-01">
                                 <form action="{{route('paymentGateway',['email'=>$email,'id'=>1])}}" method="post" class="contact-page-form" novalidate="novalidate">
                                     @csrf
-                                    <h6 class="title">Please select membership plan</h6>
+                                    <h6 class="title">This is our membership plan</h6>
 
                                     @php
                                         $memberShipPlans = [
-                                        [
-                                        'id' => '1',
-                                        'type' => '',
-                                        'amount' => '5.88',
-                                        'label' => 'Membership 1',
-                                        ],
-                                        [
-                                        'id' => '2',
-                                        'type' => '',
-                                        'amount' => '10.88',
-                                        'label' => 'Membership 2',
-                                        ],
-                                        [
-                                        'id' => '3',
-                                        'type' => '',
-                                        'amount' => '15.88',
-                                        'label' => 'Membership 3',
-                                        ],
-
+                                                [
+                                                'id' => '1',
+                                                'amount' => '2.92',
+                                                ],
                                         ];
                                     @endphp
 

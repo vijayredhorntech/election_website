@@ -55,66 +55,7 @@
 
 <body>
 
-    <!-- Vote poll start here -->
-    <div class="poll-wrapper">
-        <header>
-            <div class="content">
-                <h6 class="voter-name">Donate Now</h6>
-            </div>
-            <button class="poll-btn close-btn"><i class="fas fa-times"></i></button>
-        </header>
-        <div class="poll-area">
-            <input type="checkbox" name="poll" id="opt-1">
-            <input type="checkbox" name="poll" id="opt-2">
-            <input type="checkbox" name="poll" id="opt-3">
-            <input type="checkbox" name="poll" id="opt-4">
-            <div class="opt-1 label">
-                <div class="content-wrap">
-                    <div class="content">
-                        <span class="circle"></span>
-                        <span class="text">50 £</span>
-                    </div>
-                </div>
-            </div>
-            <div class="opt-2 label">
-                <div class="content-wrap">
-                    <div class="content">
-                        <span class="circle"></span>
-                        <span class="text">100 £</span>
-                    </div>
-                </div>
-            </div>
-            <div class="opt-3 label">
-                <div class="content-wrap">
-                    <div class="content">
-                        <span class="circle"></span>
-                        <span class="text">200 £</span>
-                    </div>
-                </div>
-            </div>
-            <div class="opt-4 label">
-                <div class="content-wrap">
-                    <div class="content">
-                        <span class="circle"></span>
-                        <span class="text">500 £</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="btn-wrapper vote-btn">
-            <a href="{{route('donate')}}" class="boxed-btn btn-sanatory">
-                Donate Now
-                <i class="fas fa-vote-yea"></i>
-            </a>
-        </div>
-    </div>
-    <div class="btn-wrapper poll-btn">
-        <span class="boxed-btn btn-poll">
-            Donate Now
-            <i class="fas fa-vote-yea"></i>
-        </span>
-    </div>
-    <!-- Vote poll start here -->
+
 
     <!-- Header-top-start -->
     <div class="header-top about">
@@ -231,17 +172,7 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('joinUs') }}"
-                                class="{{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
-                                Join Us
-                            </a>
-                            <div class="line">
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                                <span class="dot style-02"></span>
-                            </div>
-                        </li>
+
                         <li class="menu-item-has-children">
                             <a href="{{ route('login') }}"
                                 class="{{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
@@ -256,19 +187,19 @@
                     </ul>
                 </div>
                 <div class="nav-right-content">
-                    <div class="icon-part">
-                        <ul>
-                            <li id="search"><a href="{{route('index')}}"><i class="icon-search-svgrepo-com-1"></i></a></li>
-                        </ul>
+
+                    <div class="btn-wrapper" style="margin-left: 10px; ">
+                        <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black">
+                            Join Us
+                            <i class="icon-paper-plan"></i>
+                        </a>
                     </div>
-                    <div class="btn-wrapper">
+                    <div class="btn-wrapper" style="margin-left: 10px">
                         <a href="{{route('donate')}}" class="boxed-btn btn-sanatory">
                             Donation Now
                             <i class="icon-paper-plan"></i>
                         </a>
                     </div>
-
-
                 </div>
             </div>
         </nav>

@@ -161,7 +161,7 @@
                                             <div class="form-group">
                                                 <label for="">National Insurance Number</label>
 
-                                                <input type="text" name="national_insurance_number" placeholder="National insurance number" value="{{old('national_insurance_number')}}" class="form-control" required="" aria-required="true">
+                                                <input type="text" name="national_insurance_number" placeholder="QQ123456B" value="{{old('national_insurance_number')}}" class="form-control" required="" aria-required="true">
                                                 @error('national_insurance_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@
                                             <div class="form-group">
                                                 <label for="">Primary Mobile Number</label>
 
-                                                <input type="number" name="primary_mobile_number" placeholder="Primary mobile number" value="{{old('primary_mobile_number')}}" class="form-control" required="" aria-required="true">
+                                                <input type="number" name="primary_mobile_number" placeholder="01234567890" value="{{old('primary_mobile_number')}}" class="form-control" required="" aria-required="true">
                                                 @error('primary_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             </div>
                                         </div>
@@ -177,7 +177,7 @@
                                             <div class="form-group">
                                                 <label for="">ALternate Mobile Number</label>
 
-                                                <input type="number" name="alternate_mobile_number" placeholder="Alternate mobile number" value="{{old('alternate_mobile_number')}}" class="form-control" required="" aria-required="true">
+                                                <input type="number" name="alternate_mobile_number" placeholder="01234567890" value="{{old('alternate_mobile_number')}}" class="form-control" required="" aria-required="true">
                                                 @error('alternate_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             </div>
                                         </div>

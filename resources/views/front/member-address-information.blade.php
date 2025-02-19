@@ -52,7 +52,7 @@
                                     <div class="col-md-9 col-12">
                                         <div class="form-group">
                                             <label for="">Post Code</label>
-                                            <input type="text" name="postcode" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true">
+                                            <input type="text" name="postcode" placeholder="JH5 UI8" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true">
                                             @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
 
@@ -81,7 +81,7 @@
                                         <div class="form-group">
                                             <label for="">House Name/Number</label>
 
-                                            <input type="text" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true">
+                                            <input type="text" placeholder="665" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true">
                                             @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
@@ -90,7 +90,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Street</label>
-                                            <input type="text" name="street" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true">
+                                            <input type="text" name="street" placeholder="King Street" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true">
                                             @error('street')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -154,22 +154,7 @@
                                             @error('constituency_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div> -->
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="">Primary Mobile Number</label>
 
-                                            <input type="number" name="primary_mobile_number" placeholder="Primary mobile number" value="{{old('primary_mobile_number')}}" class="form-control" required="" aria-required="true">
-                                            @error('primary_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="">ALternate Mobile Number</label>
-
-                                            <input type="number" name="alternate_mobile_number" placeholder="Alternate mobile number" value="{{old('alternate_mobile_number')}}" class="form-control" required="" aria-required="true">
-                                            @error('alternate_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                                     <button type="submit" class="boxed-btn btn-sanatory"> Save basic informations <span class="icon-paper-plan"></span></button>
