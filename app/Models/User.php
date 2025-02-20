@@ -60,7 +60,14 @@ class User extends Authenticatable
     private static function generateUniqueReferralCode()
     {
         do {
-            $code = Str::upper(Str::random(6)); // Generate a 6-letter uppercase random string
+            // Get the last member's custom ID
+            $lastMember = Member::orderBy('id', 'desc')->first();
+            $memberNumber = $lastMember ? 
+                (int)substr($lastMember->custom_id, -3) + 1 : 
+                1;
+            
+            // Format as ONRM001, ONRM002, etc.
+            $code = 'ONR' . str_pad($memberNumber, 4, '0', STR_PAD_LEFT);
         } while (self::where('referral_code', $code)->exists());
 
         return $code;

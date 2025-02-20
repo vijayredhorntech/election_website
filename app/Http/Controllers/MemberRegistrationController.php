@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\RateLimiter;
 
 class MemberRegistrationController extends Controller
 {
@@ -28,34 +29,56 @@ class MemberRegistrationController extends Controller
 
     public function sendEmailVerificationOtp(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'termsAndConditionCheckbox' => 'required',
-        ]);
-
-        if (User::where('email', $request->email)->exists()) {
-            return back()->with('error', 'Email already exists');
-        }
-        $otp = rand(100000, 999999);
-        session(['otp' => $otp]);
-
         try {
-            Mail::to($request->email)->send(new OtpMail($otp));
-            session()->flash('success', 'OTP sent successfully');
+            // Add rate limiting - 3 attempts per 5 minutes per email address
+            $key = 'otp_attempts_' . $request->email;
+            $maxAttempts = 3;
+            $decayMinutes = 5;
+
+            if (RateLimiter::tooManyAttempts($key, $maxAttempts)) {
+                $seconds = RateLimiter::availableIn($key);
+                return response()->json([
+                    'error' => 'Too many OTP requests. Please wait ' . 
+                    ceil($seconds / 60) . ' minutes before trying again.'
+                ], 429);
+            }
+
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'termsAndConditionCheckbox' => 'required',
+            ]);
+
+            if (User::where('email', $request->email)->exists()) {
+                return response()->json([
+                    'error' => 'Email already exists'
+                ], 422);
+            }
+            
+            $otp = rand(100000, 999999);
+            session(['otp' => $otp]);
             session(['email' => $request->email]);
             session(['name' => $request->name]);
+
+            // Send OTP asynchronously
+            Mail::to($request->email)->queue(new OtpMail($otp));
+
+            // Hit the rate limiter
+            RateLimiter::hit($key, $decayMinutes * 60);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'OTP has been sent to your email',
+                'remainingAttempts' => RateLimiter::remaining($key, $maxAttempts),
+                'redirect' => route('verifyOtp')
+            ]);
+
         } catch (\Exception $e) {
-            return back()->with('error', 'Failed to send OTP');
+            Log::error('OTP sending failed: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'Failed to send OTP. Please try again.'
+            ], 500);
         }
-
-
-        $formData = [
-            'url' => route('verifyOtp'),
-            'method' => 'POST',
-            'type' => 'validate',
-        ];
-        return view('front.join-us')->with('formData', $formData)->with('email', $request->email)->with('userName', $request->name);
     }
 
     public function verifyOtp(Request $request)
