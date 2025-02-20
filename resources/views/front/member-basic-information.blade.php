@@ -4,6 +4,16 @@
         .gradient-bg {
             background: linear-gradient(to right, #d53369, #daae51);
         }
+        /* Added styles for labels and placeholders */
+        .form-group label {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .form-control::placeholder {
+            color: #999;
+            opacity: 0.7;
+        }
     </style>
     @endpush
 
@@ -59,8 +69,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
-
-                                            <select class="form-control" name="title">
+                                            <select class="form-control" name="title" required>
                                                 <option value="">Select title</option>
                                                 <option value="MR." {{ (old('title', $data->title ?? '') == 'MR.') ? 'selected' : '' }}>MR.</option>
                                                 <option value="MRS." {{ (old('title', $data->title ?? '') == 'MRS.') ? 'selected' : '' }}>MRS.</option>
@@ -69,7 +78,6 @@
                                                 <option value="MS." {{ (old('title', $data->title ?? '') == 'MS.') ? 'selected' : '' }}>MS.</option>
                                                 <option value="PROF." {{ (old('title', $data->title ?? '') == 'PROF.') ? 'selected' : '' }}>PROF.</option>
                                                 <option value="OTHER" {{ (old('title', $data->title ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-
                                             </select>
                                             @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -78,18 +86,15 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Date of Birth <span class="text-danger">*</span></label>
-
-                                            <input type="date" name="dob" value="{{old('dob')}}" class="form-control" required="true" aria-required="true">
+                                            <input type="date" name="dob" value="{{old('dob')}}" class="form-control" required>
                                             @error('dob')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Gender</label>
-
-                                            <select name="gender" class="form-control" required="" aria-required="true">
+                                            <label for="">Gender <span class="text-danger">*</span></label>
+                                            <select name="gender" class="form-control" required>
                                                 <option value="">Select Gender</option>
                                                 <option value="MALE" {{ (old('gender') == 'MALE') ? 'selected' : '' }}>MALE</option>
                                                 <option value="FEMALE" {{ (old('gender') == 'FEMALE') ? 'selected' : '' }}>FEMALE</option>
@@ -101,26 +106,23 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Marital Status</label>
-
-                                            <select name="marital_status" class="form-control" required="" aria-required="true">
+                                            <label for="">Marital Status <span class="text-danger">*</span></label>
+                                            <select name="marital_status" class="form-control" required>
                                                 <option value="">Select Marital Status</option>
                                                 <option value="SINGLE" {{ (old('marital_status') == 'SINGLE') ? 'selected' : '' }}>SINGLE</option>
                                                 <option value="MARRIED" {{ (old('marital_status') == 'MARRIED') ? 'selected' : '' }}>MARRIED</option>
                                                 <option value="DIVORCED" {{ (old('marital_status') == 'DIVORCED') ? 'selected' : '' }}>DIVORCED</option>
                                                 <option value="WIDOWED" {{ (old('marital_status') == 'WIDOWED') ? 'selected' : '' }}>WIDOWED</option>
                                                 <option value="OTHER" {{ (old('marital_status') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-
                                             </select>
                                             @error('marital_status')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
-                                        <label for="">Qualification</label>
-
                                         <div class="form-group">
-                                            <select name="qualification" class="form-control" required="" aria-required="true">
+                                            <label for="">Qualification <span class="text-danger">*</span></label>
+                                            <select name="qualification" class="form-control" required>
                                                 <option value="">Select Qualification</option>
                                                 <option value="PRIMARY" {{ (old('qualification') == 'PRIMARY') ? 'selected' : '' }}>PRIMARY</option>
                                                 <option value="SECONDARY" {{ (old('qualification') == 'SECONDARY') ? 'selected' : '' }}>SECONDARY</option>
@@ -129,7 +131,6 @@
                                                 <option value="POST GRADUATE" {{ (old('qualification') == 'POST GRADUATE') ? 'selected' : '' }}>POST GRADUATE</option>
                                                 <option value="DOCTORATE" {{ (old('qualification') == 'DOCTORATE') ? 'selected' : '' }}>DOCTORATE</option>
                                                 <option value="OTHER" {{ (old('qualification') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-
                                             </select>
                                             @error('qualification')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -137,9 +138,8 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Profession</label>
-
-                                            <select name="profession" class="form-control" required="" aria-required="true">
+                                            <label for="">Profession <span class="text-danger">*</span></label>
+                                            <select name="profession" class="form-control" required>
                                                 <option value="">Select Profession</option>
                                                 <option value="STUDENT" {{ (old('profession') == 'STUDENT') ? 'selected' : '' }}>STUDENT</option>
                                                 <option value="EMPLOYEE" {{ (old('profession') == 'EMPLOYEE') ? 'selected' : '' }}>EMPLOYEE</option>
@@ -151,7 +151,6 @@
                                                 <option value="DOCTOR" {{ (old('profession') == 'DOCTOR') ? 'selected' : '' }}>DOCTOR</option>
                                                 <option value="TEACHER" {{ (old('profession') == 'TEACHER') ? 'selected' : '' }}>TEACHER</option>
                                                 <option value="OTHER" {{ (old('profession') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-
                                             </select>
                                             @error('profession')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -159,36 +158,34 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">National Insurance Number</label>
-
-                                            <input type="text" name="national_insurance_number" placeholder="QQ123456B" value="{{old('national_insurance_number')}}" class="form-control" required="" aria-required="true">
+                                            <label for="">National Insurance Number </label>
+                                            <input type="text" name="national_insurance_number" placeholder="QQ123456B" value="{{old('national_insurance_number')}}" class="form-control" required>
                                             @error('national_insurance_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Primary Mobile Number</label>
-
-                                            <input type="number" name="primary_mobile_number" placeholder="1234567890" value="{{old('primary_mobile_number')}}" class="form-control" required="" aria-required="true">
+                                            <label for="">Primary Mobile Number <span class="text-danger">*</span></label>
+                                            <input type="number" name="primary_mobile_number" placeholder="Enter Mobile Number" value="{{old('primary_mobile_number')}}" class="form-control" required>
                                             @error('primary_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">ALternate Mobile Number</label>
-
-                                            <input type="number" name="alternate_mobile_number" placeholder="1234567890" value="{{old('alternate_mobile_number')}}" class="form-control" required="" aria-required="true">
+                                            <label for="">Alternate Mobile Number</label>
+                                            <input type="number" name="alternate_mobile_number" placeholder="Enter Mobile Number" value="{{old('alternate_mobile_number')}}" class="form-control">
                                             @error('alternate_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                                     <button type="submit" class="boxed-btn btn-sanatory"> Save basic informations <span class="icon-paper-plan"></span></button>
                                 </div>
-
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -196,17 +193,16 @@
     </div>
 
     @push('scripts')
-
     <script>
         document.getElementById('profile_photo').addEventListener('change', function() {
             const file = this.files[0];
-            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
             const errorSpan = document.getElementById('file-error');
 
             if (file) {
                 if (!allowedTypes.includes(file.type)) {
                     errorSpan.style.display = 'block';
-                    this.value = ''; // Clear the invalid file
+                    this.value = '';
                 } else {
                     errorSpan.style.display = 'none';
                 }
