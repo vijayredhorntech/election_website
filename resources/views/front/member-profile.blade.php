@@ -1,7 +1,15 @@
 <x-front.layout>
     @push('styles')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     @endpush
+    <div>
+        <label for="qr-input">Enter Information:</label>
+        <input type="text" id="qr-input" placeholder="Enter text or URL">
+        <button onclick="generateQRCode()">Generate QR Code</button>
+    </div>
 
+    <!-- Div where QR code will be displayed -->
+    <div id="qrcode"></div>
     <div class="about-us-section-area about-bg" style="background-image: url({{asset('assets/images/about-bg.png')}});">
         <div class="container">
             <div class="row justify-content-center">
@@ -31,22 +39,22 @@
         </div>
         <div class="row">
             <div class="col-12">
-                 <div style="width: 100% ; display: flex; justify-content: end; gap: 10px; padding: 20px">
+                <div style="width: 100% ; display: flex; justify-content: end; gap: 10px; padding: 20px">
 
 
-                     <form action="{{route('logout')}}" method="post">
-                         @csrf
-                         <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                             <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black"> Download ID <span class="icon-paper-plan"></span></button>
-                         </div>
-                     </form>
-                     <form action="{{route('logout')}}" method="post">
-                         @csrf
-                         <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                             <button type="submit" class="boxed-btn btn-sanatory"> Logout <span class="icon-paper-plan"></span></button>
-                         </div>
-                     </form>
-                 </div>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
+                            <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black"> Download ID <span class="icon-paper-plan"></span></button>
+                        </div>
+                    </form>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
+                            <button type="submit" class="boxed-btn btn-sanatory"> Logout <span class="icon-paper-plan"></span></button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -65,7 +73,7 @@
                             <div style="display: flex; align-items: center; gap: 10px">
                                 <img class="rounded-[3px] mb-4" src="{{asset('storage/'.$memberDetails->profile_photo )}}" alt="">
                                 <div>
-                                    <img src="{{asset('assets/images/256px-QR_Code_Example.svg.png')}}" alt="" style="height: 200px" >
+                                    <img src="{{asset('assets/images/256px-QR_Code_Example.svg.png')}}" alt="" style="height: 200px">
 
                                     <a href="" style="color: darkblue; display: flex; align-items: center; gap: 5px"> http://127.0.0.1:8000/joinUs/FRS78HY <i class="fa fa-share"></i> </a>
                                 </div>
@@ -170,7 +178,7 @@
 
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Constituency</td>
-                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black" >: &nbsp &nbsp</span> {{$memberDetails->constituency->name}}</td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->constituency->name}}</td>
                                 </tr>
                             </table>
 
@@ -282,46 +290,68 @@
 
 
 
-{{--        <div class="col-md-4 col-sm-4 col-12">--}}
-{{--            <div class="card wow animate__animated animate__fadeInUp animate__delay-2s">--}}
-{{--                <div class="card-header" id="headingThree">--}}
-{{--                    <h5 class="mb-0">--}}
-{{--                        <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseOwo">--}}
-{{--                            Update Profile--}}
-{{--                        </a>--}}
-{{--                    </h5>--}}
-{{--                </div>--}}
-{{--                <div class="card-body">--}}
-{{--                    <form action="{{route('securityInfoUpdate')}}" method="post">--}}
-{{--                        @csrf--}}
-{{--                        <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
-{{--                            <label for="" class="text-gray-500 text-sm">Email</label>--}}
-{{--                            <input type="email" value="{{auth()->user()->email}}" class="form-control" placeholder="Enter your otp.....">--}}
-{{--                        </div>--}}
-{{--                        <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
-{{--                            <label for="" class="text-gray-500 text-sm">New Password</label>--}}
-{{--                            <input type="password" name="password" placeholder="Enter new password....." class="form-control">--}}
-{{--                            @error('password')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror--}}
-{{--                        </div>--}}
-{{--                        <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
-{{--                            <label for="" class="text-gray-500 text-sm">Confirm New Password</label>--}}
-{{--                            <input type="password" name="confirm_password" placeholder="Confirm new password....." class="form-control">--}}
-{{--                            @error('confirm_password')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror--}}
-{{--                        </div>--}}
+    {{-- <div class="col-md-4 col-sm-4 col-12">--}}
+    {{-- <div class="card wow animate__animated animate__fadeInUp animate__delay-2s">--}}
+    {{-- <div class="card-header" id="headingThree">--}}
+    {{-- <h5 class="mb-0">--}}
+    {{-- <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseOwo">--}}
+    {{-- Update Profile--}}
+    {{-- </a>--}}
+    {{-- </h5>--}}
+    {{-- </div>--}}
+    {{-- <div class="card-body">--}}
+    {{-- <form action="{{route('securityInfoUpdate')}}" method="post">--}}
+    {{-- @csrf--}}
+    {{-- <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
+    {{-- <label for="" class="text-gray-500 text-sm">Email</label>--}}
+    {{-- <input type="email" value="{{auth()->user()->email}}" class="form-control" placeholder="Enter your otp.....">--}}
+    {{-- </div>--}}
+    {{-- <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
+    {{-- <label for="" class="text-gray-500 text-sm">New Password</label>--}}
+    {{-- <input type="password" name="password" placeholder="Enter new password....." class="form-control">--}}
+    {{-- @error('password')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror--}}
+    {{-- </div>--}}
+    {{-- <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
+    {{-- <label for="" class="text-gray-500 text-sm">Confirm New Password</label>--}}
+    {{-- <input type="password" name="confirm_password" placeholder="Confirm new password....." class="form-control">--}}
+    {{-- @error('confirm_password')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror--}}
+    {{-- </div>--}}
 
-{{--                        <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end; margin-top: 10px">--}}
-{{--                            <button type="submit" class="boxed-btn btn-sanatory"> Update password <span class="icon-paper-plan"></span></button>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+    {{-- <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end; margin-top: 10px">--}}
+    {{-- <button type="submit" class="boxed-btn btn-sanatory"> Update password <span class="icon-paper-plan"></span></button>--}}
+    {{-- </div>--}}
+    {{-- </form>--}}
+    {{-- </div>--}}
+    {{-- </div>--}}
 
-{{--        </div>--}}
+    {{-- </div>--}}
 
 
 
 
     @push('scripts')
+    <script>
+        // 
+        function generateQRCode() {
+            const qrText = document.getElementById("qr-input").value;
+            const qrContainer = document.getElementById("qrcode");
+
+            // Clear previous QR code (if any)
+            qrContainer.innerHTML = "";
+
+            if (qrText.trim() === "") {
+                alert("Please enter text to generate QR code.");
+                return;
+            }
+
+            // Generate QR Code
+            new QRCode(qrContainer, {
+                text: qrText,
+                width: 200,
+                height: 200,
+            });
+        }
+    </script>
     @endpush
 
 </x-front.layout>

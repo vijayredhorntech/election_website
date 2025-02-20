@@ -40,6 +40,12 @@ Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::clas
 // Route to check if the email is already in the database
 Route::get('/check_email', [MemberRegistrationController::class, 'checkEmail'])->name('checkEmail');
 
+// Route to check if the primary mobile number is already in the database
+Route::get('/check_primary_mobile_number', [MemberRegistrationController::class, 'checkPrimaryMobileNumber'])->name('checkPrimaryMobileNumber');
+
+// Route to check if the alternate mobile number is already in the database
+Route::get('/check_alternate_mobile_number', [MemberRegistrationController::class, 'checkAlternateMobileNumber'])->name('checkAlternateMobileNumber');
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/member_basic_information', [MemberRegistrationController::class, 'memberBasicInformation'])->name('memberBasicInformation');

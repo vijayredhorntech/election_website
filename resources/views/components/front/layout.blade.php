@@ -50,6 +50,18 @@
             color: grey;
             opacity: 0.6;
         }
+
+        /* Added styles for labels and placeholders */
+        .form-group label {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+            opacity: 0.7;
+        }
     </style>
 </head>
 
@@ -208,7 +220,7 @@
                         @else
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black">Logout</button>
+                            <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black; border: 1px solid black">Logout</button>
                         </form>
                         @endif
                     </div>

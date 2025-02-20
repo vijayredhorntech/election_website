@@ -28,20 +28,35 @@
                     <tr>
                         <td align="center">
                             <p style="color:#555555;font-size:16px;line-height:24px;margin:0;">
-                                We are excited to have you with us. Stay connected, get involved, and make a difference!
+                                Your account has been created successfully. Below are your login details:
                             </p>
                         </td>
                     </tr>
                     <tr>
+                        <td align="center" style="padding-top:15px;">
+                            <table width="80%" cellpadding="10" cellspacing="0" border="0" style="background:#f8f8f8;border-radius:5px;">
+                                <tr>
+                                    <td align="left" style="font-size:16px;color:#333;">
+                                        <strong>Email:</strong> {{ $user['email'] }}<br>
+                                        <strong>Default Password:</strong> {{ $defaultPassword }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
                         <td align="center" style="padding-top:20px;">
-                            <a href="{{route('login')}}" target="_blank" style="background:#38C2F1;color:#ffffff;text-decoration:none;padding:12px 30px;border-radius:25px;font-size:18px;font-weight:bold;display:inline-block;">
-                                Visit Your Dashboard
+                            <a href="{{ url('/login') }}" target="_blank" style="background:#38C2F1;color:#ffffff;text-decoration:none;padding:12px 30px;border-radius:25px;font-size:18px;font-weight:bold;display:inline-block;">
+                                Login to Your Account
                             </a>
                         </td>
                     </tr>
                     <tr>
                         <td align="center" style="padding-top:30px;">
-                            <p style="color:#888888;font-size:14px;margin:0;">Thank you for joining us! 💙</p>
+                            <p style="color:#888888;font-size:14px;margin:0;">
+                                For security reasons, please change your password after logging in.
+                                If you need any assistance, feel free to contact our support team.
+                            </p>
                         </td>
                     </tr>
                 </table>
