@@ -181,14 +181,15 @@ class MemberRegistrationController extends Controller
 
         $request->validate([
             'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title' => 'required|string|max:255',
-            'dob' => 'required',
-            'gender' => 'required',
-            'marital_status' => 'required',
-            'qualification' => 'required',
-            'profession' => 'required',
+            'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
+            'dob' => 'required|date',
+            'gender' => 'required|in:MALE,FEMALE,OTHER',
+            'marital_status' => 'required|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
+            'qualification' => 'required|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
+            'profession' => 'required|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSE WIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
+            'national_insurance_number' => 'required|string|max:255|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
             'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
-            'alternate_mobile_number' => 'required|numeric|digits:10|unique:members,alternate_mobile_number',
+            'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
         ]);
         $member = Member::where('user_id', auth()->user()->id)->first();
 
