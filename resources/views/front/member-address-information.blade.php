@@ -2,7 +2,18 @@
     @push('styles')
     <style>
         .gradient-bg {
+            .gradient-bg {
             background: linear-gradient(to right, #d53369, #daae51);
+        }
+        .form-group label {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .form-control::placeholder {
+            color: #999;
+            opacity: 0.7;
+        }
         }
     </style>
     @endpush
