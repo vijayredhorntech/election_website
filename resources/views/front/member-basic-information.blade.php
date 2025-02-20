@@ -154,25 +154,55 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">National Insurance Number <span class="text-danger">*</span></label>
-                                            <input type="text" name="national_insurance_number" placeholder="QQ123456B" value="{{old('national_insurance_number')}}" class="form-control" required>
+                                            <label for="primary_mobile_number">Primary Mobile Number <span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <select name="primary_country_code" class="form-control" style="width: 30%">
+                                                    <option value="">Select</option>
+                                                    <option value="44">+44 (UK)</option>
+                                                    <option value="1">+1 (US/CA)</option>
+                                                    <!-- Add more country codes as needed -->
+                                                </select>
+                                                <input type="tel" 
+                                                    name="primary_mobile_number" 
+                                                    class="form-control" 
+                                                    style="width: 70%"
+                                                    required
+                                                    value="{{ old('primary_mobile_number') }}"
+                                                    placeholder="Enter mobile number">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="national_insurance_number">National Insurance Number <span class="text-danger">*</span></label>
+                                            <input type="text" 
+                                                name="national_insurance_number" 
+                                                class="form-control" 
+                                                pattern="^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$"
+                                                placeholder="AB123456C"
+                                                oninput="this.value = this.value.toUpperCase()">
                                             @error('national_insurance_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Primary Mobile Number <span class="text-danger">*</span></label>
-                                            <input type="number" name="primary_mobile_number" placeholder="Enter Mobile Number" value="{{old('primary_mobile_number')}}" class="form-control" required>
-                                            @error('primary_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="">Alternate Mobile Number</label>
-                                            <input type="number" name="alternate_mobile_number" placeholder="Enter Mobile Number" value="{{old('alternate_mobile_number')}}" class="form-control">
-                                            @error('alternate_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            <label for="alternate_mobile_number">Alternate Mobile Number</label>
+                                            <div class="input-group">
+                                                <select name="alternate_country_code" class="form-control" style="width: 30%">
+                                                    <option value="">Select</option>
+                                                    <option value="44">+44 (UK)</option>
+                                                    <option value="1">+1 (US/CA)</option>
+                                                    <!-- Add more country codes as needed -->
+                                                </select>
+                                                <input type="tel" 
+                                                    name="alternate_mobile_number" 
+                                                    class="form-control" 
+                                                    style="width: 70%"
+                                                    value="{{ old('alternate_mobile_number') }}"
+                                                    placeholder="Enter mobile number">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -604,6 +634,108 @@
         //         });
         //     }
         // });
+
+        // NI number validation
+        document.querySelector('input[name="national_insurance_number"]').addEventListener('input', function(e) {
+            let value = e.target.value.toUpperCase();
+            if (value && !value.match(/^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/)) {
+                this.setCustomValidity('Please enter a valid National Insurance number');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Phone number validation patterns for different countries
+        const phonePatterns = {
+            '44': { // UK
+                pattern: /^[0-9]{10}$/,
+                example: '7911123456',
+                message: 'UK numbers should be 10 digits (excluding leading 0)'
+            },
+            '1': { // US/Canada
+                pattern: /^[0-9]{10}$/,
+                example: '2125551234',
+                message: 'US/Canada numbers should be 10 digits'
+            },
+            'DEFAULT': {
+                pattern: /^[0-9]{8,15}$/,
+                example: 'minimum 8, maximum 15 digits',
+                message: 'Phone number should be between 8 and 15 digits'
+            }
+        };
+
+        function validatePhoneNumber(input, countryCode) {
+            const value = input.value;
+            const errorDiv = input.parentElement.querySelector('.validation-error') || 
+                createErrorDiv(input);
+            
+            // Clear previous error
+            errorDiv.textContent = '';
+            errorDiv.style.display = 'none';
+            
+            if (!value && input.hasAttribute('required')) {
+                showError(errorDiv, 'Phone number is required');
+                return false;
+            }
+
+            if (!countryCode) {
+                showError(errorDiv, 'Please select a country code');
+                return false;
+            }
+
+            const pattern = phonePatterns[countryCode] || phonePatterns['DEFAULT'];
+            if (!pattern.pattern.test(value)) {
+                showError(errorDiv, `Invalid format. Example: ${pattern.example}. ${pattern.message}`);
+                return false;
+            }
+
+            return true;
+        }
+
+        function showError(errorDiv, message) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            errorDiv.style.color = '#dc3545';
+            errorDiv.style.fontSize = '0.875em';
+            errorDiv.style.marginTop = '0.25rem';
+        }
+
+        function createErrorDiv(input) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'validation-error';
+            input.parentElement.appendChild(errorDiv);
+            return errorDiv;
+        }
+
+        // Add event listeners to phone inputs
+        document.querySelectorAll('input[type="tel"]').forEach(input => {
+            const countrySelect = input.closest('.form-group').querySelector('select');
+            
+            input.addEventListener('input', () => {
+                validatePhoneNumber(input, countrySelect.value);
+            });
+            
+            countrySelect?.addEventListener('change', () => {
+                validatePhoneNumber(input, countrySelect.value);
+            });
+        });
+
+        // Form submission validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            let isValid = true;
+            
+            // Validate all phone inputs
+            this.querySelectorAll('input[type="tel"]').forEach(input => {
+                const countrySelect = input.closest('.form-group').querySelector('select');
+                if (!validatePhoneNumber(input, countrySelect.value)) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
     </script>
     @endpush
 
