@@ -142,7 +142,7 @@ class MemberRegistrationController extends Controller
             }
             $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
             $user = User::create([
-                'name' => session('name'),
+                'name' => strtoupper(session('name')),
                 'email' => $email,
                 'password' => bcrypt($otp),
             ]);
@@ -150,7 +150,7 @@ class MemberRegistrationController extends Controller
                 Member::create([
                     'user_id' => $user->id,
                     'enrollment_date' => now(),
-                    'first_name' => session('name'),
+                    'first_name' => strtoupper(session('name')),
                     'email' => $email,
                     'profile_status' => 'inActive',
                 ]);
@@ -181,7 +181,7 @@ class MemberRegistrationController extends Controller
 
         $request->validate([
             'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'dob' => 'required',
             'gender' => 'required',
             'marital_status' => 'required',
@@ -260,5 +260,12 @@ class MemberRegistrationController extends Controller
     public function memberAddressInformation()
     {
         return view('front.member-address-information');
+    }
+
+    public function checkEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $exists = User::where('email', $email)->exists();
+        return response()->json(['exists' => $exists]);
     }
 }

@@ -50,15 +50,15 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Profile Photo</label>
-                                            <input type="file" name="profile_photo" class="form-control" required="" aria-required="true">
+                                            <label for="">Profile Photo <span class="text-danger">*</span></label>
+                                            <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required>
                                             @error('profile_photo')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-
+                                            <span id="file-error" style="color: red; font-weight: 500; display: none;">Invalid file type. Please select a valid image.</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Title</label>
+                                            <label for="">Title <span class="text-danger">*</span></label>
 
                                             <select class="form-control" name="title">
                                                 <option value="">Select title</option>
@@ -77,9 +77,9 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Date of Birth</label>
+                                            <label for="">Date of Birth <span class="text-danger">*</span></label>
 
-                                            <input type="date" name="dob" value="{{old('dob')}}" class="form-control" required="" aria-required="true">
+                                            <input type="date" name="dob" value="{{old('dob')}}" class="form-control" required="true" aria-required="true">
                                             @error('dob')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
@@ -194,5 +194,25 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+
+    <script>
+        document.getElementById('profile_photo').addEventListener('change', function() {
+            const file = this.files[0];
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            const errorSpan = document.getElementById('file-error');
+
+            if (file) {
+                if (!allowedTypes.includes(file.type)) {
+                    errorSpan.style.display = 'block';
+                    this.value = ''; // Clear the invalid file
+                } else {
+                    errorSpan.style.display = 'none';
+                }
+            }
+        });
+    </script>
+    @endpush
 
 </x-front.layout>

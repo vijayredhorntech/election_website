@@ -61,6 +61,7 @@
                                         <div class="form-group">
                                             <input {{$formData['type']==='validate'?'disabled':''}} value="{{ $email ?? old('email') }}" type="email" id="email" name="email" placeholder="Enter email" class="form-control" required="" aria-required="true">
                                             @error('email')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            <span id="email-availability-status"></span>
                                         </div>
                                     </div>
 
@@ -123,6 +124,30 @@
             const modal = document.getElementById('membershipModal');
             modal.classList.toggle('hidden');
         }
+
+        function checkEmailAvailability() {
+            const email = document.getElementById('email').value;
+            const emailAvailabilityStatus = document.getElementById('email-availability-status');
+
+            fetch(`/check_email?email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        emailAvailabilityStatus.textContent = 'Email already exists';
+                        emailAvailabilityStatus.style.color = 'red';
+                    } else {
+                        emailAvailabilityStatus.textContent = '';
+                        emailAvailabilityStatus.style.color = '';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking email availability:', error);
+                    emailAvailabilityStatus.textContent = 'Error checking email availability';
+                    emailAvailabilityStatus.style.color = 'red';
+                });
+        }
+
+        document.getElementById('email').addEventListener('blur', checkEmailAvailability);
     </script>
     @endpush
 </x-front.layout>

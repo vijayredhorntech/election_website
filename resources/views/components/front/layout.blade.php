@@ -174,10 +174,21 @@
                         </li>
 
                         <li class="menu-item-has-children">
+                            <!-- if the user is not logged in then show login button -->
+                            @if(!auth()->check())
                             <a href="{{ route('login') }}"
                                 class="{{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
                                 Login
                             </a>
+                            @endif
+                            <!-- @if(auth()->check())
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                            @else
+
+                            @endif -->
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -189,10 +200,17 @@
                 <div class="nav-right-content">
 
                     <div class="btn-wrapper" style="margin-left: 10px; ">
+                        @if(!auth()->check())
                         <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black">
                             Join Us
                             <i class="icon-paper-plan"></i>
                         </a>
+                        @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black">Logout</button>
+                        </form>
+                        @endif
                     </div>
                     <div class="btn-wrapper" style="margin-left: 10px">
                         <a href="{{route('donate')}}" class="boxed-btn btn-sanatory">
