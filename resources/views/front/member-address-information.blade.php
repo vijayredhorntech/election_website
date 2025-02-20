@@ -49,9 +49,9 @@
                             <form action="{{route('storeMemberAddressInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-9 col-12">
+                                    <div class="col-md-9 col-12" style="color: black;">
                                         <div class="form-group">
-                                            <label for="">Post Code</label>
+                                            <label for="">Post Code <span class="text-danger">*</span></label>
                                             <input type="text" name="postcode" placeholder="JH5 UI8" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true">
                                             @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -66,8 +66,8 @@
 
                                     </div>
                                     <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="">Address</label>
+                                        <div class="form-group" style="color: black;">
+                                            <label for="">Address <span class="text-danger">*</span></label>
 
                                             <select class="form-control" id="addressSelect" name="">
                                                 <option value="">Select Address</option>
@@ -78,8 +78,8 @@
                                     </div>
 
                                     <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="">House Name/Number</label>
+                                        <div class="form-group" style="color: black; font-weight: bold;">
+                                            <label for="">House Name/Number <span class="text-danger">*</span></label>
 
                                             <input type="text" placeholder="665" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true">
                                             @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror

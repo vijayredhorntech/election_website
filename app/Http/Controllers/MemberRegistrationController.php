@@ -187,7 +187,7 @@ class MemberRegistrationController extends Controller
             'marital_status' => 'required|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
             'qualification' => 'required|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
             'profession' => 'required|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSE WIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
-            'national_insurance_number' => 'required|string|max:255|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
+            'national_insurance_number' => 'nullable|string|max:255|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
             'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
             'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
         ]);
