@@ -30,7 +30,7 @@ class MemberRegistrationController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'termsAndConditionCheckbox' => 'required',
         ]);
 
@@ -187,8 +187,8 @@ class MemberRegistrationController extends Controller
             'marital_status' => 'required',
             'qualification' => 'required',
             'profession' => 'required',
-            'primary_mobile_number' => 'required',
-            'alternate_mobile_number' => 'required',
+            'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
+            'alternate_mobile_number' => 'required|numeric|digits:10|unique:members,alternate_mobile_number',
         ]);
         $member = Member::where('user_id', auth()->user()->id)->first();
 

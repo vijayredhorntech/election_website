@@ -110,7 +110,7 @@ class MemberController extends Controller
     public function view($id)
     {
         $member = Member::find($id);
-        return view('admin.members.view')->with('member', $member);
+        return view('admin.member.view')->with('member', $member);
     }
 
     public function update(MemberUpdateRequest $request, $id)
@@ -208,7 +208,7 @@ class MemberController extends Controller
 
         ];
 
-        return view('admin.members.view-all')->with('member', $member)->with('data', $data)->with('columns', $columns)->with('routes', $routes);
+        return view('admin.member.view-all')->with('member', $member)->with('data', $data)->with('columns', $columns)->with('routes', $routes);
     }
 
     public function donations($id)
@@ -267,7 +267,7 @@ class MemberController extends Controller
             ],
         ];
 
-        return view('admin.members.view-all')->with('member', $member)->with('data', $data)->with('columns', $columns)->with('routes', $routes);
+        return view('admin.member.view-all')->with('member', $member)->with('data', $data)->with('columns', $columns)->with('routes', $routes);
     }
 
     public function memberProfile()
