@@ -50,6 +50,18 @@
             color: grey;
             opacity: 0.6;
         }
+
+        /* Added styles for labels and placeholders */
+        .form-group label {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-control::placeholder {
+            color: #999;
+            opacity: 0.7;
+        }
     </style>
 </head>
 
@@ -174,10 +186,21 @@
                         </li>
 
                         <li class="menu-item-has-children">
+                            <!-- if the user is not logged in then show login button -->
+                            @if(!auth()->check())
                             <a href="{{ route('login') }}"
                                 class="{{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
                                 Login
                             </a>
+                            @endif
+                            <!-- @if(auth()->check())
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                            @else
+
+                            @endif -->
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -189,10 +212,17 @@
                 <div class="nav-right-content">
 
                     <div class="btn-wrapper" style="margin-left: 10px; ">
+                        @if(!auth()->check())
                         <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black">
                             Join Us
                             <i class="icon-paper-plan"></i>
                         </a>
+                        @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black; border: 1px solid black">Logout</button>
+                        </form>
+                        @endif
                     </div>
                     <div class="btn-wrapper" style="margin-left: 10px">
                         <a href="{{route('donate')}}" class="boxed-btn btn-sanatory">

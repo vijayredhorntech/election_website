@@ -52,15 +52,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" {{$formData['type']==='validate'?'disabled':''}} value="{{ $userName ?? old('name') }}" id="name" name="name" placeholder="Enter your name..." class="form-control" required="" aria-required="true">
+                                            <input type="text" {{$formData['type']==='validate'?'disabled':''}} value="{{ $userName ?? old('name') }}" id="name" name="name" placeholder="Enter name" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                             @error('name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input {{$formData['type']==='validate'?'disabled':''}} value="{{ $email ?? old('email') }}" type="email" id="email" name="email" placeholder="Enter email" class="form-control" required="" aria-required="true">
+                                            <input {{$formData['type']==='validate'?'disabled':''}} value="{{ $email ?? old('email') }}" type="email" id="email" name="email" placeholder="ENTER EMAIL" class="form-control" required="" aria-required="true" style="color: black; font-weight: 600; ">
                                             @error('email')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            <span id="email-availability-status"></span>
                                         </div>
                                     </div>
 
@@ -72,7 +73,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="number" name="otp" value="{{old('otp')}}" class="form-control" placeholder="Enter Otp" required="" aria-required="true">
+                                            <input type="number" name="otp" value="{{old('otp')}}" class="form-control" placeholder="Enter OTP" required="" aria-required="true" style="color: black; font-weight: 600">
                                             @error('otp')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
 
                                         </div>
@@ -110,9 +111,9 @@
 
     @push('scripts')
     <script>
-        document.getElementById('name').addEventListener('input', function() {
-            this.value = this.value.toUpperCase();
-        });
+        // document.getElementById('name').addEventListener('input', function() {
+        //     this.value = this.value.toUpperCase();
+        // });
 
         function togglePrivacyModal() {
             const modal = document.getElementById('privacyModal');
@@ -123,6 +124,54 @@
             const modal = document.getElementById('membershipModal');
             modal.classList.toggle('hidden');
         }
+
+        function checkEmailAvailability() {
+            const email = document.getElementById('email').value;
+            const emailAvailabilityStatus = document.getElementById('email-availability-status');
+            const submitButton = document.querySelector('button[type="submit"]');
+
+            emailAvailabilityStatus.textContent = 'Checking email existence...';
+
+            fetch(`/check_email?email=${encodeURIComponent(email)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        // Email exists case
+                        emailAvailabilityStatus.textContent = 'Email already exists';
+                        emailAvailabilityStatus.style.color = 'red';
+
+                        // Disable submit button
+                        submitButton.disabled = true;
+                        submitButton.style.backgroundColor = 'gray';
+                        submitButton.style.cursor = 'not-allowed';
+                        submitButton.style.boxShadow = 'none';
+                        submitButton.classList.remove('btn-sanatory');
+                    } else {
+                        // Email available case
+                        emailAvailabilityStatus.textContent = '';
+
+                        // Enable submit button
+                        submitButton.disabled = false;
+                        submitButton.style.backgroundColor = 'red';
+                        submitButton.classList.add('btn-sanatory');
+                        submitButton.style.cursor = 'pointer';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking email availability:', error);
+                    emailAvailabilityStatus.textContent = 'Error checking email availability';
+                    emailAvailabilityStatus.style.color = 'red';
+                });
+        }
+
+        // Debounce input to prevent excessive API calls
+        const emailInput = document.getElementById('email');
+        let emailTimeout;
+
+        emailInput.addEventListener('input', function() {
+            clearTimeout(emailTimeout);
+            emailTimeout = setTimeout(checkEmailAvailability, 500);
+        });
     </script>
     @endpush
 </x-front.layout>

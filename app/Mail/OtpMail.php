@@ -18,7 +18,7 @@ class OtpMail extends Mailable
 
     public function build()
     {
-        return $this->view('emails.otp') // Make sure you create an email view in resources/views/emails/otp.blade.php
-        ->with('otp', $this->otp);
+        return $this->subject('One Nation - Your One-Time Password (OTP)')->view('emails.otp') // Make sure you create an email view in resources/views/emails/otp.blade.php
+            ->with('otp', $this->otp);
     }
 }

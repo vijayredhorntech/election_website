@@ -2,7 +2,20 @@
     @push('styles')
     <style>
         .gradient-bg {
-            background: linear-gradient(to right, #d53369, #daae51);
+            .gradient-bg {
+                background: linear-gradient(to right, #d53369, #daae51);
+            }
+
+            .form-group label {
+                color: #333;
+                font-weight: 500;
+                margin-bottom: 8px;
+            }
+
+            .form-control::placeholder {
+                color: #999;
+                opacity: 0.7;
+            }
         }
     </style>
     @endpush
@@ -39,9 +52,9 @@
                                 </p>
 
                                 @if(session('error'))
-                                <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
+                                <div class="text-red-600 text-sm font-semibold mt-4" style="color: orangered; font-weight: 500">{{session('error')}}</div>
                                 @endif @if(session('success'))
-                                <div class="text-green-600 text-sm font-semibold mt-4">{{session('success')}}</div>
+                                <div class="text-green-600 text-sm font-semibold mt-4" style="color: green; font-weight: 500">{{session('success')}}</div>
                                 @endif
                             </div>
                         </div>
@@ -51,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-md-9 col-12">
                                         <div class="form-group">
-                                            <label for="">Post Code</label>
+                                            <label for="">Post Code <span class="text-danger">*</span></label>
                                             <input type="text" name="postcode" placeholder="JH5 UI8" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true">
                                             @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -67,7 +80,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Address</label>
+                                            <label for="">Address <span class="text-danger">*</span></label>
 
                                             <select class="form-control" id="addressSelect" name="">
                                                 <option value="">Select Address</option>
@@ -79,7 +92,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">House Name/Number</label>
+                                            <label for="">House Name/Number <span class="text-danger">*</span></label>
 
                                             <input type="text" placeholder="665" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true">
                                             @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -89,7 +102,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Street</label>
+                                            <label for="">Street <span class="text-danger">*</span></label>
                                             <input type="text" name="street" placeholder="King Street" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true">
                                             @error('street')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -97,7 +110,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Town/City</label>
+                                            <label for="">Town/City <span class="text-danger">*</span></label>
                                             <input type="text" name="town_city" id="town_city" value="{{old('town_city')}}" class="form-control" required="" aria-required="true">
                                             @error('town_city')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -105,7 +118,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Country</label>
+                                            <label for="">Country <span class="text-danger">*</span></label>
 
                                             <select name="country_id" id="country" class="form-control" required="" aria-required="true">
                                                 <option value="">Select Country</option>
@@ -115,7 +128,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">County</label>
+                                            <label for="">County <span class="text-danger">*</span></label>
 
                                             <select name="county_id" id="county" class="form-control" required="" aria-required="true">
                                                 <option value="">Select County</option>
@@ -125,7 +138,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Region</label>
+                                            <label for="">Region </label>
 
                                             <select name="region" id="region" class="form-control" required="" aria-required="true">
                                                 <option value="">Select Region</option>
@@ -135,7 +148,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Constituency</label>
+                                            <label for="">Constituency <span class="text-danger">*</span></label>
 
                                             <select name="constituency_id" id="constituency" class="form-control" required="" aria-required="true">
                                                 <option value="">Select Constituency</option>
@@ -157,7 +170,7 @@
 
                                 </div>
                                 <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                    <button type="submit" class="boxed-btn btn-sanatory"> Save basic informations <span class="icon-paper-plan"></span></button>
+                                    <button type="submit" class="boxed-btn btn-sanatory"> Save address information <span class="icon-paper-plan"></span></button>
                                 </div>
 
                             </form>

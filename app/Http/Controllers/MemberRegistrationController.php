@@ -30,7 +30,7 @@ class MemberRegistrationController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'termsAndConditionCheckbox' => 'required',
         ]);
 
@@ -142,7 +142,7 @@ class MemberRegistrationController extends Controller
             }
             $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
             $user = User::create([
-                'name' => session('name'),
+                'name' => strtoupper(session('name')),
                 'email' => $email,
                 'password' => bcrypt($otp),
             ]);
@@ -150,7 +150,7 @@ class MemberRegistrationController extends Controller
                 Member::create([
                     'user_id' => $user->id,
                     'enrollment_date' => now(),
-                    'first_name' => session('name'),
+                    'first_name' => strtoupper(session('name')),
                     'email' => $email,
                     'profile_status' => 'inActive',
                 ]);
@@ -180,15 +180,16 @@ class MemberRegistrationController extends Controller
     {
 
         $request->validate([
-            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title' => 'required',
-            'dob' => 'required',
-            'gender' => 'required',
-            'marital_status' => 'required',
-            'qualification' => 'required',
-            'profession' => 'required',
-            'primary_mobile_number' => 'required',
-            'alternate_mobile_number' => 'required',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
+            'dob' => 'required|date|before:16 years ago',
+            'gender' => 'required|in:MALE,FEMALE,OTHER',
+            'marital_status' => 'nullable|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
+            'qualification' => 'nullable|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
+            'profession' => 'nullable|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
+            'national_insurance_number' => 'required|string|max:255|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
+            'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
+            'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
         ]);
         $member = Member::where('user_id', auth()->user()->id)->first();
 
@@ -222,14 +223,15 @@ class MemberRegistrationController extends Controller
     public function storeMemberAddressInformation(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'country_id' => 'required',
-            'county_id' => 'required',
-            'constituency_id' => 'required',
-            'address' => 'required',
-            'postcode' => 'required',
-            'house_name_number' => 'required',
-            'street' => 'required',
-            'town_city' => 'required',
+            'country_id' => 'required|exists:countries,code',
+            'county_id' => 'required|exists:counties,code',
+            'region' => 'nullable|exists:regions,code',
+            'constituency_id' => 'required|exists:constituencies,code',
+            'address' => 'required|string|max:255',
+            'postcode' => 'required|string|regex:/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/',
+            'house_name_number' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'town_city' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -250,6 +252,7 @@ class MemberRegistrationController extends Controller
             'address' => $request->address,
             'postcode' => $request->postcode,
             'city' => $request->town_city,
+            'region' => $request->region,
             'profile_status' => 'active',
         ]);
 
@@ -260,5 +263,26 @@ class MemberRegistrationController extends Controller
     public function memberAddressInformation()
     {
         return view('front.member-address-information');
+    }
+
+    public function checkEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $exists = User::where('email', $email)->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
+    public function checkPrimaryMobileNumber(Request $request)
+    {
+        $mobileNumber = $request->input('mobile_number');
+        $exists = Member::where('primary_mobile_number', $mobileNumber)->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
+    public function checkAlternateMobileNumber(Request $request)
+    {
+        $mobileNumber = $request->input('mobile_number');
+        $exists = Member::where('alternate_mobile_number', $mobileNumber)->exists();
+        return response()->json(['exists' => $exists]);
     }
 }
