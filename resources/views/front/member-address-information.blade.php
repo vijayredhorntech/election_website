@@ -65,13 +65,13 @@
                                     <div class="col-md-9 col-12">
                                         <div class="form-group">
                                             <label for="">Post Code <span class="text-danger">*</span></label>
-                                            <input type="text" name="postcode" placeholder="JH5 UI8" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true">
+                                            <input type="text" name="postcode" placeholder="JH5 UI8" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
 
 
                                     </div>
-                                    <div class="col-md-3 col-12 " style="display: flex; align-items: end;">
+                                    <div class="col-md-3 col-12 " style="display: flex; align-items: center;">
                                         <div class="btn-wrapper" style="margin-bottom: 20px; ">
                                             <button type="button" id="searchAddress" class="boxed-btn btn-sanatory"> Search <span class="icon-paper-plan"></span></button>
                                         </div>
@@ -82,10 +82,10 @@
                                         <div class="form-group">
                                             <label for="">Address <span class="text-danger">*</span></label>
 
-                                            <select class="form-control" id="addressSelect" name="">
+                                            <select class="form-control" id="addressSelect" name="" style="color: black; font-weight: 400;">
                                                 <option value="">Select Address</option>
                                             </select>
-                                            <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="hidden" style="display: none;">
+                                            <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="hidden" style="display: none; color: black; font-weight: 400;">
                                             @error('address')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@
                                         <div class="form-group">
                                             <label for="">House Name/Number <span class="text-danger">*</span></label>
 
-                                            <input type="text" placeholder="665" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true">
+                                            <input type="text" placeholder="665" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
@@ -103,7 +103,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Street <span class="text-danger">*</span></label>
-                                            <input type="text" name="street" placeholder="King Street" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true">
+                                            <input type="text" name="street" placeholder="King Street" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('street')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -111,7 +111,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Town/City <span class="text-danger">*</span></label>
-                                            <input type="text" name="town_city" id="town_city" value="{{old('town_city')}}" class="form-control" required="" aria-required="true">
+                                            <input type="text" name="town_city" id="town_city" value="{{old('town_city')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('town_city')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -120,7 +120,7 @@
                                         <div class="form-group">
                                             <label for="">Country <span class="text-danger">*</span></label>
 
-                                            <select name="country_id" id="country" class="form-control" required="" aria-required="true">
+                                            <select name="country_id" id="country" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                                 <option value="">Select Country</option>
                                             </select>
                                             @error('country_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -130,7 +130,7 @@
                                         <div class="form-group">
                                             <label for="">County <span class="text-danger">*</span></label>
 
-                                            <select name="county_id" id="county" class="form-control" required="" aria-required="true">
+                                            <select name="county_id" id="county" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                                 <option value="">Select County</option>
                                             </select>
                                             @error('county_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -140,7 +140,7 @@
                                         <div class="form-group">
                                             <label for="">Region </label>
 
-                                            <select name="region" id="region" class="form-control" required="" aria-required="true">
+                                            <select name="region" id="region" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                                 <option value="">Select Region</option>
                                             </select>
                                             @error('region')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -150,7 +150,7 @@
                                         <div class="form-group">
                                             <label for="">Constituency <span class="text-danger">*</span></label>
 
-                                            <select name="constituency_id" id="constituency" class="form-control" required="" aria-required="true">
+                                            <select name="constituency_id" id="constituency" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                                 <option value="">Select Constituency</option>
                                             </select>
                                             @error('constituency_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror

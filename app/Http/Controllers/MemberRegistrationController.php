@@ -35,7 +35,7 @@ class MemberRegistrationController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'termsAndConditionCheckbox' => 'required',
-            'hasReferralCode' => 'nullable',
+            'hasReferralCode' => 'false',
             'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
         ]);
         if ($request->hasReferralCode) {
@@ -71,6 +71,8 @@ class MemberRegistrationController extends Controller
             'url' => route('verifyOtp'),
             'method' => 'POST',
             'type' => 'validate',
+            'hasReferralCode' => 'false',
+            'referral_code' => '',
         ];
         return view('front.join-us')->with('formData', $formData)->with('email', $request->email)->with('userName', $request->name);
     }

@@ -51,7 +51,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Profile Photo </label>
-                                            <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required>
+                                            <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required style="color: black; font-weight: 400;">
                                             @error('profile_photo')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             <span id="file-error" style="color: red; font-weight: 500; display: none;">Invalid file type. Please select a valid image.</span>
                                         </div>
@@ -59,7 +59,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
-                                            <select class="form-control" name="title" required>
+                                            <select class="form-control" name="title" required style="color: black; font-weight: 400;">
                                                 <option value="">Select title</option>
                                                 <option value="MR." {{ (old('title', $data->title ?? '') == 'MR.') ? 'selected' : '' }}>MR.</option>
                                                 <option value="MRS." {{ (old('title', $data->title ?? '') == 'MRS.') ? 'selected' : '' }}>MRS.</option>
@@ -81,7 +81,7 @@
                                                 name="dob"
                                                 value="{{old('dob')}}"
                                                 class="form-control"
-                                                required>
+                                                required style="color: black; font-weight: 400;">
                                             @error('dob')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             <span id="dob-error" style="color: red; font-weight: 500; display: none;"></span>
                                         </div>
@@ -90,7 +90,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Gender <span class="text-danger">*</span></label>
-                                            <select name="gender" class="form-control" required>
+                                            <select name="gender" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Gender</option>
                                                 <option value="MALE" {{ (old('gender') == 'MALE') ? 'selected' : '' }}>MALE</option>
                                                 <option value="FEMALE" {{ (old('gender') == 'FEMALE') ? 'selected' : '' }}>FEMALE</option>
@@ -103,7 +103,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Marital Status </label>
-                                            <select name="marital_status" class="form-control" required>
+                                            <select name="marital_status" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Marital Status</option>
                                                 <option value="SINGLE" {{ (old('marital_status') == 'SINGLE') ? 'selected' : '' }}>SINGLE</option>
                                                 <option value="MARRIED" {{ (old('marital_status') == 'MARRIED') ? 'selected' : '' }}>MARRIED</option>
@@ -118,7 +118,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Qualification </label>
-                                            <select name="qualification" class="form-control" required>
+                                            <select name="qualification" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Qualification</option>
                                                 <option value="PRIMARY" {{ (old('qualification') == 'PRIMARY') ? 'selected' : '' }}>PRIMARY</option>
                                                 <option value="SECONDARY" {{ (old('qualification') == 'SECONDARY') ? 'selected' : '' }}>SECONDARY</option>
@@ -135,7 +135,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Profession</label>
-                                            <select name="profession" class="form-control" required>
+                                            <select name="profession" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Profession</option>
                                                 <option value="STUDENT" {{ (old('profession') == 'STUDENT') ? 'selected' : '' }}>STUDENT</option>
                                                 <option value="EMPLOYEE" {{ (old('profession') == 'EMPLOYEE') ? 'selected' : '' }}>EMPLOYEE</option>
@@ -156,16 +156,16 @@
                                         <div class="form-group">
                                             <label for="primary_mobile_number">Primary Mobile Number <span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control" style="width: 30%">
+                                                <select name="primary_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;">
                                                     <option value="">Select</option>
                                                     <option value="44">+44 (UK)</option>
                                                     <option value="1">+1 (US/CA)</option>
                                                     <!-- Add more country codes as needed -->
                                                 </select>
-                                                <input type="tel" 
-                                                    name="primary_mobile_number" 
-                                                    class="form-control" 
-                                                    style="width: 70%"
+                                                <input type="tel"
+                                                    name="primary_mobile_number"
+                                                    class="form-control"
+                                                    style="width: 70% ;color: black; font-weight: 400;"
                                                     required
                                                     value="{{ old('primary_mobile_number') }}"
                                                     placeholder="Enter mobile number">
@@ -176,12 +176,12 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="national_insurance_number">National Insurance Number <span class="text-danger">*</span></label>
-                                            <input type="text" 
-                                                name="national_insurance_number" 
-                                                class="form-control" 
+                                            <input type="text"
+                                                name="national_insurance_number"
+                                                class="form-control"
                                                 pattern="^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$"
                                                 placeholder="AB123456C"
-                                                oninput="this.value = this.value.toUpperCase()">
+                                                oninput="this.value = this.value.toUpperCase()" style="color: black; font-weight: 400;">
                                             @error('national_insurance_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -190,16 +190,16 @@
                                         <div class="form-group">
                                             <label for="alternate_mobile_number">Alternate Mobile Number</label>
                                             <div class="input-group">
-                                                <select name="alternate_country_code" class="form-control" style="width: 30%">
+                                                <select name="alternate_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;">
                                                     <option value="">Select</option>
                                                     <option value="44">+44 (UK)</option>
                                                     <option value="1">+1 (US/CA)</option>
                                                     <!-- Add more country codes as needed -->
                                                 </select>
-                                                <input type="tel" 
-                                                    name="alternate_mobile_number" 
-                                                    class="form-control" 
-                                                    style="width: 70%"
+                                                <input type="tel"
+                                                    name="alternate_mobile_number"
+                                                    class="form-control"
+                                                    style="width: 70%; color: black; font-weight: 400; "
                                                     value="{{ old('alternate_mobile_number') }}"
                                                     placeholder="Enter mobile number">
                                             </div>
@@ -666,13 +666,13 @@
 
         function validatePhoneNumber(input, countryCode) {
             const value = input.value;
-            const errorDiv = input.parentElement.querySelector('.validation-error') || 
+            const errorDiv = input.parentElement.querySelector('.validation-error') ||
                 createErrorDiv(input);
-            
+
             // Clear previous error
             errorDiv.textContent = '';
             errorDiv.style.display = 'none';
-            
+
             if (!value && input.hasAttribute('required')) {
                 showError(errorDiv, 'Phone number is required');
                 return false;
@@ -710,11 +710,11 @@
         // Add event listeners to phone inputs
         document.querySelectorAll('input[type="tel"]').forEach(input => {
             const countrySelect = input.closest('.form-group').querySelector('select');
-            
+
             input.addEventListener('input', () => {
                 validatePhoneNumber(input, countrySelect.value);
             });
-            
+
             countrySelect?.addEventListener('change', () => {
                 validatePhoneNumber(input, countrySelect.value);
             });
@@ -723,7 +723,7 @@
         // Form submission validation
         document.querySelector('form').addEventListener('submit', function(e) {
             let isValid = true;
-            
+
             // Validate all phone inputs
             this.querySelectorAll('input[type="tel"]').forEach(input => {
                 const countrySelect = input.closest('.form-group').querySelector('select');

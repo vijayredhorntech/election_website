@@ -45,7 +45,8 @@ class Member extends Model
 
         static::created(function ($member) {
             // Update user's referral code after member is created
-            $member->user->referral_code = 'ONR' . $member->custom_id;
+            $updatedCustomId = str_replace('ONM', 'ONRM', $member->custom_id);
+            $member->user->referral_code = $updatedCustomId;
             $member->user->save();
         });
     }
@@ -82,6 +83,6 @@ class Member extends Model
 
     public function getCustomIdPrefix(): string
     {
-        return 'M';
+        return 'ONM';
     }
 }
