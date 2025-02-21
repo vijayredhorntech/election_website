@@ -13,14 +13,13 @@ trait HasCustomId
                 ->first();
 
             if ($lastRecord) {
-                // Extract numeric part after the prefix
                 $numericPart = (int)substr($lastRecord->{$model->getCustomIdColumn()}, strlen($prefix));
-                $nextId = $numericPart + 1; // Generate a growing random ID
+                $nextId = $numericPart + 1;
             } else {
-                $nextId = 1; // Start from 1 if no previous record exists
+                $nextId = 1;
             }
 
-            $model->{$model->getCustomIdColumn()} = $prefix . $nextId;
+            $model->{$model->getCustomIdColumn()} = $prefix . str_pad($nextId, 3, '0', STR_PAD_LEFT);
         });
     }
 

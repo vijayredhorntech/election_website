@@ -52,18 +52,14 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        static::creating(function ($user) {
-            $user->referral_code = self::generateUniqueReferralCode();
+        static::created(function ($user) {
+            if ($user->member) {
+                $membershipId = $user->member->custom_id;
+                $numericPart = substr($membershipId, -3); // Get last 3 digits
+                $user->referral_code = 'ONR' . 'M' . $numericPart;
+                $user->save();
+            }
         });
-    }
-
-    private static function generateUniqueReferralCode()
-    {
-        do {
-            $code = Str::upper(Str::random(6)); // Generate a 6-letter uppercase random string
-        } while (self::where('referral_code', $code)->exists());
-
-        return $code;
     }
 
     public function member()
@@ -77,9 +73,7 @@ class User extends Authenticatable
     }
 
     public function employee()
-        {
-            return $this->hasOne(Employee::class);
-        }
-
-
+    {
+        return $this->hasOne(Employee::class);
+    }
 }

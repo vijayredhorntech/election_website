@@ -2,14 +2,7 @@
     @push('styles')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     @endpush
-    <div>
-        <label for="qr-input">Enter Information:</label>
-        <input type="text" id="qr-input" placeholder="Enter text or URL">
-        <button onclick="generateQRCode()">Generate QR Code</button>
-    </div>
 
-    <!-- Div where QR code will be displayed -->
-    <div id="qrcode"></div>
     <div class="about-us-section-area about-bg" style="background-image: url({{asset('assets/images/about-bg.png')}});">
         <div class="container">
             <div class="row justify-content-center">
@@ -71,11 +64,17 @@
                     <div class="card-body">
                         <div class="w-full p-2">
                             <div style="display: flex; align-items: center; gap: 10px">
-                                <img class="rounded-[3px] mb-4" src="{{asset('storage/'.$memberDetails->profile_photo )}}" alt="">
-                                <div>
-                                    <img src="{{asset('assets/images/256px-QR_Code_Example.svg.png')}}" alt="" style="height: 200px">
+                                <img class="rounded-[3px] mb-4"
+                                    src="{{ $memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png') }}"
+                                    alt="Profile Photo" style="height: 200px; width: 200px">
 
-                                    <a href="" style="color: darkblue; display: flex; align-items: center; gap: 5px"> http://127.0.0.1:8000/joinUs/FRS78HY <i class="fa fa-share"></i> </a>
+                                <div>
+                                    <div id="qrcode"></div>
+                                    <a href="{{route('index')}}/referral/{{$memberDetails->user->referral_code}}"
+                                        style="color: darkblue; display: flex; align-items: center; gap: 5px">
+                                        {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
+                                        <i class="fa fa-share"></i>
+                                    </a>
                                 </div>
                             </div>
                             <table class="w-full">
@@ -93,7 +92,7 @@
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">DOB</td>
-                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->date_of_birth}}</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{\Carbon\Carbon::parse($memberDetails->date_of_birth)->format('d-m-Y')}}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">Gender</td>
@@ -110,6 +109,10 @@
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Profession</td>
                                     <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black" style="color: black; font-weight: 400">: &nbsp &nbsp</span> {{$memberDetails->profession}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Total Members Added</td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black" style="color: black; font-weight: 400">: &nbsp &nbsp</span> {{$memberDetails->referredMembers->count()}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -331,26 +334,20 @@
 
     @push('scripts')
     <script>
-        // 
-        function generateQRCode() {
-            const qrText = document.getElementById("qr-input").value;
+        window.addEventListener('load', function() {
             const qrContainer = document.getElementById("qrcode");
+            const referralUrl = "{{route('index')}}/referral/{{$memberDetails->user->referral_code}}";
 
-            // Clear previous QR code (if any)
+            // Clear any existing content
             qrContainer.innerHTML = "";
-
-            if (qrText.trim() === "") {
-                alert("Please enter text to generate QR code.");
-                return;
-            }
 
             // Generate QR Code
             new QRCode(qrContainer, {
-                text: qrText,
+                text: referralUrl,
                 width: 200,
-                height: 200,
+                height: 200
             });
-        }
+        });
     </script>
     @endpush
 

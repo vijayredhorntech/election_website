@@ -102,7 +102,12 @@
 
                             </form>
                         </div>
-
+                        <div class="why-to-join-us">
+                            <h2>What is Membership?</h2>
+                            <p style="font-size: 18px">
+                                <a href="{{route('whatIsMembership')}}" target="_blank" style="color: #b30d00; ">Click here</a> to know more
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
