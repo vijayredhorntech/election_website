@@ -170,6 +170,8 @@
                                                     value="{{ old('primary_mobile_number') }}"
                                                     placeholder="Enter mobile number">
                                             </div>
+                                            @error('primary_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+
                                         </div>
                                     </div>
 
@@ -203,6 +205,8 @@
                                                     value="{{ old('alternate_mobile_number') }}"
                                                     placeholder="Enter mobile number">
                                             </div>
+                                            @error('alternate_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+
                                         </div>
                                     </div>
                                 </div>
@@ -501,8 +505,8 @@
         //             option.value = country.cca2;
 
         //             // Format option text to be compact
-        //             option.textContent = `${dialCode} ${country.name.common.length > 12 ? 
-        //         country.name.common.substring(0, 10) + '...' : 
+        //             option.textContent = `${dialCode} ${country.name.common.length > 12 ?
+        //         country.name.common.substring(0, 10) + '...' :
         //         country.name.common}`;
 
         //             option.setAttribute('data-dial-code', dialCode);

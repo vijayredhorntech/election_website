@@ -86,6 +86,7 @@
                                         </div>
                                     </div>
                                     @endif
+                                    @if($formData['type']==='register')
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="check-box-wrapper">
@@ -110,6 +111,7 @@
                                             @error('referral_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
+                                    @endif
                                     @if ($formData['type']==='register')
                                     <div class="form-question" style="padding-left: 20px">
                                         <div class="check-box-wrapper">

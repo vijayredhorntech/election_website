@@ -38,25 +38,29 @@ class MemberRegistrationController extends Controller
             'hasReferralCode' => 'nullable',
             'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
         ]);
-        if ($request->hasReferralCode) {
-            $referral = User::where('referral_code', $request->referral_code)->first();
-            if (!$referral) {
-                $formData = [
-                    'url' => route('sendEmailVerificationOtp'),
-                    'method' => 'get',
-                    'type' => 'register',
-                    'hasReferralCode' => 'true',
-                    'referral_code' => '',
-                ];
-                session()->flash('error', 'Invalid referral code');
+        session()->forget('request_referral_code');
+        if ($request->hasReferralCode!=null) {
+            if ($request->referral_code!=null) {
+                $referral = User::where('referral_code', $request->referral_code)->first();
+                if (!$referral) {
+                    $formData = [
+                        'url' => route('sendEmailVerificationOtp'),
+                        'method' => 'get',
+                        'type' => 'register',
+                        'hasReferralCode' => 'true',
+                        'referral_code' => '',
+                    ];
+                    session()->flash('error', 'Invalid referral code');
 
-                return view('front.join-us')->with('formData', $formData);
+                    return view('front.join-us')->with('formData', $formData);
+                }
+                session(['request_referral_code' => $request->referral_code]);
             }
-            session(['referral_code' => $request->referral_code]);
         }
         if (User::where('email', $request->email)->exists()) {
             return back()->with('error', 'Email already exists');
         }
+
         $otp = rand(100000, 999999);
         session(['otp' => $otp]);
 
@@ -65,10 +69,10 @@ class MemberRegistrationController extends Controller
             session()->flash('success', 'OTP sent successfully');
             session(['email' => $request->email]);
             session(['name' => $request->name]);
-            session(['referral_code' => $request->referral_code]);
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to send OTP');
         }
+
 
 
         $formData = [
@@ -164,13 +168,15 @@ class MemberRegistrationController extends Controller
             } catch (\Exception $e) {
             }
             $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
+            $referrar = User::where('referral_code', session('request_referral_code'))->first();
+
             $user = User::create([
-                'name' => strtoupper(session('name')),
-                'email' => $email,
-                'password' => bcrypt($otp),
-            ]);
+                    'name' => strtoupper(session('name')),
+                    'email' => $email,
+                    'password' => bcrypt($otp),
+                ]);
             if ($user) {
-                $referrar = User::where('referral_code', session('referral_code'))->first();
+
                 Member::create([
                     'user_id' => $user->id,
                     'enrollment_date' => now(),
@@ -185,7 +191,7 @@ class MemberRegistrationController extends Controller
                     Mail::to($email)->send(new OtpMail($otp));
                 } catch (\Exception $e) {
                 }
-                session()->forget('referral_code');
+                session()->forget('request_referral_code');
                 session()->forget('name');
                 session()->forget('email');
 
@@ -205,6 +211,7 @@ class MemberRegistrationController extends Controller
 
     public function storeMemberBasicInformation(Request $request)
     {
+
 
         $request->validate([
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
