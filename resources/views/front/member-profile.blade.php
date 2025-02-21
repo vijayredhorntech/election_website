@@ -64,18 +64,16 @@
                     </div>
                     <div class="card-body">
                         <div class="w-full p-2">
-                            <div style="display: flex; align-items: center; gap: 10px">
-                                <img class="rounded-[3px] mb-4"
-                                    src="{{ $memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png') }}"
-                                    alt="Profile Photo" style="height: 200px; width: 200px">
-
+                            <div style="display: flex; align-items: start; justify-content: space-between; gap: 10px">
                                 <div>
+                                    <img class="rounded-[3px] mb-4"
+                                        src="{{ $memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png') }}"
+                                        alt="Profile Photo" style="height: 200px; width: 200px">
+                                </div>
+
+                                <div style="display: flex; justify-content: end; gap: 10px">
                                     <div id="qrcode"></div>
-                                    <a href="{{route('index')}}/referral/{{$memberDetails->user->referral_code}}"
-                                        style="color: darkblue; display: flex; align-items: center; gap: 5px">
-                                        {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
-                                        <i class="fa fa-share"></i>
-                                    </a>
+
                                 </div>
                             </div>
                             <table class="w-full">
@@ -110,6 +108,15 @@
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Profession</td>
                                     <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black" style="color: black; font-weight: 400">: &nbsp &nbsp</span> {{$memberDetails->profession}}</td>
+                                </tr>
+                                </tr>
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Referral Link</td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400; display: flex; align-items: center; gap: 5px"><span class="font-semibold text-black" style="color: black; font-weight: 400">: &nbsp &nbsp</span> <a href="{{route('index')}}/referral/{{$memberDetails->user->referral_code}}"
+                                            style="color: darkblue; display: flex; align-items: center; gap: 5px">
+                                            {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
+                                            <i class="fa fa-share"></i>
+                                        </a></td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Total Members Added</td>

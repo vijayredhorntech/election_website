@@ -310,6 +310,13 @@ class MemberRegistrationController extends Controller
         if (!$referral) {
             return redirect()->route('joinUs')->with('error', 'Invalid referral code');
         }
-        return view('front.referral', compact('referral'));
+        $formData = [
+            'url' => route('sendEmailVerificationOtp'),
+            'method' => 'get',
+            'type' => 'register',
+            'hasReferralCode' => 'true',
+            'referral_code' => $code,
+        ];
+        return view('front.join-us')->with('formData', $formData);
     }
 }
