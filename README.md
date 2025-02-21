@@ -1,66 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Member Registration and Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive web application for managing member registrations with advanced validation, address lookup, and referral tracking capabilities.
 
-## About Laravel
+## Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This system provides a robust platform for member registration and management, featuring real-time validation, international phone number support, and UK address verification. Built with Laravel and modern front-end technologies, it offers a seamless user experience with responsive design and interactive feedback.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Core Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Member Registration
+- Multi-step registration process with progress tracking
+- Real-time form validation
+- OTP-based email verification
+- Rate-limited OTP requests for security
+- International phone number validation
+- National Insurance number verification
+- Comprehensive error messaging
 
-## Learning Laravel
+### 2. Address Management
+- Integration with postcodes.io for UK address lookup
+- Automatic address validation and formatting
+- Support for international addresses
+- Real-time postcode validation
+- Interactive address search functionality
+- County and constituency mapping
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 3. Profile Management
+- QR code generation for referral links
+- Social sharing capabilities
+- Referral tracking system
+- Profile completion status
+- Document upload functionality
+- Member status tracking
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 4. Security Features
+- Rate limiting on sensitive operations
+- OTP-based verification
+- Secure password management
+- Input sanitization and validation
+- CSRF protection
+- Session management
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 5. User Experience
+- Real-time form validation
+- Loading states and progress indicators
+- Interactive feedback on user actions
+- Mobile-responsive design
+- Consistent error messaging
+- Intuitive navigation flow
 
-## Laravel Sponsors
+### 6. Referral System
+- Unique referral code generation (ONR format)
+- QR code generation for referral links
+- Social sharing integration
+- Referral tracking and management
+- Referral statistics and reporting
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 7. Data Validation
+- UK postcode format validation
+- International phone number validation
+- Age verification (16+ years)
+- Document format validation
+- Address format verification
+- Email format validation
 
-### Premium Partners
+### 8. UI/UX Features
+- Progress bars for multi-step forms
+- Loading animations and spinners
+- Disabled states during processing
+- Real-time validation feedback
+- Consistent styling across forms
+- Mobile-friendly interface
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Technology Stack
 
-## Contributing
+- **Backend**: Laravel PHP Framework
+- **Frontend**: Blade Templates, JavaScript
+- **Styling**: CSS3, Custom SCSS
+- **APIs**: postcodes.io for address lookup
+- **Database**: MySQL
+- **Authentication**: Laravel built-in auth
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Supported Countries for Phone Validation
 
-## Code of Conduct
+- United Kingdom (+44)
+- United States/Canada (+1)
+- India (+91)
+- Australia (+61)
+- Ireland (+353)
+- Nigeria (+234)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Future Enhancements
 
-## Security Vulnerabilities
+- Enhanced analytics dashboard
+- Additional payment gateway integrations
+- Extended international address support
+- Advanced member search functionality
+- Automated document verification
+- Enhanced reporting capabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Support
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+For technical support or feature requests, please create an issue in the repository.

@@ -1,6 +1,7 @@
 <x-front.layout>
     @push('styles')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     @endpush
 
     <div class="about-us-section-area about-bg" style="background-image: url({{asset('assets/images/about-bg.png')}});">
@@ -288,49 +289,22 @@
     </div>
     <!-- faq section end here -->
 
+    <!-- Add this where you want to display the referral information -->
+    <div class="referral-section">
+        <h4>Your Referral Code</h4>
+        <div class="referral-code">{{ auth()->user()->referral_code }}</div>
 
+        <div id="qrcode"></div>
 
-
-
-
-    {{-- <div class="col-md-4 col-sm-4 col-12">--}}
-    {{-- <div class="card wow animate__animated animate__fadeInUp animate__delay-2s">--}}
-    {{-- <div class="card-header" id="headingThree">--}}
-    {{-- <h5 class="mb-0">--}}
-    {{-- <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseOwo">--}}
-    {{-- Update Profile--}}
-    {{-- </a>--}}
-    {{-- </h5>--}}
-    {{-- </div>--}}
-    {{-- <div class="card-body">--}}
-    {{-- <form action="{{route('securityInfoUpdate')}}" method="post">--}}
-    {{-- @csrf--}}
-    {{-- <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
-    {{-- <label for="" class="text-gray-500 text-sm">Email</label>--}}
-    {{-- <input type="email" value="{{auth()->user()->email}}" class="form-control" placeholder="Enter your otp.....">--}}
-    {{-- </div>--}}
-    {{-- <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
-    {{-- <label for="" class="text-gray-500 text-sm">New Password</label>--}}
-    {{-- <input type="password" name="password" placeholder="Enter new password....." class="form-control">--}}
-    {{-- @error('password')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror--}}
-    {{-- </div>--}}
-    {{-- <div class="flex flex-col items-start w-full gap-1 mt-4">--}}
-    {{-- <label for="" class="text-gray-500 text-sm">Confirm New Password</label>--}}
-    {{-- <input type="password" name="confirm_password" placeholder="Confirm new password....." class="form-control">--}}
-    {{-- @error('confirm_password')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror--}}
-    {{-- </div>--}}
-
-    {{-- <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end; margin-top: 10px">--}}
-    {{-- <button type="submit" class="boxed-btn btn-sanatory"> Update password <span class="icon-paper-plan"></span></button>--}}
-    {{-- </div>--}}
-    {{-- </form>--}}
-    {{-- </div>--}}
-    {{-- </div>--}}
-
-    {{-- </div>--}}
-
-
-
+        <div class="share-buttons mt-3">
+            <button onclick="copyReferralLink()" class="btn btn-primary">
+                <i class="fas fa-copy"></i> Copy Link
+            </button>
+            <button onclick="shareReferralLink()" class="btn btn-success">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+        </div>
+    </div>
 
     @push('scripts')
     <script>

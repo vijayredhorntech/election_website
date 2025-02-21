@@ -5,6 +5,23 @@
         .gradient-bg {
             background: linear-gradient(to right, #d53369, #daae51);
         }
+
+        .container-box input[type="checkbox"]:checked+.checkmark {
+            background-color: #007bff;
+            /* Change to desired color */
+            border-color: #007bff;
+            /* Change to desired color */
+        }
+
+        /* .container-box input[type="checkbox"]:checked+.checkmark:after {
+            content: '\2713';
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+            line-height: 16px;
+        } */
     </style>
     @endpush
     <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
@@ -41,13 +58,30 @@
                             </div>
                         </div>
                         <div class="contact-form style-01">
-                            <form action="{{$formData['url']}}" method="{{$formData['method']}}" class="contact-page-form" novalidate="novalidate">
+                            <form action="{{$formData['url']}}" method="{{$formData['method']}}" class="contact-page-form" id="joinForm" novalidate="novalidate" data-loading-text="Processing your request...">
                                 @csrf
+                                <div class="form-progress">
+                                    <div class="form-progress-bar" style="width: 0%"></div>
+                                </div>
                                 <h6 class="title">Fill the following information to join us.</h6>
                                 @if(session('error'))
                                 <div class="text-red-600 text-sm font-semibold mt-4" style="font-weight: bold ; color: orangered; font-size: 15px">*{{session('error')}}</div>
                                 @endif @if(session('success'))
                                 <div class="text-green-600 text-sm font-semibold mt-4" style="font-weight: bold ; color: green; font-size: 15px">*{{session('success')}}</div>
+                                @endif
+                                @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                    @if(isset($remainingAttempts))
+                                    <br>
+                                    <small>You have {{ $remainingAttempts }} OTP request{{ $remainingAttempts != 1 ? 's' : '' }} remaining. Please wait 5 minutes if you run out of attempts.</small>
+                                    @endif
+                                </div>
+                                @endif
+                                @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
                                 @endif
                                 <div class="row">
                                     <div class="col-md-12">
@@ -95,9 +129,38 @@
 
                                     </div>
                                     @endif
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="check-box-wrapper">
+                                                <div class="check-box">
+                                                    <label class="container-box" style="color: black; font-weight: 600;">
+                                                        I have a referral code
+                                                        <input type="checkbox" id="hasReferralCode" name="hasReferralCode" style="color: black; font-weight: 600;">
+                                                        <span class="checkmark" style="color: black; font-weight: 600; border: 1px solid darkgray; border-radius: 5px;"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="referralCodeField" style="display: none;">
+                                            <input type="text"
+                                                name="referral_code"
+                                                placeholder="Enter referral code"
+                                                class="form-control"
+                                                pattern="^ONR[A-Z0-9]{4}$"
+                                                title="Please enter a valid referral code">
+                                            @error('referral_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                    <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="submit-btn" id="submitBtn">
+                                            <span class="btn-text">{{ $formData['type'] === 'validate' ? 'Verify OTP' : 'Send OTP' }}</span>
+                                            <span class="loading-dots"></span>
+                                        </button>
+                                    </div>
                                 </div>
 
                             </form>
@@ -130,52 +193,105 @@
             modal.classList.toggle('hidden');
         }
 
-        function checkEmailAvailability() {
-            const email = document.getElementById('email').value;
-            const emailAvailabilityStatus = document.getElementById('email-availability-status');
-            const submitButton = document.querySelector('button[type="submit"]');
+        const form = document.getElementById('joinForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressBar = document.querySelector('.form-progress-bar');
+        let progress = 0;
 
-            emailAvailabilityStatus.textContent = 'Checking email existence...';
+        // Update progress bar
+        function updateProgress(value) {
+            progress = value;
+            progressBar.style.width = `${progress}%`;
+        }
 
-            fetch(`/check_email?email=${encodeURIComponent(email)}`)
+        // Form submission handler
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Add loading states
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+            form.classList.add('form-loading');
+
+            // Simulate progress
+            let interval = setInterval(() => {
+                if (progress < 90) {
+                    updateProgress(progress + 10);
+                }
+            }, 500);
+
+            // Submit form
+            fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.exists) {
-                        // Email exists case
-                        emailAvailabilityStatus.textContent = 'Email already exists';
-                        emailAvailabilityStatus.style.color = 'red';
-
-                        // Disable submit button
-                        submitButton.disabled = true;
-                        submitButton.style.backgroundColor = 'gray';
-                        submitButton.style.cursor = 'not-allowed';
-                        submitButton.style.boxShadow = 'none';
-                        submitButton.classList.remove('btn-sanatory');
+                    updateProgress(100);
+                    if (data.success) {
+                        // Handle success
+                        window.location.href = data.redirect || window.location.href;
                     } else {
-                        // Email available case
-                        emailAvailabilityStatus.textContent = '';
-
-                        // Enable submit button
-                        submitButton.disabled = false;
-                        submitButton.style.backgroundColor = 'red';
-                        submitButton.classList.add('btn-sanatory');
-                        submitButton.style.cursor = 'pointer';
+                        // Handle error
+                        showError(data.error);
+                        resetLoadingState();
                     }
                 })
                 .catch(error => {
-                    console.error('Error checking email availability:', error);
-                    emailAvailabilityStatus.textContent = 'Error checking email availability';
-                    emailAvailabilityStatus.style.color = 'red';
+                    showError('An error occurred. Please try again.');
+                    resetLoadingState();
+                })
+                .finally(() => {
+                    clearInterval(interval);
+                });
+        });
+
+        // Reset loading state
+        function resetLoadingState() {
+            submitBtn.classList.remove('btn-loading');
+            submitBtn.disabled = false;
+            form.classList.remove('form-loading');
+            updateProgress(0);
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger mt-3';
+            errorDiv.textContent = message;
+            form.insertAdjacentElement('beforebegin', errorDiv);
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
+
+        // Email verification loading state
+        function checkEmailAvailability() {
+            const email = document.getElementById('email');
+            const status = document.getElementById('email-availability-status');
+
+            if (!email.value) return;
+
+            email.classList.add('input-loading');
+            status.innerHTML = 'Checking availability<span class="loading-dots"></span>';
+
+            fetch(`/check-email?email=${encodeURIComponent(email.value)}`)
+                .then(response => response.json())
+                .then(data => {
+                    email.classList.remove('input-loading');
+                    status.textContent = data.exists ? 'Email already registered' : 'Email available';
+                    status.style.color = data.exists ? 'red' : 'green';
+                })
+                .catch(() => {
+                    email.classList.remove('input-loading');
+                    status.textContent = 'Error checking email';
+                    status.style.color = 'red';
                 });
         }
 
-        // Debounce input to prevent excessive API calls
-        const emailInput = document.getElementById('email');
-        let emailTimeout;
-
-        emailInput.addEventListener('input', function() {
-            clearTimeout(emailTimeout);
-            emailTimeout = setTimeout(checkEmailAvailability, 500);
+        document.getElementById('hasReferralCode').addEventListener('change', function() {
+            document.getElementById('referralCodeField').style.display = this.checked ? 'block' : 'none';
         });
     </script>
     @endpush

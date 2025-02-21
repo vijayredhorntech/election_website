@@ -28,6 +28,11 @@ Route::get('/donate', [PageController::class, 'donate'])->name('donate');
 Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
 
+
+Route::get('/what_is_membership', [PageController::class, 'whatIsMembership'])->name('whatIsMembership');
+
+
+
 Route::get('/regions/{countryCode}', [RegionController::class, 'getRegionsByCountryCode']);
 Route::get('/constituencies/{countryCode}', [ConstituencyController::class, 'getConstituenciesByCountryCode']);
 
