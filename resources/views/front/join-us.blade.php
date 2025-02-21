@@ -112,7 +112,8 @@
                                         </div>
                                     </div>
                                     @endif
-                                    @if ($formData['type']==='register')
+                                    <!-- Hide this for now -->
+                                    <!-- @if ($formData['type']==='register')
                                     <div class="form-question" style="padding-left: 20px">
                                         <div class="check-box-wrapper">
                                             <div class="check-box">
@@ -126,7 +127,7 @@
                                         @error ('termsAndConditionCheckbox')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                     </div>
-                                    @endif
+                                    @endif -->
 
                                     <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                                         <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
