@@ -180,10 +180,12 @@ class MemberRegistrationController extends Controller
                     'referrer_id' => $referrar->id,
                 ]);
 
+
                 try {
                     Mail::to($email)->send(new OtpMail($otp));
                 } catch (\Exception $e) {
                 }
+                session()->forget('referral_code');
                 session()->forget('name');
                 session()->forget('email');
 
