@@ -103,6 +103,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/member/view/{id}/donations', [MemberController::class, 'donations'])->name('donations');
             Route::post('/member/update/{id}', [MemberController::class, 'update'])->name('update');
             Route::get('/member/delete/{id}', [MemberController::class, 'delete'])->name('delete');
+            Route::get('/member/download-id', [MemberController::class, 'downloadId'])->name('downloadId');
         });
 
         Route::name('employees.')->group(function () {

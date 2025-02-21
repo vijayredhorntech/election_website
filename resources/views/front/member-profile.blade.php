@@ -36,7 +36,7 @@
                 <div style="width: 100% ; display: flex; justify-content: end; gap: 10px; padding: 20px">
 
 
-                    <form action="{{route('logout')}}" method="post">
+                    <form action="{{route('member.downloadId')}}" method="get">
                         @csrf
                         <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                             <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black"> Download ID <span class="icon-paper-plan"></span></button>

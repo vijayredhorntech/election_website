@@ -294,4 +294,46 @@ class MemberController extends Controller
 
         return redirect()->route('memberProfile')->with('success', 'Password updated successfully');
     }
+
+    // public function downloadId()
+    // {
+    //     $user = auth()->user();
+    //     $member = $user->member;
+
+    //     $data = [
+    //         'name' => $member->title . ' ' . $user->name,
+    //         'issue_date' => Carbon::now()->format('d-m-Y'),
+    //         'constituency' => $member->constituency->name,
+    //         'profile_photo' => $member->profile_photo
+    //             ? asset('storage/' . $member->profile_photo)
+    //             : asset('assets/images/default-profile.png'),
+    //         'member_id' => $member->custom_id
+    //     ];
+
+    //     $pdf = PDF::loadView('id_card.template', $data);
+
+    //     return $pdf->download('member_id_' . $member->custom_id . '.pdf');
+    // }
+
+    public function downloadId()
+    {
+        $user = auth()->user();
+        $member = $user->member;
+
+        $data = [
+            'name' => $member->title . ' ' . $user->name,
+            'issue_date' => $member->enrollment_date,
+            'constituency' => $member->constituency->name,
+            'profile_photo' => $member->profile_photo
+                ? asset('storage/' . $member->profile_photo)
+                : asset('assets/images/default-profile.png'),
+            'member_id' => $member->custom_id,
+            'referral_code' => $user->referral_code
+        ];
+
+        // $pdf = PDF::loadView('id_card.template', $data);
+
+        // return $pdf->download('member_id_' . $member->custom_id . '.pdf');
+        return view('id_card.template')->with('data', $data);
+    }
 }
