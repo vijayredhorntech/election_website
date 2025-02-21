@@ -5,6 +5,23 @@
         .gradient-bg {
             background: linear-gradient(to right, #d53369, #daae51);
         }
+
+        .container-box input[type="checkbox"]:checked+.checkmark {
+            background-color: #007bff;
+            /* Change to desired color */
+            border-color: #007bff;
+            /* Change to desired color */
+        }
+
+        /* .container-box input[type="checkbox"]:checked+.checkmark:after {
+            content: '\2713';
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+            line-height: 16px;
+        } */
     </style>
     @endpush
     <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
@@ -53,18 +70,18 @@
                                 <div class="text-green-600 text-sm font-semibold mt-4" style="font-weight: bold ; color: green; font-size: 15px">*{{session('success')}}</div>
                                 @endif
                                 @if(session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                        @if(isset($remainingAttempts))
-                                            <br>
-                                            <small>You have {{ $remainingAttempts }} OTP request{{ $remainingAttempts != 1 ? 's' : '' }} remaining. Please wait 5 minutes if you run out of attempts.</small>
-                                        @endif
-                                    </div>
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                    @if(isset($remainingAttempts))
+                                    <br>
+                                    <small>You have {{ $remainingAttempts }} OTP request{{ $remainingAttempts != 1 ? 's' : '' }} remaining. Please wait 5 minutes if you run out of attempts.</small>
+                                    @endif
+                                </div>
                                 @endif
                                 @if(session('error'))
-                                    <div class="alert alert-danger">
-                                        {{ session('error') }}
-                                    </div>
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
                                 @endif
                                 <div class="row">
                                     <div class="col-md-12">
@@ -117,19 +134,19 @@
                                         <div class="form-group">
                                             <div class="check-box-wrapper">
                                                 <div class="check-box">
-                                                    <label class="container-box">
+                                                    <label class="container-box" style="color: black; font-weight: 600;">
                                                         I have a referral code
-                                                        <input type="checkbox" id="hasReferralCode" name="hasReferralCode">
-                                                        <span class="checkmark"></span>
+                                                        <input type="checkbox" id="hasReferralCode" name="hasReferralCode" style="color: black; font-weight: 600;">
+                                                        <span class="checkmark" style="color: black; font-weight: 600; border: 1px solid darkgray; border-radius: 5px;"></span>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group" id="referralCodeField" style="display: none;">
-                                            <input type="text" 
-                                                name="referral_code" 
-                                                placeholder="Enter referral code" 
+                                            <input type="text"
+                                                name="referral_code"
+                                                placeholder="Enter referral code"
                                                 class="form-control"
                                                 pattern="^ONR[A-Z0-9]{4}$"
                                                 title="Please enter a valid referral code">
@@ -185,12 +202,12 @@
         // Form submission handler
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Add loading states
             submitBtn.classList.add('btn-loading');
             submitBtn.disabled = true;
             form.classList.add('form-loading');
-            
+
             // Simulate progress
             let interval = setInterval(() => {
                 if (progress < 90) {
@@ -200,31 +217,31 @@
 
             // Submit form
             fetch(form.action, {
-                method: form.method,
-                body: new FormData(form),
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                updateProgress(100);
-                if (data.success) {
-                    // Handle success
-                    window.location.href = data.redirect || window.location.href;
-                } else {
-                    // Handle error
-                    showError(data.error);
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    updateProgress(100);
+                    if (data.success) {
+                        // Handle success
+                        window.location.href = data.redirect || window.location.href;
+                    } else {
+                        // Handle error
+                        showError(data.error);
+                        resetLoadingState();
+                    }
+                })
+                .catch(error => {
+                    showError('An error occurred. Please try again.');
                     resetLoadingState();
-                }
-            })
-            .catch(error => {
-                showError('An error occurred. Please try again.');
-                resetLoadingState();
-            })
-            .finally(() => {
-                clearInterval(interval);
-            });
+                })
+                .finally(() => {
+                    clearInterval(interval);
+                });
         });
 
         // Reset loading state
@@ -248,12 +265,12 @@
         function checkEmailAvailability() {
             const email = document.getElementById('email');
             const status = document.getElementById('email-availability-status');
-            
+
             if (!email.value) return;
-            
+
             email.classList.add('input-loading');
             status.innerHTML = 'Checking availability<span class="loading-dots"></span>';
-            
+
             fetch(`/check-email?email=${encodeURIComponent(email.value)}`)
                 .then(response => response.json())
                 .then(data => {
