@@ -290,7 +290,7 @@
     <!-- faq section end here -->
 
     <!-- Add this where you want to display the referral information -->
-    <div class="referral-section">
+    <!-- <div class="referral-section">
         <h4>Your Referral Code</h4>
         <div class="referral-code">{{ auth()->user()->referral_code }}</div>
 
@@ -304,7 +304,7 @@
                 <i class="fas fa-share-alt"></i> Share
             </button>
         </div>
-    </div>
+    </div> -->
 
     @push('scripts')
     <script>
