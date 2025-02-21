@@ -31,7 +31,7 @@ Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('p
 
 Route::get('/what_is_membership', [PageController::class, 'whatIsMembership'])->name('whatIsMembership');
 
-
+Route::get('/referral/{code}', [MemberRegistrationController::class, 'referral'])->name('referral');
 
 Route::get('/regions/{countryCode}', [RegionController::class, 'getRegionsByCountryCode']);
 Route::get('/constituencies/{countryCode}', [ConstituencyController::class, 'getConstituenciesByCountryCode']);

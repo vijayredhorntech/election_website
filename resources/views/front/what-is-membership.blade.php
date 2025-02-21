@@ -42,7 +42,7 @@
                         </div>
                         <div class="content">
                             <span class="title">Email</span>
-                            <p>information1667@senatory.com</p>
+                            <p>info@one-nation.org.uk</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="content">
                             <span class="title">Phone</span>
-                            <p>+1009-215-5599</p>
+                            <p>020 3500 00000</p>
                         </div>
                     </div>
                 </div>

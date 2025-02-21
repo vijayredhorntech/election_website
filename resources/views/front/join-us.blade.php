@@ -5,6 +5,13 @@
         .gradient-bg {
             background: linear-gradient(to right, #d53369, #daae51);
         }
+
+        .container-box input[type="checkbox"]:checked+.checkmark {
+            background-color: #007bff;
+            /* Change to desired color */
+            border-color: #007bff;
+            /* Change to desired color */
+        }
     </style>
     @endpush
     <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
@@ -79,7 +86,30 @@
                                         </div>
                                     </div>
                                     @endif
-
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="check-box-wrapper">
+                                                <div class="check-box">
+                                                    <label class="container-box" style="color: black; font-weight: 600;">
+                                                        I have a referral code
+                                                        <input type="checkbox" id="hasReferralCode" {{$formData['hasReferralCode']==='true'?'checked':''}} name="hasReferralCode" style="color: black; font-weight: 600;">
+                                                        <span class="checkmark" style="color: black; font-weight: 600; border: 1px solid darkgray; border-radius: 5px;"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="referralCodeField" style="display: {{$formData['hasReferralCode']==='true' ? 'block' : 'none'}}">
+                                            <input type="text"
+                                                name="referral_code"
+                                                placeholder="ENTER REFERRAL CODE"
+                                                value="{{$formData['referral_code']}}"
+                                                class="form-control"
+                                                pattern="^ONR[A-Z0-9]{4}$"
+                                                title="Please enter a valid referral code"
+                                                style="color: black; font-weight: 600; ">
+                                            @error('referral_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
                                     @if ($formData['type']==='register')
                                     <div class="form-question" style="padding-left: 20px">
                                         <div class="check-box-wrapper">
@@ -95,12 +125,18 @@
 
                                     </div>
                                     @endif
-                                </div>
-                                <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                    <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
-                                </div>
+
+                                    <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
+                                        <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
+                                    </div>
 
                             </form>
+                            <div class="why-to-join-us">
+                                <h2>What is Membership?</h2>
+                                <p style="font-size: 18px">
+                                    <a href="{{route('whatIsMembership')}}" target="_blank" style="color: #b30d00; ">Click here</a> to know more
+                                </p>
+                            </div>
                         </div>
 
                     </div>
@@ -171,6 +207,18 @@
         emailInput.addEventListener('input', function() {
             clearTimeout(emailTimeout);
             emailTimeout = setTimeout(checkEmailAvailability, 500);
+        });
+
+        // Initialize referral code field visibility based on checkbox state
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox = document.getElementById('hasReferralCode');
+            const referralField = document.getElementById('referralCodeField');
+            referralField.style.display = checkbox.checked ? 'block' : 'none';
+        });
+
+        // Handle checkbox changes
+        document.getElementById('hasReferralCode').addEventListener('change', function() {
+            document.getElementById('referralCodeField').style.display = this.checked ? 'block' : 'none';
         });
     </script>
     @endpush

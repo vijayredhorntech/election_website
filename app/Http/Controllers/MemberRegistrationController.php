@@ -22,18 +22,34 @@ class MemberRegistrationController extends Controller
             'url' => route('sendEmailVerificationOtp'),
             'method' => 'get',
             'type' => 'register',
+            'hasReferralCode' => 'false',
         ];
         return view('front.join-us')->with('formData', $formData);
     }
 
     public function sendEmailVerificationOtp(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'termsAndConditionCheckbox' => 'required',
+            'hasReferralCode' => 'nullable',
+            'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
         ]);
-
+        if ($request->hasReferralCode) {
+            $referral = User::where('referral_code', $request->referral_code)->first();
+            if (!$referral) {
+                $formData = [
+                    'url' => route('sendEmailVerificationOtp'),
+                    'method' => 'get',
+                    'type' => 'register',
+                    'hasReferralCode' => 'true',
+                    'referral_code' => $request->referral_code,
+                ];
+                return view('front.join-us')->with('formData', $formData);
+            }
+        }
         if (User::where('email', $request->email)->exists()) {
             return back()->with('error', 'Email already exists');
         }
@@ -284,5 +300,15 @@ class MemberRegistrationController extends Controller
         $mobileNumber = $request->input('mobile_number');
         $exists = Member::where('alternate_mobile_number', $mobileNumber)->exists();
         return response()->json(['exists' => $exists]);
+    }
+
+    public function referral($code)
+    {
+        // check if the code is valid
+        $referral = User::where('referral_code', $code)->first();
+        if (!$referral) {
+            return redirect()->route('joinUs')->with('error', 'Invalid referral code');
+        }
+        return view('front.referral', compact('referral'));
     }
 }
