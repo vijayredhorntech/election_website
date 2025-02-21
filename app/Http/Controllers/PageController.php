@@ -21,4 +21,10 @@ class PageController extends Controller
          return view('front.payment-method');
     }
 
+
+    public function whatIsMembership()
+    {
+         return view('front.what-is-membership');
+    }
+
 }

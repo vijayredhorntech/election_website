@@ -344,8 +344,7 @@
                                 <ul>
                                     <li><a href="{{route('index')}}">Privacy Policy</a></li>
                                     <li><a href="{{route('index')}}">Terms and Conditions</a></li>
-                                    <li><a href="{{route('index')}}">Support</a></li>
-                                    <li><a href="{{route('index')}}">FAQ</a></li>
+                                    <li><a href="{{route('whatIsMembership')}}">What is Membership?</a></li>
                                 </ul>
                             </div>
                         </div>
