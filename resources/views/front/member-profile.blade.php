@@ -42,12 +42,12 @@
                             <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black"> Download ID <span class="icon-paper-plan"></span></button>
                         </div>
                     </form>
-                    <form action="{{route('logout')}}" method="post">
+                    <!-- <form action="{{route('logout')}}" method="post">
                         @csrf
                         <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                             <button type="submit" class="boxed-btn btn-sanatory"> Logout <span class="icon-paper-plan"></span></button>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
 
