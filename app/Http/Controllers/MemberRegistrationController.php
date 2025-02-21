@@ -23,6 +23,7 @@ class MemberRegistrationController extends Controller
             'method' => 'get',
             'type' => 'register',
             'hasReferralCode' => 'false',
+            'referral_code' => '',
         ];
         return view('front.join-us')->with('formData', $formData);
     }
