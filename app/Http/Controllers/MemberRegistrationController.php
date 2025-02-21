@@ -35,7 +35,7 @@ class MemberRegistrationController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'termsAndConditionCheckbox' => 'required',
-            'hasReferralCode' => 'false',
+            'hasReferralCode' => 'nullable',
             'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
         ]);
         if ($request->hasReferralCode) {
@@ -46,10 +46,13 @@ class MemberRegistrationController extends Controller
                     'method' => 'get',
                     'type' => 'register',
                     'hasReferralCode' => 'true',
-                    'referral_code' => $request->referral_code,
+                    'referral_code' => '',
                 ];
+                session()->flash('error', 'Invalid referral code');
+
                 return view('front.join-us')->with('formData', $formData);
             }
+            session(['referral_code' => $request->referral_code]);
         }
         if (User::where('email', $request->email)->exists()) {
             return back()->with('error', 'Email already exists');
@@ -62,6 +65,7 @@ class MemberRegistrationController extends Controller
             session()->flash('success', 'OTP sent successfully');
             session(['email' => $request->email]);
             session(['name' => $request->name]);
+            session(['referral_code' => $request->referral_code]);
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to send OTP');
         }
@@ -166,12 +170,14 @@ class MemberRegistrationController extends Controller
                 'password' => bcrypt($otp),
             ]);
             if ($user) {
+                $referrar = User::where('referral_code', session('referral_code'))->first();
                 Member::create([
                     'user_id' => $user->id,
                     'enrollment_date' => now(),
                     'first_name' => strtoupper(session('name')),
                     'email' => $email,
                     'profile_status' => 'inActive',
+                    'referrer_id' => $referrar->id,
                 ]);
 
                 try {
