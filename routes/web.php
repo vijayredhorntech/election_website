@@ -20,14 +20,26 @@ use App\Http\Controllers\AccountSetting;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy');
+Route::get('/terms', [PageController::class, 'terms'])->name('terms');
+Route::get('/manifesto', [PageController::class, 'manifesto'])->name('manifesto');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/code-of-conduct', [PageController::class, 'codeOfConduct'])->name('code-of-conduct');
+Route::get('/leadership', [PageController::class, 'leadership'])->name('leadership');
+Route::get('/policies', [PageController::class, 'policies'])->name('policies');
+Route::get('/events', [PageController::class, 'events'])->name('events');
+Route::get('/news', [PageController::class, 'news'])->name('news');
+
 Route::get('/donate', [PageController::class, 'donate'])->name('donate');
 Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
-
 
 Route::get('/what_is_membership', [PageController::class, 'whatIsMembership'])->name('whatIsMembership');
 
@@ -59,8 +71,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/member_address_information', [MemberRegistrationController::class, 'storeMemberAddressInformation'])->name('storeMemberAddressInformation');
     Route::get('/members_profile', [MemberController::class, 'memberProfile'])->name('memberProfile');
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
-
-
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
     Route::get('/counties', [CountyController::class, 'index'])->name('counties');
@@ -156,8 +166,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/constituencies/store', [ConstituencyController::class, 'store'])->name('store');
             Route::post('/constituencies/update/{id}', [ConstituencyController::class, 'update'])->name('update');
         });
+
+        Route::name('news.')->group(function () {
+            Route::get('/news', [NewsController::class, 'index'])->name('index');
+            Route::get('/news/create', [NewsController::class, 'create'])->name('create');
+            Route::post('/news/store', [NewsController::class, 'store'])->name('store');
+            Route::get('/news/{id}', [NewsController::class, 'show'])->name('show');
+            Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('edit');
+            Route::post('/news/update/{id}', [NewsController::class, 'update'])->name('update');
+            Route::get('/news/delete/{id}', [NewsController::class, 'destroy'])->name('delete');
+        });
     });
 });
 
+// Contact Form Submission
+Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submit');
+
+// Newsletter Subscription
+Route::post('/subscribe', [PageController::class, 'subscribe'])->name('subscribe');
 
 require __DIR__ . '/auth.php';

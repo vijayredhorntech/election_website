@@ -150,9 +150,9 @@
                                 <div id="collapseFour" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <ul>
-                                            <li><strong>Shape Policies: </strong>Vote and propose ideas to be included in the party’s agenda.</li>
+                                            <li><strong>Shape Policies: </strong>Vote and propose ideas to be included in the party's agenda.</li>
                                             <li><strong>Campaigning: </strong>Help in local and national campaigns, including door-to-door engagement and digital outreach.</li>
-                                            <li><strong>Community Events: </strong>Attend meetings, rallies, and policy discussions to promote One Nation’s vision.</li>
+                                            <li><strong>Community Events: </strong>Attend meetings, rallies, and policy discussions to promote One Nation's vision.</li>
                                             <li><strong>Stand for Election: </strong> Ambitious members can be supported to run for office under the One Nation banner.</li>
                                         </ul>
                                     </div>
@@ -179,6 +179,37 @@
                             </div>
 
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="membership-info py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h1 class="text-center mb-5">What is Membership?</h1>
+                    
+                    <div class="membership-content">
+                        <h2>Benefits of Membership</h2>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-primary mr-2"></i> Have your say in party policies</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i> Vote in leadership elections</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i> Attend exclusive member events</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i> Regular updates and newsletters</li>
+                        </ul>
+
+                        <h2 class="mt-5">Membership Requirements</h2>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Must be 18 years or older</li>
+                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Not a member of another political party</li>
+                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Support our values and principles</li>
+                        </ul>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Join Now</a>
                     </div>
                 </div>
             </div>
