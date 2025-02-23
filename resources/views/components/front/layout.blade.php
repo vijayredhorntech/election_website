@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>One-Nation</title>
+    <title>{{ $data['title'] ?? 'One Nation – A Movement for a Stronger Britain' }}</title>
+    <meta name="description" content="{{ $data['meta_description'] ?? 'Join One Nation Party in building a better, fairer, and stronger future for Britain.' }}">
     <!-- favicon -->
     <link rel="icon" href="{{asset('assets/images/logo.png')}}" sizes="20x20" type="image/png" />
     <!-- animate -->
@@ -18,7 +19,7 @@
     <!-- owl carousel -->
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}" />
     <!-- fontawesome -->
-    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- iconmoon -->
     <link rel="stylesheet" href="{{asset('assets/css/iconmoon.css')}}s">
     <!-- Hover CSS -->
@@ -62,6 +63,57 @@
             color: #999;
             opacity: 0.7;
         }
+
+        .nav-link {
+            position: relative;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #c41e3a;  /* Your theme red color */
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #c41e3a;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Active state */
+        .nav-link.active {
+            color: #c41e3a;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Optional: Add a subtle animation for the active state */
+        @keyframes activeIndicator {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .nav-link.active::after {
+            animation: activeIndicator 0.3s ease forwards;
+        }
     </style>
 </head>
 
@@ -77,16 +129,16 @@
                     <div class="top-social">
                         <ul class="top-social-share">
                             <li>
-                                <a href="{{route('index')}}"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a href="{{route('index')}}"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             </li>
                             <li>
-                                <a href="{{route('index')}}"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
                             </li>
                             <li>
-                                <a href="{{route('index')}}"><i class="fab fa-dribbble"></i></a>
+                                <a href="#"><i class="fab fa-dribbble"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -98,7 +150,7 @@
                                 <i class="icon-phone"></i>
                             </div>
                             <div class="content">
-                                <h5 class="title">0123456789</h5>
+                                <h5 class="title">07955555561</h5>
                             </div>
                         </div>
                         <div class="top-single-item">
@@ -106,11 +158,16 @@
                                 <i class="icon-envelope"></i>
                             </div>
                             <div class="content">
-                                <h5 class="title">info@gmail.com</h5>
+                                <h5 class="title">jsnichal@gmail.com</h5>
                             </div>
                         </div>
                         <div class="top-single-item">
-
+                            <div class="icon">
+                                <i class="icon-location"></i>
+                            </div>
+                            <div class="content">
+                                <h5 class="title">62 King Street, Southall, Greater London UB2 4DB</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,7 +194,10 @@
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav political">
                         <li class="menu-item-has-children current-menu-item">
-                            <a href="{{ route('index') }}">Home</a>
+                            <a href="{{ route('index') }}" 
+                               class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
+                                Home
+                            </a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -145,7 +205,10 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('index') }}">About</a>
+                            <a href="{{ route('about') }}" 
+                               class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
+                                About
+                            </a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -153,7 +216,10 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('index') }}">Events</a>
+                            <a href="{{ route('leadership') }}" 
+                               class="nav-link {{ request()->routeIs('leadership') ? 'active' : '' }}">
+                                Leadership
+                            </a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -161,7 +227,10 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('index') }}">News</a>
+                            <a href="{{ route('policies') }}" 
+                               class="nav-link {{ request()->routeIs('policies') ? 'active' : '' }}">
+                                Policies
+                            </a>
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -169,7 +238,10 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('index') }}">Media</a>
+                            <a href="{{ route('events') }}" 
+                               class="nav-link {{ request()->routeIs('events') ? 'active' : '' }}">
+                                Events
+                            </a>
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -177,7 +249,21 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('index') }}">Contact</a>
+                            <a href="{{ route('news') }}" 
+                               class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">
+                                News
+                            </a>
+                            <div class="line style-01">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot style-02"></span>
+                            </div>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="{{ route('contact') }}" 
+                               class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
+                                Contact
+                            </a>
                             <div class="line">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -248,13 +334,12 @@
                             <div class="footer-widget widget">
                                 <div class="about_us_widget wow animate__animated animate__fadeInUp">
                                     <a href="{{route('index')}}" class="footer-logo"> <img src="{{asset('assets/images/logo.png')}}" alt="footer logo"></a>
-                                    <p>President represented Delaware for 36 years in the U.S. Senate before becoming the 47th Vice
-                                        President of the United States.</p>
+                                    <p>One Nation is committed to building a stronger, more united society through inclusive policies and grassroots engagement. We believe in prioritizing British communities while providing equal opportunities for all.</p>
                                     <div class="social-links">
-                                        <a href="{{route('index')}}"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="{{route('index')}}"><i class="fab fa-twitter"></i></a>
-                                        <a href="{{route('index')}}"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="{{route('index')}}"><i class="fab fa-youtube"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +351,7 @@
                                         <i class="icon-location"></i>
                                     </div>
                                     <div class="details style-01">
-                                        62 King Street, UK
+                                        62 King Street, Southall, Greater London UB2 4DB
                                     </div>
                                 </li>
                                 <li class="single-info-item">
@@ -274,7 +359,7 @@
                                         <i class="icon-envelope"></i>
                                     </div>
                                     <div class="details">
-                                        info@yourmail.com
+                                        jsnichal@gmail.com
                                     </div>
                                 </li>
                                 <li class="single-info-item">
@@ -282,7 +367,7 @@
                                         <i class="icon-phone"></i>
                                     </div>
                                     <div class="details">
-                                        009-215-5599
+                                        07955555561
                                     </div>
                                 </li>
                             </ul>
@@ -295,12 +380,13 @@
                                 <div class="header-content">
                                     <h4 class="title">Join Our Newsletter</h4>
                                 </div>
-                                <form class="subscribe-form" action="index.html">
+                                <form class="subscribe-form" action="" method="POST">
+                                    @csrf
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Enter Email">
+                                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
                                     </div>
                                     <div class="btn-wrapper">
-                                        <a href="{{route('index')}}" class="boxed-btn btn-sanatory style-03">Subscribe Now <i class="icon-paper-plan"></i></a>
+                                        <button type="submit" class="boxed-btn btn-sanatory style-03">Subscribe Now <i class="icon-paper-plan"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -312,61 +398,54 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 col-6">
                             <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
                                 <h4 class="widget-title">
-                                    Explore
-                                    <span class="line">
-                                        <span class="dot"></span>
-                                        <span class="dot"></span>
-                                        <span class="dot style-02"></span>
-                                        <span class="dot"></span>
-                                        <span class="dot"></span>
-                                    </span>
-                                </h4>
-                                <ul>
-                                    <li><a href="{{route('index')}}">Our Story</a></li>
-                                    <li><a href="{{route('index')}}">Team</a></li>
-                                    <li><a href="{{route('index')}}">News</a></li>
-                                    <li><a href="{{route('index')}}">Election</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                            <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
-                                <h4 class="widget-title">
-                                    Useful Links
-                                    <span class="line">
-                                        <span class="dot"></span>
-                                        <span class="dot"></span>
-                                        <span class="dot style-02"></span>
-                                        <span class="dot"></span>
-                                        <span class="dot"></span>
-                                    </span>
-                                </h4>
-                                <ul>
-                                    <li><a href="{{route('index')}}">Privacy Policy</a></li>
-                                    <li><a href="{{route('index')}}">Terms and Conditions</a></li>
-                                    <!-- <li><a href="{{route('index')}}">Support</a></li>
-                                    <li><a href="{{route('index')}}">FAQ</a></li> -->
-                                    <li><a href="{{route('whatIsMembership')}}">What is Membership?</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-                            <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
-                                <h4 class="widget-title">
                                     Quick Links
                                     <span class="line">
                                         <span class="dot"></span>
                                         <span class="dot"></span>
                                         <span class="dot style-02"></span>
-                                        <span class="dot"></span>
-                                        <span class="dot"></span>
                                     </span>
                                 </h4>
                                 <ul>
-                                    <li><a href="{{route('index')}}">About Us</a></li>
-                                    <li><a href="{{route('index')}}">Services</a></li>
-                                    <li><a href="{{route('index')}}">Contact</a></li>
-                                    <li><a href="{{route('index')}}">News</a></li>
+                                    <li><a href="{{route('about')}}">About Us</a></li>
+                                    <li><a href="{{route('leadership')}}">Leadership</a></li>
+                                    <li><a href="{{route('news')}}">News</a></li>
+                                    <li><a href="{{route('events')}}">Events</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                            <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
+                                <h4 class="widget-title">
+                                    Important Links
+                                    <span class="line">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </span>
+                                </h4>
+                                <ul>
+                                    <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
+                                    <li><a href="{{route('terms')}}">Terms & Conditions</a></li>
+                                    <li><a href="{{route('whatIsMembership')}}">What is Membership?</a></li>
+                                    <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                            <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
+                                <h4 class="widget-title">
+                                    Our Policies
+                                    <span class="line">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </span>
+                                </h4>
+                                <ul>
+                                    <li><a href="{{route('policies')}}#justice">Justice & Representation</a></li>
+                                    <li><a href="{{route('policies')}}#education">Public Education</a></li>
+                                    <li><a href="{{route('policies')}}#economy">Economic Growth</a></li>
+                                    <li><a href="{{route('policies')}}#welfare">Welfare Reform</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -377,7 +456,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="copyright-area-inner">
-                                    Copyright © 2022 One Nation. All Rights Reserved. Designed by <a href="https://himsoftsolution.com" target="_blank" style="color: #b30d00">Him Soft Solution</a>
+                                    &copy; {{ date('Y') }} One Nation. All Rights Reserved.
                                 </div>
                             </div>
                         </div>
