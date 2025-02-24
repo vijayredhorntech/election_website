@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class MemberRegistrationController extends Controller
 {
@@ -160,46 +161,79 @@ class MemberRegistrationController extends Controller
                 'amount' => '15.88',
                 'label' => 'Membership 3',
             ],
-
         ];
-        $memberShip = collect($memberShipPlans)->where('id', $id)->first(); {
-            try {
-                Mail::to($email)->send(new MemberShipMail($memberShip));
-            } catch (\Exception $e) {
-            }
+
+        $memberShip = collect($memberShipPlans)->where('id', $id)->first();
+
+        DB::beginTransaction();
+        try {
+            // Queue membership email
+            Mail::to($email)->queue(new MemberShipMail($memberShip));
+
+            // Generate referral code
             $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
             $referrar = User::where('referral_code', session('request_referral_code'))->first();
 
+            // Create user
             $user = User::create([
                 'name' => strtoupper(session('name')),
                 'email' => $email,
                 'password' => bcrypt($otp),
             ]);
-            if ($user) {
 
-                Member::create([
-                    'user_id' => $user->id,
-                    'enrollment_date' => now(),
-                    'first_name' => strtoupper(session('name')),
-                    'email' => $email,
-                    'profile_status' => 'inActive',
-                    'referrer_id' => $referrar?->id,
-                ]);
-
-
-                try {
-                    Mail::to($email)->send(new OtpMail($otp));
-                } catch (\Exception $e) {
-                }
-                session()->forget('request_referral_code');
-                session()->forget('name');
-                session()->forget('email');
-
-                auth()->login($user);
-                return redirect()->route('memberBasicInformation')->with('success', 'Your account has been created successfully. Please complete your profile.');
-            } else {
-                return redirect()->route('memberShipPayment')->with('error', 'Something went wrong. Please try again later.');
+            if (!$user) {
+                throw new \Exception('Failed to create user account');
             }
+
+            // Create member
+            $member = Member::create([
+                'user_id' => $user->id,
+                'enrollment_date' => now(),
+                'first_name' => strtoupper(session('name')),
+                'email' => $email,
+                'profile_status' => 'inActive',
+                'referrer_id' => $referrar?->id,
+            ]);
+
+            if (!$member) {
+                throw new \Exception('Failed to create member profile');
+            }
+
+            // Queue OTP email
+            Mail::to($email)->queue(new OtpMail($otp));
+
+            // Clear session data
+            session()->forget([
+                'request_referral_code',
+                'name',
+                'email'
+            ]);
+
+            // Commit transaction
+            DB::commit();
+
+            // Login user
+            auth()->login($user);
+
+            return redirect()
+                ->route('memberBasicInformation')
+                ->with('success', 'Your account has been created successfully. Please complete your profile.');
+        } catch (\Exception $e) {
+            // Rollback transaction
+            DB::rollBack();
+
+            // Log the error
+            Log::error('Payment gateway error', [
+                'email' => $email,
+                'membership_id' => $id,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            // Return error response
+            return redirect()
+                ->route('memberShipPayment')
+                ->with('error', 'Registration failed. Please try again later. If the problem persists, contact support.');
         }
     }
 
