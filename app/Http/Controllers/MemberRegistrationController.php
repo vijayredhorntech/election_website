@@ -39,8 +39,8 @@ class MemberRegistrationController extends Controller
             'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
         ]);
         session()->forget('request_referral_code');
-        if ($request->hasReferralCode!=null) {
-            if ($request->referral_code!=null) {
+        if ($request->hasReferralCode != null) {
+            if ($request->referral_code != null) {
                 $referral = User::where('referral_code', $request->referral_code)->first();
                 if (!$referral) {
                     $formData = [
@@ -171,10 +171,10 @@ class MemberRegistrationController extends Controller
             $referrar = User::where('referral_code', session('request_referral_code'))->first();
 
             $user = User::create([
-                    'name' => strtoupper(session('name')),
-                    'email' => $email,
-                    'password' => bcrypt($otp),
-                ]);
+                'name' => strtoupper(session('name')),
+                'email' => $email,
+                'password' => bcrypt($otp),
+            ]);
             if ($user) {
 
                 Member::create([
@@ -183,7 +183,7 @@ class MemberRegistrationController extends Controller
                     'first_name' => strtoupper(session('name')),
                     'email' => $email,
                     'profile_status' => 'inActive',
-                    'referrer_id' => $referrar->id,
+                    'referrer_id' => $referrar?->id,
                 ]);
 
 
