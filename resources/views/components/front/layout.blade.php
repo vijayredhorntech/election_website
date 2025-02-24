@@ -194,7 +194,7 @@
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav political">
                         <li class="menu-item-has-children current-menu-item">
-                            <a href="{{ route('index') }}" 
+                            <a href="{{ route('index') }}"
                                class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
                                 Home
                             </a>
@@ -205,7 +205,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('about') }}" 
+                            <a href="{{ route('about') }}"
                                class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
                                 About
                             </a>
@@ -216,7 +216,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('leadership') }}" 
+                            <a href="{{ route('leadership') }}"
                                class="nav-link {{ request()->routeIs('leadership') ? 'active' : '' }}">
                                 Leadership
                             </a>
@@ -227,7 +227,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('policies') }}" 
+                            <a href="{{ route('policies') }}"
                                class="nav-link {{ request()->routeIs('policies') ? 'active' : '' }}">
                                 Policies
                             </a>
@@ -238,7 +238,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('events') }}" 
+                            <a href="{{ route('events') }}"
                                class="nav-link {{ request()->routeIs('events') ? 'active' : '' }}">
                                 Events
                             </a>
@@ -249,7 +249,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('news') }}" 
+                            <a href="{{ route('news') }}"
                                class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">
                                 News
                             </a>
@@ -260,7 +260,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('contact') }}" 
+                            <a href="{{ route('contact') }}"
                                class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
                                 Contact
                             </a>
@@ -328,74 +328,9 @@
     <footer class="footer-area line-bg" style="background-image: url({{asset('assets/images/line.png')}});">
         <div class="footer-top issue style-01">
             <div class="container">
-                <div class="footer-top-border padding-bottom-60 padding-top-75">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="footer-widget widget">
-                                <div class="about_us_widget wow animate__animated animate__fadeInUp">
-                                    <a href="{{route('index')}}" class="footer-logo"> <img src="{{asset('assets/images/logo.png')}}" alt="footer logo"></a>
-                                    <p>One Nation is committed to building a stronger, more united society through inclusive policies and grassroots engagement. We believe in prioritizing British communities while providing equal opportunities for all.</p>
-                                    <div class="social-links">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                        <a href="#"><i class="fab fa-youtube"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <ul class="contact_info_list wow animate__animated animate__fadeInUp">
-                                <li class="single-info-item">
-                                    <div class="icon style-01">
-                                        <i class="icon-location"></i>
-                                    </div>
-                                    <div class="details style-01">
-                                        62 King Street, Southall, Greater London UB2 4DB
-                                    </div>
-                                </li>
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-envelope"></i>
-                                    </div>
-                                    <div class="details">
-                                        jsnichal@gmail.com
-                                    </div>
-                                </li>
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-phone"></i>
-                                    </div>
-                                    <div class="details">
-                                        07955555561
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4 offset-lg-1 col-md-12">
-                            <div class="footer-widget widget widget_subscribe subscribe-bg"
-                                style="background-image: url({{asset('assets/images/Mask-flag.png')}});">
-                                <div class="shape-01"></div>
-                                <div class="shape-02"></div>
-                                <div class="header-content">
-                                    <h4 class="title">Join Our Newsletter</h4>
-                                </div>
-                                <form class="subscribe-form" action="" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
-                                    </div>
-                                    <div class="btn-wrapper">
-                                        <button type="submit" class="boxed-btn btn-sanatory style-03">Subscribe Now <i class="icon-paper-plan"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="footer-bottom-border">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
                                 <h4 class="widget-title">
                                     Quick Links
@@ -413,7 +348,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
                                 <h4 class="widget-title">
                                     Important Links
@@ -431,7 +366,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
                                 <h4 class="widget-title">
                                     Our Policies
@@ -449,14 +384,34 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                            <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
+                                <h4 class="widget-title">
+                                    Contact Info
+                                    <span class="line">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </span>
+                                </h4>
+                                <ul>
+                                    <li><a href="#">62 King Street, Southall, Greater London UB2 4DB</a></li>
+                                    <li><a href="#">jsnichal@gmail.com</a></li>
+                                    <li><a href="#">07955555561</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="copyright-area">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" style="display: flex; justify-content: space-between; flex-wrap: wrap">
                                 <div class="copyright-area-inner">
                                     &copy; {{ date('Y') }} One Nation. All Rights Reserved.
+                                </div>
+                                <div class="copyright-area-inner">
+                                   Developed by: <a href="https://www.himsoftsolution.com" target="_blank" style="color: #c41e3a; font-weight: bold">Him Soft Solution</a>
                                 </div>
                             </div>
                         </div>
