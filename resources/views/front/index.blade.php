@@ -4,10 +4,24 @@
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide1.jpeg')}})">
-                    <div class="slider-content">
+                  
+                </div>
+                <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
+                
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
+
+
+                     <div class="slider-content" style="margin-top:20px">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-6">
                                     <div class="slider-text-box">
                                         <span class="slider-subtitle">WELCOME TO ONE NATION</span>
                                         <h1 class="slider-title">
@@ -25,22 +39,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
-                    <div class="slider-content">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-6">
                                     <div class="slider-text-box">
                                         <span class="slider-subtitle">BUILDING OUR FUTURE</span>
                                         <h1 class="slider-title">
                                             Justice, Education & 
                                             <div class="highlight-text">Unity</div>
                                         </h1>
-                                        <p class="slider-text">Britain has provided shelter and dignity in difficult times—now, it's time to work together for a better, fairer future. Join us in shaping a more inclusive tomorrow.</p>
+                                        <p class="slider-text">Britain has provided shelter and dignity in difficult times—now, it's time to work together for a 
+                                              better, fairer future. Join us in shaping a more inclusive tomorrow.</p>
                                         <div class="slider-buttons">
                                             <a href="{{ route('policies') }}" class="btn btn-primary btn-lg">
                                                 Our Policies <i class="fas fa-file-alt"></i>
@@ -54,13 +61,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </div>
+              
+
+
 
     <!-- Features Section -->
     <section class="features-section py-5" data-aos="fade-up">
@@ -350,7 +353,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
     }
 
     .swiper-slide-active .slider-text-box {
@@ -429,7 +431,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
     }
 
     .slider-content {

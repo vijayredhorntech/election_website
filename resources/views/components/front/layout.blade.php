@@ -72,20 +72,7 @@
             transition: color 0.3s ease;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #c41e3a;  /* Your theme red color */
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #c41e3a;
-        }
+       
 
         .nav-link:hover::after {
             width: 100%;
@@ -178,7 +165,7 @@
 
     <div class="header-style-01">
         <!-- support bar area end -->
-        <nav class="navbar navbar-area navbar-expand-lg nav-style-01">
+        <nav class="navbar navbar-area navbar-expand-lg nav-style-01"  style="padding:0px">
             <div class="container nav-container">
                 <div class="responsive-mobile-menu">
                     <div class="logo-wrapper">

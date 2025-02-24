@@ -185,4 +185,9 @@ Route::post('/contact', [PageController::class, 'submitContact'])->name('contact
 // Newsletter Subscription
 Route::post('/subscribe', [PageController::class, 'subscribe'])->name('subscribe');
 
+// Feedback Routes
+use App\Http\Controllers\FeedbackController;
+Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback');
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
 require __DIR__ . '/auth.php';
