@@ -257,7 +257,7 @@
                 <div class="mt-4 flex">
                     <div class="grow flex flex-col justify-center ">
                         <span class="text-black font-medium text-lg">Total Revenue</span>
-                        <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ 4,24,000</span>
+                        <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ 0</span>
                     </div>
                     <div class="flex-none">
 
