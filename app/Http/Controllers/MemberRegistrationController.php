@@ -66,7 +66,7 @@ class MemberRegistrationController extends Controller
         session(['otp' => $otp]);
 
         try {
-            Mail::to($request->email)->send(new OtpMail($otp));
+            Mail::to($request->email)->queue(new OtpMail($otp));
             session()->flash('success', 'OTP sent successfully');
             session(['email' => $request->email]);
             session(['name' => $request->name]);
@@ -167,9 +167,6 @@ class MemberRegistrationController extends Controller
 
         DB::beginTransaction();
         try {
-            // Queue membership email
-            Mail::to($email)->queue(new MemberShipMail($memberShip));
-
             // Generate referral code
             $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
             $referrar = User::where('referral_code', session('request_referral_code'))->first();
@@ -200,7 +197,15 @@ class MemberRegistrationController extends Controller
             }
 
             // Queue OTP email
-            Mail::to($email)->queue(new OtpMail($otp));
+            // Mail::to($email)->queue(new OtpMail($otp));
+
+            $data = [
+                'email' => $email,
+                'password' => $otp,
+            ];
+
+            // Queue membership email
+            Mail::to($email)->queue(new MemberShipMail($data));
 
             // Clear session data
             session()->forget([

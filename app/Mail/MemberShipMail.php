@@ -10,16 +10,15 @@ class MemberShipMail extends Mailable
 {
     use SerializesModels, Queueable;
 
-    public $memberShip;
+    public $data;
 
-    public function __construct($memberShip)
+    public function __construct($data)
     {
-        $this->memberShip = $memberShip;
+        $this->data = $data;
     }
 
     public function build()
     {
-        return $this->subject('Welcome to One Nation - Your Journey Begins Now!')->view('emails.member-ship') // Make sure you create an email view in resources/views/emails/otp.blade.php
-            ->with('otp', $this->memberShip);
+        return $this->subject('Welcome to One Nation - Your Journey Begins Now!')->view('emails.member-ship')->with('data', $this->data);
     }
 }

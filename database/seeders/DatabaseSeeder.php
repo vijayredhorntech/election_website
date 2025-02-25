@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'admin@admin.com',
             'role' => 'admin',
-            'referral_code' => 'ADMINX',
+            'referral_code' => 'ONRA001',
         ]);
 
         // Seed financial years from 2025-2026 to 2039-2040

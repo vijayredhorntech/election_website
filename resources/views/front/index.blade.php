@@ -221,10 +221,10 @@
                     <p class=" mb-4">Be part of a movement that values justice, education, and unity. Together, we can build a better Britain for everyone.</p>
                     <div class="cta-buttons">
                         <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Become a Member <i class="fas fa-users"></i></a>
-                        <a href="{{ route('donate') }}" class="btn btn-outline-light btn-lg">Support Our Cause <i class="fas fa-heart"></i></a>
+                        <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Support Our Cause <i class="fas fa-heart"></i></a>
                     </div>
                     <div class="cta-buttons mt-4">
-                        <a href="{{ route('feedback') }}" class="btn btn-outline-light btn-lg">Share Your Feedback <i class="fas fa-users"></i></a>
+                        <a href="{{ route('feedback') }}" class="btn btn-primary btn-lg">Share Your Feedback <i class="fas fa-users"></i></a>
                     </div>
                 </div>
             </div>

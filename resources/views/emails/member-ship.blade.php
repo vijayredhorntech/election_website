@@ -21,7 +21,7 @@
                         <td align="center">
                             <h2 style="color:#333333;margin:0;font-size:24px;">🎉 Congratulations! 🎉</h2>
                             <p style="color:#555555;font-size:16px;line-height:24px;margin:15px 0 20px;">
-                                Welcome to <strong>One Nation</strong>! You are now part of a community dedicated to unity, progress, and positive change.
+                                Welcome to <strong>One Nation</strong>! You are now part of a community dedicated to Justice & Representation, Public Education, and Economic Growth.
                             </p>
                         </td>
                     </tr>
@@ -37,8 +37,8 @@
                             <table width="80%" cellpadding="10" cellspacing="0" border="0" style="background:#f8f8f8;border-radius:5px;">
                                 <tr>
                                     <td align="left" style="font-size:16px;color:#333;">
-                                        <strong>Email:</strong> {{ $user['email'] }}<br>
-                                        <strong>Default Password:</strong> {{ $defaultPassword }}
+                                        <strong>Email:</strong> {{ $data['email'] }}<br>
+                                        <strong>Default Password:</strong> {{ $data['password'] }}
                                     </td>
                                 </tr>
                             </table>
@@ -55,7 +55,7 @@
                         <td align="center" style="padding-top:30px;">
                             <p style="color:#888888;font-size:14px;margin:0;">
                                 For security reasons, please change your password after logging in.
-                                If you need any assistance, feel free to contact our support team.
+                                If you need any assistance, feel free to contact us.
                             </p>
                         </td>
                     </tr>

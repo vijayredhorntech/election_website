@@ -110,6 +110,11 @@ class MemberController extends Controller
     public function view($id)
     {
         $member = Member::find($id);
+
+        if (!$member) {
+            return redirect()->back()->with('error', 'Member not found');
+        }
+
         return view('admin.member.view')->with('member', $member);
     }
 

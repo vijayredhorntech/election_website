@@ -38,7 +38,7 @@
                         <div class="border-[1px] border-primaryDark/10">
 
                             <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg cursor-pointer flex justify-between items-center"
-                                 onclick="document.getElementById('personalInfoDiv').classList.toggle('hidden')">
+                                onclick="document.getElementById('personalInfoDiv').classList.toggle('hidden')">
                                 <span>Personal Information</span>
                                 <i class="fa fa-angle-down"></i>
                             </div>
@@ -99,7 +99,7 @@
 
                         <div class="border-[1px] border-primaryDark/10 mt-4">
                             <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg cursor-pointer flex justify-between items-center"
-                            onclick="document.getElementById('contactInfoDiv').classList.toggle('hidden')">
+                                onclick="document.getElementById('contactInfoDiv').classList.toggle('hidden')">
                                 <span>Contact Information</span>
 
                                 <i class="fa fa-angle-down"></i>
@@ -126,7 +126,7 @@
 
                         <div class="border-[1px] border-primaryDark/10 mt-4">
                             <div class="p-2 bg-primaryDark/10 text-primaryDark font-medium text-lg cursor-pointer flex justify-between items-center"
-                                 onclick="document.getElementById('addressInfoDiv').classList.toggle('hidden')">
+                                onclick="document.getElementById('addressInfoDiv').classList.toggle('hidden')">
                                 <span>Address Information</span>
 
                                 <i class="fa fa-angle-down"></i>
@@ -140,7 +140,7 @@
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">County</td>
-                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->county->name}}</td>
+                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->county ? $member->county->name : ''}}</td>
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">City</td>
@@ -148,7 +148,7 @@
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Constituency</td>
-                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->constituency->name}}</td>
+                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->constituency ? $member->constituency->name : ''}}</td>
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Post Code</td>
@@ -156,7 +156,7 @@
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 border-b-[1px] border-b-primaryDark/10 text-md">Country</td>
-                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->country->name}}</td>
+                                        <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span> {{$member->country?$member->country->name:''}}</td>
                                     </tr>
                                     <tr>
                                         <td class="w-[200px] font-semibold text-black/80 text-md">Alternate Number</td>
