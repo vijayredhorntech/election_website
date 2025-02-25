@@ -56,6 +56,50 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
+                    <!-- Why Join Section -->
+                    <div class="policy-category mb-5" id="why-join">
+                        <div class="faq-contents">
+                            <h2 class="title">Why Join?</h2>
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="single-faq-item">
+                                        <div class="content">
+                                            <ul class="check-list">
+                                                <li><i class="fas fa-check"></i> Make Your Voice Heard – Influence policies and decisions that impact your community.</li>
+                                                <li><i class="fas fa-check"></i> Exclusive Member Benefits – Receive priority access to events, campaigns, and discussions.</li>
+                                                <li><i class="fas fa-check"></i> Be Part of a Strong Network – Connect with like-minded individuals who share your passion for positive change.</li>
+                                                <li><i class="fas fa-check"></i> Personal Growth & Leadership Opportunities – Gain experience, develop skills, and stand for leadership positions.</li>
+                                                <li><i class="fas fa-check"></i> Support a Cause You Believe In – Your membership directly contributes to initiatives that drive real progress.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Application Process Section -->
+                    <div class="policy-category mb-5" id="application-process">
+                        <div class="faq-contents">
+                            <h2 class="title">Application Process</h2>
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="single-faq-item">
+                                        <div class="content">
+                                            <ul class="check-list">
+                                                <li><i class="fas fa-check"></i> Applications must be made online or in person.</li>
+                                                <li><i class="fas fa-check"></i> Members must be at least 16 years old.</li>
+                                                <li><i class="fas fa-check"></i> All applicants must align with the party's values and not be a member of another political party.</li>
+                                            </ul>
+                                            <p class="mt-4"><strong>Join Today & Be Part of Something Bigger!</strong></p>
+                                            <p>Don't just stand on the sidelines—get involved! Whether you're looking to make an impact, connect with others, or take on leadership opportunities, this is your chance. Sign up now and start your journey towards making a difference!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Membership Fees Section -->
                     <div class="policy-category mb-5" id="membership-fees">
                         <div class="faq-contents">

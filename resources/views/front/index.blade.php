@@ -16,54 +16,23 @@
         </div>
     </div>
 
-
-
-    <div class="slider-content" style="margin-top:20px">
+    <div class="header-area header-sanatory" style="padding:80px 0px; background-image: url({{asset('assets/images/about-bg.png')}}); background-position:center; background-size:cover">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="slider-text-box">
-                        <span class="slider-subtitle">WELCOME TO ONE NATION</span>
-                        <h1 class="slider-title">
-                            A Movement for a
-                            <div class="highlight-text">Stronger Britain</div>
-                        </h1>
-                        <p class="slider-text">Dedicated to addressing injustices, resolving public issues, and ensuring fair representation, inclusivity, and accountability.</p>
-                        <div class="slider-buttons">
-                            <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">
-                                Join Us Today <i class="fas fa-arrow-right"></i>
-                            </a>
-                            <a href="{{ route('about') }}" class="btn btn-outline-light btn-lg">
-                                Learn More <i class="fas fa-info-circle"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="slider-text-box">
-                        <span class="slider-subtitle">BUILDING OUR FUTURE</span>
-                        <h1 class="slider-title">
-                            Justice, Education &
-                            <div class="highlight-text">Unity</div>
-                        </h1>
-                        <p class="slider-text">Britain has provided shelter and dignity in difficult times—now, it's time to work together for a
-                            better, fairer future. Join us in shaping a more inclusive tomorrow.</p>
-                        <div class="slider-buttons">
-                            <a href="{{ route('policies') }}" class="btn btn-primary btn-lg">
-                                Our Policies <i class="fas fa-file-alt"></i>
-                            </a>
-                            <a href="{{ route('whatIsMembership') }}" class="btn btn-outline-light btn-lg">
-                                Why Join? <i class="fas fa-question-circle"></i>
-                            </a>
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="header-inner-02">
+                        <span class="subtitle" style="color:whitesmoke">Welcome to One Nation</span>
+                        <h1 class="title" style="color:white">TO SOLVE & EDUCATE AS - ONE NATION</h1>
+                        <p>Building a stronger, fairer, and more united society for all</p>
+                        <div class="btn-wrapper" style="margin-top:10px">
+                            <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory">Join Us Today</a>
+                            <a href="{{route('donate')}}" class="boxed-btn btn-sanatory-2">Donate Now</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 
     <!-- Features Section -->
     <section class="features-section py-5" data-aos="fade-up">
