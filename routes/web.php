@@ -36,6 +36,8 @@ Route::get('/leadership', [PageController::class, 'leadership'])->name('leadersh
 Route::get('/policies', [PageController::class, 'policies'])->name('policies');
 Route::get('/events', [PageController::class, 'events'])->name('events');
 Route::get('/news', [PageController::class, 'news'])->name('news');
+Route::get('/memberShipDetails', [PageController::class, 'memberShipDetails'])->name('memberShipDetails');
+
 
 Route::get('/donate', [PageController::class, 'donate'])->name('donate');
 Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');

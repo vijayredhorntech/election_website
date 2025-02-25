@@ -241,4 +241,9 @@ class PageController extends Controller
 
           return view('front.policies', compact('data', 'policies'));
      }
+
+     public function memberShipDetails()
+     {
+          return view('front.membership-details');
+     }
 }
