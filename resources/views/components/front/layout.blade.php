@@ -72,7 +72,7 @@
             transition: color 0.3s ease;
         }
 
-       
+
 
         .nav-link:hover::after {
             width: 100%;
@@ -93,6 +93,7 @@
             from {
                 width: 0;
             }
+
             to {
                 width: 100%;
             }
@@ -165,7 +166,7 @@
 
     <div class="header-style-01">
         <!-- support bar area end -->
-        <nav class="navbar navbar-area navbar-expand-lg nav-style-01"  style="padding:0px">
+        <nav class="navbar navbar-area navbar-expand-lg nav-style-01" style="padding:0px">
             <div class="container nav-container">
                 <div class="responsive-mobile-menu">
                     <div class="logo-wrapper">
@@ -182,7 +183,7 @@
                     <ul class="navbar-nav political">
                         <li class="menu-item-has-children current-menu-item">
                             <a href="{{ route('index') }}"
-                               class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
                                 Home
                             </a>
                             <div class="line">
@@ -193,7 +194,7 @@
                         </li>
                         <li class="menu-item-has-children">
                             <a href="{{ route('about') }}"
-                               class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
                                 About
                             </a>
                             <div class="line">
@@ -204,7 +205,7 @@
                         </li>
                         <li class="menu-item-has-children">
                             <a href="{{ route('leadership') }}"
-                               class="nav-link {{ request()->routeIs('leadership') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('leadership') ? 'active' : '' }}">
                                 Leadership
                             </a>
                             <div class="line">
@@ -215,7 +216,7 @@
                         </li>
                         <li class="menu-item-has-children">
                             <a href="{{ route('policies') }}"
-                               class="nav-link {{ request()->routeIs('policies') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('policies') ? 'active' : '' }}">
                                 Policies
                             </a>
                             <div class="line style-01">
@@ -226,7 +227,7 @@
                         </li>
                         <li class="menu-item-has-children">
                             <a href="{{ route('events') }}"
-                               class="nav-link {{ request()->routeIs('events') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('events') ? 'active' : '' }}">
                                 Events
                             </a>
                             <div class="line style-01">
@@ -237,7 +238,7 @@
                         </li>
                         <li class="menu-item-has-children">
                             <a href="{{ route('news') }}"
-                               class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">
                                 News
                             </a>
                             <div class="line style-01">
@@ -248,7 +249,7 @@
                         </li>
                         <li class="menu-item-has-children">
                             <a href="{{ route('contact') }}"
-                               class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
+                                class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
                                 Contact
                             </a>
                             <div class="line">
@@ -299,7 +300,7 @@
                     </div>
                     <div class="btn-wrapper" style="margin-left: 10px">
                         <a href="{{route('donate')}}" class="boxed-btn btn-sanatory">
-                            Donation Now
+                            Donate Now
                             <i class="icon-paper-plan"></i>
                         </a>
                     </div>
@@ -398,7 +399,7 @@
                                     &copy; {{ date('Y') }} One Nation. All Rights Reserved.
                                 </div>
                                 <div class="copyright-area-inner">
-                                   Developed by: <a href="https://www.himsoftsolution.com" target="_blank" style="color: #c41e3a; font-weight: bold">Him Soft Solution</a>
+                                    Developed by: <a href="https://www.himsoftsolution.com" target="_blank" style="color: #c41e3a; font-weight: bold">Him Soft Solution</a>
                                 </div>
                             </div>
                         </div>
