@@ -250,8 +250,6 @@ class MemberRegistrationController extends Controller
 
     public function storeMemberBasicInformation(Request $request)
     {
-
-
         $request->validate([
             'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
@@ -261,36 +259,51 @@ class MemberRegistrationController extends Controller
             'qualification' => 'nullable|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
             'profession' => 'nullable|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
             'national_insurance_number' => 'required|string|max:255|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
+            'primary_country_code' => 'required|string|max:255',
             'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
+            'alternate_country_code' => 'nullable|string|max:255',
             'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
         ]);
-        $member = Member::where('user_id', auth()->user()->id)->first();
 
-        $dateOfBirth = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dob)->format('Y-m-d');
+        try {
+            $member = Member::where('user_id', auth()->user()->id)->first();
 
-        $member->update([
-            'title' => $request->title,
-            'date_of_birth' => $dateOfBirth,
-            'gender' => $request->gender,
-            'marital_status' => $request->marital_status,
-            'qualification' => $request->qualification,
-            'profession' => $request->profession,
-            'primary_mobile_number' => $request->primary_mobile_number,
-            'alternate_mobile_number' => $request->alternate_mobile_number,
-            'profile_status' => 'inActive',
-        ]);
+            if (!$member) {
+                return back()->with('error', 'Member not found');
+            }
 
-        if ($request->hasFile('profile_photo')) {
-            $file = $request->file('profile_photo');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->store('membersPhotos', 'public');
+            $dateOfBirth = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dob)->format('Y-m-d');
+
             $member->update([
-                'profile_photo' => $filePath,
+                'title' => $request->title,
+                'date_of_birth' => $dateOfBirth,
+                'gender' => $request->gender,
+                'marital_status' => $request->marital_status,
+                'qualification' => $request->qualification,
+                'profession' => $request->profession,
+                'national_insurance_number' => $request->national_insurance_number,
+                'primary_mobile_number' => $request->primary_mobile_number,
+                'alternate_mobile_number' => $request->alternate_mobile_number,
+                'primary_country_code' => $request->primary_country_code,
+                'alternate_country_code' => $request->alternate_country_code,
+                'profile_status' => 'inActive',
             ]);
-        }
 
-        session()->flash('success', 'Basic information saved successfully');
-        return redirect()->route('memberAddressInformation');
+            if ($request->hasFile('profile_photo')) {
+                $file = $request->file('profile_photo');
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->store('membersPhotos', 'public');
+                $member->update([
+                    'profile_photo' => $filePath,
+                ]);
+            }
+
+            session()->flash('success', 'Basic information saved successfully');
+            return redirect()->route('memberAddressInformation');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'An error occurred while saving the basic information');
+        }
     }
 
     public function storeMemberAddressInformation(Request $request)
@@ -316,21 +329,31 @@ class MemberRegistrationController extends Controller
                 ->withInput();
         }
 
-        $member = Member::where('user_id', auth()->user()->id)->first();
+        try {
+            $member = Member::where('user_id', auth()->user()->id)->first();
 
-        $member->update([
-            'country_id' => Country::where('code', $request->country_id)->first()->id,
-            'county_id' => County::where('code', $request->county_id)->first()->id,
-            'constituency_id' => Constituency::where('code', $request->constituency_id)->first()->id,
-            'address' => $request->address,
-            'postcode' => $request->postcode,
-            'city' => $request->town_city,
-            'region' => $request->region,
-            'profile_status' => 'active',
-        ]);
+            if (!$member) {
+                session()->flash('error', 'Member not found');
+                return redirect()->back();
+            }
 
-        session()->flash('success', 'Address information saved successfully');
-        return redirect()->route('memberProfile');
+            $member->update([
+                'country_id' => Country::where('code', $request->country_id)->first()->id,
+                'county_id' => County::where('code', $request->county_id)->first()->id,
+                'constituency_id' => Constituency::where('code', $request->constituency_id)->first()->id,
+                'address' => $request->address,
+                'postcode' => $request->postcode,
+                'city' => $request->town_city,
+                'region' => $request->region,
+                'profile_status' => 'active',
+            ]);
+
+            session()->flash('success', 'Address information saved successfully');
+            return redirect()->route('memberProfile');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'An error occurred while saving the address information');
+        }
     }
 
     public function memberAddressInformation()

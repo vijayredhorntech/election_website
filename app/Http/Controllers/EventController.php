@@ -46,10 +46,25 @@ class EventController extends Controller
             'end_datetime' => 'required',
             'location' => 'required',
         ]);
-        $request->merge(['creator_id' => auth()->user()->id]);
-        $event = Event::create($request->all());
-        // $event->save();
-        return redirect()->route('events.index')->with('success', 'Event created successfully');
+
+        try {
+            // start date can't be in the past
+            if ($request->start_datetime < now()) {
+                return redirect()->route('events.index')->with('error', 'Start date can\'t be in the past');
+            }
+
+            // end date should be greater than start date
+            if ($request->end_datetime <= $request->start_datetime) {
+                return redirect()->route('events.index')->with('error', 'End date should be greater than start date');
+            }
+
+            $request->merge(['creator_id' => auth()->user()->id]);
+            $event = Event::create($request->all());
+            // $event->save();
+            return redirect()->route('events.index')->with('success', 'Event created successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('events.index')->with('error', 'Error creating event');
+        }
     }
 
     /**
@@ -82,5 +97,31 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+    public function status($id)
+    {
+        // dd($id);
+        try {
+            $event = Event::find($id);
+
+            if ($event->status == 'completed') {
+                return redirect()->route('events.index')->with('error', 'Event is already completed');
+            }
+
+            if (!$event) {
+                return redirect()->route('events.index')->with('error', 'Event not found');
+            }
+
+            // toggle status from upcoming -> 'ongoing', 'completed'
+            $event->status = $event->status == 'upcoming' ? 'ongoing' : 'completed';
+
+            $event->save();
+
+            return redirect()->route('events.index')->with('success', 'Event status updated successfully');
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->route('events.index')->with('error', 'Error updating event status');
+        }
     }
 }

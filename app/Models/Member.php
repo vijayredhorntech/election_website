@@ -22,7 +22,9 @@ class Member extends Model
         'first_name',
         'last_name',
         'primary_mobile_number',
+        'primary_country_code',
         'alternate_mobile_number',
+        'alternate_country_code',
         'email',
         'postcode',
         'address',
@@ -35,6 +37,7 @@ class Member extends Model
         'marital_status',
         'qualification',
         'profession',
+        'national_insurance_number',
         'profile_photo',
         'profile_status',
     ];

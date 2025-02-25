@@ -104,6 +104,11 @@ class MemberController extends Controller
 
         $Members = Member::all();
         $member = Member::find($id);
+
+        if (!$member) {
+            return back()->with('error', 'Member not found');
+        }
+
         return view('admin.member.index')->with('member', $member)->with('formData', $formData)->with('members', $Members);
     }
 
@@ -112,7 +117,7 @@ class MemberController extends Controller
         $member = Member::find($id);
 
         if (!$member) {
-            return redirect()->back()->with('error', 'Member not found');
+            return back()->with('error', 'Member not found');
         }
 
         return view('admin.member.view')->with('member', $member);
@@ -145,15 +150,25 @@ class MemberController extends Controller
             return redirect()->route('member.index')->with('success', 'Member updated successfully');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('member.index')->with('error', 'An error occurred while updating the member');
+            return back()->with('error', 'An error occurred while updating the member');
         }
     }
 
     public function delete($id)
     {
-        $member = Member::find($id);
-        $member->delete();
-        return redirect()->route('member.index')->with('success', 'Member deleted successfully');
+        try {
+            $member = Member::find($id);
+
+            if (!$member) {
+                return back()->with('error', 'Member not found');
+            }
+
+            $member->delete();
+            return back()->with('success', 'Member deleted successfully');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'An error occurred while deleting the member');
+        }
     }
 
     public function referred($id)

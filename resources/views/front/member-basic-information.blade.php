@@ -50,10 +50,10 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Profile Photo </label>
-                                            <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required style="color: black; font-weight: 400;">
+                                            <label for="profile_photo">Profile Photo </label>
+                                            <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required style="color: black; font-weight: 400;" size="10">
                                             @error('profile_photo')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                            <span id="file-error" style="color: red; font-weight: 500; display: none;">Invalid file type. Please select a valid image.</span>
+                                            <span id="file-error" style="color: red; font-weight: 500; display: none;">Invalid file type or file size must be between 50KB and 500KB.</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -156,11 +156,33 @@
                                         <div class="form-group">
                                             <label for="primary_mobile_number">Primary Mobile Number <span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;">
+                                                <select name="primary_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;" value="{{ old('primary_country_code') }}">
                                                     <option value="">Select</option>
-                                                    <option value="44">+44 (UK)</option>
-                                                    <option value="1">+1 (US/CA)</option>
-                                                    <!-- Add more country codes as needed -->
+                                                    <option value="+44">+44 (UK)</option>
+                                                    <option value="+1">+1 (US/CA)</option>
+                                                    <option value="+91">+91 (India)</option>
+                                                    <option value="+86">+86 (China)</option>
+                                                    <option value="+852">+852 (Hong Kong)</option>
+                                                    <option value="+853">+853 (Macau)</option>
+                                                    <option value="+886">+886 (Taiwan)</option>
+                                                    <option value="+65">+65 (Singapore)</option>
+                                                    <option value="+60">+60 (Malaysia)</option>
+                                                    <option value="+63">+63 (Philippines)</option>
+                                                    <option value="+62">+62 (Indonesia)</option>
+                                                    <option value="+61">+61 (Australia)</option>
+                                                    <option value="+64">+64 (New Zealand)</option>
+                                                    <option value="+66">+66 (Thailand)</option>
+                                                    <option value="+81">+81 (Japan)</option>
+                                                    <option value="+82">+82 (South Korea)</option>
+                                                    <option value="+84">+84 (Vietnam)</option>
+                                                    <option value="+855">+855 (Cambodia)</option>
+                                                    <option value="+856">+856 (Laos)</option>
+                                                    <option value="+857">+857 (Myanmar)</option>
+                                                    <option value="+858">+858 (Bangladesh)</option>
+                                                    <option value="+859">+859 (Sri Lanka)</option>
+                                                    <option value="+880">+880 (Bangladesh)</option>
+                                                    <option value="+881">+881 (Bangladesh)</option>
+                                                    <option value="+882">+882 (Bangladesh)</option>
                                                 </select>
                                                 <input type="tel"
                                                     name="primary_mobile_number"
@@ -183,7 +205,9 @@
                                                 class="form-control"
                                                 pattern="^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$"
                                                 placeholder="AB123456C"
-                                                oninput="this.value = this.value.toUpperCase()" style="color: black; font-weight: 400;">
+                                                oninput="this.value = this.value.toUpperCase()"
+                                                style="color: black; font-weight: 400;"
+                                                value="{{ old('national_insurance_number') }}">
                                             @error('national_insurance_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -192,11 +216,33 @@
                                         <div class="form-group">
                                             <label for="alternate_mobile_number">Alternate Mobile Number</label>
                                             <div class="input-group">
-                                                <select name="alternate_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;">
+                                                <select name="alternate_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;" value="{{ old('alternate_country_code') }}">
                                                     <option value="">Select</option>
-                                                    <option value="44">+44 (UK)</option>
-                                                    <option value="1">+1 (US/CA)</option>
-                                                    <!-- Add more country codes as needed -->
+                                                    <option value="+44">+44 (UK)</option>
+                                                    <option value="+1">+1 (US/CA)</option>
+                                                    <option value="+91">+91 (India)</option>
+                                                    <option value="+86">+86 (China)</option>
+                                                    <option value="+852">+852 (Hong Kong)</option>
+                                                    <option value="+853">+853 (Macau)</option>
+                                                    <option value="+886">+886 (Taiwan)</option>
+                                                    <option value="+65">+65 (Singapore)</option>
+                                                    <option value="+60">+60 (Malaysia)</option>
+                                                    <option value="+63">+63 (Philippines)</option>
+                                                    <option value="+62">+62 (Indonesia)</option>
+                                                    <option value="+61">+61 (Australia)</option>
+                                                    <option value="+64">+64 (New Zealand)</option>
+                                                    <option value="+66">+66 (Thailand)</option>
+                                                    <option value="+81">+81 (Japan)</option>
+                                                    <option value="+82">+82 (South Korea)</option>
+                                                    <option value="+84">+84 (Vietnam)</option>
+                                                    <option value="+855">+855 (Cambodia)</option>
+                                                    <option value="+856">+856 (Laos)</option>
+                                                    <option value="+857">+857 (Myanmar)</option>
+                                                    <option value="+858">+858 (Bangladesh)</option>
+                                                    <option value="+859">+859 (Sri Lanka)</option>
+                                                    <option value="+880">+880 (Bangladesh)</option>
+                                                    <option value="+881">+881 (Bangladesh)</option>
+                                                    <option value="+882">+882 (Bangladesh)</option>
                                                 </select>
                                                 <input type="tel"
                                                     name="alternate_mobile_number"
@@ -224,6 +270,19 @@
 
     @push('scripts')
     <script>
+        document.getElementById('profile_photo').addEventListener('change', function() {
+            const file = this.files[0];
+            const maxSize = 500 * 1024; // 500KB in bytes
+            const minSize = 50 * 1024; // 50KB in bytes
+            const errorSpan = document.getElementById('file-error');
+
+            if (file && file.size > maxSize || file.size < minSize) {
+                errorSpan.style.display = 'inline';
+                this.value = ''; // Clear the file input
+            } else {
+                errorSpan.style.display = 'none';
+            }
+        });
         // Existing file validation
         document.getElementById('profile_photo').addEventListener('change', function() {
             const file = this.files[0];
