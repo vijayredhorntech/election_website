@@ -215,9 +215,9 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('policies') }}"
-                                class="nav-link {{ request()->routeIs('policies') ? 'active' : '' }}">
-                                Policies
+                            <a href="{{ route('memberShipDetails') }}"
+                                class="nav-link {{ request()->routeIs('memberShipDetails') ? 'active' : '' }}">
+                                Membership
                             </a>
                             <div class="line style-01">
                                 <span class="dot"></span>
@@ -287,11 +287,17 @@
 
                     <div class="btn-wrapper" style="margin-left: 10px; ">
                         @if(!auth()->check())
-                        <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory" style="background-color: black">
+                        <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black">
                             Join Us
                             <i class="icon-paper-plan"></i>
                         </a>
+                     
                         @else
+                        <a href="{{route('memberProfile')}}" class="boxed-btn btn-sanatory">
+                            Profile
+                            <i class="icon-paper-plan"></i>
+                        </a>
+
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black; border: 1px solid black">Logout</button>
