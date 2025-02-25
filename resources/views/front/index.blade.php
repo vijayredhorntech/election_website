@@ -3,9 +3,13 @@
     <div class="banner-carousel">
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper">
+               
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide1.jpeg')}})">
 
                 </div>
+                <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide3.jpg')}})">
+
+</div>
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
 
                 </div>
