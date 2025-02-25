@@ -46,4 +46,14 @@ class Office extends Model
     {
         return $this->hasMany(Budget::class);
     }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

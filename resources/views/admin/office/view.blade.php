@@ -119,7 +119,7 @@
                 <div class="mt-4 flex">
                     <div class="grow flex flex-col justify-center ">
                         <span class="text-black font-medium text-lg">Office Budget</span>
-                        <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ 0.00</span>
+                        <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ {{number_format($office->budgets->sum('amount'), 2)}}</span>
                     </div>
                     <div class="flex-none">
                         <svg xmlns="http://www.w3.org/2000/svg" height="80" viewBox="0 0 809.67538 462.57748" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" artist="Katerina Limpitsouni" source="https://undraw.co/">
@@ -206,7 +206,7 @@
                     <div class="grow flex flex-col justify-center ">
                         <span class="text-black font-medium text-lg">Remaining Budget</span>
                         <span
-                            class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ 0.00</span>
+                            class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ {{number_format($office->budgets->sum('amount') - $office->expenses->sum('amount'), 2)}}</span>
                     </div>
                     <div class="flex-none">
 
@@ -513,7 +513,7 @@
                         <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->email}} </td>
                         <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->user->member->primary_mobile_number}} </td>
                         <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$employee->designation->name}} </td>
-                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm"> £ 1,500.00</td>
+                        <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">£ 0.00</td>
                         <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
                             <a href="{{route('member.view',['id'=>$employee->user->member->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Profile"><i class="fa fa-eye text-xs"></i></a>
 

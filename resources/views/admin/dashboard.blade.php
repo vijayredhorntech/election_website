@@ -388,15 +388,7 @@
                         </thead>
                         <tbody>
                             @php
-                            $donations=[
-                            ['name' => 'John Doe', 'email' => 'john.doe@example.com', 'constituency' => 'Los Angeles', 'amount' => '£ 500'],
-                            ['name' => 'Emma Watson', 'email' => 'emma.watson@example.com', 'constituency' => 'London', 'amount' => '£ 750'],
-                            ['name' => 'Michael Brown', 'email' => 'michael.brown@example.com', 'constituency' => 'Chicago', 'amount' => '£ 1,200'],
-                            ['name' => 'Sophia Lee', 'email' => 'sophia.lee@example.com', 'constituency' => 'Toronto', 'amount' => '£ 950'],
-                            ['name' => 'David Miller', 'email' => 'david.miller@example.com', 'constituency' => 'Sydney', 'amount' => '£ 1,500']
-                            ]
-
-
+                            $donations=[]
                             @endphp
 
                             @forelse($donations as $donation)
