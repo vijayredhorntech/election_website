@@ -137,7 +137,7 @@
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{\Carbon\Carbon::parse($event->end_datetime)->format('d-m-Y h:i A')}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[150px]">{{$event->location}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
-                                    <a href="{{route('employees.status',['id'=>$event->id])}}" class="bg-{{$office->status?"success":"danger"}}/10 border-[1px] border-{{$event->status?"success":"danger"}} font-bold text-{{$event->status?"success":"danger"}} px-4 py-0.5 rounded-[3px]"> {{$event->status}}</a>
+                                    <a href="{{route('events.status',['id'=>$event->id])}}" class="bg-{{$office->status?"success":"danger"}}/10 border-[1px] border-{{$event->status?"success":"danger"}} font-bold text-{{$event->status?"success":"danger"}} px-4 py-0.5 rounded-[3px]"> {{$event->status}}</a>
                                 </td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm w-[200px]">
                                     <div class="flex h-full">
