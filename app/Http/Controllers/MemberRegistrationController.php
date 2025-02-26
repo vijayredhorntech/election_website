@@ -320,6 +320,14 @@ class MemberRegistrationController extends Controller
             'town_city' => 'required|string|max:255',
         ]);
 
+
+        // Add conditional validation for region_code when country_code is ENG
+        if ($request->input('country_code') === 'ENG') {
+            $validator->sometimes('region_code', 'required', function ($input) {
+                return $input->country_code === 'ENG';
+            });
+        }
+
         if ($validator->fails()) {
             // Print the errors in the console or log for debugging
             // dd($validator->errors()); // This will dump all the error messages
@@ -340,7 +348,7 @@ class MemberRegistrationController extends Controller
             $member->update([
                 'country_id' => Country::where('code', $request->country_code)->first()->id,
                 'county_id' => County::where('code', $request->county_code)->first()->id,
-                'region_id' => Region::where('code', $request->region_code)->first()->id,
+                'region_id' => Region::where('code', $request->region_code)->first()?->id,
                 'constituency_id' => Constituency::where('code', $request->constituency_code)->first()->id,
                 'postcode' => $request->postcode,
                 'house_name_number' => $request->house_name_number,

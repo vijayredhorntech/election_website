@@ -303,33 +303,33 @@
                         // Wait for each dropdown to be populated before trying to select an option
                         // First populate counties
                         await updateCounties(countryCode);
-                        console.log("Counties loaded");
+                        // console.log("Counties loaded");
 
                         // Try to select county
-                        console.log(postcodeData.admin_county);
+                        // console.log(postcodeData.admin_county);
                         if (postcodeData.admin_county) {
                             const countyFound = selectOptionByText(countySelect, postcodeData.admin_county);
-                            console.log("County selection attempt:", postcodeData.admin_county, countyFound);
+                            // console.log("County selection attempt:", postcodeData.admin_county, countyFound);
                         }
 
                         // Then populate regions
                         await updateRegions(countryCode);
-                        console.log("Regions loaded");
+                        // console.log("Regions loaded");
 
                         // Try to select region
                         if (postcodeData.region) {
                             const regionFound = selectOptionByText(regionSelect, postcodeData.region);
-                            console.log("Region selection attempt:", postcodeData.region, regionFound);
+                            // console.log("Region selection attempt:", postcodeData.region, regionFound);
                         }
 
                         // Finally populate constituencies
                         await updateConstituencies(countryCode);
-                        console.log("Constituencies loaded");
+                        // console.log("Constituencies loaded");
 
                         // Try to select constituency
                         if (postcodeData.parliamentary_constituency) {
                             const constituencyFound = selectOptionByText(constituencySelect, postcodeData.parliamentary_constituency);
-                            console.log("Constituency selection attempt:", postcodeData.parliamentary_constituency, constituencyFound);
+                            // console.log("Constituency selection attempt:", postcodeData.parliamentary_constituency, constituencyFound);
                         }
                     }
                 }
@@ -342,7 +342,7 @@
                 if (!text || !selectElement) return false;
 
                 // For debugging: what options are available?
-                console.log(`Options in ${selectElement.id}:`, Array.from(selectElement.options).map(o => o.textContent));
+                // console.log(`Options in ${selectElement.id}:`, Array.from(selectElement.options).map(o => o.textContent));
 
                 // First try exact match
                 for (let i = 0; i < selectElement.options.length; i++) {
