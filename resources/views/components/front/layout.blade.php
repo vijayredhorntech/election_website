@@ -291,17 +291,12 @@
                             Join Us
                             <i class="icon-paper-plan"></i>
                         </a>
-                     
+
                         @else
                         <a href="{{route('memberProfile')}}" class="boxed-btn btn-sanatory">
                             Profile
                             <i class="icon-paper-plan"></i>
                         </a>
-
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black; border: 1px solid black">Logout</button>
-                        </form>
                         @endif
                     </div>
                     <div class="btn-wrapper" style="margin-left: 10px">
