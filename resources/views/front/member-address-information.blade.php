@@ -65,7 +65,7 @@
                                     <div class="col-md-9 col-12">
                                         <div class="form-group">
                                             <label for="">Post Code <span class="text-danger">*</span></label>
-                                            <input type="text" name="postcode" placeholder="JH5 UI8" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
                                             @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
 
@@ -93,10 +93,8 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">House Name/Number <span class="text-danger">*</span></label>
-
                                             <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-
                                         </div>
                                     </div>
 

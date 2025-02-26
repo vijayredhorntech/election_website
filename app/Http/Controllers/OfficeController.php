@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\County;
 use App\Models\Constituency;
+use App\Models\Region;
 use App\Models\ExpenseCategory;
 use App\Models\Expense;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class OfficeController extends Controller
 {
@@ -27,36 +30,52 @@ class OfficeController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $validatedData =  $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'postcode' => [
                 'required',
                 'regex:/^([A-Z]{1,2}[0-9][0-9A-Z]?) ?([0-9][A-Z]{2})$/i'
             ],
-            'address' => 'required',
-            'house_name_number' => 'required',
-            'street' => 'required',
-            'town_city' => 'required',
-            'country' => 'required|exists:countries,code',
-            'county' => 'required|exists:counties,code',
-            'constituency' => 'required|exists:constituencies,code',
+            'house_name_number' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'town_city' => 'required|string|max:255',
+            'country_code' => 'required|exists:countries,code',
+            'county_code' => 'required|exists:counties,code',
+            'region_code' => 'nullable|exists:regions,code',
+            'constituency_code' => 'required|exists:constituencies,code',
         ]);
 
-        $office = [
-            'name' => $validatedData['name'],
-            'description' => $validatedData['description'],
-            'postcode' => $validatedData['postcode'],
-            'address' => $validatedData['address'],
-            'country_id' => Country::where('code', $validatedData['country'])->first()->id,
-            'county_id' => County::where('code', $validatedData['county'])->first()->id,
-            'city' => $validatedData['town_city'],
-            'constituency_id' => Constituency::where('code', $validatedData['constituency'])->first()->id,
-        ];
+        // Add conditional validation for region_code when country_code is ENG
+        if ($request->input('country_code') === 'ENG') {
+            $validator->sometimes('region_code', 'required', function ($input) {
+                return $input->country_code === 'ENG';
+            });
+        }
 
-        Office::create($office);
+        try {
+            $office = [
+                'name' => $request->name,
+                'description' => $request->description,
+                'postcode' => $request->postcode,
+                // 'address' => $request->address,
+                'house_name_number' => $request->house_name_number,
+                'street' => $request->street,
+                'town_city' => $request->town_city,
+                'country_id' => Country::where('code', $request->country_code)->first()->id,
+                'county_id' => County::where('code', $request->county_code)->first()->id,
+                'region_id' => Region::where('code', $request->region_code)->first()?->id,
+                // 'city' => $request->town_city,
+                'constituency_id' => Constituency::where('code', $request->constituency_code)->first()->id,
+            ];
 
-        return redirect()->route('office.index')->with('success', 'Office Created Successfully!');
+            Office::create($office);
+
+            return redirect()->route('office.index')->with('success', 'Office Created Successfully!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'An error occurred while creating the office');
+        }
     }
     public function edit($id)
     {

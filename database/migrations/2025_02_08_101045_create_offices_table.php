@@ -9,13 +9,18 @@ return new class extends Migration {
     {
         Schema::create('offices', function (Blueprint $table) {
             $table->id();
+
+            // Office Information
             $table->string('name');
             $table->string('description');
+
+            // Address Information
             $table->string('postcode');
-            $table->string('address');
+            $table->string('house_name_number');
+            $table->string('street');
+            $table->string('town_city');
             $table->foreignId('country_id')->constrained('countries');
             $table->foreignId('county_id')->constrained('counties');
-            $table->string('city');
             $table->foreignId('constituency_id')->constrained('constituencies');
             $table->string('status')->default('1');
             $table->timestamps();

@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Office extends Model
 {
     protected $fillable = [
+        // Office Information
         'name',
         'description',
+
+        // Address Information
         'postcode',
-        'address',
+        'house_name_number',
+        'street',
+        'town_city',
         'country_id',
         'county_id',
-        'city',
+        'region_id',
         'constituency_id',
     ];
 

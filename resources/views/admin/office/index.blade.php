@@ -96,7 +96,7 @@
                             <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{$loop->iteration}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[200px]">{{$office->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{ Str::words($office->address,2, '...') }}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{ $office->house_name_number }} {{ $office->street }} {{ $office->town_city }} {{ $office->postcode }}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">£ {{number_format($office->budgets->sum('amount'), 2)}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">£ {{number_format($office->budgets->sum('amount') - $office->expenses->sum('amount'), 2)}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->employees->count()}}</td>
