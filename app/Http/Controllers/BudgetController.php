@@ -27,7 +27,7 @@ class BudgetController extends Controller
         // dd($request->all());
         $validatedData = $request->validate([
             'office_id' => 'required|exists:offices,id',
-            'amount' => 'required|numeric|min:0',
+            'amount' => 'required|numeric|min:0|max:99999999',
             'financial_year' => 'required|exists:financial_years,year',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',

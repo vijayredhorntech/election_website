@@ -17,10 +17,10 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0|max:99999999',
             'category' => 'required|exists:expense_categories,id',
             'date' => 'required|date',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
             'office_id' => 'required|exists:offices,id',
         ]);
 

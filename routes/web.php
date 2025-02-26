@@ -21,6 +21,7 @@ use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -144,6 +145,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('events.')->group(function () {
             Route::get('/events', [EventController::class, 'index'])->name('index');
             Route::post('/events/store', [EventController::class, 'store'])->name('store');
+            Route::get('/events/status/{id}', [EventController::class, 'status'])->name('status');
         });
 
         Route::name('account-setting.')->group(function () {
@@ -178,6 +180,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/news/update/{id}', [NewsController::class, 'update'])->name('update');
             Route::get('/news/delete/{id}', [NewsController::class, 'destroy'])->name('delete');
         });
+
+        Route::name('report.')->group(function () {
+            Route::get('/report', [ReportController::class, 'index'])->name('index');
+        });
     });
 });
 
@@ -189,6 +195,7 @@ Route::post('/subscribe', [PageController::class, 'subscribe'])->name('subscribe
 
 // Feedback Routes
 use App\Http\Controllers\FeedbackController;
+
 Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
