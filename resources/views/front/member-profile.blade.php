@@ -149,12 +149,12 @@
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">Phone</td>
-                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->primary_mobile_number}}</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span>{{$memberDetails->primary_country_code}} {{$memberDetails->primary_mobile_number}}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Alternate Number</td>
-                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black" style="color: black; font-weight: 400">: &nbsp &nbsp</span> {{$memberDetails->alternate_mobile_number}}</td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black" style="color: black; font-weight: 400">: &nbsp &nbsp</span>{{$memberDetails->alternate_country_code}} {{$memberDetails->alternate_mobile_number}}</td>
                                 </tr>
                             </table>
 
@@ -168,25 +168,16 @@
                             <table class="w-full">
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">Address</td>
-                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->address}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">Post Code</td>
-                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->postcode}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">City</td>
-                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->city}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">County</td>
-                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->county->name}}</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span>{{$memberDetails->house_name_number}}, {{$memberDetails->street}}, {{$memberDetails->town_city}}, {{$memberDetails->postcode}}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">Country</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->country->name}}</td>
                                 </tr>
-
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 700">County</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->county->name}}</td>
+                                </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Constituency</td>
                                     <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black">: &nbsp &nbsp</span> {{$memberDetails->constituency->name}}</td>

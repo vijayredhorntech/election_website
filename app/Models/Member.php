@@ -26,12 +26,17 @@ class Member extends Model
         'alternate_mobile_number',
         'alternate_country_code',
         'email',
-        'postcode',
-        'address',
+
+        // Address Information
         'country_id',
         'county_id',
-        'city',
+        'region_id',
         'constituency_id',
+        'postcode',
+        'house_name_number',
+        'street',
+        'town_city',
+
         'date_of_birth',
         'gender',
         'marital_status',

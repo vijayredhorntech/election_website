@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\Region;
 
 class MemberRegistrationController extends Controller
 {
@@ -309,11 +310,10 @@ class MemberRegistrationController extends Controller
     public function storeMemberAddressInformation(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'country_id' => 'required|exists:countries,code',
-            'county_id' => 'required|exists:counties,code',
-            'region' => 'nullable|exists:regions,code',
-            'constituency_id' => 'required|exists:constituencies,code',
-            'address' => 'required|string|max:255',
+            'country_code' => 'required|exists:countries,code',
+            'county_code' => 'required|exists:counties,code',
+            'region_code' => 'nullable|exists:regions,code',
+            'constituency_code' => 'required|exists:constituencies,code',
             'postcode' => 'required|string|regex:/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/',
             'house_name_number' => 'required|string|max:255',
             'street' => 'required|string|max:255',
@@ -338,13 +338,14 @@ class MemberRegistrationController extends Controller
             }
 
             $member->update([
-                'country_id' => Country::where('code', $request->country_id)->first()->id,
-                'county_id' => County::where('code', $request->county_id)->first()->id,
-                'constituency_id' => Constituency::where('code', $request->constituency_id)->first()->id,
-                'address' => $request->address,
+                'country_id' => Country::where('code', $request->country_code)->first()->id,
+                'county_id' => County::where('code', $request->county_code)->first()->id,
+                'region_id' => Region::where('code', $request->region_code)->first()->id,
+                'constituency_id' => Constituency::where('code', $request->constituency_code)->first()->id,
                 'postcode' => $request->postcode,
-                'city' => $request->town_city,
-                'region' => $request->region,
+                'house_name_number' => $request->house_name_number,
+                'street' => $request->street,
+                'town_city' => $request->town_city,
                 'profile_status' => 'active',
             ]);
 

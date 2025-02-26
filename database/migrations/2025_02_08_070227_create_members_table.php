@@ -23,12 +23,16 @@ return new class extends Migration
             $table->string('primary_mobile_number')->nullable();
             $table->string('alternate_mobile_number')->nullable();
             $table->string('email');
-            $table->string('postcode')->nullable();
-            $table->string('address')->nullable();
+
+            // Address Information
             $table->foreignId('country_id')->nullable()->constrained('countries');
             $table->foreignId('county_id')->nullable()->constrained('counties');
-            $table->string('city')->nullable();
             $table->foreignId('constituency_id')->nullable()->constrained('constituencies');
+            $table->string('postcode')->nullable();
+            $table->string('house_name_number')->nullable();
+            $table->string('street')->nullable();
+            $table->string('town_city')->nullable();
+
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
             $table->string('marital_status')->nullable();
