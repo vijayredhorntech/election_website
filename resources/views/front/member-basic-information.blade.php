@@ -244,7 +244,7 @@
                                                     <option value="+881">+881 (Bangladesh)</option>
                                                     <option value="+882">+882 (Bangladesh)</option>
                                                 </select>
-                                                <input type="tel"
+                                                <input
                                                     name="alternate_mobile_number"
                                                     class="form-control"
                                                     style="width: 70%; color: black; font-weight: 400; "
