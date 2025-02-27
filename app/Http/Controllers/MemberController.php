@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CustomLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Member;
@@ -15,6 +16,9 @@ use Illuminate\Validation\ValidationException;
 use App\Http\Requests\MemberUpdateRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Intervention\Image\ImageManagerStatic;
+use Illuminate\Support\Facades\Storage;
 
 class MemberController extends Controller
 {
@@ -337,25 +341,73 @@ class MemberController extends Controller
 
     public function downloadId()
     {
-        $user = auth()->user();
-        $member = $user->member;
+        try {
+            $user = auth()->user();
+            $member = $user->member;
 
-        $data = [
-            'name' => $member->title . ' ' . $user->name,
-            'issue_date' => $member->enrollment_date,
-            'constituency' => $member->constituency->name,
-            'website' => route('index'),
-            'profile_photo' => $member->profile_photo
-                ? asset('storage/' . $member->profile_photo)
-                : asset('assets/images/default-profile.png'),
-            'contact_number' => $member->primary_country_code . ' ' . $member->primary_mobile_number,
-            'member_id' => $member->custom_id,
-            'referral_code' => $user->referral_code
-        ];
+            // Determine profile photo path with proper fallback
+            $profilePhotoPath = $member->profile_photo
+                ? storage_path('app/public/' . $member->profile_photo)
+                : public_path('assets/images/default-profile.png');
 
-        // $pdf = PDF::loadView('id_card.template', $data);
+            // Check if the profile photo exists
+            if (!file_exists($profilePhotoPath)) {
+                $profilePhotoPath = public_path('assets/images/default-profile.png');
+            }
 
-        // return $pdf->download('member_id_' . $member->custom_id . '.pdf');
-        return view('id_card.template')->with('data', $data);
+            // Prepare data for the template
+            $data = [
+                'name' => $member->title . ' ' . $user->name,
+                'issue_date' => $member->enrollment_date,
+                'constituency' => $member->constituency->name ?? 'Not Assigned',
+                'website' => route('index'),
+                'profile_photo' => $profilePhotoPath,
+                'contact_number' => $member->primary_country_code . ' ' . $member->primary_mobile_number,
+                'member_id' => $member->custom_id,
+                'referral_code' => $user->referral_code
+            ];
+
+            // Log the start of PDF generation
+            CustomLog::info('Starting ID card PDF generation', ['user_id' => $user->id, 'member_id' => $member->custom_id]);
+            $startTime = microtime(true);
+
+            // Generate the PDF
+            $pdf = PDF::loadView('id_card.template', compact('data'))
+                ->setPaper([0, 0, 793.7, 595.28], 'landscape') // A4 landscape with precise dimensions
+                ->setOptions([
+                    'enable_php' => true, // Enable PHP processing
+                    'isHtml5ParserEnabled' => true, // Enable HTML5 parsing
+                    'isRemoteEnabled' => false, // Disable remote images for security
+                    'dpi' => 150, // Higher resolution
+                    'defaultFont' => 'sans-serif',
+                    'margin_top' => 0,
+                    'margin_right' => 0,
+                    'margin_bottom' => 0,
+                    'margin_left' => 0
+                ]);
+
+            // Log completion
+            $duration = round(microtime(true) - $startTime, 2);
+            CustomLog::info('ID card PDF generated successfully', [
+                'user_id' => $user->id,
+                'member_id' => $member->custom_id,
+                'duration' => $duration . ' seconds'
+            ]);
+
+            // Return the PDF as a download
+            return $pdf->download('member_id_' . $member->custom_id . '.pdf');
+        } catch (\Exception $e) {
+            // Log detailed error information
+            CustomLog::error("ID Card generation failed", [
+                'user_id' => auth()->id(),
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            // Return with error message
+            return back()->with('error', 'Failed to generate ID card. Please try again or contact support.');
+        }
     }
 }
