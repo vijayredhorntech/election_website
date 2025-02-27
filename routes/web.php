@@ -41,7 +41,7 @@ Route::get('/memberShipDetails', [PageController::class, 'memberShipDetails'])->
 
 
 Route::get('/donate', [PageController::class, 'donate'])->name('donate');
-Route::get('/donner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
+Route::get('/doner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
 Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
 
 Route::get('/what_is_membership', [PageController::class, 'whatIsMembership'])->name('whatIsMembership');

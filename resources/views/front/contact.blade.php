@@ -33,7 +33,9 @@
                         </div>
                         <div class="content">
                             <h4 class="title">Visit Us</h4>
-                            <p>62 King Street, Southall<br>Greater London UB2 4DB</p>
+                            <p>"62 King Street, Southall,
+                            <br>
+                            Greater London UB2 4DB"</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">

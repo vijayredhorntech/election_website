@@ -38,20 +38,31 @@
                     </div>
                     <div class="icon-box-item-02">
                         <div class="icon">
-                            <i class="far fa-envelope"></i>
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="content">
-                            <span class="title">Email</span>
-                            <p>info@one-nation.org.uk</p>
+                            <h4 class="title">Visit Us</h4>
+                            <p>"62 King Street, Southall,
+                            <br>
+                            Greater London UB2 4DB"</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
                         <div class="icon">
-                            <i class="fas fa-phone-alt"></i>
+                            <i class="fas fa-phone"></i>
                         </div>
                         <div class="content">
-                            <span class="title">Phone</span>
-                            <p>020 3500 00000</p>
+                            <h4 class="title">Call Us</h4>
+                            <p>07955555561</p>
+                        </div>
+                    </div>
+                    <div class="icon-box-item-02">
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="content">
+                            <h4 class="title">Email Us</h4>
+                            <p>jsnichal@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -59,21 +70,26 @@
                     <div class="accordion-wrapper-three">
                         <!-- accordion wrapper -->
                         <div id="accordion">
+                    
                             <div class="card">
-                                <div class="card-header" id="headingTwo">
+                                <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
-                                        <a class="collapsed show" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             <i class="fas fa-star"></i>
                                             What is One Nation membership?
                                         </a>
                                     </h5>
                                 </div>
-                                <div id="collapseTwo" class="collapse show" data-parent="#accordion">
+                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                     <div class="card-body">
-                                        Since One Nation is a growing political movement, a structured membership system will help build a strong base of supporters, activists, and future candidates.
+                                Since One Nation is a growing political movement, a structured membership system will help build a strong base of supporters, activists, and future candidates.
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <div class="card">
                                 <div class="card-header" id="headingOwo">
                                     <h5 class="mb-0">
@@ -113,21 +129,21 @@
                                                     <li>Engage with One Nation on social media and community forums.</li>
                                                 </ul>
                                             </li>
-                                            <li><strong>2. Standard Member £35 per year or £3 month</strong>
+                                            <li><strong>2. Standard Member £36 per year or £3 month</strong>
                                                 <ul>
                                                     <li>Full participation in policy discussions and decision-making.</li>
                                                     <li>Access to party events, campaign training, and networking opportunities.</li>
                                                     <li>Eligible to vote in internal party elections and policy votes.</li>
                                                 </ul>
                                             </li>
-                                            <li><strong>3. Activist Member £35 per year or £3 month</strong>
+                                            <li><strong>3. Activist Member £36 per year or £3 month</strong>
                                                 <ul>
                                                     <li>Everything in Standard Membership.</li>
                                                     <li>In-depth training on campaigning and grassroots activism.</li>
                                                     <li>Opportunities to work closely with party leadership and contribute to strategy.</li>
                                                 </ul>
                                             </li>
-                                            <li><strong>4. Leadership & Candidate Pathway £35 per year or £3 month</strong>
+                                            <li><strong>4. Leadership & Candidate Pathway £36 per year or £3 month</strong>
                                                 <ul>
                                                     <li>Everything in Activist Membership.</li>
                                                     <li>Access to specialized training for future political candidates.</li>
@@ -202,7 +218,7 @@
 
                         <h2 class="mt-5">Membership Requirements</h2>
                         <ul class="list-unstyled">
-                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Must be 18 years or older</li>
+                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Must be 16 years or older</li>
                             <li><i class="fas fa-info-circle text-primary mr-2"></i> Not a member of another political party</li>
                             <li><i class="fas fa-info-circle text-primary mr-2"></i> Support our values and principles</li>
                         </ul>

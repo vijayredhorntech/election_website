@@ -287,7 +287,7 @@
 
                     <div class="btn-wrapper" style="margin-left: 10px; ">
                         @if(!auth()->check())
-                        <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black">
+                        <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black; box-shadow:none">
                             Join Us
                             <i class="icon-paper-plan"></i>
                         </a>

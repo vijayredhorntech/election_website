@@ -252,24 +252,19 @@
                             <div class="vision-card">
                                 <ul class="check-list">
                                     <li data-aos="fade-up" data-aos-delay="100">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Stronger border control and fair immigration system</span>
+                                        <span style="margin-left:20px">Stronger border control and fair immigration system</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="200">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Supporting British businesses and workers</span>
+                                        <span style="margin-left:20px">Supporting British businesses and workers</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="300">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Responsible welfare system preventing abuse</span>
+                                        <span style="margin-left:20px">Responsible welfare system preventing abuse</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="400">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Promoting national unity and representation</span>
+                                        <span style="margin-left:20px">Promoting national unity and representation</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="500">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Ensuring compliance with electoral regulations</span>
+                                        <span style="margin-left:20px">Ensuring compliance with electoral regulations</span>
                                     </li>
                                 </ul>
                             </div>
