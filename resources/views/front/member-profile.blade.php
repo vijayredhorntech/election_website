@@ -50,7 +50,7 @@
     }
 
     #idCardContainer {
-      /* display: none; */
+      display: none;
     }
 
     .barcode-container {
