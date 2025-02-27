@@ -172,9 +172,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                        <div class="thumb">
-                            <i class="fas fa-comments"></i>
-                        </div>
+                       
                         <div class="content">
                             <h4 class="title">Your Voice Matters</h4>
                             <p>We listen, we act, and we fight for the issues that truly impact you and your community.</p>
@@ -183,9 +181,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                        <div class="thumb">
-                            <i class="fas fa-users"></i>
-                        </div>
+                       
                         <div class="content">
                             <h4 class="title">People Over Politics</h4>
                             <p>We focus on real change, not empty promises. Our goal is to serve the people, not the system.</p>
@@ -194,12 +190,41 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                        <div class="thumb">
-                            <i class="fas fa-handshake"></i>
-                        </div>
+                       
                         <div class="content">
-                            <h4 class="title">Stand for Justice</h4>
-                            <p>We are committed to fairness, equal opportunities, and ensuring that no one is left behind.</p>
+                            <h4 class="title"> Stand for Justice & Equality</h4>
+                            <p>We are committed to fairness, equal opportunities, and ensuring that no one is left behind.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="political-support-item">
+                      
+                        <div class="content">
+                            <h4 class="title">Shape the Future</h4>
+                            <p>As a member, you have the power to influence policies, campaigns, and the direction of our party.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="political-support-item">
+                       
+                        <div class="content">
+                            <h4 class="title">Be Part of a Supportive Community</h4>
+                            <p>Connect with like-minded individuals who share your passion for progress, fairness, and positive change.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="political-support-item">
+                        
+                        <div class="content">
+                            <h4 class="title">Opportunity for Leadership & Growth</h4>
+                            <p>Whether you want to take an active role in politics or simply support from the sidelines, we offer opportunities for leadership, learning, and making an impact.
+                            </p>
                         </div>
                     </div>
                 </div>

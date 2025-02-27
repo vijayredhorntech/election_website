@@ -61,6 +61,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="vision-values" style="margin-top:30px"> 
+                        <div class="faq-contents">
+                            <h2 class="title">Party Aims & Goals</h2>
+                            <div class="single-faq-item">
+                                <div class="content">
+                                    <ul class="check-list">
+                                       <li>Educating & Empowering</li>
+                                       <p style="margin-left:30px">Education is key to positive change. We focus on raising awareness about critical social, environmental, and political issues.</p>
+                                       <li>Addressing and Resolving Issues</li>
+                                       <p style="margin-left:30px">We are dedicated to addressing injustices and concerns raised by our members and the public, using all available resources to find effective solutions.</p>
+                                       <li>Promoting Unity & Solidarity</li>
+                                       <p style="margin-left:30px">We stand for a united and inclusive society, fostering national and local unity by working together for the common good.</p>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,9 +93,9 @@
                 <div class="col-md-8 offset-md-2">
                     <div class="single-faq-item text-center">
                         <div class="leader-image-wrapper mb-4">
-                            <img src="{{ asset('assets/images/leadership/' . Str::slug($data['leadership']['name']) . '.jpg') }}" 
+                            <img src="{{ asset('assets/images/js_nichal.jpeg') }}" 
                                  alt="{{ $data['leadership']['name'] }}" 
-                                 class="leader-image rounded-circle">
+                                 class="leader-image rounded-circle" style="height:250px">
                         </div>
                         <div class="content">
                             <h3>{{ $data['leadership']['name'] }}</h3>

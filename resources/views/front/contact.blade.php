@@ -57,31 +57,48 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="single-faq-item">
+                        @if(session('success'))
+                            <div class="alert alert-success mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-4">
                                         <label for="name">Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required >
+                                        @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-4">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group mb-4">
                                         <label for="subject">Subject</label>
-                                        <input type="text" class="form-control" id="subject" name="subject" required>
+                                        <input type="text" class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject" value="{{ old('subject') }}" required>
+                                        @error('subject')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group mb-4">
                                         <label for="message">Message</label>
-                                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                        <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
+                                        @error('message')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -110,6 +127,28 @@
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
 
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.alert-danger ul {
+    padding-left: 1.25rem;
+}
+
 .btn-primary {
     padding: 12px 30px;
     font-weight: 600;
@@ -119,5 +158,14 @@
 .single-faq-item, .icon-box-item-02, .help-single-item {
     /* ... styles from policies.blade.php ... */
 }
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
 </style>
-@endpush 
+@endpush
