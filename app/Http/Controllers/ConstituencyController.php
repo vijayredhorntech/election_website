@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Constituency;
 use App\Models\Country;
+use App\Models\County;
 use Illuminate\Http\Request;
 use App\Facades\CustomLog;
 
@@ -49,35 +50,52 @@ class ConstituencyController extends Controller
         }
     }
 
+    public function adminIndex()
+    {
+        $constituencies = Constituency::with(['country', 'county'])->get();
+        $countries = Country::all();
+        $counties = County::all();
+        return view('admin.settings.constituencies.index', compact('constituencies', 'countries', 'counties'));
+    }
+
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'code' => 'required|unique:constituencies,code',
-            ]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'country_id' => 'required|exists:countries,id',
+            'county_id' => 'required|exists:counties,id',
+        ]);
 
-            Constituency::create($request->all());
+        Constituency::create($request->all());
+        return redirect()->back()->with('success', 'Constituency added successfully');
+    }
 
-            CustomLog::info('Constituency created successfully');
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'country_id' => 'required|exists:countries,id',
+            'county_id' => 'required|exists:counties,id',
+        ]);
 
-            return redirect()->back()->with('success', 'Constituency created successfully');
-        } catch (\Exception $e) {
-            CustomLog::error('Error in ConstituencyController@store: ' . $e->getMessage(), [
-                'error' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine()
-            ]);
-            return back()->with('error', 'An error occurred while creating the constituency.');
-        }
+        $constituency = Constituency::findOrFail($id);
+        $constituency->update($request->all());
+        return redirect()->back()->with('success', 'Constituency updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $constituency = Constituency::findOrFail($id);
+        $constituency->delete();
+        return redirect()->back()->with('success', 'Constituency deleted successfully');
     }
 
     public function getConstituenciesByCountryCode($countryCode)
     {
-        // dd($countryCode);
-        // Log::info($countryCode);
-        $country = Country::where('code', $countryCode)->first();
-        $constituencies = Constituency::where('country_id', $country->id)->get();
+        $constituencies = Constituency::whereHas('country', function($query) use ($countryCode) {
+            $query->where('code', $countryCode);
+        })->get();
+        
         return response()->json($constituencies);
     }
 }

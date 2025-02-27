@@ -38,4 +38,9 @@ class Constituency extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function county()
+    {
+        return $this->belongsTo(County::class);
+    }
 }
