@@ -72,7 +72,7 @@
 
                                     </div>
                                     <div class="col-md-3 col-12 " style="display: flex; align-items: center;">
-                                        <div class="btn-wrapper" style="margin-bottom: 20px; ">
+                                        <div class="btn-wrapper">
                                             <button type="button" id="searchAddress" class="boxed-btn btn-sanatory"> Search <span class="icon-paper-plan"></span></button>
                                         </div>
 

@@ -34,13 +34,13 @@
                     </div>
                 </div>
                 <div class="mt-2 w-full">
-{{--                    @if (Route::has('password.request'))--}}
-{{--                        <div class="mr-1">--}}
-{{--                            <a class="text-sm underline hover:no-underline" href="{{ route('password.request') }}">--}}
-{{--                                {{ __('Forgot Password?') }}--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
+                    @if (Route::has('password.request'))
+                        <div class="mr-1">
+                            <a class="text-sm underline hover:no-underline" href="{{ route('password.request') }}">
+                                {{ ('Forgot Password?') }}
+                            </a>
+                        </div>
+                    @endif
 
                     <x-primary-button class=" mt-4 w-full bg-primaryDark/80 rounded-[3px] text-white px-4 py-3 font-semibold text-md border-[1px] border-primaryDark hover:bg-primaryDark transition ease-in duration-2000 flex justify-center" type="submit">
                         {{ __('Sign in') }}

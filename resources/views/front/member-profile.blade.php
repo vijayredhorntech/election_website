@@ -52,8 +52,8 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-12">
+        <div class="row" style="padding:20px">
+            <div class="col-md-4 col-sm-4 col-12" >
                 <div class="card wow animate__animated animate__fadeInUp">
                     <div class="card-header" id="headingOwo">
                         <h5 class="mb-0">
