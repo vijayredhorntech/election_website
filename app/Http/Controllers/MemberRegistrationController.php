@@ -87,6 +87,34 @@ class MemberRegistrationController extends Controller
         return view('front.join-us')->with('formData', $formData)->with('email', $request->email)->with('userName', $request->name);
     }
 
+   public function resetOTP()
+   {
+       session()->forget('otp');
+       $otp = rand(100000, 999999);
+       session(['otp' => $otp]);
+
+       try {
+        Mail::to(session('email'))->queue(new OtpMail($otp));
+        session()->flash('success', 'OTP sent successfully');
+
+    } catch (\Exception $e) {
+        return back()->with('error', 'Failed to send OTP');
+    }
+
+
+
+    $formData = [
+        'url' => route('verifyOtp'),
+        'method' => 'POST',
+        'type' => 'validate',
+        'hasReferralCode' => 'false',
+        'referral_code' => '',
+    ];
+    return view('front.join-us')->with('formData', $formData)->with('email', session('email'))->with('userName', session('name'));
+   }
+
+
+
     public function verifyOtp(Request $request)
     {
         $request->validate([
@@ -389,6 +417,36 @@ class MemberRegistrationController extends Controller
         $mobileNumber = $request->input('mobile_number');
         $exists = Member::where('alternate_mobile_number', $mobileNumber)->exists();
         return response()->json(['exists' => $exists]);
+    }
+
+    public function resendOtp(Request $request)
+    {
+        $email = $request->query('email');
+        $name = $request->query('name');
+
+        if (!$email || !$name) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email and name are required'
+            ]);
+        }
+
+        $otp = rand(100000, 999999);
+        session(['otp' => $otp]);
+
+        try {
+            Mail::to($email)->queue(new OtpMail($otp));
+            return response()->json([
+                'success' => true,
+                'message' => 'OTP sent successfully'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Failed to resend OTP: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to send OTP'
+            ]);
+        }
     }
 
     public function referral($code)

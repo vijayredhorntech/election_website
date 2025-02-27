@@ -26,7 +26,7 @@
             <div class="w-full bg-white rounded-[3px] p-4 relative">
                 <div class="mt-4 flex">
                     <div class="grow flex flex-col justify-center ">
-                        <span class="text-black font-medium text-lg">Total Offices</span>
+                        <span class="text-black font-medium text-lg"> Offices</span>
                         <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">{{$officeCount}}</span>
                     </div>
                     <div class="flex-none">
@@ -118,7 +118,7 @@
             <div class="w-full bg-white rounded-[3px] p-4 relative">
                 <div class="mt-4 flex">
                     <div class="grow flex flex-col justify-center ">
-                        <span class="text-black font-medium text-lg">Total Employees</span>
+                        <span class="text-black font-medium text-lg">Employees</span>
                         <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">{{$employeeCount}}</span>
                     </div>
                     <div class="flex-none">
@@ -204,7 +204,7 @@
             <div class="w-full bg-white rounded-[3px] p-4 relative">
                 <div class="mt-4 flex">
                     <div class="grow flex flex-col justify-center ">
-                        <span class="text-black font-medium text-lg">Total Members</span>
+                        <span class="text-black font-medium text-lg"> Members</span>
                         <span
                             class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">{{$memberCount}}</span>
                     </div>
@@ -256,7 +256,7 @@
             <div class="w-full bg-white rounded-[3px] p-4 relative">
                 <div class="mt-4 flex">
                     <div class="grow flex flex-col justify-center ">
-                        <span class="text-black font-medium text-lg">Total Revenue</span>
+                        <span class="text-black font-medium text-lg"> Revenue</span>
                         <span class="font-bold text-primaryLight lg:text-3xl md:text-3xl sm:text-2xl text-2xl">£ 0</span>
                     </div>
                     <div class="flex-none">

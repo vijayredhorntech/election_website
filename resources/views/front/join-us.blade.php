@@ -82,7 +82,14 @@
                                         <div class="form-group">
                                             <input type="number" name="otp" value="{{old('otp')}}" class="form-control" placeholder="Enter OTP" required="" aria-required="true" style="color: black; font-weight: 600">
                                             @error('otp')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
+                                            <div class="mt-2 d-flex align-items-center justify-content-between">
+                                            
+                                               <a href="{{route('resetOTP')}}" type="submit" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" onclick="resendOtp()">Resend OTP</a>
+                                              
 
+                                             
+                                                <span id="timer" class="text-muted" style="font-size: 14px;"></span>
+                                            </div>
                                         </div>
                                     </div>
                                     @endif
@@ -221,6 +228,40 @@
         // Handle checkbox changes
         document.getElementById('hasReferralCode').addEventListener('change', function() {
             document.getElementById('referralCodeField').style.display = this.checked ? 'block' : 'none';
+        });
+
+        let countdown;
+        let timeLeft = 0;
+    
+        function startTimer(duration) {
+            timeLeft = duration;
+            const timerDisplay = document.getElementById('timer');
+            const resendBtn = document.getElementById('resendOtpBtn');
+            
+            clearInterval(countdown);
+            resendBtn.disabled = true;
+            
+            countdown = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerDisplay.textContent = '';
+                    resendBtn.disabled = false;
+                } else {
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+
+        // Start initial timer when OTP is first sent
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('resendOtpBtn')) {
+                startTimer(60);
+            }
         });
     </script>
     @endpush

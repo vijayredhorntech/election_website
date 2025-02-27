@@ -108,8 +108,81 @@
             </div>
         </div>
     </div>
+    <div class="flex flex-wrap  -mx-3">
+        <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-full lg:flex-none">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl dark:bg-gray-950 border-black-125 rounded-[3px] bg-clip-border">
+                <div class="overflow-x-auto p-2">
+                    <table class="w-full border-[1px] border-primaryLight/50 border-collapse">
+                        <thead>
+                            <tr class="bg-primaryDark/30">
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Sr. no
+                                </td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Financial Year</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Office</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Amount</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Start Date</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">End Date</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2"> Type</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Status</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Actions</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($budegts as $budegt)
+                            <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{$loop->iteration}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->financialYear->year}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->office->name}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->amount}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->start_date}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->end_date}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
+                                    @if ($budegt->type=='credit')
+                                    <span class="bg-success text-white px-3 py-1 rounded-[3px]">Credit</span>
+                                    @else
+                                    <span class="bg-danger text-white px-3 py-1 rounded-[3px]">Debit</span>
+                                    @endif
+</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
+                                    @if ($budegt->status=='Pending')
+                                    <span class="bg-warning text-black px-3 py-1 rounded-[3px]">Pending</span>
+                                    @elseif($budegt->status=='Approved')
+                                    <span class="bg-success text-black px-3 py-1 rounded-[3px]">Approved</span>
+                                    @else
+                                    <span class="bg-danger text-white px-3 py-1 rounded-[3px]">Rejected</span>
+                                    @endif
 
-    <div class="flex flex-wrap -mx-3">
+                                </td>
+                   
+
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm ">
+                                    <div class="flex h-full">
+                                        <a href="{{route('office.edit',['id'=>$office->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Office"><i class="fa fa-pen text-xs"></i></a>
+                                    
+                                        <a href="{{route('office.delete',['id'=>$office->id])}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Office"><i class="fa fa-trash text-xs"></i></a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="11"
+                                    class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm text-center">
+                                    No office found
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="flex flex-wrap -mx-3 mt-6">
         <div class="w-full max-w-full px-3  lg:w-2/3 lg:flex-none">
             <div
                 class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-[3px] border-0 border-solid bg-white bg-clip-border">

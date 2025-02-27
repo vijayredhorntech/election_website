@@ -21,10 +21,11 @@ class BudgetController extends Controller
 
             $offices = Office::with('budgets')->get();
             $financialYears = FinancialYear::all();
+            $budegts = Budget::all();
 
             CustomLog::info('Budget page loaded successfully');
 
-            return view('admin.budget.index')->with('formData', $formData)->with('offices', $offices)->with('financialYears', $financialYears);
+            return view('admin.budget.index')->with('formData', $formData)->with('offices', $offices)->with('financialYears', $financialYears)->with('budegts', $budegts);
         } catch (\Exception $e) {
             CustomLog::error('Error in BudgetController@index: ' . $e->getMessage(), [
                 'error' => $e->getMessage(),

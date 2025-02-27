@@ -64,31 +64,43 @@
             opacity: 0.7;
         }
 
-        /* Active menu styles */
-        .navbar-nav .nav-link {
+        .nav-link {
             position: relative;
             color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0;
             transition: color 0.3s ease;
         }
 
-        .navbar-nav .nav-link.active {
-            color: #c41e3a !important;
+
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Active state */
+        .nav-link.active {
+            color: #c41e3a;
             font-weight: 600;
         }
 
-        .navbar-nav .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
+        .nav-link.active::after {
             width: 100%;
-            height: 2px;
-            background-color: #c41e3a;
         }
 
-        .menu-item-has-children .nav-link.active + .line {
-            opacity: 1;
-            visibility: visible;
+        /* Optional: Add a subtle animation for the active state */
+        @keyframes activeIndicator {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .nav-link.active::after {
+            animation: activeIndicator 0.3s ease forwards;
         }
     </style>
 </head>
@@ -169,7 +181,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav political">
-                        <li class="menu-item-has-children">
+                        <li class="menu-item-has-children current-menu-item">
                             <a href="{{ route('index') }}"
                                 class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
                                 Home
@@ -185,11 +197,7 @@
                                 class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
                                 About
                             </a>
-                            <div class="line">
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                                <span class="dot style-02"></span>
-                            </div>
+                          
                         </li>
                         <li class="menu-item-has-children">
                             <a href="{{ route('leadership') }}"
@@ -281,20 +289,10 @@
                         </a>
 
                         @else
-                        @if(auth()->user()->member->profile_status == 'active')
                         <a href="{{route('memberProfile')}}" class="boxed-btn btn-sanatory">
                             Profile
                             <i class="icon-paper-plan"></i>
                         </a>
-                        @else
-                        <form action="{{route('logout')}}" method="POST">
-                            @csrf
-                            <button type="submit" class="boxed-btn btn-sanatory">
-                                Logout
-                                <i class="icon-paper-plan"></i>
-                            </button>
-                        </form>
-                        @endif
                         @endif
                     </div>
                     <div class="btn-wrapper" style="margin-left: 10px">
@@ -382,9 +380,9 @@
                                     </span>
                                 </h4>
                                 <ul>
-                                    <li><a href="#">62 King Street, Southall, Greater London UB2 4DB</a></li>
-                                    <li><a href="#">jsnichal@gmail.com</a></li>
-                                    <li><a href="#">07955555561</a></li>
+                                    <li style="color:white">62 King Street, Southall, Greater London UB2 4DB</li>
+                                    <li style="color:white">jsnichal@gmail.com</li>
+                                    <li style="color:white">07955555561</li>
                                 </ul>
                             </div>
                         </div>

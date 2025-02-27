@@ -55,6 +55,7 @@ Route::get('/regions/{countryCode}', [RegionController::class, 'getRegionsByCoun
 Route::get('/constituencies/{countryCode}', [ConstituencyController::class, 'getConstituenciesByCountryCode']);
 
 Route::get('/join_us', [MemberRegistrationController::class, 'index'])->name('joinUs');
+Route::get('/reset_otp', [MemberRegistrationController::class, 'resetOTP'])->name('resetOTP');
 Route::get('/email_verification_otp', [MemberRegistrationController::class, 'sendEmailVerificationOtp'])->name('sendEmailVerificationOtp');
 Route::post('/verify_otp', [MemberRegistrationController::class, 'verifyOtp'])->name('verifyOtp');
 Route::get('/select_membership_plan', [MemberRegistrationController::class, 'selectMemberShipPlan'])->name('selectMemberShipPlan');

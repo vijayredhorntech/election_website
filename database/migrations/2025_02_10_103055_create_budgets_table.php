@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->enum('type', ['Create', 'Update', 'Delete']);
+            $table->enum('type', ['credit', 'debit']);
             $table->enum('status', ['Pending', 'Approved', 'Rejected']);
             $table->timestamps();
         });
