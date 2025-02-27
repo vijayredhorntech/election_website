@@ -64,43 +64,31 @@
             opacity: 0.7;
         }
 
-        .nav-link {
+        /* Active menu styles */
+        .navbar-nav .nav-link {
             position: relative;
             color: #333;
-            font-weight: 500;
-            padding: 0.5rem 0;
             transition: color 0.3s ease;
         }
 
-
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Active state */
-        .nav-link.active {
-            color: #c41e3a;
+        .navbar-nav .nav-link.active {
+            color: #c41e3a !important;
             font-weight: 600;
         }
 
-        .nav-link.active::after {
+        .navbar-nav .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
             width: 100%;
+            height: 2px;
+            background-color: #c41e3a;
         }
 
-        /* Optional: Add a subtle animation for the active state */
-        @keyframes activeIndicator {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        .nav-link.active::after {
-            animation: activeIndicator 0.3s ease forwards;
+        .menu-item-has-children .nav-link.active + .line {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
@@ -181,7 +169,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav political">
-                        <li class="menu-item-has-children current-menu-item">
+                        <li class="menu-item-has-children">
                             <a href="{{ route('index') }}"
                                 class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
                                 Home
