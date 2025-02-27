@@ -79,7 +79,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/members_profile', [MemberController::class, 'memberProfile'])
         ->middleware('isMember')
         ->name('memberProfile');
-    Route::get('/member_download_id', [MemberController::class, 'downloadId'])->middleware('isMember')->name('downloadId');
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
