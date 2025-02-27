@@ -225,6 +225,27 @@
                         </div>
                     </div>
 
+                    <!-- Where Does Your Money Go Section -->
+                    <div class="policy-category mb-5" id="fund-allocation">
+                        <div class="faq-contents">
+                            <h2 class="title">Where Does Your Money Go?</h2>
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="single-faq-item">
+                                        <div class="content">
+                                            <ul class="check-list">
+                                                <li><i class="fas fa-lightbulb"></i> Campaigns & Awareness – Spreading our message and engaging with communities.</li>
+                                                <li><i class="fas fa-bullhorn"></i> Grassroots Activism – Giving people a platform to be heard and drive local change.</li>
+                                                <li><i class="fas fa-vote-yea"></i> Election Efforts – Helping our candidates reach voters and stand for the people.</li>
+                                                <li><i class="fas fa-balance-scale"></i> Fighting Injustice – Taking action against policies that harm communities.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Join Now Section -->
                     <div class="text-center mb-5">
                         <a href="{{route('joinUs')}}" class="btn btn-primary btn-lg" style="background-color:#b30d00; border:1px solid #b30d00">Join Now</a>

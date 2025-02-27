@@ -19,24 +19,23 @@
             <div class="swiper-button-next"></div>
         </div>
     </div>
-
-    <div class="header-area header-sanatory" style="padding:80px 0px; background-image: url({{asset('assets/images/about-bg.png')}}); background-position:center; background-size:cover">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <div class="header-inner-02">
-                        <span class="subtitle" style="color:whitesmoke">Welcome to One Nation</span>
-                        <h1 class="title" style="color:white">TO SOLVE & EDUCATE AS - ONE NATION</h1>
-                        <p>Building a stronger, fairer, and more united society for all</p>
-                        <div class="btn-wrapper" style="margin-top:10px">
-                            <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory">Join Us Today</a>
-                            <a href="{{route('donate')}}" class="boxed-btn btn-sanatory-2">Donate Now</a>
-                        </div>
+    <div class="header-area header-sanatory" style="padding:80px 0px; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{asset('assets/images/bannerBg.jpg')}}); background-position:center; background-size:cover;">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="header-inner-02">
+                    <span class="subtitle" style="color:whitesmoke">Welcome to One Nation</span>
+                    <h1 class="title" style="color:white">TO SOLVE & EDUCATE AS - ONE NATION</h1>
+                    <p style="color:whitesmoke">Building a stronger, fairer, and more united society for all</p>
+                    <div class="btn-wrapper" style="margin-top:10px">
+                        <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory">Join Us Today</a>
+                        <a href="{{route('donate')}}" class="boxed-btn btn-sanatory-2">Donate Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
   <!-- Party Aims & Goals Section -->
