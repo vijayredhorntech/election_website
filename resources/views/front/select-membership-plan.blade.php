@@ -9,86 +9,86 @@
     </style>
     @endpush
 
-        <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="about-inner donation-single">
-                            <h1 class="title">Membership Plans</h1>
-                        </div>
-                        <div class="breadcrumbs">
-                            <ul>
-                                <li><a href="{{route('index')}}">Home</a></li>
-                                <li><a href="{{route('joinUs')}}">Plans</a></li>
-                            </ul>
-                        </div>
+    <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="about-inner donation-single">
+                        <h1 class="title">Membership Plans</h1>
+                    </div>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="{{route('index')}}">Home</a></li>
+                            <li><a href="{{route('joinUs')}}">Plans</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="donation-content-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="volunteer-form style-01">
-                            <div class="donate-programm">
-                                <div class="content">
-                                    <h6 class="subtitle">Change has begun, be part of it</h6>
-                                    <p class="description style-01">
-                                        Join hundreds of thousands of party members as we fix the foundations and rebuild UK.
-                                    </p>
+    <div class="donation-content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="volunteer-form style-01">
+                        <div class="donate-programm">
+                            <div class="content">
+                                <h6 class="subtitle">Change has begun, be part of it</h6>
+                                <p class="description style-01">
+                                    Join hundreds of thousands of party members as we fix the foundations and rebuild UK.
+                                </p>
 
-                                    @if(session('error'))
-                                        <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
-                                    @endif @if(session('success'))
-                                        <div class="text-green-600 text-sm font-semibold mt-4">{{session('success')}}</div>
-                                    @endif
-                                </div>
+                                @if(session('error'))
+                                <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
+                                @endif @if(session('success'))
+                                <div class="text-green-600 text-sm font-semibold mt-4">{{session('success')}}</div>
+                                @endif
                             </div>
-                            <div class="contact-form style-01">
-                                <form action="{{route('paymentGateway',['email'=>$email,'id'=>1])}}" method="post" class="contact-page-form" novalidate="novalidate">
-                                    @csrf
-                                    <h6 class="title">This is our membership plan</h6>
+                        </div>
+                        <div class="contact-form style-01">
+                            <form action="{{route('paymentGateway',['email'=>$email,'id'=>1])}}" method="post" class="contact-page-form" novalidate="novalidate">
+                                @csrf
+                                <h6 class="title">This is our membership plan</h6>
 
-                                    @php
-                                        $memberShipPlans = [
-                                                [
-                                                'id' => '1',
-                                                'amount' => '2.92',
-                                                ],
-                                        ];
-                                    @endphp
+                                @php
+                                $memberShipPlans = [
+                                [
+                                'id' => '1',
+                                'amount' => '3',
+                                ],
+                                ];
+                                @endphp
 
-                                    @foreach($memberShipPlans as $plan)
-                                        <div class="row">
-                                            <div class="form-question" style="padding-left: 20px">
-                                                <div class="check-box-wrapper">
-                                                    <div class="check-box">
-                                                        <label class="container-box">
-                                                            £ {{$plan['amount']}}/ MO
-                                                            <input type="radio" value="{{$plan['id']}}" name="memberShip" {{$loop->iteration===1?'checked':''}}>
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                @foreach($memberShipPlans as $plan)
+                                <div class="row">
+                                    <div class="form-question" style="padding-left: 20px">
+                                        <div class="check-box-wrapper">
+                                            <div class="check-box">
+                                                <label class="container-box">
+                                                    £ {{$plan['amount']}}/ MO
+                                                    <input type="radio" value="{{$plan['id']}}" name="memberShip" {{$loop->iteration===1?'checked':''}}>
+                                                    <span class="checkmark"></span>
+                                                </label>
                                             </div>
                                         </div>
-                                     @endforeach
-
-
-                                    <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                        <button type="submit" class="boxed-btn btn-sanatory"> Continue <span class="icon-paper-plan"></span></button>
                                     </div>
+                                </div>
+                                @endforeach
 
-                                </form>
-                            </div>
 
+                                <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
+                                    <button type="submit" class="boxed-btn btn-sanatory"> Continue <span class="icon-paper-plan"></span></button>
+                                </div>
+
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
