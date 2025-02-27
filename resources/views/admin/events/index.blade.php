@@ -141,8 +141,8 @@
                                 </td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm w-[200px]">
                                     <div class="flex h-full">
-                                        <a href="{{route('member.view',['id'=>$event->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Profile"><i class="fa fa-eye text-xs"></i></a>
-                                        <a href="{{route('employees.view',['id'=>$event->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Dashboard"><i class="fa fa-tv text-xs"></i></a>
+                                        <a href="{{route('events.index'}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="Edit Event"><i class="fa fa-pen text-xs"></i></a>
+                                        <a href="{{route('events.index'}}" class="bg-info text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Event"><i class="fa fa-trash text-xs"></i></a>
 
                                     </div>
                                 </td>
