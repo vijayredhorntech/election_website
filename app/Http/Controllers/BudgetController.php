@@ -38,6 +38,7 @@ class BudgetController extends Controller
 
     public function allotBudget(Request $request)
     {
+        // dd($request->all());
         try {
             $validatedData = $request->validate([
                 'office_id' => 'required|exists:offices,id',
@@ -45,7 +46,7 @@ class BudgetController extends Controller
                 'financial_year' => 'required|exists:financial_years,year',
                 'start_date' => 'required|date',
                 'end_date' => 'required|date|after:start_date',
-                'type' => 'required|in:Create,Update,Delete',
+                'type' => 'required|in:credit,debit',
                 'status' => 'required|in:Pending,Approved,Rejected',
             ]);
 
@@ -71,6 +72,48 @@ class BudgetController extends Controller
                 'line' => $e->getLine()
             ]);
             return back()->with('error', 'An error occurred while allotting the budget.');
+        }
+    }
+
+    public function edit($id)
+    {
+        try {
+            $budget = Budget::find($id);
+            $financial_year = FinancialYear::where('id', $id)->first();
+            $formData = [
+                'type' => 'Update',
+                'method' => 'POST',
+                'url' => route('budget.update', ['id' => $budget->id])
+            ];
+
+            $budegts = Budget::all();
+            $financialYears = FinancialYear::all();
+            $offices = Office::all();
+
+            return view('admin.budget.index')->with('budget', $budget)->with('formData', $formData)->with('budegts', $budegts)->with('financialYears', $financialYears)->with('financial_year', $financial_year)->with('offices', $offices);
+        } catch (\Exception $e) {
+            CustomLog::error('Error in BudgetController@edit: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            return back()->with('error', 'An error occurred while editing the budget.');
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $budget = Budget::find($id);
+            $budget->delete();
+            return redirect()->route('budget.index')->with('success', 'Budget deleted successfully!');
+        } catch (\Exception $e) {
+            CustomLog::error('Error in BudgetController@delete: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            return back()->with('error', 'An error occurred while deleting the budget.');
         }
     }
 }

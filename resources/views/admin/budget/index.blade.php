@@ -47,12 +47,16 @@
                     <form id="allot" action="{{$formData['url']}}" method="{{$formData['method']}}" class="{{$formData['type']==='Create' && !$errors->any() ?'hidden':''}} w-full grid lg:grid-col-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 bg-white mt-4 gap-4 pb-4">
                         @csrf
                         <div class="w-full">
-                            <div class="flex flex-col gap-1 ">
-                                <label for="name" class="font-semibold text-sm text-black">Select Office <span class="text-danger">*</span></label>
-                                <select type="text" name="office_id" class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                            <div class="flex flex-col gap-1">
+                                <label for="name" class="font-semibold text-sm text-black">
+                                    Select Office <span class="text-danger">*</span>
+                                </label>
+                                <select name="office_id" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     <option value="">Select Office</option>
                                     @foreach ($offices as $office)
-                                    <option value="{{$office->id}}">{{$office->name}}</option>
+                                    <option value="{{ $office->id }}" {{ isset($budget) && $budget->office_id == $office->id ? 'selected' : '' }}>
+                                        {{ $office->name }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -69,7 +73,19 @@
                         <div class="w-full">
                             <div class="flex flex-col gap-1 ">
                                 <label for="name" class="font-semibold text-sm text-black">Amount <span class="text-danger">*</span></label>
-                                <input type="number" name="amount" value="{{ $office->description ?? old('description') }}" placeholder="Enter amount....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                <input type="number" name="amount" value="{{ $budget->amount ?? old('amount') }}" placeholder="Enter amount....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <div class="flex flex-col gap-1">
+                                <label for="type" class="font-semibold text-sm text-black">
+                                    Type <span class="text-danger">*</span>
+                                </label>
+                                <select name="type" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                    <option value="">Select Type</option>
+                                    <option value="credit" {{ isset($budget) && $budget->type == 'credit' ? 'selected' : '' }}>Credit</option>
+                                    <option value="debit" {{ isset($budget) && $budget->type == 'debit' ? 'selected' : '' }}>Debit</option>
+                                </select>
                             </div>
                         </div>
                         <div class="w-full">
@@ -78,7 +94,7 @@
                                 <select type="text" name="financial_year" class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                                     <option value="">Select Financial Year</option>
                                     @foreach ($financialYears as $financialYear)
-                                    <option value="{{$financialYear->year}}">{{$financialYear->year}}</option>
+                                    <option value="{{$financialYear->year}}" {{ isset($budget) && $budget->financialYear->year == $financialYear->year ? 'selected' : '' }}>{{$financialYear->year}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -86,21 +102,20 @@
                         <div class="w-full">
                             <div class="flex flex-col gap-1 ">
                                 <label for="name" class="font-semibold text-sm text-black">Start Date <span class="text-danger">*</span></label>
-                                <input type="date" name="start_date" class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                <input type="date" name="start_date" value="{{ $budget->start_date ?? old('start_date') }}" class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                             </div>
                         </div>
                         <div class="w-full">
                             <div class="flex flex-col gap-1 ">
                                 <label for="name" class="font-semibold text-sm text-black">End Date <span class="text-danger">*</span></label>
-                                <input type="date" name="end_date" class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                                <input type="date" name="end_date" value="{{ $budget->end_date ?? old('end_date') }}" class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
                             </div>
                         </div>
-                        <input type="hidden" name="type" value="Create">
                         <input type="hidden" name="status" value="Pending">
                         <div class="w-full">
                             <div class="flex flex-col gap-1  ">
                                 <label for="name" class="font-semibold text-sm text-black">&nbsp</label>
-                                <button class="w-max px-4 py-1.5 rounded-[3px] text-white bg-success hover:bg-primaryLight transition ease-in duration-2000 text-md font-semibold">Allot Budget</button>
+                                <button class="w-max px-4 py-1.5 rounded-[3px] text-white bg-success hover:bg-primaryLight transition ease-in duration-2000 text-md font-semibold">{{$formData['type']}} Budget</button>
                             </div>
                         </div>
                     </form>
@@ -128,39 +143,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($budegts as $budegt)
+                            @forelse($budegts as $budget)
                             <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{$loop->iteration}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->financialYear->year}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->office->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->amount}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->start_date}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budegt->end_date}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budget->financialYear->year}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budget->office->name}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budget->amount}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budget->start_date}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$budget->end_date}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
-                                    @if ($budegt->type=='credit')
+                                    @if ($budget->type=='credit')
                                     <span class="bg-success text-white px-3 py-1 rounded-[3px]">Credit</span>
                                     @else
                                     <span class="bg-danger text-white px-3 py-1 rounded-[3px]">Debit</span>
                                     @endif
-</td>
+                                </td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
-                                    @if ($budegt->status=='Pending')
+                                    @if ($budget->status=='Pending')
                                     <span class="bg-warning text-black px-3 py-1 rounded-[3px]">Pending</span>
-                                    @elseif($budegt->status=='Approved')
+                                    @elseif($budget->status=='Approved')
                                     <span class="bg-success text-black px-3 py-1 rounded-[3px]">Approved</span>
                                     @else
                                     <span class="bg-danger text-white px-3 py-1 rounded-[3px]">Rejected</span>
                                     @endif
 
                                 </td>
-                   
+
 
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm ">
                                     <div class="flex h-full">
-                                        <a href="{{route('office.edit',['id'=>$office->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Office"><i class="fa fa-pen text-xs"></i></a>
-                                    
-                                        <a href="{{route('office.delete',['id'=>$office->id])}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Office"><i class="fa fa-trash text-xs"></i></a>
-
+                                        <a href="{{route('budget.edit',['id'=>$budget->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Budget"><i class="fa fa-pen text-xs"></i></a>
+                                        <a href="{{route('budget.delete',['id'=>$budget->id])}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Budget"><i class="fa fa-trash text-xs"></i></a>
                                     </div>
                                 </td>
                             </tr>
