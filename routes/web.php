@@ -22,6 +22,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -183,6 +184,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::name('report.')->group(function () {
             Route::get('/report', [ReportController::class, 'index'])->name('index');
+        });
+
+        Route::name('contact.')->group(function () {
+            Route::get('/contact', [ContactController::class, 'index'])->name('index');
         });
     });
 });
