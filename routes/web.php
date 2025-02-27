@@ -79,6 +79,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/members_profile', [MemberController::class, 'memberProfile'])
         ->middleware('isMember')
         ->name('memberProfile');
+    Route::get('/member_download_id', [MemberController::class, 'downloadId'])->middleware('isMember')->name('downloadId');
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
@@ -124,7 +125,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/member/view/{id}/donations', [MemberController::class, 'donations'])->name('donations');
             Route::post('/member/update/{id}', [MemberController::class, 'update'])->name('update');
             Route::get('/member/delete/{id}', [MemberController::class, 'delete'])->name('delete');
-            Route::get('/member/download-id', [MemberController::class, 'downloadId'])->name('downloadId');
         });
 
         Route::name('employees.')->group(function () {
