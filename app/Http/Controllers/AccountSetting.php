@@ -7,6 +7,11 @@ use App\Models\ExpenseCategory;
 use App\Http\Controllers\ConstituencyController;
 use App\Models\Constituency;
 use App\Facades\CustomLog;
+use App\Models\Title;
+use App\Models\Country;
+use App\Models\County;
+use App\Models\Profession;
+use App\Models\Education;
 
 class AccountSetting extends Controller
 {
@@ -17,39 +22,16 @@ class AccountSetting extends Controller
      */
     public function index()
     {
-        try {
-            $formData = [
-                'type' => 'Create',
-                'method' => 'POST',
-                'url' => route('expense.category.store')
-            ];
+        $data = [
+            'titles' => Title::all(),
+            'countries' => Country::all(),
+            'counties' => County::with('country')->get(),
+            'constituencies' => Constituency::with(['country', 'county'])->get(),
+            'professions' => Profession::all(),
+            'educations' => Education::all(),
+        ];
 
-            $expenseCategories = ExpenseCategory::orderBy('created_at', 'desc')->get();
-
-            // Create a request instance to use with getPaginatedConstituency
-            $request = new Request([
-                'limit' => 10,
-                'page' => 1
-            ]);
-
-            $constituencies = app(ConstituencyController::class)->getPaginatedConstituency($request);
-            $constituencies = json_decode($constituencies->getContent());
-
-            CustomLog::info('Expense categories fetched successfully');
-
-            return view('admin.account-setting.index')
-                ->with('expenseCategories', $expenseCategories)
-                ->with('constituencies', $constituencies->data)
-                ->with('formData', $formData);
-        } catch (\Exception $e) {
-            CustomLog::error('Error in AccountSetting@index: ' . $e->getMessage(), [
-                'error' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine()
-            ]);
-            session()->flash('error', 'An error occurred while loading the settings page.');
-            return redirect()->back();
-        }
+        return view('admin.settings.index', $data);
     }
 
     /**

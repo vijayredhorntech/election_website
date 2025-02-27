@@ -24,6 +24,8 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\EducationController;
 
 
 Route::get('/', [PageController::class, 'index'])->name('index');
@@ -73,7 +75,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/member_basic_information', [MemberRegistrationController::class, 'storeMemberBasicInformation'])->name('storeMemberBasicInformation');
     Route::get('/member_address_information', [MemberRegistrationController::class, 'memberAddressInformation'])->name('memberAddressInformation');
     Route::post('/member_address_information', [MemberRegistrationController::class, 'storeMemberAddressInformation'])->name('storeMemberAddressInformation');
-    Route::get('/members_profile', [MemberController::class, 'memberProfile'])->name('memberProfile');
+    Route::get('/members_profile', [MemberController::class, 'memberProfile'])
+        ->middleware('isMember')
+        ->name('memberProfile');
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
@@ -85,10 +89,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->middleware('isAdmin')->group(function () {
 
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::post('/setFinancialYear', [AdminDashboardController::class, 'setFinancialYear'])->name('set-financial-year');
+
+        Route::get('/account-setting', [AccountSetting::class, 'index'])->name('account-setting');
 
         Route::name('designations.')->group(function () {
             Route::get('/designations', [DesignationController::class, 'index'])->name('index');
@@ -188,6 +194,44 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::name('contact.')->group(function () {
             Route::get('/contact', [ContactController::class, 'index'])->name('index');
+        });
+
+        Route::name('settings.')->prefix('settings')->group(function () {
+            // Titles Management
+            Route::get('/titles', [TitleController::class, 'adminIndex'])->name('titles.index');
+            Route::post('/titles/store', [TitleController::class, 'store'])->name('titles.store');
+            Route::put('/titles/{id}', [TitleController::class, 'update'])->name('titles.update');
+            Route::delete('/titles/{id}', [TitleController::class, 'destroy'])->name('titles.destroy');
+
+            // Countries Management
+            Route::get('/countries', [CountryController::class, 'adminIndex'])->name('countries.index');
+            Route::post('/countries/store', [CountryController::class, 'store'])->name('countries.store');
+            Route::put('/countries/{id}', [CountryController::class, 'update'])->name('countries.update');
+            Route::delete('/countries/{id}', [CountryController::class, 'destroy'])->name('countries.destroy');
+
+            // Counties Management
+            Route::get('/counties', [CountyController::class, 'adminIndex'])->name('counties.index');
+            Route::post('/counties/store', [CountyController::class, 'store'])->name('counties.store');
+            Route::put('/counties/{id}', [CountyController::class, 'update'])->name('counties.update');
+            Route::delete('/counties/{id}', [CountyController::class, 'destroy'])->name('counties.destroy');
+
+            // Constituencies Management
+            Route::get('/constituencies', [ConstituencyController::class, 'adminIndex'])->name('constituencies.index');
+            Route::post('/constituencies/store', [ConstituencyController::class, 'store'])->name('constituencies.store');
+            Route::put('/constituencies/{id}', [ConstituencyController::class, 'update'])->name('constituencies.update');
+            Route::delete('/constituencies/{id}', [ConstituencyController::class, 'destroy'])->name('constituencies.destroy');
+
+            // Professions Management
+            Route::get('/professions', [ProfessionController::class, 'index'])->name('professions.index');
+            Route::post('/professions/store', [ProfessionController::class, 'store'])->name('professions.store');
+            Route::put('/professions/{id}', [ProfessionController::class, 'update'])->name('professions.update');
+            Route::delete('/professions/{id}', [ProfessionController::class, 'destroy'])->name('professions.destroy');
+
+            // Education Management
+            Route::get('/education', [EducationController::class, 'index'])->name('education.index');
+            Route::post('/education/store', [EducationController::class, 'store'])->name('education.store');
+            Route::put('/education/{id}', [EducationController::class, 'update'])->name('education.update');
+            Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('education.destroy');
         });
     });
 });
