@@ -110,7 +110,7 @@
 
 
     <!-- Header-top-start -->
-    <div class="header-top about">
+    <!-- <div class="header-top about">
         <div class="container nav-container">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -161,7 +161,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Header-top-end -->
 
     <div class="header-style-01">
