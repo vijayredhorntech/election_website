@@ -148,6 +148,8 @@ class OfficeController extends Controller
 
     public function delete($id)
     {
+        // check if there are no related entries in any table
+
         $office = Office::findOrFail($id);
         $employeesCount = $office->employees()->count();
 

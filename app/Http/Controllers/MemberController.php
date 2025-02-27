@@ -344,9 +344,11 @@ class MemberController extends Controller
             'name' => $member->title . ' ' . $user->name,
             'issue_date' => $member->enrollment_date,
             'constituency' => $member->constituency->name,
+            'website' => route('index'),
             'profile_photo' => $member->profile_photo
                 ? asset('storage/' . $member->profile_photo)
                 : asset('assets/images/default-profile.png'),
+            'contact_number' => $member->primary_country_code . ' ' . $member->primary_mobile_number,
             'member_id' => $member->custom_id,
             'referral_code' => $user->referral_code
         ];

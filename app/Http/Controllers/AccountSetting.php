@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
 use App\Http\Controllers\ConstituencyController;
 use App\Models\Constituency;
+use App\Facades\CustomLog;
 
 class AccountSetting extends Controller
 {
@@ -16,27 +17,39 @@ class AccountSetting extends Controller
      */
     public function index()
     {
-        $formData = [
-            'type' => 'Create',
-            'method' => 'POST',
-            'url' => route('expense.category.store')
-        ];
+        try {
+            $formData = [
+                'type' => 'Create',
+                'method' => 'POST',
+                'url' => route('expense.category.store')
+            ];
 
-        $expenseCategories = ExpenseCategory::orderBy('created_at', 'desc')->get();
+            $expenseCategories = ExpenseCategory::orderBy('created_at', 'desc')->get();
 
-        // Create a request instance to use with getPaginatedConstituency
-        $request = new Request([
-            'limit' => 10,
-            'page' => 1
-        ]);
+            // Create a request instance to use with getPaginatedConstituency
+            $request = new Request([
+                'limit' => 10,
+                'page' => 1
+            ]);
 
-        $constituencies = app(ConstituencyController::class)->getPaginatedConstituency($request);
-        $constituencies = json_decode($constituencies->getContent());
+            $constituencies = app(ConstituencyController::class)->getPaginatedConstituency($request);
+            $constituencies = json_decode($constituencies->getContent());
 
-        return view('admin.account-setting.index')
-            ->with('expenseCategories', $expenseCategories)
-            ->with('constituencies', $constituencies->data)
-            ->with('formData', $formData);
+            CustomLog::info('Expense categories fetched successfully');
+
+            return view('admin.account-setting.index')
+                ->with('expenseCategories', $expenseCategories)
+                ->with('constituencies', $constituencies->data)
+                ->with('formData', $formData);
+        } catch (\Exception $e) {
+            CustomLog::error('Error in AccountSetting@index: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            session()->flash('error', 'An error occurred while loading the settings page.');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -47,15 +60,27 @@ class AccountSetting extends Controller
      */
     public function editExpenseCategory($id)
     {
-        $expense = ExpenseCategory::find($id);
-        $expenses = ExpenseCategory::orderBy('created_at', 'desc')->get();
+        try {
+            $expense = ExpenseCategory::find($id);
+            $expenses = ExpenseCategory::orderBy('created_at', 'desc')->get();
 
-        $formData = [
-            'type' => 'Update',
-            'method' => 'POST',
-            'url' => route('expense.update', $id)
-        ];
+            $formData = [
+                'type' => 'Update',
+                'method' => 'POST',
+                'url' => route('expense.update', $id)
+            ];
 
-        return view('admin.account-setting.index')->with('expenses', $expenses)->with('expense', $expense)->with('formData', $formData);
+            CustomLog::info('Expense category fetched successfully');
+
+            return view('admin.account-setting.index')->with('expenses', $expenses)->with('expense', $expense)->with('formData', $formData);
+        } catch (\Exception $e) {
+            CustomLog::error('Error in AccountSetting@editExpenseCategory: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            session()->flash('error', 'An error occurred while loading the settings page.');
+            return redirect()->back();
+        }
     }
 }
