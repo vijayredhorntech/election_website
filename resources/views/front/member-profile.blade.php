@@ -36,7 +36,7 @@
                 <div style="width: 100% ; display: flex; justify-content: end; gap: 10px; padding: 20px">
 
 
-                    <form action="{{route('member.downloadId')}}" method="get">
+                    <form action="{{route('downloadId')}}" method="get">
                         @csrf
                         <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                             <button type="submit" class="boxed-btn btn-sanatory" style="background-color: black"> Download ID <span class="icon-paper-plan"></span></button>
@@ -53,7 +53,7 @@
 
         </div>
         <div class="row" style="padding:20px">
-            <div class="col-md-4 col-sm-4 col-12" >
+            <div class="col-md-4 col-sm-4 col-12">
                 <div class="card wow animate__animated animate__fadeInUp">
                     <div class="card-header" id="headingOwo">
                         <h5 class="mb-0">
