@@ -71,74 +71,100 @@
                                             <span id="email-availability-status"></span>
                                         </div>
                                     </div>
-
-
-                                    @if ($formData['type']==='validate')
-                                    <div class="flex flex-col items-start w-full gap-1">
-                                        <input value="{{ $email }}" type="email" name="verifiedEmail" style="display: none" class="hidden w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-red-500" placeholder="Enter your membership number.....">
-                                    </div>
-
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="number" name="otp" value="{{old('otp')}}" class="form-control" placeholder="Enter OTP" required="" aria-required="true" style="color: black; font-weight: 600">
-                                            @error('otp')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
-                                            <div class="mt-2 d-flex align-items-center justify-content-between">
-                                            
-                                               <a href="{{route('resetOTP')}}" type="submit" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" onclick="resendOtp()">Resend OTP</a>
-                                              
+                                            <input type="text" name="country_code" value="44" class="form-control" placeholder="Enter country code" required="" aria-required="true" style="color: black; font-weight: 600; ">
+                                        </div>
+                                    </div> -->
 
-                                             
-                                                <span id="timer" class="text-muted" style="font-size: 14px;"></span>
-                                            </div>
+                                </div>
+
+                                @if ($formData['type']==='validate')
+                                <div class="flex flex-col items-start w-full gap-1">
+                                    <input value="{{ $email }}" type="email" name="verifiedEmail" style="display: none" class="hidden w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-red-500" placeholder="Enter your membership number.....">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="number" name="otp" value="{{old('otp')}}" class="form-control" placeholder="Enter OTP" required="" aria-required="true" style="color: black; font-weight: 600">
+                                        @error('otp')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
+                                        <div class="mt-2 d-flex align-items-center justify-content-between">
+
+                                            <a href="{{route('resetOTP')}}" type="submit" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" onclick="resendOtp()">Resend OTP</a>
+
+
+
+                                            <span id="timer" class="text-muted" style="font-size: 14px;"></span>
                                         </div>
                                     </div>
-                                    @endif
-                                    @if($formData['type']==='register')
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="check-box-wrapper">
-                                                <div class="check-box">
-                                                    <label class="container-box" style="color: black; font-weight: 600;">
-                                                        I have a referral code
-                                                        <input type="checkbox" id="hasReferralCode" {{$formData['hasReferralCode']==='true'?'checked':''}} name="hasReferralCode" style="color: black; font-weight: 600;">
-                                                        <span class="checkmark" style="color: black; font-weight: 600; border: 1px solid darkgray; border-radius: 5px;"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" id="referralCodeField" style="display: {{$formData['hasReferralCode']==='true' ? 'block' : 'none'}}">
-                                            <input type="text"
-                                                name="referral_code"
-                                                placeholder="ENTER REFERRAL CODE"
-                                                value="{{$formData['referral_code']}}"
-                                                class="form-control"
-                                                pattern="^ONR[A-Z0-9]{4}$"
-                                                title="Please enter a valid referral code"
-                                                style="color: black; font-weight: 600; ">
-                                            @error('referral_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @if ($formData['type']==='register')
-                                    <div class="form-question" style="padding-left: 20px">
+                                </div>
+                                @endif
+                                @if($formData['type']==='register')
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <div class="check-box-wrapper">
                                             <div class="check-box">
-                                                <label class="container-box">
-                                                    Currently not a member of any other party
-                                                    <input type="checkbox" name="termsAndConditionCheckbox" checked="checked">
-                                                    <span class="checkmark"></span>
+                                                <label class="container-box" style="color: black; font-weight: 600;">
+                                                    I have a referral code
+                                                    <input type="checkbox" id="hasReferralCode" {{$formData['hasReferralCode']==='true'?'checked':''}} name="hasReferralCode" style="color: black; font-weight: 600;">
+                                                    <span class="checkmark" style="color: black; font-weight: 600; border: 1px solid darkgray; border-radius: 5px;"></span>
                                                 </label>
                                             </div>
                                         </div>
-                                        @error ('termsAndConditionCheckbox')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-
                                     </div>
-                                    @endif
-
-                                    <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                        <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
+                                    <div class="form-group" id="referralCodeField" style="display: {{$formData['hasReferralCode']==='true' ? 'block' : 'none'}}">
+                                        <input type="text"
+                                            name="referral_code"
+                                            placeholder="ENTER REFERRAL CODE"
+                                            value="{{$formData['referral_code']}}"
+                                            class="form-control"
+                                            pattern="^ONR[A-Z0-9]{4}$"
+                                            title="Please enter a valid referral code"
+                                            style="color: black; font-weight: 600; ">
+                                        @error('referral_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                     </div>
+                                </div>
+                                @endif
+                                @if ($formData['type']==='register')
+                                <div class="form-question" style="padding-left: 20px">
+                                    <div class="check-box-wrapper">
+                                        <div class="check-box">
+                                            <label class="container-box">
+                                                Currently not a member of any other party
+                                                <input type="checkbox" name="termsAndConditionCheckbox" checked="checked">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    @error ('termsAndConditionCheckbox')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
+                                </div>
+                                @endif
+
+                                <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
+                                    <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
+                                </div>
+
+                            </form>
+                            <form id="mobileVerificationForm" class="mb-4">
+                                @csrf
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="country_code" value="44" class="form-control" placeholder="Enter country code" required aria-required="true" style="color: black; font-weight: 600;">
+                                        <input type="text" name="mobile_number" value="{{old('mobile_number')}}" class="form-control" placeholder="Enter mobile number" required aria-required="true" style="color: black; font-weight: 600;">
+                                        @error('mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                    </div>
+                                    <div class="form-group" id="otpInputGroup" style="display: none;">
+                                        <input type="text" name="mobile_otp" class="form-control" maxlength="6" placeholder="Enter 6-digit OTP" aria-required="true" style="color: black; font-weight: 600;">
+                                        @error('mobile_otp')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        <div class="mt-2 d-flex align-items-center justify-content-between">
+                                            <button type="button" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" disabled>Resend OTP</button>
+                                            <span id="timer" class="text-muted" style="font-size: 14px;"></span>
+                                        </div>
+                                    </div>
+                                    <div id="verificationStatus" class="alert" style="display: none;"></div>
+                                    <button type="submit" id="verifyMobileBtn" class="btn btn-primary">Send OTP</button>
+                                </div>
                             </form>
                             <div class="why-to-join-us">
                                 <h2>What is Membership?</h2>
@@ -156,9 +182,141 @@
 
     @push('scripts')
     <script>
-        // document.getElementById('name').addEventListener('input', function() {
-        //     this.value = this.value.toUpperCase();
-        // });
+        const form = document.getElementById('mobileVerificationForm');
+        const otpGroup = document.getElementById('otpInputGroup');
+        const submitBtn = document.getElementById('verifyMobileBtn');
+        const resendBtn = document.getElementById('resendOtpBtn');
+        const statusDiv = document.getElementById('verificationStatus');
+        let isOtpSent = false;
+
+        function showStatus(message, isError = false) {
+            statusDiv.textContent = message;
+            statusDiv.className = `alert ${isError ? 'alert-danger' : 'alert-success'}`;
+            statusDiv.style.display = 'block';
+        }
+
+        function startTimer(duration) {
+            let timeLeft = duration;
+            const timerDisplay = document.getElementById('timer');
+            resendBtn.disabled = true;
+
+            const countdown = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+
+                timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+                if (--timeLeft < 0) {
+                    clearInterval(countdown);
+                    timerDisplay.textContent = '';
+                    resendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            try {
+                if (!isOtpSent) {
+                    // Send OTP
+                    const response = await fetch('{{ route("verifyMobile") }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json',
+                        },
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        otpGroup.style.display = 'block';
+                        submitBtn.textContent = 'Verify OTP';
+                        isOtpSent = true;
+                        startTimer(60);
+                        showStatus('OTP sent successfully');
+                    } else {
+                        showStatus(data.message || 'Failed to send OTP', true);
+                    }
+                } else {
+                    // Verify OTP
+                    const mobileOtp = form.querySelector('[name="mobile_otp"]').value;
+                    if (!mobileOtp) {
+                        showStatus('Please enter the OTP', true);
+                        return;
+                    }
+
+                    const response = await fetch('{{ route("validateOTP") }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            mobile_number: formData.get('mobile_number'),
+                            country_code: formData.get('country_code'),
+                            mobile_otp: mobileOtp
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.valid) {
+                        showStatus('Mobile number verified successfully');
+                        // Hide OTP input and reset form state
+                        otpGroup.style.display = 'none';
+                        submitBtn.textContent = 'Send OTP';
+                        isOtpSent = false;
+                        form.reset();
+
+                        // You can redirect or proceed with the next step here
+                        // window.location.href = 
+                    } else {
+                        showStatus(data.message || 'Invalid OTP', true);
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('An error occurred. Please try again.', true);
+            }
+        });
+
+        resendBtn.addEventListener('click', async function() {
+            if (this.disabled) return;
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('{{ route("resendOTP") }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    startTimer(60);
+                    showStatus('OTP resent successfully');
+                } else {
+                    showStatus(data.message || 'Failed to resend OTP', true);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('Failed to resend OTP', true);
+            }
+        });
+
+        // Clear status message when user starts typing
+        form.querySelector('[name="mobile_otp"]').addEventListener('input', function() {
+            statusDiv.style.display = 'none';
+        });
 
         function togglePrivacyModal() {
             const modal = document.getElementById('privacyModal');
@@ -232,21 +390,21 @@
 
         let countdown;
         let timeLeft = 0;
-    
+
         function startTimer(duration) {
             timeLeft = duration;
             const timerDisplay = document.getElementById('timer');
             const resendBtn = document.getElementById('resendOtpBtn');
-            
+
             clearInterval(countdown);
             resendBtn.disabled = true;
-            
+
             countdown = setInterval(() => {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
-                
+
                 timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                
+
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
                     timerDisplay.textContent = '';

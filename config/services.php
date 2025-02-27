@@ -35,4 +35,7 @@ return [
         ],
     ],
 
+    'voodoo' => [
+        'api_key' => env('VOODOO_API_KEY'),
+    ],
 ];

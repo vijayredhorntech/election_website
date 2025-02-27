@@ -26,7 +26,7 @@ use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\EducationController;
-
+use App\Http\Controllers\MobileVerificationController;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/about', [PageController::class, 'about'])->name('about');
@@ -58,6 +58,9 @@ Route::get('/join_us', [MemberRegistrationController::class, 'index'])->name('jo
 Route::get('/reset_otp', [MemberRegistrationController::class, 'resetOTP'])->name('resetOTP');
 Route::get('/email_verification_otp', [MemberRegistrationController::class, 'sendEmailVerificationOtp'])->name('sendEmailVerificationOtp');
 Route::post('/verify_otp', [MemberRegistrationController::class, 'verifyOtp'])->name('verifyOtp');
+Route::post('/verify-mobile', [MobileVerificationController::class, 'verifyMobile'])->name('verifyMobile');
+Route::post('/resend-mobile-otp', [MobileVerificationController::class, 'resendOTP'])->name('resendOTP');
+Route::post('/validate-mobile-otp', [MobileVerificationController::class, 'validateOTP'])->name('validateOTP');
 Route::get('/select_membership_plan', [MemberRegistrationController::class, 'selectMemberShipPlan'])->name('selectMemberShipPlan');
 Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::class, 'paymentGateway'])->name('paymentGateway');
 
