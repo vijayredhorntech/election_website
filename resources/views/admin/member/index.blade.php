@@ -28,10 +28,10 @@
         <div>
             <span class="text-white font-semibold lg:text-xl">Members</span>
         </div>
-        <div>
+        <!-- <div>
             <button class="bg-primaryLight/70 hover:bg-primaryLight text-white px-3 py-1 rounded-[3px] text-sm font-semibold transition ease-in duration-2000"
                 onclick=" document.getElementById('createNewMemberDiv').classList.toggle('hidden')">Create New Member</button>
-        </div>
+        </div> -->
     </div>
     <div class="flex flex-wrap -mx-3 pb-6">
         <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-full lg:flex-none">
@@ -44,153 +44,6 @@
                         @endforeach
                     </ul>
                     @endif
-                    <form id="createNewMemberDiv" action="{{$formData['url']}}" method="{{$formData['method']}}" class="{{ $formData['type'] === 'Create' && !$errors->any() ? 'hidden' : '' }} w-full bg-white mt-4 pb-4">
-                        @csrf
-                        <!-- Personal Information Section -->
-                        <div class="mb-6">
-                            <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Personal Information</h2>
-                            <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                                <div class="w-full">
-                                    <x-title :data="$member ?? null" />
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="first_name" class="font-semibold text-sm text-black">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="first_name" id="first_name" value="{{ $member->first_name ?? old('first_name') }}" placeholder="Enter first name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="last_name" class="font-semibold text-sm text-black">Last Name <span class="text-danger">*</span></label>
-                                        <input type="text" name="last_name" id="last_name" value="{{ $member->last_name ?? old('last_name') }}" placeholder="Enter last name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="date_of_birth" class="font-semibold text-sm text-black">Date of Birth <span class="text-danger">*</span></label>
-                                        <input type="date" name="date_of_birth" id="date_of_birth" value="{{ $member->date_of_birth ?? old('date_of_birth') }}" placeholder="Enter date of birth....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="gender" class="font-semibold text-sm text-black">Gender <span class="text-danger">*</span></label>
-                                        <select name="gender" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                            <option value="">Select Gender</option>
-                                            <option value="MALE" {{ (old('gender', $member->gender ?? '') == 'MALE') ? 'selected' : '' }}>MALE</option>
-                                            <option value="FEMALE" {{ (old('gender', $member->gender ?? '') == 'FEMALE') ? 'selected' : '' }}>FEMALE</option>
-                                            <option value="OTHER" {{ (old('gender', $member->gender ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="marital_status" class="font-semibold text-sm text-black">Marital Status <span class="text-danger">*</span></label>
-                                        <select name="marital_status" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                            <option value="">Select Marital Status</option>
-                                            <option value="SINGLE" {{ (old('marital_status', $member->marital_status ?? '') == 'SINGLE') ? 'selected' : '' }}>SINGLE</option>
-                                            <option value="MARRIED" {{ (old('marital_status', $member->marital_status ?? '') == 'MARRIED') ? 'selected' : '' }}>MARRIED</option>
-                                            <option value="DIVORCED" {{ (old('marital_status', $member->marital_status ?? '') == 'DIVORCED') ? 'selected' : '' }}>DIVORCED</option>
-                                            <option value="WIDOWED" {{ (old('marital_status', $member->marital_status ?? '') == 'WIDOWED') ? 'selected' : '' }}>WIDOWED</option>
-                                            <option value="OTHER" {{ (old('marital_status', $member->marital_status ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="qualification" class="font-semibold text-sm text-black">Qualification <span class="text-danger">*</span></label>
-                                        <select name="qualification" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                            <option value="">Select Qualification</option>
-                                            <option value="PRIMARY" {{ (old('qualification', $member->qualification ?? '') == 'PRIMARY') ? 'selected' : '' }}>PRIMARY</option>
-                                            <option value="SECONDARY" {{ (old('qualification', $member->qualification ?? '') == 'SECONDARY') ? 'selected' : '' }}>SECONDARY</option>
-                                            <option value="HIGHER SECONDARY" {{ (old('qualification', $member->qualification ?? '') == 'HIGHER SECONDARY') ? 'selected' : '' }}>HIGHER SECONDARY</option>
-                                            <option value="GRADUATE" {{ (old('qualification', $member->qualification ?? '') == 'GRADUATE') ? 'selected' : '' }}>GRADUATE</option>
-                                            <option value="POST GRADUATE" {{ (old('qualification', $member->qualification ?? '') == 'POST GRADUATE') ? 'selected' : '' }}>POST GRADUATE</option>
-                                            <option value="DOCTORATE" {{ (old('qualification', $member->qualification ?? '') == 'DOCTORATE') ? 'selected' : '' }}>DOCTORATE</option>
-                                            <option value="OTHER" {{ (old('qualification', $member->qualification ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="profession" class="font-semibold text-sm text-black">Profession <span class="text-danger">*</span></label>
-                                        <select name="profession" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                            <option value="">Select Profession</option>
-                                            <option value="STUDENT" {{ (old('profession', $member->profession ?? '') == 'STUDENT') ? 'selected' : '' }}>STUDENT</option>
-                                            <option value="EMPLOYEE" {{ (old('profession', $member->profession ?? '') == 'EMPLOYEE') ? 'selected' : '' }}>EMPLOYEE</option>
-                                            <option value="BUSINESS" {{ (old('profession', $member->profession ?? '') == 'BUSINESS') ? 'selected' : '' }}>BUSINESS</option>
-                                            <option value="SELF EMPLOYED" {{ (old('profession', $member->profession ?? '') == 'SELF EMPLOYED') ? 'selected' : '' }}>SELF EMPLOYED</option>
-                                            <option value="HOUSEWIFE" {{ (old('profession', $member->profession ?? '') == 'HOUSEWIFE') ? 'selected' : '' }}>HOUSEWIFE</option>
-                                            <option value="RETIRED" {{ (old('profession', $member->profession ?? '') == 'RETIRED') ? 'selected' : '' }}>RETIRED</option>
-                                            <option value="LAWYER" {{ (old('profession', $member->profession ?? '') == 'LAWYER') ? 'selected' : '' }}>LAWYER</option>
-                                            <option value="DOCTOR" {{ (old('profession', $member->profession ?? '') == 'DOCTOR') ? 'selected' : '' }}>DOCTOR</option>
-                                            <option value="TEACHER" {{ (old('profession', $member->profession ?? '') == 'TEACHER') ? 'selected' : '' }}>TEACHER</option>
-                                            <option value="OTHER" {{ (old('profession', $member->profession ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="national_insurance_number" class="font-semibold text-sm text-black">National Insurance Number </label>
-                                        <input type="text" name="national_insurance_number" id="national_insurance_number" value="{{ $member->national_insurance_number ?? old('national_insurance_number') }}" placeholder="Enter national insurance number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contact Information Section -->
-                        <div class="mb-6">
-                            <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Contact Information</h2>
-                            <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="primary_mobile_number" class="font-semibold text-sm text-black">Primary Mobile Number <span class="text-danger">*</span></label>
-                                        <input type="text" name="primary_mobile_number" value="{{ $member->primary_mobile_number ?? old('primary_mobile_number') }}" placeholder="Enter primary mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="alternate_mobile_number" class="font-semibold text-sm text-black">Alternate Mobile Number <span class="text-danger">*</span></label>
-                                        <input type="text" name="alternate_mobile_number" value="{{ $member->alternate_mobile_number ?? old('alternate_mobile_number') }}" placeholder="Enter alternate mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="email" class="font-semibold text-sm text-black">Email <span class="text-danger">*</span></label>
-                                        <input type="email" name="email" id="email" value="{{ $member->email ?? old('email') }}" placeholder="Enter email....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Address Section -->
-                        <div class="mb-6">
-                            <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Address</h2>
-                            <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                                <x-address :data="$member ?? null" />
-                            </div>
-                        </div>
-
-                        <!-- Referral Code Section -->
-                        <div class="mb-6">
-                            <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Referral Code</h2>
-                            <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                                <div class="w-full">
-                                    <div class="flex flex-col gap-1">
-                                        <label for="referrer_code" class="font-semibold text-sm text-black">Referral Code</label>
-                                        <input type="text" name="referrer_code" value="{{ $member->referrer->referral_code ?? old('referrer_code') }}" placeholder="Enter referral code....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="w-full mt-6">
-                            <button class="w-max px-4 py-1.5 rounded-[3px] text-white bg-success hover:bg-primaryLight transition ease-in duration-2000 text-md font-semibold">
-                                {{$formData['type']==='Create'?'Create Member':'Update Member'}}
-                            </button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -263,3 +116,146 @@
         this.value = this.value.toUpperCase();
     });
 </script>
+
+<!-- <form id="createNewMemberDiv" action="{{$formData['url']}}" method="{{$formData['method']}}" class="{{ $formData['type'] === 'Create' && !$errors->any() ? 'hidden' : '' }} w-full bg-white mt-4 pb-4">
+    @csrf
+    <div class="mb-6">
+        <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Personal Information</h2>
+        <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+            <div class="w-full">
+                <x-title :data="$member ?? null" />
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="first_name" class="font-semibold text-sm text-black">First Name <span class="text-danger">*</span></label>
+                    <input type="text" name="first_name" id="first_name" value="{{ $member->first_name ?? old('first_name') }}" placeholder="Enter first name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="last_name" class="font-semibold text-sm text-black">Last Name <span class="text-danger">*</span></label>
+                    <input type="text" name="last_name" id="last_name" value="{{ $member->last_name ?? old('last_name') }}" placeholder="Enter last name....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="date_of_birth" class="font-semibold text-sm text-black">Date of Birth <span class="text-danger">*</span></label>
+                    <input type="date" name="date_of_birth" id="date_of_birth" value="{{ $member->date_of_birth ?? old('date_of_birth') }}" placeholder="Enter date of birth....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="gender" class="font-semibold text-sm text-black">Gender <span class="text-danger">*</span></label>
+                    <select name="gender" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                        <option value="">Select Gender</option>
+                        <option value="MALE" {{ (old('gender', $member->gender ?? '') == 'MALE') ? 'selected' : '' }}>MALE</option>
+                        <option value="FEMALE" {{ (old('gender', $member->gender ?? '') == 'FEMALE') ? 'selected' : '' }}>FEMALE</option>
+                        <option value="OTHER" {{ (old('gender', $member->gender ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                    </select>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="marital_status" class="font-semibold text-sm text-black">Marital Status <span class="text-danger">*</span></label>
+                    <select name="marital_status" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                        <option value="">Select Marital Status</option>
+                        <option value="SINGLE" {{ (old('marital_status', $member->marital_status ?? '') == 'SINGLE') ? 'selected' : '' }}>SINGLE</option>
+                        <option value="MARRIED" {{ (old('marital_status', $member->marital_status ?? '') == 'MARRIED') ? 'selected' : '' }}>MARRIED</option>
+                        <option value="DIVORCED" {{ (old('marital_status', $member->marital_status ?? '') == 'DIVORCED') ? 'selected' : '' }}>DIVORCED</option>
+                        <option value="WIDOWED" {{ (old('marital_status', $member->marital_status ?? '') == 'WIDOWED') ? 'selected' : '' }}>WIDOWED</option>
+                        <option value="OTHER" {{ (old('marital_status', $member->marital_status ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                    </select>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="qualification" class="font-semibold text-sm text-black">Qualification <span class="text-danger">*</span></label>
+                    <select name="qualification" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                        <option value="">Select Qualification</option>
+                        <option value="PRIMARY" {{ (old('qualification', $member->qualification ?? '') == 'PRIMARY') ? 'selected' : '' }}>PRIMARY</option>
+                        <option value="SECONDARY" {{ (old('qualification', $member->qualification ?? '') == 'SECONDARY') ? 'selected' : '' }}>SECONDARY</option>
+                        <option value="HIGHER SECONDARY" {{ (old('qualification', $member->qualification ?? '') == 'HIGHER SECONDARY') ? 'selected' : '' }}>HIGHER SECONDARY</option>
+                        <option value="GRADUATE" {{ (old('qualification', $member->qualification ?? '') == 'GRADUATE') ? 'selected' : '' }}>GRADUATE</option>
+                        <option value="POST GRADUATE" {{ (old('qualification', $member->qualification ?? '') == 'POST GRADUATE') ? 'selected' : '' }}>POST GRADUATE</option>
+                        <option value="DOCTORATE" {{ (old('qualification', $member->qualification ?? '') == 'DOCTORATE') ? 'selected' : '' }}>DOCTORATE</option>
+                        <option value="OTHER" {{ (old('qualification', $member->qualification ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                    </select>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="profession" class="font-semibold text-sm text-black">Profession <span class="text-danger">*</span></label>
+                    <select name="profession" class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                        <option value="">Select Profession</option>
+                        <option value="STUDENT" {{ (old('profession', $member->profession ?? '') == 'STUDENT') ? 'selected' : '' }}>STUDENT</option>
+                        <option value="EMPLOYEE" {{ (old('profession', $member->profession ?? '') == 'EMPLOYEE') ? 'selected' : '' }}>EMPLOYEE</option>
+                        <option value="BUSINESS" {{ (old('profession', $member->profession ?? '') == 'BUSINESS') ? 'selected' : '' }}>BUSINESS</option>
+                        <option value="SELF EMPLOYED" {{ (old('profession', $member->profession ?? '') == 'SELF EMPLOYED') ? 'selected' : '' }}>SELF EMPLOYED</option>
+                        <option value="HOUSEWIFE" {{ (old('profession', $member->profession ?? '') == 'HOUSEWIFE') ? 'selected' : '' }}>HOUSEWIFE</option>
+                        <option value="RETIRED" {{ (old('profession', $member->profession ?? '') == 'RETIRED') ? 'selected' : '' }}>RETIRED</option>
+                        <option value="LAWYER" {{ (old('profession', $member->profession ?? '') == 'LAWYER') ? 'selected' : '' }}>LAWYER</option>
+                        <option value="DOCTOR" {{ (old('profession', $member->profession ?? '') == 'DOCTOR') ? 'selected' : '' }}>DOCTOR</option>
+                        <option value="TEACHER" {{ (old('profession', $member->profession ?? '') == 'TEACHER') ? 'selected' : '' }}>TEACHER</option>
+                        <option value="OTHER" {{ (old('profession', $member->profession ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                    </select>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="national_insurance_number" class="font-semibold text-sm text-black">National Insurance Number </label>
+                    <input type="text" name="national_insurance_number" id="national_insurance_number" value="{{ $member->national_insurance_number ?? old('national_insurance_number') }}" placeholder="Enter national insurance number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Contact Information</h2>
+        <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="primary_mobile_number" class="font-semibold text-sm text-black">Primary Mobile Number <span class="text-danger">*</span></label>
+                    <input type="text" name="primary_mobile_number" value="{{ $member->primary_mobile_number ?? old('primary_mobile_number') }}" placeholder="Enter primary mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="alternate_mobile_number" class="font-semibold text-sm text-black">Alternate Mobile Number <span class="text-danger">*</span></label>
+                    <input type="text" name="alternate_mobile_number" value="{{ $member->alternate_mobile_number ?? old('alternate_mobile_number') }}" placeholder="Enter alternate mobile number....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="email" class="font-semibold text-sm text-black">Email <span class="text-danger">*</span></label>
+                    <input type="email" name="email" id="email" value="{{ $member->email ?? old('email') }}" placeholder="Enter email....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Address</h2>
+        <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+            <x-address :data="$member ?? null" />
+        </div>
+    </div>
+
+    <div class="mb-6">
+        <h2 class="text-lg font-bold mb-4 text-gray-800 border-b pb-2">Referral Code</h2>
+        <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+            <div class="w-full">
+                <div class="flex flex-col gap-1">
+                    <label for="referrer_code" class="font-semibold text-sm text-black">Referral Code</label>
+                    <input type="text" name="referrer_code" value="{{ $member->referrer->referral_code ?? old('referrer_code') }}" placeholder="Enter referral code....." class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full mt-6">
+        <button class="w-max px-4 py-1.5 rounded-[3px] text-white bg-success hover:bg-primaryLight transition ease-in duration-2000 text-md font-semibold">
+            {{$formData['type']==='Create'?'Create Member':'Update Member'}}
+        </button>
+    </div>
+</form> -->
