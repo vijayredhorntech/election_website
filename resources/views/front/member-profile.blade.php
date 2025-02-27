@@ -10,9 +10,9 @@
 
   <script>
     window.onload = function() {
-      JsBarcode("#barcode", "1234", {
+      JsBarcode("#barcode", "{{$memberDetails->custom_id}}", {
         format: "code39",
-        lineColor: "#0aa",
+        lineColor: "#000",
         width: 1,
         height: 7,
         displayValue: false
@@ -50,7 +50,7 @@
     }
 
     #idCardContainer {
-      display: none;
+      /* display: none; */
     }
 
     .barcode-container {
