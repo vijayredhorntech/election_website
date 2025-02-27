@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
+use App\Facades\CustomLog;
 
 class ExpenseCategoryController extends Controller
 {
@@ -15,13 +16,24 @@ class ExpenseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required',
+            ]);
 
-        ExpenseCategory::create($request->all() + ['user_id' => auth()->user()->id]);
+            ExpenseCategory::create($request->all() + ['user_id' => auth()->user()->id]);
 
-        return back()->with('success', 'Expense Category Created Successfully');
+            CustomLog::info('Expense category created successfully');
+
+            return back()->with('success', 'Expense Category Created Successfully');
+        } catch (\Exception $e) {
+            CustomLog::error('Error in ExpenseCategoryController@store: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            return back()->with('error', 'An error occurred while creating the expense category.');
+        }
     }
 
     /**
@@ -33,8 +45,20 @@ class ExpenseCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $expense = ExpenseCategory::find($id);
-        $expense->update($request->all());
-        return redirect()->route('account-setting.index')->with('success', 'Expense Category Updated Successfully');
+        try {
+            $expense = ExpenseCategory::find($id);
+            $expense->update($request->all());
+
+            CustomLog::info('Expense category updated successfully');
+
+            return back()->with('success', 'Expense Category Updated Successfully');
+        } catch (\Exception $e) {
+            CustomLog::error('Error in ExpenseCategoryController@update: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            return back()->with('error', 'An error occurred while updating the expense category.');
+        }
     }
 }
