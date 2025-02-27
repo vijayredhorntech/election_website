@@ -293,10 +293,20 @@
                         </a>
 
                         @else
+                        @if(auth()->user()->member->profile_status == 'active')
                         <a href="{{route('memberProfile')}}" class="boxed-btn btn-sanatory">
                             Profile
                             <i class="icon-paper-plan"></i>
                         </a>
+                        @else
+                        <form action="{{route('logout')}}" method="POST">
+                            @csrf
+                            <button type="submit" class="boxed-btn btn-sanatory">
+                                Logout
+                                <i class="icon-paper-plan"></i>
+                            </button>
+                        </form>
+                        @endif
                         @endif
                     </div>
                     <div class="btn-wrapper" style="margin-left: 10px">
