@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <section class="help-and-faq-section padding-top-110 padding-bottom-120">
+    <section class="help-and-faq-section padding-bottom-60">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -36,18 +36,23 @@
                             <p>Our mission is to bring people together, tackle injustice, and create a future where no one is left behind.</p>
                         </div>
                     </div>
-                    <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-history"></i>
-                        </div>
-                        <div class="content">
-                            <h4 class="title">Our Story</h4>
-                            <p>Founded on the belief that politics should serve the people, not the powerful. From humble beginnings, we have grown into a movement dedicated to making real change.</p>
-                        </div>
-                    </div>
+               
                 </div>
                 <div class="col-lg-8">
-                    <div class="vision-values margin-bottom-60">
+                <div class="vision-values margin-bottom-40">
+                        <div class="faq-contents">
+                            <h2 class="title">Our Story</h2>
+                            <div class="single-faq-item">
+                                <div class="content">
+                                    <ul class="check-list">
+                                        <li><i class="fas fa-check"></i> Founded on the belief that politics should serve the people, not the powerful. From humble beginnings, we have grown into a movement dedicated to making real change.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vision-values margin-bottom-40">
                         <div class="faq-contents">
                             <h2 class="title">Our Commitments</h2>
                             <div class="single-faq-item">
@@ -83,10 +88,10 @@
         </div>
     </section>
 
-    <section class="get-involved-section padding-top-110 padding-bottom-120 bg-light">
+    <section class="get-involved-section padding-top-40 padding-bottom-40 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center margin-bottom-60">
+                <div class="col-12 text-center margin-bottom-10">
                     <h2 class="title">How You Can Get Involved</h2>
                 </div>
                 <div class="col-md-8 offset-md-2">
@@ -96,18 +101,18 @@
                             <div class="row">
                                 <div class="col-md-6 margin-bottom-30">
                                     <div class="action-box p-4 bg-white rounded shadow-sm">
-                                        <i class="fas fa-users fa-2x margin-bottom-30 text-primary"></i>
+                                        <i class="fas fa-users fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                         <h4>Join Our Membership</h4>
                                         <p>Be part of our movement and help shape the future.</p>
-                                        <a href="{{ route('joinUs') }}" class="btn btn-primary">Join Now</a>
+                                        <a href="{{ route('joinUs') }}" class="btn btn-primary" style="background-color:#b30d00; border:1px solid #b30d00 ">Join Now</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 margin-bottom-30">
                                     <div class="action-box p-4 bg-white rounded shadow-sm">
-                                        <i class="fas fa-hand-holding-heart fa-2x margin-bottom-30 text-primary"></i>
+                                        <i class="fas fa-hand-holding-heart fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                         <h4>Donate</h4>
                                         <p>Support our cause and fund real action for real people.</p>
-                                        <a href="#" class="btn btn-primary">Donate Now</a>
+                                        <a href="{{route('donate')}}" class="btn btn-primary" style="background-color:#b30d00; border:1px solid #b30d00 ">Donate Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -118,37 +123,43 @@
         </div>
     </section>
 
-    <section class="contact-page-form-section padding-top-110 padding-bottom-120">
+    <section class="contact-page-form-section padding-top-40 padding-bottom-40">
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center margin-bottom-60">
+                <div class="col-12 text-center margin-bottom-20">
                     <h2 class="title">Contact Us</h2>
                     <p>Have questions? Want to learn more? We'd love to hear from you!</p>
                 </div>
                 <div class="col-md-8 offset-md-2">
-                    <div class="contact-item-wrapper text-center">
+                    <div class="contact-item-wrapper text-center" style="margin-bottom:0px">
                         <div class="row">
-                            <div class="col-md-6 margin-bottom-40">
-                                <div class="contact-single-item">
-                                    <i class="fas fa-map-marker-alt fa-2x margin-bottom-30 text-primary"></i>
+                        <div class="col-md-4 margin-bottom-40">
+                                <div class="contact-single-item" >
+                                    <i class="fas fa-map-marker-alt fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4>Address</h4>
                                     <p>62 King Street, Southall, Greater London UB2 4DB</p>
                                 </div>
                             </div>
-                            <div class="col-md-6 margin-bottom-40">
+                            <div class="col-md-4 margin-bottom-40">
                                 <div class="contact-single-item">
-                                    <i class="fas fa-phone fa-2x margin-bottom-30 text-primary"></i>
+                                    <i class="fas fa-phone fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4>Phone</h4>
                                     <p>07955555561</p>
-                                    <h4 class="margin-top-30">Email</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-4 margin-bottom-40">
+                                <div class="contact-single-item">
+                                    <i class="fas fa-envelope fa-2x margin-bottom-30" style="color:#b30d00"></i>
+                                    <h4>Email</h4>
                                     <p>jsnichal@gmail.com</p>
                                 </div>
                             </div>
+                         
                         </div>
-                        <div class="text-center margin-top-40">
+                        <div class="text-center margin-top-20">
                             <p class="margin-bottom-0">Together, We Are Stronger!</p>
                             <p class="margin-bottom-40">At One Nation, we believe that when people unite, real change happens. Join us in shaping a fairer, brighter, and more just future for everyone.</p>
-                            <a href="{{ route('contact') }}" class="btn btn-primary">Get in Touch</a>
+                            <a href="{{ route('contact') }}" class="btn btn-primary" style="background-color:#b30d00; border:1px solid #b30d00 ">Get in Touch</a>
                         </div>
                     </div>
                 </div>
