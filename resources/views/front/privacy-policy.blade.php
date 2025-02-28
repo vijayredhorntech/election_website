@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <h1 class="mb-4">Privacy Policy</h1>
-                    
+
                     <div class="content">
                         <h2>1. Introduction</h2>
                         <p>One Nation Party ("we," "our," or "us") is committed to protecting your privacy and ensuring transparency in how we collect, use, and store personal data. This Privacy Policy outlines our practices regarding the handling of your information in accordance with UK Data Protection Laws and the General Data Protection Regulation (GDPR).</p>
@@ -54,7 +54,7 @@
                         <h2>6. Contact Us     </h2>
                         <p>If you have any questions about our Privacy Policy, please contact us at:               </p>
                         <ul>
-                            <li>Email: jsnichal@gmail.com
+                            <li>Email: info@one-nation.org.uk
                             </li>
                             <li>Phone: 07955555561
                             </li>
@@ -66,4 +66,4 @@
             </div>
         </div>
     </section>
-</x-front.layout> 
+</x-front.layout>

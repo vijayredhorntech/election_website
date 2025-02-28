@@ -53,7 +53,7 @@
                         </div>
                         <div class="content">
                             <h4 class="title">Email Us</h4>
-                            <p>jsnichal@gmail.com</p>
+                            <p>info@one-nation.org.uk</p>
                         </div>
                     </div>
                 </div>

@@ -83,11 +83,11 @@
                                             <input type="number" name="otp" value="{{old('otp')}}" class="form-control" placeholder="Enter OTP" required="" aria-required="true" style="color: black; font-weight: 600">
                                             @error('otp')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
                                             <div class="mt-2 d-flex align-items-center justify-content-between">
-                                            
-                                               <a href="{{route('resetOTP')}}" type="submit" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" onclick="resendOtp()">Resend OTP</a>
-                                              
 
-                                             
+                                               <a href="{{route('resetOTP')}}" type="submit" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" onclick="resendOtp()">Resend OTP</a>
+
+
+
                                                 <span id="timer" class="text-muted" style="font-size: 14px;"></span>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                     </div>
                                     @endif
                                     @if ($formData['type']==='register')
-                                    <div class="form-question" style="padding-left: 20px">
+                                    <div class="form-question" style="padding-left: 20px; display: none">
                                         <div class="check-box-wrapper">
                                             <div class="check-box">
                                                 <label class="container-box">
@@ -232,21 +232,21 @@
 
         let countdown;
         let timeLeft = 0;
-    
+
         function startTimer(duration) {
             timeLeft = duration;
             const timerDisplay = document.getElementById('timer');
             const resendBtn = document.getElementById('resendOtpBtn');
-            
+
             clearInterval(countdown);
             resendBtn.disabled = true;
-            
+
             countdown = setInterval(() => {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
-                
+
                 timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                
+
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
                     timerDisplay.textContent = '';

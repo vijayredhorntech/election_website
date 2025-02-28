@@ -62,7 +62,7 @@
                         </div>
                         <div class="content">
                             <h4 class="title">Email Us</h4>
-                            <p>jsnichal@gmail.com</p>
+                            <p>info@one-nation.org.uk</p>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="accordion-wrapper-three">
                         <!-- accordion wrapper -->
                         <div id="accordion">
-                    
+
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
@@ -206,7 +206,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <h1 class="text-center mb-5">What is Membership?</h1>
-                    
+
                     <div class="membership-content">
                         <h2>Benefits of Membership</h2>
                         <ul class="list-unstyled">
