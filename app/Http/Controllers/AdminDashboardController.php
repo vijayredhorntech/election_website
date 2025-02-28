@@ -15,6 +15,7 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
+
         try {
             if (auth()->user()->role == 'member') {
                 return redirect()->route('memberProfile');
