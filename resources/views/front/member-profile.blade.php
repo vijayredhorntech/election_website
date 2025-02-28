@@ -22,6 +22,14 @@
     function printCard() {
       window.print();
     }
+    function copyReferralLink() {
+        const referralText = document.getElementById('referralLink').innerText;
+        navigator.clipboard.writeText(referralText).then(() => {
+            alert('Referral link copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+        });
+    }
 
     function downloadCard() {
 
@@ -158,7 +166,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-6 col-12">
           <div class="about-inner donation-single">
-            <h1 class="title">{{ucfirst(strtolower(auth()->user()->name))}}'s Profile</h1>
+            <h4 class="title">{{ucfirst(strtolower(auth()->user()->name))}}'s Profile</h4>
           </div>
           <div class="breadcrumbs">
             <ul>
@@ -185,7 +193,7 @@
       <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
         <div
           class="card wow animate__animated animate__fadeInUp shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300"
-          style="border: none; border-radius: 15px; overflow: hidden;">
+          style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; box-shadow:0px 0px 10px 2px #e9e9e9">
           <div class="card-header" id="headingOwo"
             style="background: linear-gradient(135deg, #b30d00 0%, #6a0606 100%); color: white; border: none;">
             <h5 class="mb-0">
@@ -197,7 +205,7 @@
             </h5>
           </div>
           <div class="card-body">
-          <div style="display:flex; gap:10px; justify-content:space-between; margin-bottom:20px">
+          <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">
                  <div style="display:flex; gap:10px">
                         <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
                           <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span
@@ -207,11 +215,7 @@
                           Download ID <span
                             class="icon-paper-plan"></span></button>
                  </div>
-                  <form action="{{route('logout')}}" method="post">
-                    @csrf
-                    <button type="submit" style="background-color:#b40d00; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer"> <i class="fa fa-right-from-bracket" style="margin-right:5px"></i> Logout <span
-                        class="icon-paper-plan"></span></button>
-                  </form>
+                 
               </div>
             <div class="w-full p-2">
               <div style="display: flex; align-items: start; justify-content: space-between; gap: 10px">
@@ -227,7 +231,7 @@
                 
               </div>
               <div class="referral-share-container" style="display:flex; flex-direction:column; align-items:end">
-                    <span class="referral-link" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
+                    <span class="referral-link" id="referralLink" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
                       {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
                       <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
                     </span>
@@ -275,7 +279,8 @@
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Enrolled On</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->enrollment_date}}</td>
+                      class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->enrollment_date)->format('d-m-Y') }}
+                      </td>
                 </tr>
                 </tr>
                 <tr>
@@ -301,13 +306,13 @@
       <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
         <div
           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
-          style="border: none; border-radius: 15px; overflow: hidden;">
+          style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; box-shadow:0px 0px 10px 2px #e9e9e9">
           <div class="card-header" id="headingTwo"
             style="background: linear-gradient(135deg, #b30d00 0%, #6a0606 100%); color: white; border: none;">
             <h5 class="mb-0">
               <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                 aria-controls="collapseOwo"
-                style="color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                style="color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; ">
                 <i class="fas fa-money-check-alt mr-2"></i> Membership/ Donation Info
               </a>
             </h5>
@@ -420,7 +425,7 @@
       <div class=" col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
         <div
           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
-          style="border: none; border-radius: 15px; overflow: hidden; background-color:white">
+          style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; ">
           <div class="card-header" id="headingTwo"
             style="background: linear-gradient(135deg, #b30d00 0%, #6a0606 100%); color: white; border: none;">
             <h5 class="mb-0">
