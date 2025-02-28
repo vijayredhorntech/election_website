@@ -120,7 +120,7 @@ class MemberController extends Controller
             return back()->with('error', 'Member not found');
         }
 
-        return view('admin.member.view')->with('member', $member);
+        return view('admin.member.view')->with('memberDetails', $member);
     }
 
     public function update(MemberUpdateRequest $request, $id)
