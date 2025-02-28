@@ -391,7 +391,7 @@
                                 </h4>
                                 <ul>
                                     <li style="color:white">62 King Street, Southall, Greater London UB2 4DB</li>
-                                    <li style="color:white">jsnichal@gmail.com</li>
+                                    <li style="color:white">info@one-nation.org.uk</li>
                                     <li style="color:white">07955555561</li>
                                 </ul>
                             </div>

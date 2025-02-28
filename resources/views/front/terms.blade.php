@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <h1 class="mb-4">Terms and Conditions</h1>
-                    
+
                     <div class="content">
                         <h2>1. Website Use</h2>
                         <p>The website is for informational and campaign purposes only. Any misuse or unauthorized activity is prohibited.</p>
@@ -21,7 +21,7 @@
                         <h2>4. Contact Information</h2>
                         <p>For inquiries about these terms, please contact:</p>
                         <ul>
-                            <li>Email: jsnichal@gmail.com</li>
+                            <li>Email: info@one-nation.org.uk</li>
                             <li>Phone: 07955555561</li>
                             <li>Address: 62 King Street, Southall, Greater London UB2 4DB</li>
                         </ul>
@@ -30,4 +30,4 @@
             </div>
         </div>
     </section>
-</x-front.layout> 
+</x-front.layout>

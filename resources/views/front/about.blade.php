@@ -36,7 +36,7 @@
                             <p>Our mission is to bring people together, tackle injustice, and create a future where no one is left behind.</p>
                         </div>
                     </div>
-               
+
                 </div>
                 <div class="col-lg-8">
                 <div class="vision-values margin-bottom-40">
@@ -151,10 +151,10 @@
                                 <div class="contact-single-item">
                                     <i class="fas fa-envelope fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4>Email</h4>
-                                    <p>jsnichal@gmail.com</p>
+                                    <p>info@one-nation.org.uk</p>
                                 </div>
                             </div>
-                         
+
                         </div>
                         <div class="text-center margin-top-20">
                             <p class="margin-bottom-0">Together, We Are Stronger!</p>
