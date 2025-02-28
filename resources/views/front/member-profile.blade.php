@@ -182,7 +182,7 @@
     </div>
 
     <div class="row" style="padding:20px">
-      <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
         <div
           class="card wow animate__animated animate__fadeInUp shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300"
           style="border: none; border-radius: 15px; overflow: hidden;">
@@ -197,6 +197,22 @@
             </h5>
           </div>
           <div class="card-body">
+          <div style="display:flex; gap:10px; justify-content:space-between; margin-bottom:20px">
+                 <div style="display:flex; gap:10px">
+                        <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
+                          <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span
+                            class="icon-paper-plan"></span></button>
+                        <button type="submit" onclick="downloadCard()" style="background-color:green; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
+                          <i class="fa fa-download" style="margin-right:5px"></i>
+                          Download ID <span
+                            class="icon-paper-plan"></span></button>
+                 </div>
+                  <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button type="submit" style="background-color:#b40d00; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer"> <i class="fa fa-right-from-bracket" style="margin-right:5px"></i> Logout <span
+                        class="icon-paper-plan"></span></button>
+                  </form>
+              </div>
             <div class="w-full p-2">
               <div style="display: flex; align-items: start; justify-content: space-between; gap: 10px">
                 <div>
@@ -205,28 +221,50 @@
                     alt="Profile Photo" style="height: 200px; object-fit:cover; width: 200px; border-radius:3px">
                 </div>
 
-                <div style="display: flex; justify-content: end; gap: 10px">
+                <div style="display: flex; flex-direction:column; align-items: end; gap: 10px; margin-bottom:20px">
                   <div id="qrcode"></div>
-
                 </div>
+                
               </div>
-              <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">
-                <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
-                  <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span
-                    class="icon-paper-plan"></span></button>
-                <button type="submit" onclick="downloadCard()" style="background-color:green; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
-                  <i class="fa fa-download" style="margin-right:5px"></i>
-                  Download ID <span
-                    class="icon-paper-plan"></span></button>
-                <form action="{{route('logout')}}" method="post">
-                  @csrf
-                  <button type="submit" style="background-color:#b40d00; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer"> <i class="fa fa-right-from-bracket" style="margin-right:5px"></i> Logout <span
-                      class="icon-paper-plan"></span></button>
-                </form>
-              </div>
+              <div class="referral-share-container" style="display:flex; flex-direction:column; align-items:end">
+                    <span class="referral-link" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
+                      {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
+                      <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
+                    </span>
+                    
+                    <div class="social-share-buttons" style="display: flex; gap: 10px; justify-content: flex-end">
+                      <a href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}" 
+                         target="_blank" 
+                         class="share-button facebook" 
+                         style="background: #3b5998; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                        <i class="fab fa-facebook-f"></i> Share
+                      </a>
+                      
+                      <a href="https://wa.me/?text={{ urlencode('Be the change! Join One-Nation through my referral and make a difference:') }}%0A%0A{{ urlencode(route('index').'/referral/'.$memberDetails->user->referral_code) }}" 
+   target="_blank" 
+   class="share-button whatsapp" 
+   style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+   <i class="fab fa-whatsapp"></i> Share
+</a>
 
-
-              <table class="w-full">
+                      <a href="https://twitter.com/intent/tweet?text={{urlencode('Be the change! Join One-Nation through my referral and make a difference:')}}%20{{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}" 
+                         target="_blank" 
+                         class="share-button twitter" 
+                         style="background: #1DA1F2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                        <i class="fa-brands fa-x-twitter"></i> Share
+                      </a>
+                      
+                      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}" 
+                         target="_blank" 
+                         class="share-button linkedin" 
+                         style="background: #0077b5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                        <i class="fab fa-linkedin-in"></i> Share
+                      </a>
+                    </div>
+                  </div>
+        
+            </div>
+            <table class="w-full">
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Member id</td>
@@ -235,61 +273,17 @@
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Title</td>
+                    style="color: black; font-weight: 700">Enrolled On</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->title}}</td>
+                      class="font-semibold text-black"></span> {{$memberDetails->enrollment_date}}</td>
+                </tr>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Name</td>
+                    style="color: black; font-weight: 700">Referral Code</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->first_name}}
-                    {{$memberDetails->last_name}}
-                  </td>
+                      class="font-semibold text-black"></span> {{$memberDetails->user->referral_code}}</td>
                 </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">DOB</td>
-                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span>
-                    {{\Carbon\Carbon::parse($memberDetails->date_of_birth)->format('d-m-Y')}}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Gender</td>
-                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->gender}}</td>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Marital Status</td>
-                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->marital_status}}</td>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Qualification</td>
-                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->qualification}}</td>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Profession</td>
-                  <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
-                      style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
-                </tr>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Referral Link
-                  </td>
-                  <td class=" py-0.5"
-                    style="color: black; font-weight: 400; display: flex; align-items: center; gap: 5px"><span
-                      class="font-semibold text-black" style="color: black; font-weight: 400"></span> <a
-                      href="{{route('index')}}/referral/{{$memberDetails->user->referral_code}}"
-                      style="color: darkblue; display: flex; align-items: center; gap: 5px">
-                      {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
-                      <i class="fa fa-share"></i>
-                    </a></td>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Total Members
@@ -300,12 +294,11 @@
                   </td>
                 </tr>
               </table>
-            </div>
           </div>
         </div>
 
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
         <div
           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
           style="border: none; border-radius: 15px; overflow: hidden;">
@@ -321,7 +314,7 @@
           </div>
           <div class="card-body">
             <div
-              class="w-full p-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-3"
+              class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
               style="border-left: 4px solid #b30d00;">
               <span style="color: black; font-weight: 500; font-size: 20px">Membership Information</span>
             </div>
@@ -373,7 +366,7 @@
 
 
             <div
-              class="w-full p-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-3"
+              class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
               style="border-left: 4px solid #b30d00;">
               <span style="color: black; font-weight: 500; font-size: 20px">Donation Information</span>
             </div>
@@ -424,23 +417,78 @@
         </div>
 
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+      <div class=" col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
         <div
           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
-          style="border: none; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(179, 13, 0, 0.1);">
+          style="border: none; border-radius: 15px; overflow: hidden; background-color:white">
           <div class="card-header" id="headingTwo"
             style="background: linear-gradient(135deg, #b30d00 0%, #6a0606 100%); color: white; border: none;">
             <h5 class="mb-0">
               <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                 aria-controls="collapseOwo"
                 style="color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-                <i class="fas fa-address-card mr-2"></i> Contact/ Address Information
+                <i class="fas fa-user mr-2"></i>Profile Information
               </a>
             </h5>
           </div>
           <div class="card-body">
+          <div class="w-full p-2" >
+
+          <table class="w-full">
+                <tr>
+                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                    style="color: black; font-weight: 700">Title</td>
+                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                      class="font-semibold text-black"></span> {{$memberDetails->title}}</td>
+                </tr>
+                <tr>
+                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                    style="color: black; font-weight: 700">Name</td>
+                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                      class="font-semibold text-black"></span> {{$memberDetails->first_name}}
+                    {{$memberDetails->last_name}}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                    style="color: black; font-weight: 700">DOB</td>
+                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                      class="font-semibold text-black"></span>
+                    {{\Carbon\Carbon::parse($memberDetails->date_of_birth)->format('d-m-Y')}}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                    style="color: black; font-weight: 700">Gender</td>
+                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                      class="font-semibold text-black"></span> {{$memberDetails->gender}}</td>
+                </tr>
+                <tr>
+                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                    style="color: black; font-weight: 700">Marital Status</td>
+                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                      class="font-semibold text-black"></span> {{$memberDetails->marital_status}}</td>
+                </tr>
+                <tr>
+                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                    style="color: black; font-weight: 700">Qualification</td>
+                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                      class="font-semibold text-black"></span> {{$memberDetails->qualification}}</td>
+                </tr>
+                <tr>
+                  <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Profession</td>
+                  <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
+                      style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
+                </tr>
+                </tr>
+            
+              </table>
+            </div>
+
+
+
             <div
-              class="w-full p-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-3"
+              class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
               style="border-left: 4px solid #b30d00;">
               <span style="color: black; font-weight: 500; font-size: 20px">Contact Information</span>
             </div>
@@ -474,7 +522,7 @@
 
 
             <div
-              class="w-full p-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-3"
+              class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
               style="border-left: 4px solid #b30d00;">
               <span style="color: black; font-weight: 500; font-size: 20px">Address Information</span>
             </div>
