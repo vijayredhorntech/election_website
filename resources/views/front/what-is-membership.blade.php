@@ -33,36 +33,36 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">Frequently Asked Questions</h4>
-                            <p>Proin rutrum sem at rutrum ultrirecies. Nunc felis neque, dictum ut porta a, ullamcorper vel ante. Quisque none consequat.</p>
+                            <p style="color: black">Proin rutrum sem at rutrum ultrirecies. Nunc felis neque, dictum ut porta a, ullamcorper vel ante. Quisque none consequat.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-map-marker-alt" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Visit Us</h4>
-                            <p>"62 King Street, Southall,
+                            <p style="color: black">"62 King Street, Southall,
                             <br>
                             Greater London UB2 4DB"</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-phone"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-phone" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Call Us</h4>
-                            <p>07955555561</p>
+                            <p style="color: black">07955555561</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-envelope"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-envelope" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Email Us</h4>
-                            <p>info@one-nation.org.uk</p>
+                            <p style="color: black">info@one-nation.org.uk</p>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                                     </h5>
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                    <div class="card-body">
+                                    <div class="card-body" style="color: black">
                                 Since One Nation is a growing political movement, a structured membership system will help build a strong base of supporters, activists, and future candidates.
                                         </ul>
                                     </div>
@@ -102,10 +102,10 @@
                                 <div id="collapseOwo" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <ul>
-                                            <li>Be part of a movement working to strengthen Britain while ensuring fair representation for all.</li>
-                                            <li>Have a voice in shaping policies that impact your community.</li>
-                                            <li>Get involved in campaigns, events, and outreach programs to make real change</li>
-                                            <li>Opportunity to stand for election as an official One Nation candidate in local or national politics.</li>
+                                            <li style="color: black">Be part of a movement working to strengthen Britain while ensuring fair representation for all.</li>
+                                            <li style="color: black">Have a voice in shaping policies that impact your community.</li>
+                                            <li style="color: black">Get involved in campaigns, events, and outreach programs to make real change</li>
+                                            <li style="color: black">Opportunity to stand for election as an official One Nation candidate in local or national politics.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -122,32 +122,32 @@
                                 <div id="collapseThree" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <ul style="list-style: none">
-                                            <li><strong>1. Supporter Free</strong>
+                                            <li style="color: black"><strong>1. Supporter Free</strong>
                                                 <ul>
-                                                    <li>Stay updated with party news, policies, and events.</li>
-                                                    <li>Receive newsletters and exclusive content.</li>
-                                                    <li>Engage with One Nation on social media and community forums.</li>
+                                                    <li style="color: black">Stay updated with party news, policies, and events.</li>
+                                                    <li style="color: black">Receive newsletters and exclusive content.</li>
+                                                    <li style="color: black">Engage with One Nation on social media and community forums.</li>
                                                 </ul>
                                             </li>
-                                            <li><strong>2. Standard Member £36 per year or £3 month</strong>
+                                            <li style="color: black"><strong>2. Standard Member £36 per year or £3 month</strong>
                                                 <ul>
-                                                    <li>Full participation in policy discussions and decision-making.</li>
-                                                    <li>Access to party events, campaign training, and networking opportunities.</li>
-                                                    <li>Eligible to vote in internal party elections and policy votes.</li>
+                                                    <li style="color: black">Full participation in policy discussions and decision-making.</li>
+                                                    <li style="color: black">Access to party events, campaign training, and networking opportunities.</li>
+                                                    <li style="color: black">Eligible to vote in internal party elections and policy votes.</li>
                                                 </ul>
                                             </li>
-                                            <li><strong>3. Activist Member £36 per year or £3 month</strong>
+                                            <li style="color: black"><strong>3. Activist Member £36 per year or £3 month</strong>
                                                 <ul>
-                                                    <li>Everything in Standard Membership.</li>
-                                                    <li>In-depth training on campaigning and grassroots activism.</li>
-                                                    <li>Opportunities to work closely with party leadership and contribute to strategy.</li>
+                                                    <li style="color: black">Everything in Standard Membership.</li>
+                                                    <li style="color: black">In-depth training on campaigning and grassroots activism.</li>
+                                                    <li style="color: black">Opportunities to work closely with party leadership and contribute to strategy.</li>
                                                 </ul>
                                             </li>
-                                            <li><strong>4. Leadership & Candidate Pathway £36 per year or £3 month</strong>
+                                            <li style="color: black"><strong>4. Leadership & Candidate Pathway £36 per year or £3 month</strong>
                                                 <ul>
-                                                    <li>Everything in Activist Membership.</li>
-                                                    <li>Access to specialized training for future political candidates.</li>
-                                                    <li>Priority consideration for selection in local elections under One Nation.</li>
+                                                    <li style="color: black">Everything in Activist Membership.</li>
+                                                    <li style="color: black">Access to specialized training for future political candidates.</li>
+                                                    <li style="color: black">Priority consideration for selection in local elections under One Nation.</li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -166,10 +166,10 @@
                                 <div id="collapseFour" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <ul>
-                                            <li><strong>Shape Policies: </strong>Vote and propose ideas to be included in the party's agenda.</li>
-                                            <li><strong>Campaigning: </strong>Help in local and national campaigns, including door-to-door engagement and digital outreach.</li>
-                                            <li><strong>Community Events: </strong>Attend meetings, rallies, and policy discussions to promote One Nation's vision.</li>
-                                            <li><strong>Stand for Election: </strong> Ambitious members can be supported to run for office under the One Nation banner.</li>
+                                            <li style="color: black"><strong>Shape Policies: </strong>Vote and propose ideas to be included in the party's agenda.</li>
+                                            <li style="color: black"><strong>Campaigning: </strong>Help in local and national campaigns, including door-to-door engagement and digital outreach.</li>
+                                            <li style="color: black"><strong>Community Events: </strong>Attend meetings, rallies, and policy discussions to promote One Nation's vision.</li>
+                                            <li style="color: black"><strong>Stand for Election: </strong> Ambitious members can be supported to run for office under the One Nation banner.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -186,9 +186,9 @@
                                 <div id="collapseFive" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <ul>
-                                            <li>Sign up online through the official One Nation website</li>
-                                            <li>Choose a membership level and payment plan</li>
-                                            <li>Start engaging with the movement immediately!</li>
+                                            <li style="color: black">Sign up online through the official One Nation website</li>
+                                            <li style="color: black">Choose a membership level and payment plan</li>
+                                            <li style="color: black">Start engaging with the movement immediately!</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -210,22 +210,22 @@
                     <div class="membership-content">
                         <h2>Benefits of Membership</h2>
                         <ul class="list-unstyled">
-                            <li><i class="fas fa-check text-primary mr-2"></i> Have your say in party policies</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i> Vote in leadership elections</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i> Attend exclusive member events</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i> Regular updates and newsletters</li>
+                            <li style="color: black"><i class="fas fa-check mr-2" style="color: #b30d00"></i> Have your say in party policies</li>
+                            <li style="color: black"><i class="fas fa-check mr-2" style="color: #b30d00"></i> Vote in leadership elections</li>
+                            <li style="color: black"><i class="fas fa-check mr-2" style="color: #b30d00"></i> Attend exclusive member events</li>
+                            <li style="color: black"><i class="fas fa-check mr-2" style="color: #b30d00"></i> Regular updates and newsletters</li>
                         </ul>
 
                         <h2 class="mt-5">Membership Requirements</h2>
                         <ul class="list-unstyled">
-                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Must be 16 years or older</li>
-                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Not a member of another political party</li>
-                            <li><i class="fas fa-info-circle text-primary mr-2"></i> Support our values and principles</li>
+                            <li style="color: black"><i class="fas fa-info-circle mr-2" style="color: #b30d00"></i> Must be 16 years or older</li>
+                            <li style="color: black"><i class="fas fa-info-circle mr-2" style="color: #b30d00"></i> Not a member of another political party</li>
+                            <li style="color: black"><i class="fas fa-info-circle mr-2" style="color: #b30d00"></i> Support our values and principles</li>
                         </ul>
                     </div>
 
                     <div class="text-center mt-5">
-                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Join Now</a>
+                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg" style="background-color: #b30d00; border: 1px solid #b30d00">Join Now</a>
                     </div>
                 </div>
             </div>

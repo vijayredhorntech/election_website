@@ -24,25 +24,25 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">News & Updates</h4>
-                            <p>Stay informed about One Nation's latest activities and initiatives.</p>
+                            <p style="color: black">Stay informed about One Nation's latest activities and initiatives.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-newspaper"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-newspaper" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Press Releases</h4>
-                            <p>Official statements and announcements.</p>
+                            <p style="color: black">Official statements and announcements.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-calendar-alt"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-calendar-alt" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Upcoming Events</h4>
-                            <p>Join us at our next event.</p>
+                            <p style="color: black">Join us at our next event.</p>
                         </div>
                     </div>
                 </div>
@@ -116,4 +116,4 @@
     /* ... styles from policies.blade.php ... */
 }
 </style>
-@endpush 
+@endpush

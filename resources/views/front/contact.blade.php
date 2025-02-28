@@ -24,36 +24,36 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">Get in Touch</h4>
-                            <p>We're here to listen and help. Reach out to us today.</p>
+                            <p style="color: black">We're here to listen and help. Reach out to us today.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-map-marker-alt" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Visit Us</h4>
-                            <p>"62 King Street, Southall,
+                            <p style="color: black">62 King Street, Southall,
                             <br>
-                            Greater London UB2 4DB"</p>
+                            Greater London UB2 4DB</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-phone"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-phone" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Call Us</h4>
-                            <p>07955555561</p>
+                            <p style="color: black">07955555561</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-envelope"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-envelope" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Email Us</h4>
-                            <p>info@one-nation.org.uk</p>
+                            <p style="color: black">info@one-nation.org.uk</p>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #b30d00; color: white; border: 1px solid #b30d00">Send Message</button>
                                 </div>
                             </div>
                         </form>

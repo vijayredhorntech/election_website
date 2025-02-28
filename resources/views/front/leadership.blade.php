@@ -24,25 +24,25 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">Leadership Team</h4>
-                            <p>Meet the dedicated individuals leading One Nation towards a better future.</p>
+                            <p style="color: black">Meet the dedicated individuals leading One Nation towards a better future.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-flag"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-flag" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Our Mission</h4>
-                            <p>Building a stronger, more united Britain through effective leadership.</p>
+                            <p style="color: black">Building a stronger, more united Britain through effective leadership.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-bullseye"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-bullseye" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Our Goals</h4>
-                            <p>Implementing positive change through strategic initiatives.</p>
+                            <p style="color: black">Implementing positive change through strategic initiatives.</p>
                         </div>
                     </div>
                 </div>
@@ -52,17 +52,17 @@
                         <div class="col-md-6 mb-4">
                             <div class="single-faq-item text-center">
                                 <div class="leader-image-wrapper mb-4">
-                                    <img src="{{ asset($leader['image']) }}" 
-                                         alt="{{ $leader['name'] }}" 
+                                    <img src="{{ asset($leader['image']) }}"
+                                         alt="{{ $leader['name'] }}"
                                          class="leader-image rounded-circle">
                                 </div>
                                 <div class="content">
                                     <h3>{{ $leader['name'] }}</h3>
                                     <p class="role text-primary">{{ $leader['position'] }}</p>
-                                    <p class="bio">{{ $leader['bio'] }}</p>
+                                    <p class="bio" style="color: black">{{ $leader['bio'] }}</p>
                                     <div class="social-links mt-3">
-                                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                        <a href="#" class="social-link" style="color: black"><i class="fab fa-twitter"></i></a>
+                                        <a href="#" class="social-link" style="color: black"><i class="fab fa-linkedin"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -124,4 +124,4 @@
     /* ... styles from policies.blade.php ... */
 }
 </style>
-@endpush 
+@endpush

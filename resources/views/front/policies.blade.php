@@ -24,34 +24,34 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">Our Policy Framework</h4>
-                            <p>Building a better, fairer, and stronger Britain through comprehensive policy initiatives.</p>
+                            <p style="color: black">Building a better, fairer, and stronger Britain through comprehensive policy initiatives.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-balance-scale"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-balance-scale" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Justice & Representation</h4>
-                            <p>Ensuring fair representation and legal reforms.</p>
+                            <p style="color: black">Ensuring fair representation and legal reforms.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-graduation-cap"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-graduation-cap" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Public Education</h4>
-                            <p>Promoting awareness and community engagement.</p>
+                            <p style="color: black">Promoting awareness and community engagement.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-chart-line" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Economic Growth</h4>
-                            <p>Supporting businesses and creating opportunities.</p>
+                            <p style="color: black">Supporting businesses and creating opportunities.</p>
                         </div>
                     </div>
                 </div>
@@ -68,11 +68,11 @@
                                             <h3>{{ $policy['title'] }}</h3>
                                         </div>
                                         <div class="content">
-                                            <p>{{ $policy['description'] }}</p>
+                                            <p style="color: black">{{ $policy['description'] }}</p>
                                             @if(isset($policy['key_points']))
                                             <ul class="check-list">
                                                 @foreach($policy['key_points'] as $point)
-                                                <li><i class="fas fa-check"></i> {{ $point }}</li>
+                                                <li style="color: black"><i class="fas fa-check"></i> {{ $point }}</li>
                                                 @endforeach
                                             </ul>
                                             @endif
@@ -168,4 +168,4 @@
     margin-bottom: 15px;
 }
 </style>
-@endpush 
+@endpush

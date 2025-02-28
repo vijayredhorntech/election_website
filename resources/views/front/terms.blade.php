@@ -7,23 +7,23 @@
 
                     <div class="content">
                         <h2>1. Website Use</h2>
-                        <p>The website is for informational and campaign purposes only. Any misuse or unauthorized activity is prohibited.</p>
+                        <p style="color: black">The website is for informational and campaign purposes only. Any misuse or unauthorized activity is prohibited.</p>
 
                         <h2>2. Membership & Contributions</h2>
                         <ul>
-                            <li>Membership rules comply with Article 4 of the Constitution</li>
-                            <li>All donations comply with PPERA regulations</li>
+                            <li style="color: black">Membership rules comply with Article 4 of the Constitution</li>
+                            <li style="color: black">All donations comply with PPERA regulations</li>
                         </ul>
 
                         <h2>3. Intellectual Property</h2>
-                        <p>The One Nation Party name, logo, and content are copyrighted.</p>
+                        <p style="color: black">The One Nation Party name, logo, and content are copyrighted.</p>
 
                         <h2>4. Contact Information</h2>
-                        <p>For inquiries about these terms, please contact:</p>
+                        <p style="color: black">For inquiries about these terms, please contact:</p>
                         <ul>
-                            <li>Email: info@one-nation.org.uk</li>
-                            <li>Phone: 07955555561</li>
-                            <li>Address: 62 King Street, Southall, Greater London UB2 4DB</li>
+                            <li style="color: black">Email: info@one-nation.org.uk</li>
+                            <li style="color: black">Phone: 07955555561</li>
+                            <li style="color: black">Address: 62 King Street, Southall, Greater London UB2 4DB</li>
                         </ul>
                     </div>
                 </div>

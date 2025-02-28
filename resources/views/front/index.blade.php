@@ -3,7 +3,7 @@
     <div class="banner-carousel">
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper">
-               
+
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide1.jpeg')}})">
 
                 </div>
@@ -45,24 +45,24 @@
                 <div class="col-lg-8">
                     <div class="section-title">
                         <h2 class="title">Party Aims & Goals</h2>
-                        <p style="text-align:center; font-size:17px">Our mission is to build a stronger, fairer, and more united society by addressing the real issues affecting our people.</p>
+                        <p style="text-align:center; font-size:17px; color: black">Our mission is to build a stronger, fairer, and more united society by addressing the real issues affecting our people.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-             
+
                 <div class="col-lg-4 col-md-6">
                     <div class="mission-single-item">
                         <div class="icon">
-                            <i class="fas fa-graduation-cap"></i>
+                            <i class="fas fa-graduation-cap" style="color: #c31c39"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Educating & Empowering</h4>
-                            <p>Education is key to positive change. We focus on raising awareness about critical social, environmental, and political issues.</p>
+                            <p style="color: black">Education is key to positive change. We focus on raising awareness about critical social, environmental, and political issues.</p>
                             <ul class="mission-list">
-                                <li>Climate change and sustainability</li>
-                                <li>Public health and prevention</li>
-                                <li>Social justice and equality</li>
+                                <li style="color: black">Climate change and sustainability</li>
+                                <li style="color: black">Public health and prevention</li>
+                                <li style="color: black">Social justice and equality</li>
                             </ul>
                         </div>
                     </div>
@@ -70,15 +70,15 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="mission-single-item">
                         <div class="icon">
-                            <i class="fas fa-balance-scale"></i>
+                            <i class="fas fa-balance-scale" style="color: #c31c39"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Addressing and Resolving Issues</h4>
-                            <p>We are dedicated to addressing injustices and concerns raised by our members and the public, using all available resources to find effective solutions.</p>
+                            <p style="color: black">We are dedicated to addressing injustices and concerns raised by our members and the public, using all available resources to find effective solutions.</p>
                             <ul class="mission-list">
-                                <li>Commitment to Problem-Solving</li>
-                                <li>Fighting for Change</li>
-                                <li>A Platform for Every Voice</li>
+                                <li style="color: black">Commitment to Problem-Solving</li>
+                                <li style="color: black">Fighting for Change</li>
+                                <li style="color: black">A Platform for Every Voice</li>
                             </ul>
                         </div>
                     </div>
@@ -86,15 +86,15 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="mission-single-item">
                         <div class="icon">
-                            <i class="fas fa-hands-helping"></i>
+                            <i class="fas fa-hands-helping" style="color: #c31c39"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Promoting Unity & Solidarity</h4>
-                            <p>We stand for a united and inclusive society, fostering national and local unity by working together for the common good.</p>
+                            <p style="color: black">We stand for a united and inclusive society, fostering national and local unity by working together for the common good.</p>
                             <ul class="mission-list">
-                                <li>Bringing People Together</li>
-                                <li>Stronger Together</li>
-                                <li>A Voice for All</li>
+                                <li style="color: black">Bringing People Together</li>
+                                <li style="color: black">Stronger Together</li>
+                                <li style="color: black">A Voice for All</li>
                             </ul>
                         </div>
                     </div>
@@ -109,65 +109,65 @@
                 <div class="col-lg-8">
                     <div class="section-title">
                         <h2 class="title">Why Join Us</h2>
-                        <p style="text-align:center; font-size:17px">Be the Voice of Change! Join our movement for those who want to make a difference.</p>
+                        <p style="text-align:center; font-size:17px; color: black">Be the Voice of Change! Join our movement for those who want to make a difference.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                       
+
                         <div class="content">
                             <h4 class="title">Your Voice Matters</h4>
-                            <p>We listen, we act, and we fight for the issues that truly impact you and your community.</p>
+                            <p style="color: black">We listen, we act, and we fight for the issues that truly impact you and your community.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                       
+
                         <div class="content">
                             <h4 class="title">People Over Politics</h4>
-                            <p>We focus on real change, not empty promises. Our goal is to serve the people, not the system.</p>
+                            <p style="color: black">We focus on real change, not empty promises. Our goal is to serve the people, not the system.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                       
+
                         <div class="content">
                             <h4 class="title"> Stand for Justice & Equality</h4>
-                            <p>We are committed to fairness, equal opportunities, and ensuring that no one is left behind.
+                            <p style="color: black">We are committed to fairness, equal opportunities, and ensuring that no one is left behind.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                      
+
                         <div class="content">
                             <h4 class="title">Shape the Future</h4>
-                            <p>As a member, you have the power to influence policies, campaigns, and the direction of our party.
+                            <p style="color: black">As a member, you have the power to influence policies, campaigns, and the direction of our party.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                       
+
                         <div class="content">
                             <h4 class="title">Be Part of a Supportive Community</h4>
-                            <p>Connect with like-minded individuals who share your passion for progress, fairness, and positive change.
+                            <p style="color: black">Connect with like-minded individuals who share your passion for progress, fairness, and positive change.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
-                        
+
                         <div class="content">
                             <h4 class="title">Opportunity for Leadership & Growth</h4>
-                            <p>Whether you want to take an active role in politics or simply support from the sidelines, we offer opportunities for leadership, learning, and making an impact.
+                            <p style="color: black">Whether you want to take an active role in politics or simply support from the sidelines, we offer opportunities for leadership, learning, and making an impact.
                             </p>
                         </div>
                     </div>
@@ -196,19 +196,19 @@
                             <div class="vision-card">
                                 <ul class="check-list">
                                     <li data-aos="fade-up" data-aos-delay="100">
-                                        <span style="margin-left:20px">Stronger border control and fair immigration system</span>
+                                        <span style="margin-left:20px; color: black">Stronger border control and fair immigration system</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="200">
-                                        <span style="margin-left:20px">Supporting British businesses and workers</span>
+                                        <span style="margin-left:20px; color: black">Supporting British businesses and workers</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="300">
-                                        <span style="margin-left:20px">Responsible welfare system preventing abuse</span>
+                                        <span style="margin-left:20px; color: black">Responsible welfare system preventing abuse</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="400">
-                                        <span style="margin-left:20px">Promoting national unity and representation</span>
+                                        <span style="margin-left:20px; color: black">Promoting national unity and representation</span>
                                     </li>
                                     <li data-aos="fade-up" data-aos-delay="500">
-                                        <span style="margin-left:20px">Ensuring compliance with electoral regulations</span>
+                                        <span style="margin-left:20px; color: black">Ensuring compliance with electoral regulations</span>
                                     </li>
                                 </ul>
                             </div>
@@ -235,44 +235,44 @@
                 <div class="col-lg-8">
                     <div class="section-title">
                         <h2 class="title">Why Donate?</h2>
-                        <p style="text-align:center; font-size:17px">Your donation empowers us to take action, amplify voices, and create a better future for all.</p>
+                        <p style="text-align:center; font-size:17px; color: black">Your donation empowers us to take action, amplify voices, and create a better future for all.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01">
-                    
+
                         <div class="content">
                             <h4 class="title">Fuel Real Change</h4>
-                            <p>Your contribution directly funds campaigns and community initiatives.</p>
+                            <p style="color: black">Your contribution directly funds campaigns and community initiatives.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01">
-                     
+
                         <div class="content">
                             <h4 class="title">Support People-First</h4>
-                            <p>We rely on grassroots support, not big corporations.</p>
+                            <p style="color: black">We rely on grassroots support, not big corporations.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01">
-                       
+
                         <div class="content">
                             <h4 class="title">Amplify Voices</h4>
-                            <p>Help us speak louder for the people who need it most.</p>
+                            <p style="color: black">Help us speak louder for the people who need it most.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01">
-                       
+
                         <div class="content">
                             <h4 class="title">Make an Impact</h4>
-                            <p>Every contribution helps us make a real difference.</p>
+                            <p style="color: black">Every contribution helps us make a real difference.</p>
                         </div>
                     </div>
                 </div>
@@ -330,7 +330,7 @@
                     <div class="col-lg-8 text-center">
                         <span class="section-subtitle">Get Involved</span>
                         <h2 class=" mb-4">Join One Nation Today</h2>
-                        <p class=" mb-4">Be part of a movement that values justice, education, and unity. Together, we can build a better Britain for everyone.</p>
+                        <p class=" mb-4" style="color: black">Be part of a movement that values justice, education, and unity. Together, we can build a better Britain for everyone.</p>
                         <div class="cta-buttons">
                             <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Become a Member <i class="fas fa-users"></i></a>
                             <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Support Our Cause <i class="fas fa-heart"></i></a>
@@ -342,7 +342,7 @@
                 </div>
             </div>
         </section>
-    
+
 
 
     @push('styles')

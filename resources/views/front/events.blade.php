@@ -24,21 +24,21 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">Upcoming Events</h4>
-                            <p>Join us at our events and be part of the change.</p>
+                            <p style="color: black">Join us at our events and be part of the change.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-users"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-users" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Community Meetings</h4>
-                            <p>Connect with local members and leaders.</p>
+                            <p style="color: black">Connect with local members and leaders.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-microphone"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-microphone" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Speaking Events</h4>
@@ -64,11 +64,11 @@
                                         <i class="fas fa-map-marker-alt"></i> {{ $event->location }}
                                     </p>
                                     <p>{{ Str::limit($event->description, 100) }}</p>
-                                  
+
                                 </div>
                             </div>
                         </div>
-                        
+
                         @endforeach
                     </div>
                     <div class="pagination-wrapper">
@@ -114,4 +114,4 @@
     /* ... styles from policies.blade.php ... */
 }
 </style>
-@endpush 
+@endpush

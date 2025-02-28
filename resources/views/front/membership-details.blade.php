@@ -24,34 +24,34 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">Be Part of the Change!</h4>
-                            <p>Join a movement dedicated to positive change, advocacy, and community impact. Your voice matters, and together, we can shape a better future.</p>
+                            <p style="color: black">Join a movement dedicated to positive change, advocacy, and community impact. Your voice matters, and together, we can shape a better future.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-pound-sign"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-pound-sign" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Membership Fees</h4>
-                            <p>Affordable annual and monthly payment options available.</p>
+                            <p style="color: black">Affordable annual and monthly payment options available.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-users"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-users" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Strong Network</h4>
-                            <p>Connect with like-minded individuals who share your passion.</p>
+                            <p style="color: black"> Connect with like-minded individuals who share your passion.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
-                        <div class="icon">
-                            <i class="fas fa-star"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-star" style="color: #b30d00"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Exclusive Benefits</h4>
-                            <p>Access special events, campaigns, and leadership opportunities.</p>
+                            <p style="color: black">Access special events, campaigns, and leadership opportunities.</p>
                         </div>
                     </div>
                 </div>
@@ -65,11 +65,11 @@
                                     <div class="single-faq-item">
                                         <div class="content">
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> Make Your Voice Heard – Influence policies and decisions that impact your community.</li>
-                                                <li><i class="fas fa-check"></i> Exclusive Member Benefits – Receive priority access to events, campaigns, and discussions.</li>
-                                                <li><i class="fas fa-check"></i> Be Part of a Strong Network – Connect with like-minded individuals who share your passion for positive change.</li>
-                                                <li><i class="fas fa-check"></i> Personal Growth & Leadership Opportunities – Gain experience, develop skills, and stand for leadership positions.</li>
-                                                <li><i class="fas fa-check"></i> Support a Cause You Believe In – Your membership directly contributes to initiatives that drive real progress.</li>
+                                                <li style="color: black"> Make Your Voice Heard – Influence policies and decisions that impact your community.</li>
+                                                <li style="color: black"> Exclusive Member Benefits – Receive priority access to events, campaigns, and discussions.</li>
+                                                <li style="color: black"> Be Part of a Strong Network – Connect with like-minded individuals who share your passion for positive change.</li>
+                                                <li style="color: black"> Personal Growth & Leadership Opportunities – Gain experience, develop skills, and stand for leadership positions.</li>
+                                                <li style="color: black"> Support a Cause You Believe In – Your membership directly contributes to initiatives that drive real progress.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -87,12 +87,12 @@
                                     <div class="single-faq-item">
                                         <div class="content">
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> Applications must be made online or in person.</li>
-                                                <li><i class="fas fa-check"></i> Members must be at least 16 years old.</li>
-                                                <li><i class="fas fa-check"></i> All applicants must align with the party's values and not be a member of another political party.</li>
+                                                <li style="color: black"> Applications must be made online or in person.</li>
+                                                <li style="color: black"> Members must be at least 16 years old.</li>
+                                                <li style="color: black"> All applicants must align with the party's values and not be a member of another political party.</li>
                                             </ul>
-                                            <p class="mt-4"><strong>Join Today & Be Part of Something Bigger!</strong></p>
-                                            <p>Don't just stand on the sidelines—get involved! Whether you're looking to make an impact, connect with others, or take on leadership opportunities, this is your chance. Sign up now and start your journey towards making a difference!</p>
+                                            <p class="mt-4" style="color: black"><strong>Join Today & Be Part of Something Bigger!</strong></p>
+                                            <p style="color: black">Don't just stand on the sidelines—get involved! Whether you're looking to make an impact, connect with others, or take on leadership opportunities, this is your chance. Sign up now and start your journey towards making a difference!</p>
                                         </div>
                                     </div>
                                 </div>
@@ -111,11 +111,11 @@
                                             <h3>Annual Payment</h3>
                                         </div>
                                         <div class="content">
-                                            <p>One-time payment for the full year.</p>
+                                            <p style="color: black">One-time payment for the full year.</p>
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> £36 annual fee</li>
-                                                <li><i class="fas fa-check"></i> Full member benefits</li>
-                                                <li><i class="fas fa-check"></i> Convenient one-time payment</li>
+                                                <li style="color: black"> £36 annual fee</li>
+                                                <li style="color: black"> Full member benefits</li>
+                                                <li style="color: black"> Convenient one-time payment</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -126,11 +126,11 @@
                                             <h3>Monthly Payment</h3>
                                         </div>
                                         <div class="content">
-                                            <p>Spread the cost over 12 months.</p>
+                                            <p style="color: black">Spread the cost over 12 months.</p>
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> £3 per month</li>
-                                                <li><i class="fas fa-check"></i> 12-month commitment</li>
-                                                <li><i class="fas fa-check"></i> Non-cancellable term</li>
+                                                <li style="color: black"> £3 per month</li>
+                                                <li style="color: black"> 12-month commitment</li>
+                                                <li style="color: black"> Non-cancellable term</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -150,11 +150,11 @@
                                             <h3>Full Member</h3>
                                         </div>
                                         <div class="content">
-                                            <p>Complete access to all member privileges.</p>
+                                            <p style="color: black">Complete access to all member privileges.</p>
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> Voting rights in party matters</li>
-                                                <li><i class="fas fa-check"></i> Can stand for office</li>
-                                                <li><i class="fas fa-check"></i> Full membership benefits</li>
+                                                <li style="color: black"> Voting rights in party matters</li>
+                                                <li style="color: black"> Can stand for office</li>
+                                                <li style="color: black"> Full membership benefits</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -165,11 +165,11 @@
                                             <h3>Associate Member</h3>
                                         </div>
                                         <div class="content">
-                                            <p>Support the party's initiatives.</p>
+                                            <p style="color: black">Support the party's initiatives.</p>
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> Party support role</li>
-                                                <li><i class="fas fa-check"></i> Limited privileges</li>
-                                                <li><i class="fas fa-check"></i> Community involvement</li>
+                                                <li style="color: black"> Party support role</li>
+                                                <li style="color: black"> Limited privileges</li>
+                                                <li style="color: black"> Community involvement</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -189,13 +189,13 @@
                                             <h3>Member Expectations</h3>
                                         </div>
                                         <div class="content">
-                                            <p>All members are expected to maintain high standards of conduct and support party values.</p>
+                                            <p style="color: black">All members are expected to maintain high standards of conduct and support party values.</p>
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> Adhere to party values and objectives</li>
-                                                <li><i class="fas fa-check"></i> Maintain integrity and respect</li>
-                                                <li><i class="fas fa-check"></i> Avoid discriminatory behavior</li>
-                                                <li><i class="fas fa-check"></i> Support party initiatives positively</li>
-                                                <li><i class="fas fa-check"></i> Follow participation guidelines</li>
+                                                <li style="color: black"> Adhere to party values and objectives</li>
+                                                <li style="color: black"> Maintain integrity and respect</li>
+                                                <li style="color: black"> Avoid discriminatory behavior</li>
+                                                <li style="color: black"> Support party initiatives positively</li>
+                                                <li style="color: black"> Follow participation guidelines</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -213,10 +213,10 @@
                                     <div class="single-faq-item">
                                         <div class="content">
                                             <ul class="check-list">
-                                                <li><i class="fas fa-check"></i> One-year membership term</li>
-                                                <li><i class="fas fa-check"></i> Annual renewal process</li>
-                                                <li><i class="fas fa-check"></i> 30-day renewal notice</li>
-                                                <li><i class="fas fa-check"></i> Monthly payments must complete full term</li>
+                                                <li style="color: black"> One-year membership term</li>
+                                                <li style="color: black"> Annual renewal process</li>
+                                                <li style="color: black"> 30-day renewal notice</li>
+                                                <li style="color: black"> Monthly payments must complete full term</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -234,10 +234,10 @@
                                     <div class="single-faq-item">
                                         <div class="content">
                                             <ul class="check-list">
-                                                <li><i class="fas fa-lightbulb"></i> Campaigns & Awareness – Spreading our message and engaging with communities.</li>
-                                                <li><i class="fas fa-bullhorn"></i> Grassroots Activism – Giving people a platform to be heard and drive local change.</li>
-                                                <li><i class="fas fa-vote-yea"></i> Election Efforts – Helping our candidates reach voters and stand for the people.</li>
-                                                <li><i class="fas fa-balance-scale"></i> Fighting Injustice – Taking action against policies that harm communities.</li>
+                                                <li style="color: black"> Campaigns & Awareness – Spreading our message and engaging with communities.</li>
+                                                <li style="color: black"> Grassroots Activism – Giving people a platform to be heard and drive local change.</li>
+                                                <li style="color: black"> Election Efforts – Helping our candidates reach voters and stand for the people.</li>
+                                                <li style="color: black"> Fighting Injustice – Taking action against policies that harm communities.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -258,7 +258,7 @@
 
 
 
- 
+
 
 
 
