@@ -118,63 +118,6 @@
 
 <body>
 
-
-
-    <!-- Header-top-start -->
-    <!-- <div class="header-top about">
-        <div class="container nav-container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4">
-                    <div class="top-social">
-                        <ul class="top-social-share">
-                            <li>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-dribbble"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="top-single-items">
-                        <div class="top-single-item">
-                            <div class="icon">
-                                <i class="icon-phone"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="title">07955555561</h5>
-                            </div>
-                        </div>
-                        <div class="top-single-item">
-                            <div class="icon">
-                                <i class="icon-envelope"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="title">jsnichal@gmail.com</h5>
-                            </div>
-                        </div>
-                        <div class="top-single-item">
-                            <div class="icon">
-                                <i class="icon-location"></i>
-                            </div>
-                            <div class="content">
-                                <h5 class="title">62 King Street, Southall, Greater London UB2 4DB</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Header-top-end -->
-
     <div class="header-style-01">
         <!-- support bar area end -->
         <nav class="navbar navbar-area navbar-expand-lg nav-style-01" style="padding:0px">
@@ -190,11 +133,11 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
+                <!-- Replace your current navbar code with this updated version -->
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav political">
                         <li class="menu-item-has-children current-menu-item">
-                            <a href="{{ route('index') }}"
-                                class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
+                            <a href="{{ route('index') }}" class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
                                 Home
                             </a>
                             <div class="line">
@@ -204,15 +147,12 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('about') }}"
-                                class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
+                            <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
                                 About
                             </a>
-
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('leadership') }}"
-                                class="nav-link {{ request()->routeIs('leadership') ? 'active' : '' }}">
+                            <a href="{{ route('leadership') }}" class="nav-link {{ request()->routeIs('leadership') ? 'active' : '' }}">
                                 Leadership
                             </a>
                             <div class="line">
@@ -222,8 +162,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('memberShipDetails') }}"
-                                class="nav-link {{ request()->routeIs('memberShipDetails') ? 'active' : '' }}">
+                            <a href="{{ route('memberShipDetails') }}" class="nav-link {{ request()->routeIs('memberShipDetails') ? 'active' : '' }}">
                                 Membership
                             </a>
                             <div class="line style-01">
@@ -233,8 +172,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('events') }}"
-                                class="nav-link {{ request()->routeIs('events') ? 'active' : '' }}">
+                            <a href="{{ route('events') }}" class="nav-link {{ request()->routeIs('events') ? 'active' : '' }}">
                                 Events
                             </a>
                             <div class="line style-01">
@@ -244,8 +182,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('news') }}"
-                                class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">
+                            <a href="{{ route('news') }}" class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">
                                 News
                             </a>
                             <div class="line style-01">
@@ -255,8 +192,7 @@
                             </div>
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="{{ route('contact') }}"
-                                class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
+                            <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
                                 Contact
                             </a>
                             <div class="line">
@@ -265,23 +201,12 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-
                         <li class="menu-item-has-children">
-                            <!-- if the user is not logged in then show login button -->
                             @if(!auth()->check())
-                            <a href="{{ route('login') }}"
-                                class="{{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
-                                Login
-                            </a>
+                                <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
+                                    Login
+                                </a>
                             @endif
-                            <!-- @if(auth()->check())
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-danger">Logout</button>
-                            </form>
-                            @else
-
-                            @endif -->
                             <div class="line style-01">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
@@ -466,6 +391,24 @@
     <!-- main js -->
     <script src="{{asset('assets/js/main.js')}}"></script>
 
+    <script>
+        $(document).ready(function() {
+            // Fix for mobile navigation links
+            $('.navbar-nav li a').on('click', function(e) {
+                // Get the href attribute
+                var targetUrl = $(this).attr('href');
+
+                // If it's a valid URL (not "#" or javascript:void(0))
+                if (targetUrl && targetUrl !== '#' && !targetUrl.startsWith('javascript')) {
+                    // Close the mobile menu
+                    $('.navbar-collapse').collapse('hide');
+
+                    // Navigate to the URL
+                    window.location.href = targetUrl;
+                }
+            });
+        });
+    </script>
     @stack('scripts')
 </body>
 
