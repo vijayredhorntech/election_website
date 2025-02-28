@@ -386,36 +386,21 @@
                   <td class=" font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Amount</td>
                   <td class=" font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Invoice</td>
+                    style="color: black; font-weight: 700">Receipt</td>
                 </tr>
+                @foreach ($memberDetails->user?->donations as $donation)
                 <tr>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">1</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">10-01-2025</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 100.00 </td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                      class="fa fa-file cursor-pointer"></i> </td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$loop->iteration}}</td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$donation->created_at->format('d-m-Y')}}</td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ {{number_format($donation->amount, 2)}} </td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <a href="" class="text-[#b30d00] underline"><i class="fa fa-file cursor-pointer"></i></a></td>
                 </tr>
+                @endforeach
+                @if($memberDetails->user?->donations->isEmpty())
                 <tr>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">2</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">18-01-2025</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 08.00 </td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                      class="fa fa-file cursor-pointer"></i> </td>
+                  <td colspan="4" class="w-[100px] py-0.5" style="color: black; text-align: center">No donations found</td>
                 </tr>
-                <tr>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">3</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">25-01-2025</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 15.00 </td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                      class="fa fa-file cursor-pointer"></i> </td>
-                </tr>
-                <tr>
-                  <td class="w-[100px] py-0.5" style="color: black">4</td>
-                  <td class="w-[100px] py-0.5" style="color: black">30-01-2025</td>
-                  <td class="w-[100px] py-0.5" style="color: black"> £ 25.00 </td>
-                  <td class="w-[100px] py-0.5" style="color: black"> <i class="fa fa-file cursor-pointer"></i> </td>
-                </tr>
-
+                @endif
 
               </table>
             </div>
