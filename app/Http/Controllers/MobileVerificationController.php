@@ -120,6 +120,8 @@ class MobileVerificationController extends Controller
             $response = curl_exec($ch);
             curl_close($ch);
 
+            // This will process the SMS response and handle both success and error cases with logging
+            // Throw an exception if the response is not successful
             $this->processSmsResponse($response);
 
             return response()->json([
@@ -306,7 +308,10 @@ class MobileVerificationController extends Controller
             }
 
             // Clear OTP session data after successful verification
-            session()->forget(['mobile_otp', 'mobile_number', 'otp_created_at']);
+            session()->forget(['mobile_otp', 'otp_created_at']);
+
+            // Set the mobile number as verified
+            session(['mobile_number_verified' => true]);
 
             return response()->json([
                 'valid' => true,

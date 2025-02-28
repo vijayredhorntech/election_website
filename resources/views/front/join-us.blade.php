@@ -65,11 +65,44 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
+                                        @if($formData['allowEmail'])
                                         <div class="form-group">
-                                            <input {{$formData['type']==='validate'?'disabled':''}} value="{{ $email ?? old('email') }}" type="email" id="email" name="email" placeholder="ENTER EMAIL" class="form-control" required="" aria-required="true" style="color: black; font-weight: 600; ">
+                                            <label for="email">Email Address</label>
+                                            <input type="email" name="email" class="form-control" value="{{ old('email') }}"
+                                                @if(!$formData['allowMobile']) required @endif>
                                             @error('email')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                            <span id="email-availability-status"></span>
                                         </div>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if($formData['allowMobile'])
+                                        <div id="mobileVerificationForm" class="mb-4">
+                                            @csrf
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="country_code" value="44" class="form-control" placeholder="Enter country code" required aria-required="true" style="color: black; font-weight: 600;">
+                                                    <input type="text" name="mobile_number" value="{{old('mobile_number')}}" class="form-control" placeholder="Enter mobile number" required aria-required="true" style="color: black; font-weight: 600;">
+                                                    @error('mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                                </div>
+                                                <div class="form-group" id="otpInputGroup" style="display: none;">
+                                                    <input type="text" name="mobile_otp" class="form-control" maxlength="6" placeholder="Enter 6-digit OTP" aria-required="true" style="color: black; font-weight: 600;">
+                                                    @error('mobile_otp')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                                    <div class="mt-2 d-flex align-items-center justify-content-between">
+                                                        <button type="button" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" disabled>Resend OTP</button>
+                                                        <span id="timer" class="text-muted" style="font-size: 14px;"></span>
+                                                    </div>
+                                                </div>
+                                                <div id="verificationStatus" class="alert" style="display: none;"></div>
+                                                <button id="verifyMobileBtn" class="btn btn-primary">Send OTP</button>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <label for="mobile_number">Mobile Number</label>
+                                            <input type="text" name="mobile_number" class="form-control" value="{{ old('mobile_number') }}"
+                                                @if(!$formData['allowEmail']) required @endif>
+                                            @error('mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div> -->
+                                        @endif
                                     </div>
                                     <!-- <div class="col-md-12">
                                         <div class="form-group">
@@ -146,7 +179,7 @@
                                 </div>
 
                             </form>
-                            <form id="mobileVerificationForm" class="mb-4">
+                            <!-- <form id="mobileVerificationForm" class="mb-4">
                                 @csrf
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -165,7 +198,7 @@
                                     <div id="verificationStatus" class="alert" style="display: none;"></div>
                                     <button type="submit" id="verifyMobileBtn" class="btn btn-primary">Send OTP</button>
                                 </div>
-                            </form>
+                            </form> -->
                             <div class="why-to-join-us">
                                 <h2>What is Membership?</h2>
                                 <p style="font-size: 18px">
@@ -188,6 +221,40 @@
         const resendBtn = document.getElementById('resendOtpBtn');
         const statusDiv = document.getElementById('verificationStatus');
         let isOtpSent = false;
+
+        submitBtn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const requestData = {
+                country_code: form.querySelector('[name="country_code"]').value,
+                mobile_number: form.querySelector('[name="mobile_number"]').value,
+            };
+
+            try {
+                const response = await fetch('{{ route("verifyMobile") }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify(requestData),
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    otpGroup.style.display = 'block';
+                    submitBtn.textContent = 'Verify OTP';
+                    isOtpSent = true;
+                    startTimer(60);
+                    showStatus('OTP sent successfully');
+                } else {
+                    showStatus(data.message || 'Failed to send OTP', true);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('An error occurred. Please try again.', true);
+            }
+        });
 
         function showStatus(message, isError = false) {
             statusDiv.textContent = message;

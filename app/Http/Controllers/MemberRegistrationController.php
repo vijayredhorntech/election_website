@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CustomLog;
 use App\Mail\MemberShipMail;
 use App\Mail\OtpMail;
 use App\Models\Member;
@@ -15,63 +16,199 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\Region;
+use App\Models\Setting;
 
 class MemberRegistrationController extends Controller
 {
     public function index()
     {
+        // Get registration settings
+        $registrationSettings = Setting::where('group', 'registration')->get()->pluck('value', 'key');
+
+        // Check allowed registration methods
+        $allowEmail = $registrationSettings['allow_email_registration'] ?? true;
+        $allowMobile = $registrationSettings['allow_mobile_registration'] ?? true;
+
+        if (!$allowEmail && !$allowMobile) {
+            return redirect()->back()->with('error', 'Registration is currently disabled.');
+        }
+
         $formData = [
             'url' => route('sendEmailVerificationOtp'),
             'method' => 'get',
             'type' => 'register',
             'hasReferralCode' => 'false',
             'referral_code' => '',
+            'allowEmail' => $allowEmail,
+            'allowMobile' => $allowMobile,
         ];
         return view('front.join-us')->with('formData', $formData);
     }
 
     public function sendEmailVerificationOtp(Request $request)
     {
-        // dd($request->all());
-        $request->validate([
+        // Get registration settings
+        $registrationSettings = Setting::where('group', 'registration')->get()->pluck('value', 'key');
+        $allowEmail = $registrationSettings['allow_email_registration'] ?? true;
+        $allowMobile = $registrationSettings['allow_mobile_registration'] ?? true;
+
+        $rules = [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
             'termsAndConditionCheckbox' => 'required',
             'hasReferralCode' => 'nullable',
             'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
-        ]);
-        session()->forget('request_referral_code');
-        if ($request->hasReferralCode != null) {
-            if ($request->referral_code != null) {
-                $referral = User::where('referral_code', $request->referral_code)->first();
-                if (!$referral) {
-                    $formData = [
-                        'url' => route('sendEmailVerificationOtp'),
-                        'method' => 'get',
-                        'type' => 'register',
-                        'hasReferralCode' => 'true',
-                        'referral_code' => '',
-                    ];
-                    session()->flash('error', 'Invalid referral code');
+        ];
 
-                    return view('front.join-us')->with('formData', $formData);
+        if ($allowEmail) {
+            $rules['email'] = [
+                $allowMobile ? 'nullable' : 'required',
+                'email',
+                'unique:users,email',
+            ];
+        }
+
+        if ($allowMobile) {
+            $rules['mobile_number'] = [
+                $allowEmail ? 'nullable' : 'required',
+                'numeric',
+                'digits:10',
+                'unique:members,primary_mobile_number'
+            ];
+        }
+
+        // Add custom validation to ensure at least one contact method if both are allowed
+        if ($allowEmail && $allowMobile) {
+            $validator = Validator::make($request->all(), $rules);
+            $validator->after(function ($validator) use ($request) {
+                if (empty($request->email) && empty($request->mobile_number)) {
+                    $validator->errors()->add(
+                        'contact',
+                        'Either email or mobile number is required.'
+                    );
+                    session()->flash('error', 'Either email or mobile number is required.');
                 }
-                session(['request_referral_code' => $request->referral_code]);
+            });
+
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
             }
-        }
-        if (User::where('email', $request->email)->exists()) {
-            return back()->with('error', 'Email already exists');
+        } else {
+            $request->validate($rules);
         }
 
+        // Handle referral code validation
+        if ($request->hasReferralCode && $request->referral_code) {
+            $referral = User::where('referral_code', $request->referral_code)->first();
+            if (!$referral) {
+                $formData = [
+                    'url' => route('sendEmailVerificationOtp'),
+                    'method' => 'get',
+                    'type' => 'register',
+                    'hasReferralCode' => 'true',
+                    'referral_code' => '',
+                    'allowEmail' => $allowEmail,
+                    'allowMobile' => $allowMobile,
+                ];
+                return view('front.join-us')
+                    ->with('formData', $formData)
+                    ->with('error', 'Invalid referral code');
+            }
+            session(['request_referral_code' => $request->referral_code]);
+        }
+
+
+
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => [
+        //         'nullable', // Make email optional
+        //         'email',
+        //         'unique:users,email',
+        //         function ($attribute, $value, $fail) {
+        //             if (!$value && !session('mobile_number_verified')) {
+        //                 $fail('Either email is required or mobile number must be verified.');
+        //             }
+        //         },
+        //     ],
+        //     'termsAndConditionCheckbox' => 'required',
+        //     'hasReferralCode' => 'nullable',
+        //     'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
+        // ]);
+
+        // if (session('mobile_number_verified')) {
+        //     // dd(session('mobile_number_verified'));
+        //     return redirect()->route('selectMemberShipPlan');
+        // }
+
+        session()->forget('request_referral_code');
+        // if ($request->hasReferralCode != null) {
+        //     if ($request->referral_code != null) {
+        //         $referral = User::where('referral_code', $request->referral_code)->first();
+        //         if (!$referral) {
+        //             $formData = [
+        //                 'url' => route('sendEmailVerificationOtp'),
+        //                 'method' => 'get',
+        //                 'type' => 'register',
+        //                 'hasReferralCode' => 'true',
+        //                 'referral_code' => '',
+        //             ];
+        //             session()->flash('error', 'Invalid referral code');
+
+        //             return view('front.join-us')->with('formData', $formData);
+        //         }
+        //         session(['request_referral_code' => $request->referral_code]);
+        //     }
+        // }
+
+        // if (User::where('email', $request->email)->exists()) {
+        //     return back()->with('error', 'Email already exists');
+        // }
+
+        // $otp = rand(100000, 999999);
+        // session(['otp' => $otp]);
+
+        // Generate and send OTP
         $otp = rand(100000, 999999);
-        session(['otp' => $otp]);
+        session([
+            'otp' => $otp,
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile_number' => $request->mobile_number
+        ]);
 
         try {
-            Mail::to($request->email)->queue(new OtpMail($otp));
-            session()->flash('success', 'OTP sent successfully');
-            session(['email' => $request->email]);
-            session(['name' => $request->name]);
+            if ($request->email) {
+                Mail::to($request->email)->queue(new OtpMail($otp));
+            }
+
+            if ($request->mobile_number) {
+                // Implement SMS sending logic here
+                // SMS::send($request->mobile_number, "Your OTP is: $otp");
+            }
+
+            $formData = [
+                'url' => route('verifyOtp'),
+                'method' => 'POST',
+                'type' => 'validate',
+                'hasReferralCode' => 'false',
+                'referral_code' => '',
+                'allowEmail' => $allowEmail,
+                'allowMobile' => $allowMobile,
+            ];
+
+            return view('front.join-us')
+                ->with('formData', $formData)
+                ->with('email', $request->email)
+                ->with('mobile_number', $request->mobile_number)
+                ->with('userName', $request->name)
+                ->with('success', 'OTP sent successfully');
+
+            // Mail::to($request->email)->queue(new OtpMail($otp));
+            // session()->flash('success', 'OTP sent successfully');
+            // session(['email' => $request->email]);
+            // session(['name' => $request->name]);
         } catch (\Exception $e) {
+            CustomLog::error('OTP sending failed: ' . $e->getMessage());
             return back()->with('error', 'Failed to send OTP');
         }
 
@@ -87,36 +224,40 @@ class MemberRegistrationController extends Controller
         return view('front.join-us')->with('formData', $formData)->with('email', $request->email)->with('userName', $request->name);
     }
 
-   public function resetOTP()
-   {
-       session()->forget('otp');
-       $otp = rand(100000, 999999);
-       session(['otp' => $otp]);
+    public function resetOTP()
+    {
+        session()->forget('otp');
+        $otp = rand(100000, 999999);
+        session(['otp' => $otp]);
 
-       try {
-        Mail::to(session('email'))->queue(new OtpMail($otp));
-        session()->flash('success', 'OTP sent successfully');
+        try {
+            Mail::to(session('email'))->queue(new OtpMail($otp));
+            session()->flash('success', 'OTP sent successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to send OTP');
+        }
 
-    } catch (\Exception $e) {
-        return back()->with('error', 'Failed to send OTP');
+
+
+        $formData = [
+            'url' => route('verifyOtp'),
+            'method' => 'POST',
+            'type' => 'validate',
+            'hasReferralCode' => 'false',
+            'referral_code' => '',
+        ];
+        return view('front.join-us')->with('formData', $formData)->with('email', session('email'))->with('userName', session('name'));
     }
-
-
-
-    $formData = [
-        'url' => route('verifyOtp'),
-        'method' => 'POST',
-        'type' => 'validate',
-        'hasReferralCode' => 'false',
-        'referral_code' => '',
-    ];
-    return view('front.join-us')->with('formData', $formData)->with('email', session('email'))->with('userName', session('name'));
-   }
 
 
 
     public function verifyOtp(Request $request)
     {
+        if (session('mobile_number_verified')) {
+            dd('mobile_number_verified');
+            return redirect()->route('selectMemberShipPlan');
+        }
+
         $request->validate([
             'otp' => 'required|numeric|digits:6',
         ]);
