@@ -157,7 +157,6 @@
                                             <label for="primary_mobile_number">Primary Mobile Number <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <select name="primary_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;" value="{{ old('primary_country_code') }}">
-                                                    <option value="">Select</option>
                                                     <option value="+44">+44 (UK)</option>
                                                     <option value="+1">+1 (US/CA)</option>
                                                     <option value="+91">+91 (India)</option>

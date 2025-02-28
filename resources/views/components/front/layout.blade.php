@@ -289,7 +289,7 @@
                         </a>
 
                         @else
-                        @if(auth()->user()?->member?->profile_status == 'active')
+                        @if(auth()->user()?->member?->profile_status == 'active' && route('memberProfile') !== request()->url())
                         <a href="{{route('memberProfile')}}" class="boxed-btn btn-sanatory">
                             Profile
                             <i class="icon-paper-plan"></i>

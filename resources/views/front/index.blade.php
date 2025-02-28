@@ -103,62 +103,6 @@
         </div>
     </div>
 
-    
-
-
-    <!-- Features Section -->
-    <section class="features-section py-5" data-aos="fade-up">
-        <div class="container">
-            <div class="section-header text-center mb-5">
-                <span class="section-subtitle" data-aos="fade-up">WHAT WE STAND FOR</span>
-                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Our Core Values</h2>
-                <div class="title-separator" data-aos="fade-up" data-aos-delay="200">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-card">
-                        <div class="icon-wrapper">
-                            <i class="fas fa-balance-scale"></i>
-                        </div>
-                        <div class="content">
-                            <h4 class="title">Justice & Representation</h4>
-                            <p>Ensuring every member has a voice in addressing public concerns and fair representation in government.</p>
-                            <a href="{{ route('policies') }}#justice" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-card">
-                        <div class="icon-wrapper">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="content">
-                            <h4 class="title">Public Education</h4>
-                            <p>Spreading awareness on social justice, human rights, and sustainability through community programs.</p>
-                            <a href="{{ route('policies') }}#education" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="feature-card">
-                        <div class="icon-wrapper">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="content">
-                            <h4 class="title">Economic Growth</h4>
-                            <p>Supporting British businesses, creating jobs, and implementing fair taxation policies.</p>
-                            <a href="{{ route('policies') }}#economy" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <div class="political-support-section padding-top-115 padding-bottom-120">
         <div class="container">
             <div class="row justify-content-center">
@@ -284,64 +228,6 @@
         </div>
     </section>
 
-    <!-- Latest News Section -->
-    <section class="news-section py-5">
-        <div class="container">
-            <div class="section-header text-center mb-5">
-                <span class="section-subtitle" data-aos="fade-up">STAY INFORMED</span>
-                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Latest Updates</h2>
-                <div class="title-separator" data-aos="fade-up" data-aos-delay="200">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($data['latest_news'] as $index => $news)
-                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}">
-                    <div class="news-card">
-                        @if($news->image)
-                        <div class="news-image-wrapper">
-                            <img src="{{ asset($news->image) }}" alt="{{ $news->title }}" class="news-image">
-                            <div class="news-date">
-                                <span>{{ $news->created_at->format('d') }}</span>
-                                <span>{{ $news->created_at->format('M') }}</span>
-                            </div>
-                        </div>
-                        @endif
-                        <div class="news-content">
-                            <h3>{{ $news->title }}</h3>
-                            <p>{{ Str::limit($news->excerpt, 100) }}</p>
-                            <a href="{{ route('news.show', $news->slug) }}" class="read-more">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="cta-section py-5" style="background-image: url({{asset('assets/images/cta-bg.jpg')}})">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <span class="section-subtitle">Get Involved</span>
-                    <h2 class=" mb-4">Join One Nation Today</h2>
-                    <p class=" mb-4">Be part of a movement that values justice, education, and unity. Together, we can build a better Britain for everyone.</p>
-                    <div class="cta-buttons">
-                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Become a Member <i class="fas fa-users"></i></a>
-                        <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Support Our Cause <i class="fas fa-heart"></i></a>
-                    </div>
-                    <div class="cta-buttons mt-4">
-                        <a href="{{ route('feedback') }}" class="btn btn-primary btn-lg">Share Your Feedback <i class="fas fa-users"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="donation-section-area padding-top-60 padding-bottom-60" style="background-color:whitesmoke">
         <div class="container">
@@ -396,6 +282,68 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Latest News Section -->
+    <section class="news-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <span class="section-subtitle" data-aos="fade-up">STAY INFORMED</span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Latest Updates</h2>
+                <div class="title-separator" data-aos="fade-up" data-aos-delay="200">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="row">
+                @foreach($data['latest_news'] as $index => $news)
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}">
+                    <div class="news-card">
+                        @if($news->image)
+                        <div class="news-image-wrapper">
+                            <img src="{{ asset($news->image) }}" alt="{{ $news->title }}" class="news-image">
+                            <div class="news-date">
+                                <span>{{ $news->created_at->format('d') }}</span>
+                                <span>{{ $news->created_at->format('M') }}</span>
+                            </div>
+                        </div>
+                        @endif
+                        <div class="news-content">
+                            <h3>{{ $news->title }}</h3>
+                            <p>{{ Str::limit($news->excerpt, 100) }}</p>
+                            <a href="{{ route('news.show', $news->slug) }}" class="read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section py-5" style="background-image: url({{asset('assets/images/cta-bg.jpg')}})">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <span class="section-subtitle">Get Involved</span>
+                        <h2 class=" mb-4">Join One Nation Today</h2>
+                        <p class=" mb-4">Be part of a movement that values justice, education, and unity. Together, we can build a better Britain for everyone.</p>
+                        <div class="cta-buttons">
+                            <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Become a Member <i class="fas fa-users"></i></a>
+                            <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Support Our Cause <i class="fas fa-heart"></i></a>
+                        </div>
+                        <div class="cta-buttons mt-4">
+                            <a href="{{ route('feedback') }}" class="btn btn-primary btn-lg">Share Your Feedback <i class="fas fa-users"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
 
     @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
