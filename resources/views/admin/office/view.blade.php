@@ -432,11 +432,11 @@
                         <i id="hideDetails" class="fa fa-eye-slash text-white hidden"></i>
                     </div>
                 </div>
-                <div class="p-2">
+                <!-- <div class="p-2">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d382.82554484365573!2d-0.3836338674222604!3d51.50005771123915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760d52956b5cb9%3A0xf7c975d392a773ce!2sCloud%20Travel%C2%AE!5e1!3m2!1sen!2sin!4v1739351454522!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                </div> -->
                 <div class="p-2">
-                    <table class="w-full hidden" id="officeDetailsDiv">
+                    <table class="w-full" id="officeDetailsDiv">
                         <tr>
                             <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-primaryDark/10 text-md">Name</td>
                             <td class="text-black border-b-[1px] border-b-primaryDark/10 py-1 text-sm"><span class="font-medium text-black">: &nbsp &nbsp</span>{{$office->name}} </td>

@@ -61,4 +61,29 @@ class ExpenseCategoryController extends Controller
             return back()->with('error', 'An error occurred while updating the expense category.');
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        try {
+            $expenseCategory = ExpenseCategory::find($id);
+            $expenseCategory->delete();
+
+            CustomLog::info('Expense category deleted successfully');
+
+            return back()->with('success', 'Expense Category Deleted Successfully');
+        } catch (\Exception $e) {
+            CustomLog::error('Error in ExpenseCategoryController@destroy: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            return back()->with('error', 'An error occurred while deleting the expense category.');
+        }
+    }
 }

@@ -29,6 +29,7 @@ class AccountSetting extends Controller
             'constituencies' => Constituency::with(['country', 'county'])->get(),
             'professions' => Profession::all(),
             'educations' => Education::all(),
+            'expenseCategories' => ExpenseCategory::all(),
         ];
 
         return view('admin.settings.index', $data);
