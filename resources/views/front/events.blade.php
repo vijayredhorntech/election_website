@@ -50,26 +50,25 @@
                     <div class="row">
                         @foreach($events as $event)
                         <div class="col-md-6 mb-4">
-                            <div class="single-faq-item">
+                            <div class="single-faq-item" style="background-color:whitesmoke; padding:20px; border-radius:3px">
                                 @if($event->image)
                                 <img src="{{ asset($event->image) }}" alt="{{ $event->title }}" class="event-image mb-3">
                                 @endif
                                 <div class="content">
                                     <div class="event-date mb-2">
-                                        <i class="far fa-calendar-alt"></i> {{ $event->date->format('d M Y') }}
-                                        <i class="far fa-clock ml-3"></i> {{ $event->time }}
+                                        <i class="far fa-calendar-alt"></i> {{ $event->start_datetime?->format('d M Y') }}
+                                        <i class="far fa-clock ml-3"></i> {{ $event->start_datetime?->format('h:i A') }}
                                     </div>
                                     <h3>{{ $event->title }}</h3>
                                     <p class="location mb-2">
                                         <i class="fas fa-map-marker-alt"></i> {{ $event->location }}
                                     </p>
                                     <p>{{ Str::limit($event->description, 100) }}</p>
-                                    <div class="mt-3">
-                                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-outline-primary">Learn More</a>
-                                    </div>
+                                  
                                 </div>
                             </div>
                         </div>
+                        
                         @endforeach
                     </div>
                     <div class="pagination-wrapper">
