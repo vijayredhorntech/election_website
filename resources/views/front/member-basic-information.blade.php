@@ -40,7 +40,7 @@
                                 @if(session('error'))
                                 <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
                                 @endif @if(session('success'))
-                                <div class="text-green-600 text-sm font-semibold mt-4">{{session('success')}}</div>
+                                <div class="text-green-600 text-sm font-semibold mt-4" style="margin-top:10px; color:green; font-weight:500;">{{session('success')}}</div>
                                 @endif
                             </div>
                         </div>
