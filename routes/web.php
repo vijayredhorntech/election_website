@@ -163,13 +163,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('expense.')->group(function () {
             Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');
             // Route::get('/expense/edit/{id}', [ExpenseController::class, 'edit'])->name('edit');
-            Route::post('/expense/update/{id}', [ExpenseCategoryController::class, 'update'])->name('update');
+            // Route::post('/expense/update/{id}', [ExpenseCategoryController::class, 'update'])->name('update');
         });
 
-        Route::name('expense.category.')->group(function () {
-            Route::post('/expense/category/store', [ExpenseCategoryController::class, 'store'])->name('store');
-            Route::post('/expense/category/update/{id}', [ExpenseCategoryController::class, 'update'])->name('update');
-        });
+        // Route::name('expense.category.')->group(function () {
+        //     Route::post('/expense/category/store', [ExpenseCategoryController::class, 'store'])->name('store');
+        //     Route::post('/expense/category/update/{id}', [ExpenseCategoryController::class, 'update'])->name('update');
+        // });
 
         Route::name('constituencies.')->group(function () {
             Route::get('/constituencies/next', [ConstituencyController::class, 'getPaginatedConstituency'])
@@ -232,6 +232,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/education/store', [EducationController::class, 'store'])->name('education.store');
             Route::put('/education/{id}', [EducationController::class, 'update'])->name('education.update');
             Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('education.destroy');
+
+            // Expense Category Management
+            Route::post('/expense-categories/store', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
+            Route::delete('/expense-categories/{id}', [ExpenseCategoryController::class, 'destroy'])->name('expense.category.destroy');
         });
     });
 });

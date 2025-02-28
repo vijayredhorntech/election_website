@@ -22,13 +22,14 @@
     function printCard() {
       window.print();
     }
+
     function copyReferralLink() {
-        const referralText = document.getElementById('referralLink').innerText;
-        navigator.clipboard.writeText(referralText).then(() => {
-            alert('Referral link copied to clipboard!');
-        }).catch(err => {
-            console.error('Failed to copy text: ', err);
-        });
+      const referralText = document.getElementById('referralLink').innerText;
+      navigator.clipboard.writeText(referralText).then(() => {
+        alert('Referral link copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
     }
 
     function downloadCard() {
@@ -168,12 +169,12 @@
           <div class="about-inner donation-single">
             <h4 class="title">{{ucfirst(strtolower(auth()->user()->name))}}'s Profile</h4>
           </div>
-          <div class="breadcrumbs">
+          <!-- <div class="breadcrumbs">
             <ul>
               <li><a href="{{route('index')}}">Home</a></li>
               <li><a href="{{route('joinUs')}}">{{ucfirst(strtolower(auth()->user()->name))}}'s Profile</a></li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -205,18 +206,18 @@
             </h5>
           </div>
           <div class="card-body">
-          <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">
-                 <div style="display:flex; gap:10px">
-                        <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
-                          <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span
-                            class="icon-paper-plan"></span></button>
-                        <button type="submit" onclick="downloadCard()" style="background-color:green; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
-                          <i class="fa fa-download" style="margin-right:5px"></i>
-                          Download ID <span
-                            class="icon-paper-plan"></span></button>
-                 </div>
-                 
+            <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">
+              <div style="display:flex; gap:10px">
+                <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
+                  <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span
+                    class="icon-paper-plan"></span></button>
+                <button type="submit" onclick="downloadCard()" style="background-color:green; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
+                  <i class="fa fa-download" style="margin-right:5px"></i>
+                  Download ID <span
+                    class="icon-paper-plan"></span></button>
               </div>
+
+            </div>
             <div class="w-full p-2">
               <div style="display: flex; align-items: start; justify-content: space-between; gap: 10px">
                 <div>
@@ -228,77 +229,77 @@
                 <div style="display: flex; flex-direction:column; align-items: end; gap: 10px; margin-bottom:20px">
                   <div id="qrcode"></div>
                 </div>
-                
+
               </div>
               <div class="referral-share-container" style="display:flex; flex-direction:column; align-items:end">
-                    <span class="referral-link" id="referralLink" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
-                      {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
-                      <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
-                    </span>
-                    
-                    <div class="social-share-buttons" style="display: flex; gap: 10px; justify-content: flex-end">
-                      <a href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}" 
-                         target="_blank" 
-                         class="share-button facebook" 
-                         style="background: #3b5998; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
-                        <i class="fab fa-facebook-f"></i> Share
-                      </a>
-                      
-                      <a href="https://wa.me/?text={{ urlencode('Be the change! Join One-Nation through my referral and make a difference:') }}%0A%0A{{ urlencode(route('index').'/referral/'.$memberDetails->user->referral_code) }}" 
-   target="_blank" 
-   class="share-button whatsapp" 
-   style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
-   <i class="fab fa-whatsapp"></i> Share
-</a>
+                <span class="referral-link" id="referralLink" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
+                  {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
+                  <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
+                </span>
 
-                      <a href="https://twitter.com/intent/tweet?text={{urlencode('Be the change! Join One-Nation through my referral and make a difference:')}}%20{{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}" 
-                         target="_blank" 
-                         class="share-button twitter" 
-                         style="background: #1DA1F2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
-                        <i class="fa-brands fa-x-twitter"></i> Share
-                      </a>
-                      
-                      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}" 
-                         target="_blank" 
-                         class="share-button linkedin" 
-                         style="background: #0077b5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
-                        <i class="fab fa-linkedin-in"></i> Share
-                      </a>
-                    </div>
-                  </div>
-        
+                <div class="social-share-buttons" style="display: flex; gap: 10px; justify-content: flex-end">
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
+                    target="_blank"
+                    class="share-button facebook"
+                    style="background: #3b5998; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                    <i class="fab fa-facebook-f"></i> Share
+                  </a>
+
+                  <a href="https://wa.me/?text={{ urlencode('Be the change! Join One-Nation through my referral and make a difference:') }}%0A%0A{{ urlencode(route('index').'/referral/'.$memberDetails->user->referral_code) }}"
+                    target="_blank"
+                    class="share-button whatsapp"
+                    style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                    <i class="fab fa-whatsapp"></i> Share
+                  </a>
+
+                  <a href="https://twitter.com/intent/tweet?text={{urlencode('Be the change! Join One-Nation through my referral and make a difference:')}}%20{{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
+                    target="_blank"
+                    class="share-button twitter"
+                    style="background: #1DA1F2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                    <i class="fa-brands fa-x-twitter"></i> Share
+                  </a>
+
+                  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
+                    target="_blank"
+                    class="share-button linkedin"
+                    style="background: #0077b5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                    <i class="fab fa-linkedin-in"></i> Share
+                  </a>
+                </div>
+              </div>
+
             </div>
             <table class="w-full">
-                <tr>
-                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Member id</td>
-                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->custom_id}}</td>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Enrolled On</td>
-                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->enrollment_date)->format('d-m-Y') }}
-                      </td>
-                </tr>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Referral Code</td>
-                  <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> {{$memberDetails->user->referral_code}}</td>
-                </tr>
-                </tr>
-                <tr>
-                  <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Total Members
-                    Added</td>
-                  <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
-                      style="color: black; font-weight: 400"></span>
-                    {{$memberDetails->referredMembers->count()}}
-                  </td>
-                </tr>
-              </table>
+              <tr>
+                <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                  style="color: black; font-weight: 700">Member id</td>
+                <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                    class="font-semibold text-black"></span> {{$memberDetails->custom_id}}</td>
+              </tr>
+              <tr>
+                <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                  style="color: black; font-weight: 700">Enrolled On</td>
+                <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                    class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->enrollment_date)->format('d-m-Y') }}
+                </td>
+              </tr>
+              </tr>
+              <tr>
+                <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                  style="color: black; font-weight: 700">Referral Code</td>
+                <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                    class="font-semibold text-black"></span> {{$memberDetails->user->referral_code}}</td>
+              </tr>
+              </tr>
+              <tr>
+                <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Total Members
+                  Added</td>
+                <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
+                    style="color: black; font-weight: 400"></span>
+                  {{$memberDetails->referredMembers->count()}}
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
 
@@ -330,37 +331,37 @@
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Start Date</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> 01-01-2025</td>
+                      class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->start_date)->format('d-m-Y') }}</td>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">End Date</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> 31-12-2025</td>
+                      class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->format('d-m-Y') }}</td>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Amount</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> £ 15.2</td>
+                      class="font-semibold text-black"></span> £ {{ $memberDetails->user?->membership?->payment_amount }}</td>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Type</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> Annually </td>
+                      class="font-semibold text-black"></span> {{ $memberDetails->user?->membership?->membership_type }}</td>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Days Remaining</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> 298 days </td>
+                      class="font-semibold text-black"></span> {{ abs(\Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->diffInDays(today(), false)) }} days </td>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Renewal Date</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                      class="font-semibold text-black"></span> 01-01-2026 </td>
+                      class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->subDays(30)->format('d-m-Y')}} </td>
                 </tr>
                 <tr>
                   <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Invoice</td>
@@ -385,36 +386,21 @@
                   <td class=" font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Amount</td>
                   <td class=" font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700">Invoice</td>
+                    style="color: black; font-weight: 700">Receipt</td>
                 </tr>
+                @foreach ($memberDetails->user?->donations as $donation)
                 <tr>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">1</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">10-01-2025</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 100.00 </td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                      class="fa fa-file cursor-pointer"></i> </td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$loop->iteration}}</td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$donation->created_at->format('d-m-Y')}}</td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ {{number_format($donation->amount, 2)}} </td>
+                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <a href="" class="text-[#b30d00] underline"><i class="fa fa-file cursor-pointer"></i></a></td>
                 </tr>
+                @endforeach
+                @if($memberDetails->user?->donations->isEmpty())
                 <tr>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">2</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">18-01-2025</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 08.00 </td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                      class="fa fa-file cursor-pointer"></i> </td>
+                  <td colspan="4" class="w-[100px] py-0.5" style="color: black; text-align: center">No donations found</td>
                 </tr>
-                <tr>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">3</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">25-01-2025</td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 15.00 </td>
-                  <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                      class="fa fa-file cursor-pointer"></i> </td>
-                </tr>
-                <tr>
-                  <td class="w-[100px] py-0.5" style="color: black">4</td>
-                  <td class="w-[100px] py-0.5" style="color: black">30-01-2025</td>
-                  <td class="w-[100px] py-0.5" style="color: black"> £ 25.00 </td>
-                  <td class="w-[100px] py-0.5" style="color: black"> <i class="fa fa-file cursor-pointer"></i> </td>
-                </tr>
-
+                @endif
 
               </table>
             </div>
@@ -437,9 +423,9 @@
             </h5>
           </div>
           <div class="card-body">
-          <div class="w-full p-2" >
+            <div class="w-full p-2">
 
-          <table class="w-full">
+              <table class="w-full">
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                     style="color: black; font-weight: 700">Title</td>
@@ -485,8 +471,13 @@
                   <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
                       style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
                 </tr>
+                <tr>
+                  <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">National Insurance Number</td>
+                  <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
+                      style="color: black; font-weight: 400"></span> {{$memberDetails->national_insurance_number}}</td>
                 </tr>
-            
+                </tr>
+
               </table>
             </div>
 
@@ -634,7 +625,7 @@
             </div>
 
             <div style="width: 100%; display:flex; justify-content: end; margin-top: 5px; padding-right:40px">
-              <img id="barcode"  style="width:370px"/>
+              <img id="barcode" style="width:370px" />
             </div>
           </div>
         </div>
