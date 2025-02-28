@@ -24,7 +24,7 @@
                     <div class="help-single-item margin-bottom-30">
                         <div class="content">
                             <h4 class="title">Who We Are</h4>
-                            <p>At One Nation, we are more than just a political party—we are a movement dedicated to fairness, justice, and real change. We stand for the people, listen to their concerns, and fight for a society where everyone has a voice and equal opportunities.</p>
+                            <p style="color: black">At One Nation, we are more than just a political party—we are a movement dedicated to fairness, justice, and real change. We stand for the people, listen to their concerns, and fight for a society where everyone has a voice and equal opportunities.</p>
                         </div>
                     </div>
                     <div class="icon-box-item-02 margin-bottom-30">
@@ -33,7 +33,7 @@
                         </div>
                         <div class="content">
                             <h4 class="title">Our Mission</h4>
-                            <p>Our mission is to bring people together, tackle injustice, and create a future where no one is left behind.</p>
+                            <p style="color: black">Our mission is to bring people together, tackle injustice, and create a future where no one is left behind.</p>
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
-                                        <li><i class="fas fa-check"></i> Founded on the belief that politics should serve the people, not the powerful. From humble beginnings, we have grown into a movement dedicated to making real change.</li>
+                                        <li style="color: black"> Founded on the belief that politics should serve the people, not the powerful. From humble beginnings, we have grown into a movement dedicated to making real change.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -58,10 +58,10 @@
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
-                                        <li><i class="fas fa-check"></i> Addressing Social Inequality – Ensuring fairness, justice, and opportunities for all.</li>
-                                        <li><i class="fas fa-check"></i> Community-Driven Change – Listening to real people and taking real action.</li>
-                                        <li><i class="fas fa-check"></i> Transparency & Accountability – Politics should serve the people, not personal interests.</li>
-                                        <li><i class="fas fa-check"></i> A Stronger, United Future – Building a society that values unity over division.</li>
+                                        <li style="color: black"> Addressing Social Inequality – Ensuring fairness, justice, and opportunities for all.</li>
+                                        <li style="color: black"> Community-Driven Change – Listening to real people and taking real action.</li>
+                                        <li style="color: black"> Transparency & Accountability – Politics should serve the people, not personal interests.</li>
+                                        <li style="color: black"> A Stronger, United Future – Building a society that values unity over division.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -73,11 +73,11 @@
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
-                                        <li><i class="fas fa-gem"></i> Equality for All – No matter your background, race, religion, or status.</li>
-                                        <li><i class="fas fa-gem"></i> Honest & Fair Politics – We reject corruption and work with integrity.</li>
-                                        <li><i class="fas fa-gem"></i> Empowering Communities – Real change starts at the local level.</li>
-                                        <li><i class="fas fa-gem"></i> Action Over Words – We take real steps to solve problems.</li>
-                                        <li><i class="fas fa-gem"></i> A Better Future – Investing in education, healthcare, and sustainability.</li>
+                                        <li style="color: black"> Equality for All – No matter your background, race, religion, or status.</li>
+                                        <li style="color: black"> Honest & Fair Politics – We reject corruption and work with integrity.</li>
+                                        <li style="color: black"> Empowering Communities – Real change starts at the local level.</li>
+                                        <li style="color: black"> Action Over Words – We take real steps to solve problems.</li>
+                                        <li style="color: black"> A Better Future – Investing in education, healthcare, and sustainability.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -97,13 +97,13 @@
                 <div class="col-md-8 offset-md-2">
                     <div class="single-faq-item">
                         <div class="content text-center">
-                            <p class="margin-bottom-40">Want to be part of the change? Here's how you can help:</p>
+                            <p class="margin-bottom-40" style="color: black">Want to be part of the change? Here's how you can help:</p>
                             <div class="row">
                                 <div class="col-md-6 margin-bottom-30">
                                     <div class="action-box p-4 bg-white rounded shadow-sm">
                                         <i class="fas fa-users fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                         <h4>Join Our Membership</h4>
-                                        <p>Be part of our movement and help shape the future.</p>
+                                        <p style="color: black">Be part of our movement and help shape the future.</p>
                                         <a href="{{ route('joinUs') }}" class="btn btn-primary" style="background-color:#b30d00; border:1px solid #b30d00 ">Join Now</a>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="action-box p-4 bg-white rounded shadow-sm">
                                         <i class="fas fa-hand-holding-heart fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                         <h4>Donate</h4>
-                                        <p>Support our cause and fund real action for real people.</p>
+                                        <p style="color: black">Support our cause and fund real action for real people.</p>
                                         <a href="{{route('donate')}}" class="btn btn-primary" style="background-color:#b30d00; border:1px solid #b30d00 ">Donate Now</a>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
             <div class="row">
                 <div class="col-12 text-center margin-bottom-20">
                     <h2 class="title">Contact Us</h2>
-                    <p>Have questions? Want to learn more? We'd love to hear from you!</p>
+                    <p style="color: black">Have questions? Want to learn more? We'd love to hear from you!</p>
                 </div>
                 <div class="col-md-8 offset-md-2">
                     <div class="contact-item-wrapper text-center" style="margin-bottom:0px">
@@ -137,28 +137,28 @@
                                 <div class="contact-single-item" >
                                     <i class="fas fa-map-marker-alt fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4>Address</h4>
-                                    <p>62 King Street, Southall, Greater London UB2 4DB</p>
+                                    <p style="color: black">62 King Street, Southall, Greater London UB2 4DB</p>
                                 </div>
                             </div>
                             <div class="col-md-4 margin-bottom-40">
                                 <div class="contact-single-item">
                                     <i class="fas fa-phone fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4>Phone</h4>
-                                    <p>07955555561</p>
+                                    <p style="color: black">07955555561</p>
                                 </div>
                             </div>
                             <div class="col-md-4 margin-bottom-40">
                                 <div class="contact-single-item">
                                     <i class="fas fa-envelope fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4>Email</h4>
-                                    <p>info@one-nation.org.uk</p>
+                                    <p style="color: black">info@one-nation.org.uk</p>
                                 </div>
                             </div>
 
                         </div>
                         <div class="text-center margin-top-20">
-                            <p class="margin-bottom-0">Together, We Are Stronger!</p>
-                            <p class="margin-bottom-40">At One Nation, we believe that when people unite, real change happens. Join us in shaping a fairer, brighter, and more just future for everyone.</p>
+                            <p class="margin-bottom-0" style="color: black">Together, We Are Stronger!</p>
+                            <p class="margin-bottom-40" style="color: black">At One Nation, we believe that when people unite, real change happens. Join us in shaping a fairer, brighter, and more just future for everyone.</p>
                             <a href="{{ route('contact') }}" class="btn btn-primary" style="background-color:#b30d00; border:1px solid #b30d00 ">Get in Touch</a>
                         </div>
                     </div>
@@ -197,6 +197,7 @@
     margin-bottom: 15px;
     font-size: 16px;
     line-height: 1.6;
+    color: black;
 }
 
 .check-list li i {

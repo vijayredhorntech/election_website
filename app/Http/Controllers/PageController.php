@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OtpMail;
 use App\Models\News;
 use App\Models\Event;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -92,7 +94,7 @@ class PageController extends Controller
                'title' => 'Privacy Policy - One Nation',
                'meta_description' => 'Read our privacy policy to understand how One Nation Party handles and protects your personal information.'
           ];
-          
+
           return view('front.privacy-policy', compact('data'));
      }
 
@@ -102,7 +104,7 @@ class PageController extends Controller
                'title' => 'Terms & Conditions - One Nation',
                'meta_description' => 'Read our terms and conditions for using One Nation Party services and website.'
           ];
-          
+
           return view('front.terms', compact('data'));
      }
 
@@ -112,7 +114,7 @@ class PageController extends Controller
                'title' => 'Our Manifesto - One Nation',
                'meta_description' => 'Read One Nation Party\'s manifesto and our vision for a better, fairer, and stronger Britain.'
           ];
-          
+
           return view('front.manifesto', compact('data'));
      }
 
@@ -122,7 +124,7 @@ class PageController extends Controller
                'title' => 'Frequently Asked Questions - One Nation',
                'meta_description' => 'Find answers to common questions about One Nation Party, membership, and our policies.'
           ];
-          
+
           return view('front.faq', compact('data'));
      }
 
@@ -132,7 +134,7 @@ class PageController extends Controller
                'title' => 'Code of Conduct - One Nation',
                'meta_description' => 'Read our code of conduct that guides One Nation Party members and representatives.'
           ];
-          
+
           return view('front.code-of-conduct', compact('data'));
      }
 
@@ -142,7 +144,7 @@ class PageController extends Controller
                'title' => 'Contact Us - One Nation',
                'meta_description' => 'Get in touch with One Nation Party. We\'re here to listen and help.'
           ];
-          
+
           return view('front.contact', compact('data'));
      }
 
@@ -152,7 +154,7 @@ class PageController extends Controller
                'title' => 'Latest News - One Nation',
                'meta_description' => 'Stay updated with the latest news and updates from One Nation Party.'
           ];
-          
+
           $news = News::latest()->paginate(9);
           return view('front.news', compact('data', 'news'));
      }
@@ -183,7 +185,7 @@ class PageController extends Controller
                'title' => 'Our Policies - One Nation',
                'meta_description' => 'Learn about One Nation Party\'s policies for a better, fairer, and stronger Britain.'
           ];
-          
+
           $policies = [
                'Justice & Representation' => [
                     [
@@ -258,7 +260,9 @@ class PageController extends Controller
                'message' => 'required|string'
           ]);
 
-          contact::create($validated);
+
+
+         contact::create($validated);
           return redirect()->back()->with('success', 'Thank you for your message. We will get back to you soon.');
      }
 }
