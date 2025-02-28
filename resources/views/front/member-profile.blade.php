@@ -573,15 +573,15 @@
                       <span style="font-size: 25px;">Contact Number: {{$memberDetails->primary_country_code}} {{$memberDetails->primary_mobile_number}}</span>
                     </div>
                   </div>
-                  <div class="barcode-container">
+                  <!-- <div class="barcode-container">
                     <svg id="barcode"></svg>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
 
-            <div style="width: 100%; display:flex; justify-content: end; margin-top: 5px;">
-              <img id="barcode" />
+            <div style="width: 100%; display:flex; justify-content: end; margin-top: 5px; padding-right:40px">
+              <img id="barcode"  style="width:370px"/>
             </div>
           </div>
         </div>
