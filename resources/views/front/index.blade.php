@@ -19,7 +19,7 @@
             <div class="swiper-button-next"></div>
         </div>
     </div>
-    <div class="header-area header-sanatory" style="padding:80px 0px; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{asset('assets/images/bannerBg.jpg')}}); background-position:center; background-size:cover;">
+    <div class="header-area header-sanatory" style="padding:50px 0px; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{asset('assets/images/bannerBg.jpg')}}); background-position:center; background-size:cover;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
@@ -28,8 +28,8 @@
                     <h1 class="title" style="color:white">TO SOLVE & EDUCATE AS - ONE NATION</h1>
                     <p style="color:whitesmoke">Building a stronger, fairer, and more united society for all</p>
                     <div class="btn-wrapper" style="margin-top:10px">
-                        <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory">Join Us Today</a>
-                        <a href="{{route('donate')}}" class="boxed-btn btn-sanatory-2">Donate Now</a>
+                        <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory" style="padding: 5px 10px">Join Us Today</a>
+                        <a href="{{route('donate')}}" class="boxed-btn btn-sanatory-2" style="padding: 5px 10px">Donate Now</a>
                     </div>
                 </div>
             </div>
@@ -717,6 +717,9 @@
             .slider-text-box {
                 padding: 25px;
             }
+            .swiper-slide {
+                height: 500px;
+            }
 
             .slider-title {
                 font-size: 36px;
@@ -978,6 +981,25 @@
 
         /* Responsive Adjustments */
         @media (max-width: 768px) {
+
+            .feature-card,
+            .vision-card,
+            .news-card {
+                margin-bottom: 20px;
+            }
+
+            .floating-badge {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 20px;
+            }
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 500px) {
+            .swiper-slide {
+                height: 200px;
+            }
 
             .feature-card,
             .vision-card,

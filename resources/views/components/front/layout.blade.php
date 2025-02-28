@@ -87,6 +87,10 @@
         .nav-link.active::after {
             width: 100%;
         }
+        .logoImage
+        {
+            height: 100px;
+        }
 
         /* Optional: Add a subtle animation for the active state */
         @keyframes activeIndicator {
@@ -96,6 +100,13 @@
 
             to {
                 width: 100%;
+            }
+        }
+        @media (max-width: 500px) {
+
+            .logoImage
+            {
+                height: 60px;
             }
         }
 
@@ -171,7 +182,7 @@
                 <div class="responsive-mobile-menu">
                     <div class="logo-wrapper">
                         <a href="{{route('index')}}" class="logo">
-                            <img src="{{asset('assets/images/logo.png')}}" style="height: 100px; width: auto" alt="" />
+                            <img src="{{asset('assets/images/logo.png')}}" style=" width: auto" class="logoImage" alt="" />
                         </a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bizcoxx_main_menu"
