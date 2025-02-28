@@ -76,8 +76,8 @@
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{$contact->message}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">{{ $contact->created_at->format('d-m-Y, h:i A') }}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm">
-                                    <a href="{{route('contact.index'}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Query"><i class="fa fa-pen text-xs"></i></a>
-                                    <a href="{{route('contact.index'}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Query"><i class="fa fa-trash text-xs"></i></a>
+                                    <a href="{{route('contact.index')}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Query"><i class="fa fa-pen text-xs"></i></a>
+                                    <a href="{{route('contact.index')}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Query"><i class="fa fa-trash text-xs"></i></a>
                                 </td>
                             </tr>
                             @empty

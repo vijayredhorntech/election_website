@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CustomLog;
 use App\Mail\MemberShipMail;
 use App\Mail\OtpMail;
 use App\Models\Member;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\Region;
+use App\Models\Membership;
 
 class MemberRegistrationController extends Controller
 {
@@ -87,31 +89,30 @@ class MemberRegistrationController extends Controller
         return view('front.join-us')->with('formData', $formData)->with('email', $request->email)->with('userName', $request->name);
     }
 
-   public function resetOTP()
-   {
-       session()->forget('otp');
-       $otp = rand(100000, 999999);
-       session(['otp' => $otp]);
+    public function resetOTP()
+    {
+        session()->forget('otp');
+        $otp = rand(100000, 999999);
+        session(['otp' => $otp]);
 
-       try {
-        Mail::to(session('email'))->queue(new OtpMail($otp));
-        session()->flash('success', 'OTP sent successfully');
+        try {
+            Mail::to(session('email'))->queue(new OtpMail($otp));
+            session()->flash('success', 'OTP sent successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to send OTP');
+        }
 
-    } catch (\Exception $e) {
-        return back()->with('error', 'Failed to send OTP');
+
+
+        $formData = [
+            'url' => route('verifyOtp'),
+            'method' => 'POST',
+            'type' => 'validate',
+            'hasReferralCode' => 'false',
+            'referral_code' => '',
+        ];
+        return view('front.join-us')->with('formData', $formData)->with('email', session('email'))->with('userName', session('name'));
     }
-
-
-
-    $formData = [
-        'url' => route('verifyOtp'),
-        'method' => 'POST',
-        'type' => 'validate',
-        'hasReferralCode' => 'false',
-        'referral_code' => '',
-    ];
-    return view('front.join-us')->with('formData', $formData)->with('email', session('email'))->with('userName', session('name'));
-   }
 
 
 
@@ -221,6 +222,17 @@ class MemberRegistrationController extends Controller
                 'referrer_id' => $referrar?->id,
             ]);
 
+            // Create membership
+            Membership::create([
+                'user_id' => $user->id,
+                'membership_type' => 'Standard Plan',
+                'payment_amount' => 36,
+                'payment_status' => 'success',
+                'start_date' => now(),
+                'end_date' => now()->addDays(365),
+                'status' => 'active',
+            ]);
+
             if (!$member) {
                 throw new \Exception('Failed to create member profile');
             }
@@ -257,16 +269,17 @@ class MemberRegistrationController extends Controller
             DB::rollBack();
 
             // Log the error
-            Log::error('Payment gateway error', [
+            CustomLog::error('Payment gateway error', [
                 'email' => $email,
                 'membership_id' => $id,
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
 
+            session()->flash('error', 'Registration failed. Please try again later. If the problem persists, contact support.');
             // Return error response
             return redirect()
-                ->route('memberShipPayment')
+                ->route('selectMemberShipPlan')
                 ->with('error', 'Registration failed. Please try again later. If the problem persists, contact support.');
         }
     }
@@ -287,7 +300,7 @@ class MemberRegistrationController extends Controller
             'marital_status' => 'nullable|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
             'qualification' => 'nullable|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
             'profession' => 'nullable|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
-            'national_insurance_number' => 'required|string|max:255|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
+            'national_insurance_number' => 'required|unique:members,national_insurance_number|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
             'primary_country_code' => 'required|string|max:255',
             'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
             'alternate_country_code' => 'nullable|string|max:255',
