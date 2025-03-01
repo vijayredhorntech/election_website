@@ -22,12 +22,21 @@ class AccountSetting extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request->type);
+        $type = $request->type ?? '';
+        $model = $request->type == 'titles' ? Title::class : ($request->type == 'countries' ? Country::class : ($request->type == 'counties' ? County::class : ($request->type == 'constituencies' ? Constituency::class : ($request->type == 'professions' ? Profession::class : ($request->type == 'educations' ? Education::class : '')))));
+        $tableType = strtolower(class_basename($model));
+        $perPage = $request->get("per_page_{$tableType}") ?? 10;
         $query = function ($model) use ($request) {
-            return $model->when($request->search, function ($query) use ($request) {
-                return $query->where('name', 'like', '%' . $request->search . '%');
+            // $model = $request->type == 'titles' ? Title::class : ($request->type == 'countries' ? Country::class : ($request->type == 'counties' ? County::class : ($request->type == 'constituencies' ? Constituency::class : ($request->type == 'professions' ? Profession::class : ($request->type == 'educations' ? Education::class : '')))));
+            $tableType = strtolower(class_basename($model));
+            $perPage = $request->get("per_page_{$tableType}") ?? 10;
+
+            return $model->when($request->get("search_{$tableType}"), function ($query) use ($request, $tableType) {
+                return $query->where('name', 'like', '%' . $request->get("search_{$tableType}") . '%');
             })
-                ->when($request->sort, function ($query) use ($request) {
-                    $sort = explode('_', $request->sort);
+                ->when($request->get("sort_{$tableType}"), function ($query) use ($request, $tableType) {
+                    $sort = explode('_', $request->get("sort_{$tableType}"));
                     $column = $sort[0] ?? 'name';
                     $direction = $sort[1] ?? 'asc';
                     return $query->orderBy($column, $direction);
@@ -36,16 +45,15 @@ class AccountSetting extends Controller
                 });
         };
 
-        $perPage = $request->per_page ?? 10;
-
         $data = [
-            'titles' => $query(Title::query())->paginate($perPage),
-            'countries' => $query(Country::query())->paginate($perPage),
-            'counties' => $query(County::with('country'))->paginate($perPage),
-            'constituencies' => $query(Constituency::with(['country', 'county']))->paginate($perPage),
-            'professions' => $query(Profession::query())->paginate($perPage),
-            'educations' => $query(Education::query())->paginate($perPage),
-            'expenseCategories' => $query(ExpenseCategory::query())->paginate($perPage),
+            'titles' => $query(Title::query())->paginate($request->get('per_page_titles') ?? 10, ['*'], 'page_titles'),
+            'countries' => $query(Country::query())->paginate($request->get('per_page_countries') ?? 10, ['*'], 'page_countries'),
+            'counties' => $query(County::with('country'))->paginate($request->get('per_page_counties') ?? 10, ['*'], 'page_counties'),
+            'constituencies' => $query(Constituency::with(['country', 'county']))->paginate($request->get('per_page_constituencies') ?? 10, ['*'], 'page_constituencies'),
+            'professions' => $query(Profession::query())->paginate($perPage, ['*'], 'page_professions'),
+            'educations' => $query(Education::query())->paginate($perPage, ['*'], 'page_educations'),
+            'expenseCategories' => $query(ExpenseCategory::query())->paginate($perPage, ['*'], 'page_expenses'),
+            'type' => $type,
         ];
 
         // If type filter is applied, only return that specific data

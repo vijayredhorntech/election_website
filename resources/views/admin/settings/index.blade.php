@@ -32,10 +32,10 @@
     <div class="w-full mb-4">
         <form action="{{ route('account-setting.index') }}" method="GET" class="flex flex-wrap gap-4 items-end">
             <div class="flex-1">
-                <label class="block text-sm font-medium text-gray-700">Search</label>
+                <label class="block text-sm font-medium text-gray-700">Search {{ ucfirst($type) }}</label>
                 <input type="text"
-                    name="search"
-                    value="{{ request('search') }}"
+                    name="search_{{ $type }}"
+                    value="{{ request('search_' . $type) }}"
                     placeholder="Search by name..."
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
             </div>
@@ -54,12 +54,12 @@
 
             <div class="w-48">
                 <label class="block text-sm font-medium text-gray-700">Sort By</label>
-                <select name="sort"
+                <select name="sort_{{ $type }}"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
-                    <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Name (A-Z)</option>
-                    <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Name (Z-A)</option>
-                    <option value="created_at_desc" {{ request('sort') == 'created_at_desc' ? 'selected' : '' }}>Newest First</option>
-                    <option value="created_at_asc" {{ request('sort') == 'created_at_asc' ? 'selected' : '' }}>Oldest First</option>
+                    <option value="name_asc" {{ request('sort_' . $type) == 'name_asc' ? 'selected' : '' }}>Name (A-Z)</option>
+                    <option value="name_desc" {{ request('sort_' . $type) == 'name_desc' ? 'selected' : '' }}>Name (Z-A)</option>
+                    <option value="created_at_desc" {{ request('sort_' . $type) == 'created_at_desc' ? 'selected' : '' }}>Newest First</option>
+                    <option value="created_at_asc" {{ request('sort_' . $type) == 'created_at_asc' ? 'selected' : '' }}>Oldest First</option>
                 </select>
             </div>
 
@@ -172,7 +172,10 @@
                                 </tbody>
                             </table>
                             <div class="mt-4">
-                                {{ $expenseCategories->appends(request()->query())->links() }}
+                                {{ $expenseCategories->appends([
+                                    'search_expenseCategories' => request('search_expenseCategories'),
+                                    'sort_expenseCategories' => request('sort_expenseCategories'),
+                                ])->links() }}
                             </div>
                         </div>
                     </div>
@@ -221,6 +224,52 @@
                 </div>
             </div>
 
+            <div class="w-full mb-4">
+                <form action="{{ route('account-setting.index') }}" method="GET" class="flex flex-wrap gap-4 items-end">
+                    @foreach(request()->except(['search_titles', 'sort_titles', 'page_titles']) as $key => $value)
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                    @endforeach
+
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700">Search Titles</label>
+                        <input type="text"
+                            name="search_titles"
+                            value="{{ request('search_titles') }}"
+                            placeholder="Search by name..."
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                    </div>
+
+                    <div class="w-48">
+                        <label class="block text-sm font-medium text-gray-700">Sort By</label>
+                        <select name="sort_titles"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                            <option value="name_asc" {{ request('sort_titles') == 'name_asc' ? 'selected' : '' }}>Name (A-Z)</option>
+                            <option value="name_desc" {{ request('sort_titles') == 'name_desc' ? 'selected' : '' }}>Name (Z-A)</option>
+                            <option value="created_at_desc" {{ request('sort_titles') == 'created_at_desc' ? 'selected' : '' }}>Newest First</option>
+                            <option value="created_at_asc" {{ request('sort_titles') == 'created_at_asc' ? 'selected' : '' }}>Oldest First</option>
+                        </select>
+                    </div>
+
+                    <div class="w-48">
+                        <label class="block text-sm font-medium text-gray-700">Items Per Page</label>
+                        <select name="per_page_titles"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                            <option value="10" {{ request('per_page_titles') == 10 ? 'selected' : '' }}>10</option>
+                            <option value="25" {{ request('per_page_titles') == 25 ? 'selected' : '' }}>25</option>
+                            <option value="50" {{ request('per_page_titles') == 50 ? 'selected' : '' }}>50</option>
+                            <option value="100" {{ request('per_page_titles') == 100 ? 'selected' : '' }}>100</option>
+                        </select>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <button type="submit"
+                            class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark">
+                            Apply Filters
+                        </button>
+                    </div>
+                </form>
+            </div>
+
             <div class="flex flex-wrap  -mx-3 ">
                 <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-full lg:flex-none">
                     <div
@@ -264,7 +313,7 @@
                                 </tbody>
                             </table>
                             <div class="mt-4">
-                                {{ $titles->appends(request()->query())->links() }}
+                                {{ $titles->appends(request()->except('page_titles'))->links() }}
                             </div>
                         </div>
                     </div>
@@ -320,6 +369,52 @@
                 </div>
             </div>
 
+            <div class="w-full mb-4">
+                <form action="{{ route('account-setting.index') }}" method="GET" class="flex flex-wrap gap-4 items-end">
+                    @foreach(request()->except(['search_countries', 'sort_countries', 'page_countries']) as $key => $value)
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                    @endforeach
+
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-gray-700">Search Countries</label>
+                        <input type="text"
+                            name="search_countries"
+                            value="{{ request('search_countries') }}"
+                            placeholder="Search by name..."
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                    </div>
+
+                    <div class="w-48">
+                        <label class="block text-sm font-medium text-gray-700">Sort By</label>
+                        <select name="sort_countries"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                            <option value="name_asc" {{ request('sort_countries') == 'name_asc' ? 'selected' : '' }}>Name (A-Z)</option>
+                            <option value="name_desc" {{ request('sort_countries') == 'name_desc' ? 'selected' : '' }}>Name (Z-A)</option>
+                            <option value="created_at_desc" {{ request('sort_countries') == 'created_at_desc' ? 'selected' : '' }}>Newest First</option>
+                            <option value="created_at_asc" {{ request('sort_countries') == 'created_at_asc' ? 'selected' : '' }}>Oldest First</option>
+                        </select>
+                    </div>
+
+                    <div class="w-48">
+                        <label class="block text-sm font-medium text-gray-700">Items Per Page</label>
+                        <select name="per_page_countries"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                            <option value="10" {{ request('per_page_countries') == 10 ? 'selected' : '' }}>10</option>
+                            <option value="25" {{ request('per_page_countries') == 25 ? 'selected' : '' }}>25</option>
+                            <option value="50" {{ request('per_page_countries') == 50 ? 'selected' : '' }}>50</option>
+                            <option value="100" {{ request('per_page_countries') == 100 ? 'selected' : '' }}>100</option>
+                        </select>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <button type="submit"
+                            class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark">
+                            Apply Filters
+                        </button>
+                    </div>
+                </form>
+            </div>
+
             <div class="flex flex-wrap  -mx-3 ">
                 <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-full lg:flex-none">
                     <div
@@ -367,7 +462,7 @@
                                 </tbody>
                             </table>
                             <div class="mt-4">
-                                {{ $countries->appends(request()->query())->links() }}
+                                {{ $countries->appends(request()->except('page_countries'))->links() }}
                             </div>
                         </div>
                     </div>
@@ -463,7 +558,10 @@
                                 </tbody>
                             </table>
                             <div class="mt-4">
-                                {{ $counties->appends(request()->query())->links() }}
+                                {{ $counties->appends([
+                                    'search_counties' => request('search_counties'),
+                                    'sort_counties' => request('sort_counties'),
+                                ])->links() }}
                             </div>
                         </div>
                     </div>
@@ -584,7 +682,10 @@
                                 </tbody>
                             </table>
                             <div class="mt-4">
-                                {{ $constituencies->appends(request()->query())->links() }}
+                                {{ $constituencies->appends([
+                                    'search_constituencies' => request('search_constituencies'),
+                                    'sort_constituencies' => request('sort_constituencies'),
+                                ])->links() }}
                             </div>
                         </div>
                     </div>
@@ -677,7 +778,10 @@
                                 </tbody>
                             </table>
                             <div class="mt-4">
-                                {{ $professions->appends(request()->query())->links() }}
+                                {{ $professions->appends([
+                                    'search_professions' => request('search_professions'),
+                                    'sort_professions' => request('sort_professions'),
+                                ])->links() }}
                             </div>
                         </div>
                     </div>
@@ -770,27 +874,17 @@
                                 </tbody>
                             </table>
                             <div class="mt-4">
-                                {{ $educations->appends(request()->query())->links() }}
+                                {{ $educations->appends([
+                                    'search_educations' => request('search_educations'),
+                                    'sort_educations' => request('sort_educations'),
+                                ])->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
     </div>
-
-
-
-
-
-
-
 
     <!-- Add/Edit Modals for each section -->
     @include('admin.settings.modals.title')
@@ -803,6 +897,18 @@
     @push('scripts')
     <script>
         $(document).ready(function() {
+            // Auto-submit form when sort or per_page changes for any table
+            $('select[name^="sort_"], select[name^="per_page_"]').change(function() {
+                $(this).closest('form').submit();
+            });
+
+            // Clear search on 'x' click for any table
+            $('input[name^="search_"]').on('search', function() {
+                if ($(this).val() === '') {
+                    $(this).closest('form').submit();
+                }
+            });
+
             // Handle edit buttons for each section
             $('.edit-title, .edit-country, .edit-county, .edit-constituency, .edit-profession, .edit-education').click(function() {
                 const id = $(this).data('id');
@@ -842,29 +948,6 @@
                 } else {
                     countySelect.empty();
                     countySelect.append('<option value="">Select County</option>');
-                }
-            });
-
-            // Auto-submit form when per_page or sort changes
-            $('select[name="per_page"], select[name="sort"]').change(function() {
-                $(this).closest('form').submit();
-            });
-
-            // Clear search on 'x' click
-            $('input[name="search"]').on('search', function() {
-                if ($(this).val() === '') {
-                    $(this).closest('form').submit();
-                }
-            });
-
-            // Show/hide relevant tables based on type filter
-            $('select[name="type"]').change(function() {
-                const selectedType = $(this).val();
-                if (selectedType) {
-                    $('.settings-table').hide();
-                    $(`#${selectedType}-table`).show();
-                } else {
-                    $('.settings-table').show();
                 }
             });
         });
