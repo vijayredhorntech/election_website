@@ -4,16 +4,19 @@
         .gradient-bg {
             background: linear-gradient(to right, #d53369, #daae51);
         }
+
         .form-control {
             border: 1px solid #ddd;
             padding: 12px;
             border-radius: 5px;
             transition: all 0.3s ease;
         }
+
         .form-control:focus {
             border-color: #007bff;
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
         }
+
         .btn-primary {
             padding: 12px 30px;
             font-weight: 600;
@@ -26,7 +29,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Feedback Form</h1>
+                        <h1 class="title" style="color:white">Feedback Form</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>

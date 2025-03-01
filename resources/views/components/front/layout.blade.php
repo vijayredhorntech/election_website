@@ -136,8 +136,8 @@
                 <!-- Replace your current navbar code with this updated version -->
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav political">
-                        <li class="menu-item-has-children current-menu-item">
-                            <a href="{{ route('index') }}" class="nav-link {{ request()->routeIs('index') ? 'active' : '' }}">
+                        <li class="menu-item-has-children {{ request()->routeIs('index') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('index') }}" class="nav-link">
                                 Home
                             </a>
                             <div class="line">
@@ -146,13 +146,18 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
+                        <li class="menu-item-has-children {{ request()->routeIs('about') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('about') }}" class="nav-link">
                                 About
+                                <div class="line">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot style-02"></span>
+                                </div>
                             </a>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('leadership') }}" class="nav-link {{ request()->routeIs('leadership') ? 'active' : '' }}">
+                        <li class="menu-item-has-children {{ request()->routeIs('leadership') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('leadership') }}" class="nav-link">
                                 Leadership
                             </a>
                             <div class="line">
@@ -161,8 +166,8 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('memberShipDetails') }}" class="nav-link {{ request()->routeIs('memberShipDetails') ? 'active' : '' }}">
+                        <li class="menu-item-has-children {{ request()->routeIs('memberShipDetails') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('memberShipDetails') }}" class="nav-link">
                                 Membership
                             </a>
                             <div class="line style-01">
@@ -171,8 +176,8 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('events') }}" class="nav-link {{ request()->routeIs('events') ? 'active' : '' }}">
+                        <li class="menu-item-has-children {{ request()->routeIs('events') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('events') }}" class="nav-link">
                                 Events
                             </a>
                             <div class="line style-01">
@@ -181,8 +186,8 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('news') }}" class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}">
+                        <li class="menu-item-has-children {{ request()->routeIs('news') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('news') }}" class="nav-link">
                                 News
                             </a>
                             <div class="line style-01">
@@ -191,8 +196,8 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children">
-                            <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
+                        <li class="menu-item-has-children {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('contact') }}" class="nav-link">
                                 Contact
                             </a>
                             <div class="line">
