@@ -20,17 +20,39 @@ class AccountSetting extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = function ($model) use ($request) {
+            return $model->when($request->search, function ($query) use ($request) {
+                return $query->where('name', 'like', '%' . $request->search . '%');
+            })
+                ->when($request->sort, function ($query) use ($request) {
+                    $sort = explode('_', $request->sort);
+                    $column = $sort[0] ?? 'name';
+                    $direction = $sort[1] ?? 'asc';
+                    return $query->orderBy($column, $direction);
+                }, function ($query) {
+                    return $query->orderBy('name', 'asc');
+                });
+        };
+
+        $perPage = $request->per_page ?? 10;
+
         $data = [
-            'titles' => Title::all(),
-            'countries' => Country::all(),
-            'counties' => County::with('country')->get(),
-            'constituencies' => Constituency::with(['country', 'county'])->get(),
-            'professions' => Profession::all(),
-            'educations' => Education::all(),
-            'expenseCategories' => ExpenseCategory::all(),
+            'titles' => $query(Title::query())->paginate($perPage),
+            'countries' => $query(Country::query())->paginate($perPage),
+            'counties' => $query(County::with('country'))->paginate($perPage),
+            'constituencies' => $query(Constituency::with(['country', 'county']))->paginate($perPage),
+            'professions' => $query(Profession::query())->paginate($perPage),
+            'educations' => $query(Education::query())->paginate($perPage),
+            'expenseCategories' => $query(ExpenseCategory::query())->paginate($perPage),
         ];
+
+        // If type filter is applied, only return that specific data
+        if ($request->type && isset($data[$request->type])) {
+            $filteredData = [$request->type => $data[$request->type]];
+            $data = array_merge($data, $filteredData);
+        }
 
         return view('admin.settings.index', $data);
     }
