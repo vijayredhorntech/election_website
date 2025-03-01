@@ -167,7 +167,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-6 col-12">
           <div class="about-inner donation-single">
-            <h4 class="title">{{ucfirst(strtolower(auth()->user()->name))}}'s Profile</h4>
+            <h4 class="title" style="color:white">{{ucfirst(strtolower(auth()->user()->name))}}</h4>
           </div>
           <!-- <div class="breadcrumbs">
             <ul>
