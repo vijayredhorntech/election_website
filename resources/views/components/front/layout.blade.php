@@ -21,7 +21,7 @@
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- iconmoon -->
-    <link rel="stylesheet" href="{{asset('assets/css/iconmoon.css')}}s">
+    <!-- <link rel="stylesheet" href="{{asset('assets/css/iconmoon.css')}}"> -->
     <!-- Hover CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/hover-min.css')}}" />
     <!-- Main Stylesheet -->
@@ -87,8 +87,8 @@
         .nav-link.active::after {
             width: 100%;
         }
-        .logoImage
-        {
+
+        .logoImage {
             height: 100px;
         }
 
@@ -102,10 +102,10 @@
                 width: 100%;
             }
         }
+
         @media (max-width: 500px) {
 
-            .logoImage
-            {
+            .logoImage {
                 height: 60px;
             }
         }
@@ -203,9 +203,9 @@
                         </li>
                         <li class="menu-item-has-children">
                             @if(!auth()->check())
-                                <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
-                                    Login
-                                </a>
+                            <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
+                                Login
+                            </a>
                             @endif
                             <div class="line style-01">
                                 <span class="dot"></span>

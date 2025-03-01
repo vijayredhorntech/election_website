@@ -12,7 +12,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Basic Information</h1>
+                        <h1 class="title" style="color:white">Basic Information</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>

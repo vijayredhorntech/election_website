@@ -26,7 +26,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Address Information</h1>
+                        <h1 class="title" style="color:white">Address Information</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -408,7 +408,7 @@
             // Modified version of the update functions to return Promises for better chaining
             // Convert update functions to async
             async function updateCounties(countryCode) {
-                countySelect.innerHTML = '<option value="">Select county</option>';
+                countySelect.innerHTML = '<option value="">Select County</option>';
 
                 if (!countryCode) return;
 
@@ -428,7 +428,7 @@
             }
 
             async function updateRegions(countryCode) {
-                regionSelect.innerHTML = '<option value="">Select region</option>';
+                regionSelect.innerHTML = '<option value="">Select Region</option>';
 
                 if (!countryCode) return;
 
@@ -448,7 +448,7 @@
             }
 
             async function updateConstituencies(countryCode) {
-                constituencySelect.innerHTML = '<option value="">Select constituency</option>';
+                constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
 
                 if (!countryCode) return;
 
