@@ -1,12 +1,17 @@
 <div class="w-full">
     <label for="" class="text-gray-500 text-sm">Post Code <span class="text-danger">*</span></label>
-    <input type="text" name="postcode" placeholder="Enter Post Code" id="postcode" value="{{old('postcode')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
+    <div class="relative">
+        <input type="text" name="postcode" placeholder="Enter Post Code" id="postcode" value="{{old('postcode')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
+        <button type="button" id="searchAddress" class="absolute right-0 top-0 h-full px-4 text-white font-semibold transition ease-in duration-200 cursor-pointer rounded-r-[3px]" style="background-color: rgb(247 44 91 / 0.7);">Find your Address</button>
+    </div>
     @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 </div>
 
-<div class="w-full">
-    <label for="" class="text-gray-500 text-sm">&nbsp;</label>
-    <button type="button" id="searchAddress" class="w-full text-center px-4 py-3 rounded-[5px] text-white font-semibold transition ease-in duration-200 cursor-pointer" style="background-color: rgb(247 44 91 / 0.7);">Search</button>
+<div class="w-full" id="addressDropdownContainer" style="display: none;">
+    <label for="addressSelect" class="text-gray-500 text-sm">Select Address</label>
+    <select id="addressSelect" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700">
+        <option value="">20 Harlech Gardens, Hounslow, Greater London</option>
+    </select>
 </div>
 
 <div class="w-full">
