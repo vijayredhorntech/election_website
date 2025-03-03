@@ -63,9 +63,8 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-9 col-12" id="searchAddress">
-                                    </div>
-                
 
+                                    </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">House Name/Number <span class="text-danger">*</span></label>
@@ -93,7 +92,14 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Country <span class="text-danger">*</span></label>
-                                            <input type="text" name="country" id="country" placeholder="Enter Country" value="{{old('country') ?? 'United Kingdom'}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                            <select name="country" id="region" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                                <option value="">Select Country</option>
+                                                @foreach($countries as $country)
+                                                  <option value="{{$country->name}}" {{$country->id===1?'selected':''}}>{{$country->name}}</option>
+
+                                                @endforeach
+
+                                            </select>
                                             @error('country')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -101,7 +107,7 @@
                                         <div class="form-group">
                                             <label for="">County <span class="text-danger">*</span></label>
                                             <input type="text" name="county_code" id="county" placeholder="Enter County" value="{{old('county')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
-                                          
+
                                             @error('county_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -124,6 +130,13 @@
                                             </select>
                                             @error('constituency_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="">Post Code <span class="text-danger">*</span></label>
+                                        <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="postal_code"  class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                        @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                    </div>
                                     </div>
                                     <!-- <div class="col-md-6 col-12">
                                         <div class="form-group relative">

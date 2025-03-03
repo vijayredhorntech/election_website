@@ -287,7 +287,8 @@ class MemberRegistrationController extends Controller
 
     public function memberBasicInformation()
     {
-        return view('front.member-basic-information');
+
+        return view('front.member-basic-information')    ;
     }
 
     public function storeMemberBasicInformation(Request $request)
@@ -408,7 +409,9 @@ class MemberRegistrationController extends Controller
 
     public function memberAddressInformation()
     {
-        return view('front.member-address-information');
+        $countries = Country::all();
+
+        return view('front.member-address-information')->with('countries', $countries);
     }
 
     public function checkEmail(Request $request)
