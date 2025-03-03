@@ -47,19 +47,36 @@
                                 @csrf
                                 <div class="row">
 
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-3 col-12">
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
                                             <select class="form-control" name="title" required style="color: black; font-weight: 400;">
                                                 <option value="">Select title</option>
-                                                <option value="MR." {{ (old('title', $data->title ?? '') == 'MR.') ? 'selected' : '' }}>MR.</option>
-                                                <option value="MRS." {{ (old('title', $data->title ?? '') == 'MRS.') ? 'selected' : '' }}>MRS.</option>
-                                                <option value="MISS" {{ (old('title', $data->title ?? '') == 'MISS') ? 'selected' : '' }}>MISS</option>
-                                                <option value="DR." {{ (old('title', $data->title ?? '') == 'DR.') ? 'selected' : '' }}>DR.</option>
-                                                <option value="MS." {{ (old('title', $data->title ?? '') == 'MS.') ? 'selected' : '' }}>MS.</option>
-                                                <option value="PROF." {{ (old('title', $data->title ?? '') == 'PROF.') ? 'selected' : '' }}>PROF.</option>
-                                                <option value="OTHER" {{ (old('title', $data->title ?? '') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                                                <option value="MR." {{ (old('title', $data->title ?? '') == 'MR.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MR.'?'selected': ''}}>MR.</option>
+                                                <option value="MRS." {{ (old('title', $data->title ?? '') == 'MRS.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MRS.'?'selected': ''}}>MRS.</option>
+                                                <option value="MISS" {{ (old('title', $data->title ?? '') == 'MISS') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MISS.'?'selected': ''}}>MISS</option>
+                                                <option value="DR." {{ (old('title', $data->title ?? '') == 'DR.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='DR.'?'selected': ''}}>DR.</option>
+                                                <option value="MS." {{ (old('title', $data->title ?? '') == 'MS.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MS.'?'selected': ''}}>MS.</option>
+                                                <option value="PROF." {{ (old('title', $data->title ?? '') == 'PROF.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='PROF.'?'selected': ''}}>PROF.</option>
+                                                <option value="OTHER" {{ (old('title', $data->title ?? '') == 'OTHER') ? 'selected' : '' }} {{auth()->user()?->member?->title=='OTHER.'?'selected': ''}}>OTHER</option>
                                             </select>
+                                            @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 col-12">
+                                        <div class="form-group">
+                                            <label for="">First Name <span class="text-danger">*</span></label>
+                                            <input class="form-control" name="title" value="{{auth()->user()?->member?->first_name}}" required style="color: black; font-weight: 400;"/>
+
+                                            @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12">
+                                        <div class="form-group">
+                                            <label for="">Last Name </label>
+                                            <input class="form-control" name="title" value="{{auth()->user()?->member?->last_name}}" required style="color: black; font-weight: 400;"/>
+
                                             @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -83,9 +100,9 @@
                                             <label for="">Gender <span class="text-danger">*</span></label>
                                             <select name="gender" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Gender</option>
-                                                <option value="MALE" {{ (old('gender') == 'MALE') ? 'selected' : '' }}>MALE</option>
-                                                <option value="FEMALE" {{ (old('gender') == 'FEMALE') ? 'selected' : '' }}>FEMALE</option>
-                                                <option value="OTHER" {{ (old('gender') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                                                <option value="MALE" {{ (old('gender') == 'MALE') ? 'selected' : '' }} {{auth()->user()?->member?->gender=='MALE'?'selected': ''}}>MALE</option>
+                                                <option value="FEMALE" {{ (old('gender') == 'FEMALE') ? 'selected' : '' }} {{auth()->user()?->member?->gender=='FEMALE'?'selected': ''}}>FEMALE</option>
+                                                <option value="OTHER" {{ (old('gender') == 'OTHER') ? 'selected' : '' }} {{auth()->user()?->member?->gender=='OTHER'?'selected': ''}}>OTHER</option>
                                             </select>
                                             @error('gender')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
