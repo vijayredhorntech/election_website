@@ -46,7 +46,7 @@
                     </tr>
                     <tr>
                         <td align="center" style="padding-top:20px;">
-                            <a href="{{ url('/login') }}" target="_blank" style="background:#38C2F1;color:#ffffff;text-decoration:none;padding:12px 30px;border-radius:25px;font-size:18px;font-weight:bold;display:inline-block;">
+                            <a href="{{ url('/login') }}" target="_blank" style="background:#c41e3a;color:#ffffff;text-decoration:none;padding:12px 30px;border-radius:25px;font-size:18px;font-weight:700;display:inline-block;transition:all 0.3s ease;text-shadow:1px 1px 1px rgba(0,0,0,0.2);border:1px solid #c41e3a;">
                                 Login to Your Account
                             </a>
                         </td>
