@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Join Our Membership</h1>
+                        <h1 class="title" style="color:white">Join Our Membership</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -268,94 +268,94 @@
 
 @push('styles')
 <style>
-.single-faq-item {
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
-    height: 100%;
-    transition: all 0.3s ease;
-}
+    .single-faq-item {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        transition: all 0.3s ease;
+    }
 
-.single-faq-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-}
+    .single-faq-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    }
 
-.single-faq-item .header h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
-}
+    .single-faq-item .header h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #333;
+    }
 
-.check-list {
-    list-style: none;
-    padding: 0;
-    margin: 15px 0 0;
-}
+    .check-list {
+        list-style: none;
+        padding: 0;
+        margin: 15px 0 0;
+    }
 
-.check-list li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 10px;
-    color: #666;
-}
+    .check-list li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 10px;
+        color: #666;
+    }
 
-.check-list li i {
-    position: absolute;
-    left: 0;
-    top: 4px;
-    color: #28a745;
-}
+    .check-list li i {
+        position: absolute;
+        left: 0;
+        top: 4px;
+        color: #28a745;
+    }
 
-.icon-box-item-02 {
-    margin-bottom: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    background: #fff;
-    transition: all 0.3s ease;
-}
+    .icon-box-item-02 {
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 10px;
+        background: #fff;
+        transition: all 0.3s ease;
+    }
 
-.icon-box-item-02:hover {
-    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-}
+    .icon-box-item-02:hover {
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    }
 
-.icon-box-item-02 .icon {
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    background: #f8f9fa;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
+    .icon-box-item-02 .icon {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        background: #f8f9fa;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
 
-.icon-box-item-02 .icon i {
-    font-size: 24px;
-    color: #007bff;
-}
+    .icon-box-item-02 .icon i {
+        font-size: 24px;
+        color: #007bff;
+    }
 
-.help-single-item {
-    margin-bottom: 30px;
-}
+    .help-single-item {
+        margin-bottom: 30px;
+    }
 
-.help-single-item .title {
-    font-size: 24px;
-    margin-bottom: 15px;
-}
+    .help-single-item .title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
 
-.btn-primary {
-    padding: 15px 40px;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 30px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
+    .btn-primary {
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 30px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,123,255,0.3);
-}
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    }
 </style>
 @endpush

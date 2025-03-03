@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">About One Nation</h1>
+                        <h1 class="title" style="color:white">About One Nation</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -40,7 +40,7 @@
 
                 </div>
                 <div class="col-lg-8">
-                <div class="vision-values margin-bottom-40">
+                    <div class="vision-values margin-bottom-40">
                         <div class="faq-contents">
                             <h2 class="title" style="color: black">Our Story</h2>
                             <div class="single-faq-item">
@@ -153,8 +153,8 @@
                 <div class="col-md-12">
                     <div class="contact-item-wrapper text-center" style="margin-bottom:0px">
                         <div class="row">
-                        <div class="col-md-3 margin-bottom-40">
-                                <div class="contact-single-item" >
+                            <div class="col-md-3 margin-bottom-40">
+                                <div class="contact-single-item">
                                     <i class="fas fa-map-marker-alt fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4 style="color: black">Address</h4>
                                     <p style="color: black">62 King Street, Southall, Greater London UB2 4DB</p>
@@ -197,39 +197,39 @@
 
 @push('styles')
 <style>
-.action-box {
-    transition: transform 0.3s ease;
-}
+    .action-box {
+        transition: transform 0.3s ease;
+    }
 
-.action-box:hover {
-    transform: translateY(-5px);
-}
+    .action-box:hover {
+        transform: translateY(-5px);
+    }
 
-.contact-single-item {
-    padding: 30px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    height: 100%;
-}
+    .contact-single-item {
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        height: 100%;
+    }
 
-.vision-values .title {
-    margin-bottom: 30px;
-    color: var(--heading-color);
-    font-size: 28px;
-    font-weight: 600;
-}
+    .vision-values .title {
+        margin-bottom: 30px;
+        color: var(--heading-color);
+        font-size: 28px;
+        font-weight: 600;
+    }
 
-.check-list li {
-    margin-bottom: 15px;
-    font-size: 16px;
-    line-height: 1.6;
-    color: black;
-}
+    .check-list li {
+        margin-bottom: 15px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: black;
+    }
 
-.check-list li i {
-    margin-right: 10px;
-    color: var(--main-color-one);
-}
+    .check-list li i {
+        margin-right: 10px;
+        color: var(--main-color-one);
+    }
 </style>
 @endpush

@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Our Leadership</h1>
+                        <h1 class="title" style="color:white">Our Leadership</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -53,8 +53,8 @@
                             <div class="single-faq-item text-center">
                                 <div class="leader-image-wrapper mb-4">
                                     <img src="{{ asset($leader['image']) }}"
-                                         alt="{{ $leader['name'] }}"
-                                         class="leader-image rounded-circle">
+                                        alt="{{ $leader['name'] }}"
+                                        class="leader-image rounded-circle">
                                 </div>
                                 <div class="content">
                                     <h3>{{ $leader['name'] }}</h3>
@@ -77,51 +77,53 @@
 
 @push('styles')
 <style>
-.leader-image {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border: 5px solid #fff;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
+    .leader-image {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border: 5px solid #fff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
 
-.role {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 10px 0;
-}
+    .role {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
 
-.bio {
-    color: #666;
-    line-height: 1.6;
-}
+    .bio {
+        color: #666;
+        line-height: 1.6;
+    }
 
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
 
-.social-link {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f9fa;
-    border-radius: 50%;
-    color: #007bff;
-    transition: all 0.3s ease;
-}
+    .social-link {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        border-radius: 50%;
+        color: #007bff;
+        transition: all 0.3s ease;
+    }
 
-.social-link:hover {
-    background: #007bff;
-    color: #fff;
-}
+    .social-link:hover {
+        background: #007bff;
+        color: #fff;
+    }
 
-/* Reuse existing styles from policies.blade.php */
-.single-faq-item, .icon-box-item-02, .help-single-item {
-    /* ... styles from policies.blade.php ... */
-}
+    /* Reuse existing styles from policies.blade.php */
+    .single-faq-item,
+    .icon-box-item-02,
+    .help-single-item {
+        /* ... styles from policies.blade.php ... */
+    }
 </style>
 @endpush

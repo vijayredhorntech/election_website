@@ -12,6 +12,9 @@
 </div>
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
 
+                </div> 
+                <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide4.jpg')}})">
+
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -178,56 +181,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Vision Section -->
-    <section class="vision-section py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="vision-content">
-                        <span class="section-subtitle">OUR VISION</span>
-                        <h2 class="section-title">Building a Better Britain Together</h2>
-                        <div class="title-separator">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="vision-list">
-                            <div class="vision-card">
-                                <ul class="check-list">
-                                    <li data-aos="fade-up" data-aos-delay="100">
-                                        <span style="margin-left:20px; color: black">Stronger border control and fair immigration system</span>
-                                    </li>
-                                    <li data-aos="fade-up" data-aos-delay="200">
-                                        <span style="margin-left:20px; color: black">Supporting British businesses and workers</span>
-                                    </li>
-                                    <li data-aos="fade-up" data-aos-delay="300">
-                                        <span style="margin-left:20px; color: black">Responsible welfare system preventing abuse</span>
-                                    </li>
-                                    <li data-aos="fade-up" data-aos-delay="400">
-                                        <span style="margin-left:20px; color: black">Promoting national unity and representation</span>
-                                    </li>
-                                    <li data-aos="fade-up" data-aos-delay="500">
-                                        <span style="margin-left:20px; color: black">Ensuring compliance with electoral regulations</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="vision-image-wrapper">
-                        <img src="{{ asset('assets/images/one_nation.webp') }}" alt="Our Vision" class="img-fluid rounded">
-                        <div class="floating-badge">
-                            <span>Our</span>
-                            <strong>Vision</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <div class="donation-section-area padding-top-60 padding-bottom-60" style="background-color:whitesmoke">
         <div class="container">

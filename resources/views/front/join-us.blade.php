@@ -20,7 +20,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Join Us</h1>
+                        <h1 class="title" style="color:white">Join Us</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -85,7 +85,7 @@
                                             @error('otp')<span class="text-red-600 text-sm font-semibold">{{$message}}</span>@enderror
                                             <div class="mt-2 d-flex align-items-center justify-content-between">
 
-                                               <a href="{{route('resetOTP')}}" type="submit" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" onclick="resendOtp()">Resend OTP</a>
+                                                <a href="{{route('resetOTP')}}" type="submit" id="resendOtpBtn" class="btn btn-link text-danger" style="text-decoration: none; font-weight: 600;" onclick="resendOtp()">Resend OTP</a>
 
 
 

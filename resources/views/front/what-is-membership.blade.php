@@ -13,7 +13,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Membership</h1>
+                        <h1 class="title" style="color:white">Membership</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -43,8 +43,9 @@
                         <div class="content">
                             <h4 class="title">Visit Us</h4>
                             <p style="color: black">"62 King Street, Southall,
-                            <br>
-                            Greater London UB2 4DB"</p>
+                                <br>
+                                Greater London UB2 4DB"
+                            </p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">
@@ -82,7 +83,7 @@
                                 </div>
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                     <div class="card-body" style="color: black">
-                                Since One Nation is a growing political movement, a structured membership system will help build a strong base of supporters, activists, and future candidates.
+                                        Since One Nation is a growing political movement, a structured membership system will help build a strong base of supporters, activists, and future candidates.
                                         </ul>
                                     </div>
                                 </div>

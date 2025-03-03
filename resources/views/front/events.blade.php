@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Events</h1>
+                        <h1 class="title" style="color:white">Events</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -82,36 +82,38 @@
 
 @push('styles')
 <style>
-.event-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-}
+    .event-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
 
-.event-date {
-    color: #666;
-    font-size: 14px;
-}
+    .event-date {
+        color: #666;
+        font-size: 14px;
+    }
 
-.location {
-    color: #666;
-    font-size: 14px;
-}
+    .location {
+        color: #666;
+        font-size: 14px;
+    }
 
-.location i {
-    color: #dc3545;
-}
+    .location i {
+        color: #dc3545;
+    }
 
-.btn-outline-primary {
-    border-width: 2px;
-    font-weight: 600;
-    padding: 8px 20px;
-}
+    .btn-outline-primary {
+        border-width: 2px;
+        font-weight: 600;
+        padding: 8px 20px;
+    }
 
-/* Reuse existing styles from policies.blade.php */
-.single-faq-item, .icon-box-item-02, .help-single-item {
-    /* ... styles from policies.blade.php ... */
-}
+    /* Reuse existing styles from policies.blade.php */
+    .single-faq-item,
+    .icon-box-item-02,
+    .help-single-item {
+        /* ... styles from policies.blade.php ... */
+    }
 </style>
 @endpush

@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Latest News</h1>
+                        <h1 class="title" style="color:white">Latest News</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
@@ -77,43 +77,45 @@
 
 @push('styles')
 <style>
-.news-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-}
+    .news-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
 
-.news-date {
-    color: #666;
-    font-size: 14px;
-}
+    .news-date {
+        color: #666;
+        font-size: 14px;
+    }
 
-.read-more {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-}
+    .read-more {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.3s ease;
+    }
 
-.read-more:hover {
-    color: #0056b3;
-}
+    .read-more:hover {
+        color: #0056b3;
+    }
 
-.read-more i {
-    transition: transform 0.3s ease;
-}
+    .read-more i {
+        transition: transform 0.3s ease;
+    }
 
-.read-more:hover i {
-    transform: translateX(5px);
-}
+    .read-more:hover i {
+        transform: translateX(5px);
+    }
 
-/* Reuse existing styles from policies.blade.php */
-.single-faq-item, .icon-box-item-02, .help-single-item {
-    /* ... styles from policies.blade.php ... */
-}
+    /* Reuse existing styles from policies.blade.php */
+    .single-faq-item,
+    .icon-box-item-02,
+    .help-single-item {
+        /* ... styles from policies.blade.php ... */
+    }
 </style>
 @endpush
