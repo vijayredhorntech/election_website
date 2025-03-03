@@ -66,7 +66,7 @@
 
                                     <div class="col-md-5 col-12">
                                         <div class="form-group">
-                                            <label for="">First Name - Middle Name <span class="text-danger">*</span></label>
+                                            <label for="">First Name - Middle Name </label>
                                             <input class="form-control" name="first_name" value="{{auth()->user()?->member?->first_name}}" required style="color: black; font-weight: 400;"/>
 
                                             @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
