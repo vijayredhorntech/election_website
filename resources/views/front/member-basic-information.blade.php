@@ -69,7 +69,7 @@
                                             <label for="">First Name - Middle Name </label>
                                             <input class="form-control" name="first_name" value="{{auth()->user()?->member?->first_name}}" required style="color: black; font-weight: 400;"/>
 
-                                            @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            @error('first_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-12">
@@ -77,7 +77,7 @@
                                             <label for="">Last Name </label>
                                             <input class="form-control" name="last_name" value="{{auth()->user()?->member?->last_name}}" required style="color: black; font-weight: 400;"/>
 
-                                            @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            @error('last_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
 
