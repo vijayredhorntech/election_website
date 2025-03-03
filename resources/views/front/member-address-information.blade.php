@@ -48,7 +48,7 @@
                             <div class="content">
                                 <h6 class="subtitle">Fill your address information</h6>
                                 <p class="description style-01">
-                                    We need your address details to send you your membership card and other important updates. Ensure your information is accurate to stay connected with One Nation
+                                    We need your address information to send you the membership card and other important information.
                                 </p>
 
                                 @if(session('error'))
@@ -62,9 +62,34 @@
                             <form action="{{route('storeMemberAddressInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-9 col-12" id="searchAddress">
+                                    <div class="col-md-9 col-12">
+                                        <div class="form-group">
+                                            <label for="">Post Code <span class="text-danger">*</span></label>
+                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
+                                            @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+
 
                                     </div>
+                                    <div class="col-md-3 col-12 " style="display: flex; align-items: center;">
+                                        <div class="btn-wrapper">
+                                            <button type="button" id="searchAddress" class="boxed-btn btn-sanatory"> Search <span class="icon-paper-plan"></span></button>
+                                        </div>
+
+
+                                    </div>
+                                    <!-- <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="">Address <span class="text-danger">*</span></label>
+
+                                            <select class="form-control" id="addressSelect" name="address" style="color: black; font-weight: 400; width: 100%;">
+                                                <option value="">Select Address</option>
+                                            </select>
+                                            <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="form-control" style="display: none; color: black; font-weight: 400;">
+                                            @error('address')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div> -->
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">House Name/Number <span class="text-danger">*</span></label>
@@ -92,22 +117,20 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Country <span class="text-danger">*</span></label>
-                                            <select name="country" id="region" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+
+                                            <select name="country_code" id="country" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                                 <option value="">Select Country</option>
-                                                @foreach($countries as $country)
-                                                  <option value="{{$country->name}}" {{$country->id===1?'selected':''}}>{{$country->name}}</option>
-
-                                                @endforeach
-
                                             </select>
-                                            @error('country')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            @error('country_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">County <span class="text-danger">*</span></label>
-                                            <input type="text" name="county_code" id="county" placeholder="Enter County" value="{{old('county')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
 
+                                            <select name="county_code" id="county" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                                <option value="">Select County</option>
+                                            </select>
                                             @error('county_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -130,13 +153,6 @@
                                             </select>
                                             @error('constituency_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="">Post Code <span class="text-danger">*</span></label>
-                                        <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="postal_code"  class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
-                                        @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                    </div>
                                     </div>
                                     <!-- <div class="col-md-6 col-12">
                                         <div class="form-group relative">
@@ -166,17 +182,185 @@
 
 
     @push('scripts')
-    <script src="https://getaddress-cdn.azureedge.net/scripts/jquery.getAddress-3.0.1.min.js"></script>
     <script>
-        $('#searchAddress').getAddress({
-            api_key: 'uz1Ks6ukRke3TO_XZBrjeA22850',
-            output_fields: {
-                line_1: '#house_name_number',
-                line_2: '#street',
-                line_3: '#line3',
-                post_town: '#town_city',
-                county: '#county',
-                postcode: '#postal_code'
+        document.addEventListener("DOMContentLoaded", function() {
+            const countrySelect = document.getElementById("country");
+            const countySelect = document.getElementById("county");
+            const regionSelect = document.getElementById("region");
+            const constituencySelect = document.getElementById("constituency");
+            const fillAddress = document.getElementById("fillAddress");
+            const houseNameNumber = document.getElementById("house_name_number");
+            const street = document.getElementById("street");
+            const townCity = document.getElementById("town_city");
+
+            // Load countries
+            fetch("/countries")
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(country => {
+                        let option = document.createElement("option");
+                        option.value = country.code;
+                        option.textContent = country.name;
+                        countrySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error fetching countries:", error));
+
+            // Function to update counties based on country selection
+            function updateCounties(countryCode) {
+                countySelect.innerHTML = '<option value="">Select County</option>';
+                regionSelect.innerHTML = '<option value="">Select Region</option>';
+                constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
+
+                if (!countryCode) return;
+
+                fetch(`/counties/${countryCode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(county => {
+                            let option = document.createElement("option");
+                            option.value = county.code;
+                            option.textContent = county.name;
+                            countySelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching counties:", error));
+            }
+
+            // Function to update regions based on country selection
+            function updateRegions(countryCode) {
+                regionSelect.innerHTML = '<option value="">Select Region</option>';
+                constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
+
+                if (!countryCode) return;
+
+                fetch(`/regions/${countryCode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(region => {
+                            let option = document.createElement("option");
+                            option.value = region.code;
+                            option.textContent = region.name;
+                            regionSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching regions:", error));
+            }
+
+            // Function to update constituencies based on country selection
+            function updateConstituencies(countryCode) {
+                constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
+
+                if (!countryCode) return;
+
+                fetch(`/constituencies/${countryCode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(constituency => {
+                            let option = document.createElement("option");
+                            option.value = constituency.code;
+                            option.textContent = constituency.name;
+                            constituencySelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching constituencies:", error));
+            }
+
+            // Event listener for country selection
+            countrySelect.addEventListener('change', function() {
+                const countryCode = this.value;
+                updateCounties(countryCode);
+                updateRegions(countryCode);
+                updateConstituencies(countryCode);
+            });
+
+            // Address search functionality
+            document.getElementById('searchAddress').addEventListener('click', async function() {
+                let postcode = document.getElementById('postcode').value.trim();
+                if (!postcode) {
+                    alert('Please enter a postcode.');
+                    return;
+                }
+
+                let apiUrl = `https://api.postcodes.io/postcodes/${postcode}`;
+
+                try {
+                    let response = await fetch(apiUrl);
+                    let data = await response.json();
+
+                    if (data.status === 200 && data.result) {
+                        window.postcodeData = data.result;
+                        populateLocationFields(data.result);
+                    } else {
+                        alert('No data found for this postcode. You can enter your address manually.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching postcode data:', error);
+                    alert('Error fetching postcode data. Please try again.');
+                }
+            });
+
+            // Populate location fields from postcode data
+            async function populateLocationFields(postcodeData) {
+                townCity.value = postcodeData.admin_district || postcodeData.parish || '';
+
+                if (postcodeData.country) {
+                    let countrySelected = false;
+                    for (let i = 0; i < countrySelect.options.length; i++) {
+                        if (countrySelect.options[i].textContent === postcodeData.country) {
+                            countrySelect.selectedIndex = i;
+                            countrySelected = true;
+                            break;
+                        }
+                    }
+
+                    if (countrySelected) {
+                        const countryCode = countrySelect.value;
+                        await updateCounties(countryCode);
+                        await updateRegions(countryCode);
+                        await updateConstituencies(countryCode);
+
+                        if (postcodeData.admin_county) {
+                            selectOptionByText(countySelect, postcodeData.admin_county);
+                        }
+                        if (postcodeData.region) {
+                            selectOptionByText(regionSelect, postcodeData.region);
+                        }
+                        if (postcodeData.parliamentary_constituency) {
+                            selectOptionByText(constituencySelect, postcodeData.parliamentary_constituency);
+                        }
+                    }
+                }
+            }
+
+            // Helper function to select dropdown option by text
+            function selectOptionByText(selectElement, text) {
+                if (!text || !selectElement) return false;
+
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    if (selectElement.options[i].textContent === text) {
+                        selectElement.selectedIndex = i;
+                        return true;
+                    }
+                }
+
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    if (selectElement.options[i].textContent.toLowerCase() === text.toLowerCase()) {
+                        selectElement.selectedIndex = i;
+                        return true;
+                    }
+                }
+
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    if (selectElement.options[i].textContent.toLowerCase().includes(text.toLowerCase()) ||
+                        text.toLowerCase().includes(selectElement.options[i].textContent.toLowerCase())) {
+                        selectElement.selectedIndex = i;
+                        return true;
+                    }
+                }
+
+                console.log(`Could not find a match for "${text}" in ${selectElement.id}`);
+                return false;
             }
         });
     </script>

@@ -6,13 +6,13 @@
 
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide1.jpeg')}})">
 
-                </div>
+                            </div>
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide3.jpg')}})">
 
-</div>
+                        </div>
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
 
-                </div> 
+                    </div>
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide4.jpg')}})">
 
                 </div>
@@ -25,7 +25,7 @@
     <div class="header-area header-sanatory" style="padding:50px 0px; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{asset('assets/images/bannerBg.jpg')}}); background-position:center; background-size:cover;">
     <div class="container">
         <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
+                    <div class="col-lg-8">
                 <div class="header-inner-02">
                     <span class="subtitle" style="color:whitesmoke">Welcome to One Nation</span>
                     <h1 class="title" style="color:white">TO SOLVE & EDUCATE AS - ONE NATION</h1>
@@ -37,8 +37,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+                            </div>
+                        </div>
 
 
   <!-- Party Aims & Goals Section -->
@@ -164,11 +164,11 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                                    </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
 
-                        <div class="content">
+                                <div class="content">
                             <h4 class="title">Opportunity for Leadership & Growth</h4>
                             <p style="color: black">Whether you want to take an active role in politics or simply support from the sidelines, we offer opportunities for leadership, learning, and making an impact.
                             </p>
@@ -201,7 +201,7 @@
                             <p style="color: black">Your contribution directly funds campaigns and community initiatives.</p>
                         </div>
                     </div>
-                </div>
+                        </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01">
 
@@ -210,7 +210,7 @@
                             <p style="color: black">We rely on grassroots support, not big corporations.</p>
                         </div>
                     </div>
-                </div>
+                        </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01">
 
@@ -219,7 +219,7 @@
                             <p style="color: black">Help us speak louder for the people who need it most.</p>
                         </div>
                     </div>
-                </div>
+                        </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01">
 
@@ -247,8 +247,8 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
-            </div>
+                            </div>
+                        </div>
             <div class="row">
                 @foreach($data['latest_news'] as $index => $news)
                 <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}">
@@ -278,7 +278,7 @@
 
         <!-- Call to Action Section -->
         <section class="cta-section py-5" style="background-image: url({{asset('assets/images/cta-bg.jpg')}})">
-            <div class="container">
+        <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
                         <span class="section-subtitle">Get Involved</span>
@@ -287,7 +287,7 @@
                         <div class="cta-buttons">
                             <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Become a Member <i class="fas fa-users"></i></a>
                             <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Support Our Cause <i class="fas fa-heart"></i></a>
-                        </div>
+                                        </div>
                         <div class="cta-buttons mt-4">
                             <a href="{{ route('feedback') }}" class="btn btn-primary btn-lg">Share Your Feedback <i class="fas fa-users"></i></a>
                         </div>
