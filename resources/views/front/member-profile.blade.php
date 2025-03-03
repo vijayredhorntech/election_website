@@ -528,14 +528,14 @@
               <table class="w-full">
                 <tr>
                   <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                    style="color: black; font-weight: 700; width: 130px">House Name/ No</td>
+                    style="color: black; font-weight: 700; width: 130px">Address Line 1</td>
                   <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                       class="font-semibold text-black"></span>{{$memberDetails->house_name_number}}
                   </td>
                 </tr>
                   <tr>
                       <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                          style="color: black; font-weight: 700; width: 120px">Street</td>
+                          style="color: black; font-weight: 700; width: 120px">Address Line 2</td>
                       <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                               class="font-semibold text-black"></span>
                           {{$memberDetails->street}}
@@ -628,7 +628,6 @@
                     <span style="font-weight: 400; color:black">{{\Carbon\Carbon::parse($memberDetails->enrollment_date)->format('d-m-Y')}}</span>
                   </p>
                   <p style="font-size: 26px; padding-left: 15px; line-height: 25px;">
-                    <span style="font-weight: 600; color:black">Constituency:</span>
                     <span style="font-weight: 600; color:black">Constituency:</span>
                     <span style="font-weight: 400; color:black">{{$memberDetails->constituency->name}}</span>
                   </p>

@@ -1,7 +1,6 @@
 <x-front.layout>
     @push('styles')
     <style>
-        .gradient-bg {
             .gradient-bg {
                 background: linear-gradient(to right, #d53369, #daae51);
             }
@@ -16,7 +15,24 @@
                 color: #999;
                 opacity: 0.7;
             }
-        }
+            #searchAddress input{
+                padding: 15px 30px !important;
+                border: 1px solid #7e7e7e !important;
+                font-size: 16px !important;
+                line-height: 21px !important;
+                font-family: var(--body-font) !important;
+                font-weight: 300 !important;
+                border-radius: 10px !important;
+            }
+            #searchAddress select{
+                padding: 15px 30px !important;
+                border: 1px solid #7e7e7e !important;
+                font-size: 16px !important;
+                line-height: 21px !important;
+                font-family: var(--body-font) !important;
+                font-weight: 300 !important;
+                border-radius: 10px !important;
+            }
     </style>
     @endpush
 
@@ -62,12 +78,10 @@
                             <form action="{{route('storeMemberAddressInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <div class="row">
+                                    <div class="col-md-6" id="searchAddress">
+
+                                    </div>
                                     <div class="col-md-9 col-12">
-                                        <div class="form-group">
-                                            <label for="">Post Code <span class="text-danger">*</span></label>
-                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postcode" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
-                                            @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                        </div>
 
 
                                     </div>
@@ -92,7 +106,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">House Name/Number <span class="text-danger">*</span></label>
+                                            <label for="">House Name/Number/ Street <span class="text-danger">*</span></label>
                                             <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -100,7 +114,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="">Street <span class="text-danger">*</span></label>
+                                            <label for="">Address Line 2 </label>
                                             <input type="text" name="street" placeholder="Enter Street Name" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('street')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -154,6 +168,15 @@
                                             @error('constituency_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="">Post Code <span class="text-danger">*</span></label>
+                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postal_code" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
+                                            @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+
+
                                     <!-- <div class="col-md-6 col-12">
                                         <div class="form-group relative">
                                             <label for="">Constituency</label>
@@ -181,188 +204,216 @@
     </div>
 
 
-    @push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const countrySelect = document.getElementById("country");
-            const countySelect = document.getElementById("county");
-            const regionSelect = document.getElementById("region");
-            const constituencySelect = document.getElementById("constituency");
-            const fillAddress = document.getElementById("fillAddress");
-            const houseNameNumber = document.getElementById("house_name_number");
-            const street = document.getElementById("street");
-            const townCity = document.getElementById("town_city");
-
-            // Load countries
-            fetch("/countries")
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(country => {
-                        let option = document.createElement("option");
-                        option.value = country.code;
-                        option.textContent = country.name;
-                        countrySelect.appendChild(option);
+        @push('scripts')
+            <script src="https://getaddress-cdn.azureedge.net/scripts/jquery.getAddress-3.0.1.min.js"></script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Initialize getAddress.io lookup
+                    $('#searchAddress').getAddress({
+                        api_key: 'uz1Ks6ukRke3TO_XZBrjeA22850',
+                        output_fields: {
+                            line_1: '#house_name_number',
+                            line_2: '#street',
+                            line_3: '#line3',
+                            post_town: '#town_city',
+                            county: '#county',
+                            postcode: '#postal_code'
+                        }
                     });
-                })
-                .catch(error => console.error("Error fetching countries:", error));
 
-            // Function to update counties based on country selection
-            function updateCounties(countryCode) {
-                countySelect.innerHTML = '<option value="">Select County</option>';
-                regionSelect.innerHTML = '<option value="">Select Region</option>';
-                constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
+                    // Define elements
+                    const countrySelect = document.getElementById("country");
+                    const countySelect = document.getElementById("county");
+                    const regionSelect = document.getElementById("region");
+                    const constituencySelect = document.getElementById("constituency");
+                    const houseNameNumber = document.getElementById("house_name_number");
+                    const street = document.getElementById("street");
+                    const townCity = document.getElementById("town_city");
+                    const postcodeInput = document.getElementById("postcode");
 
-                if (!countryCode) return;
+                    // Load countries
+                    fetch("/countries")
+                        .then(response => response.json())
+                        .then(data => {
+                            data.forEach(country => {
+                                let option = document.createElement("option");
+                                option.value = country.code;
+                                option.textContent = country.name;
+                                countrySelect.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error("Error fetching countries:", error));
 
-                fetch(`/counties/${countryCode}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(county => {
-                            let option = document.createElement("option");
-                            option.value = county.code;
-                            option.textContent = county.name;
-                            countySelect.appendChild(option);
+                    // Function to update counties based on country selection
+                    async function updateCounties(countryCode) {
+                        countySelect.innerHTML = '<option value="">Select County</option>';
+
+                        if (!countryCode) return;
+
+                        try {
+                            const response = await fetch(`/counties/${countryCode}`);
+                            const data = await response.json();
+
+                            data.forEach(county => {
+                                let option = document.createElement("option");
+                                option.value = county.code;
+                                option.textContent = county.name;
+                                countySelect.appendChild(option);
+                            });
+                        } catch (error) {
+                            console.error("Error fetching counties:", error);
+                        }
+                    }
+
+                    // Function to update regions based on country selection
+                    async function updateRegions(countryCode) {
+                        regionSelect.innerHTML = '<option value="">Select Region</option>';
+
+                        if (!countryCode) return;
+
+                        try {
+                            const response = await fetch(`/regions/${countryCode}`);
+                            const data = await response.json();
+
+                            data.forEach(region => {
+                                let option = document.createElement("option");
+                                option.value = region.code;
+                                option.textContent = region.name;
+                                regionSelect.appendChild(option);
+                            });
+                        } catch (error) {
+                            console.error("Error fetching regions:", error);
+                        }
+                    }
+
+                    // Function to update constituencies based on country selection
+                    async function updateConstituencies(countryCode) {
+                        constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
+
+                        if (!countryCode) return;
+
+                        try {
+                            const response = await fetch(`/constituencies/${countryCode}`);
+                            const data = await response.json();
+
+                            data.forEach(constituency => {
+                                let option = document.createElement("option");
+                                option.value = constituency.code;
+                                option.textContent = constituency.name;
+                                constituencySelect.appendChild(option);
+                            });
+                        } catch (error) {
+                            console.error("Error fetching constituencies:", error);
+                        }
+                    }
+
+                    // Event listener for country selection
+                    countrySelect.addEventListener('change', function() {
+                        const countryCode = this.value;
+                        updateCounties(countryCode);
+                        updateRegions(countryCode);
+                        updateConstituencies(countryCode);
+                    });
+
+                    // Postcode.io lookup functionality
+                    if (searchAddressBtn) {
+                        searchAddressBtn.addEventListener('click', async function() {
+                            let postcode = postcodeInput.value.trim();
+                            if (!postcode) {
+                                alert('Please enter a postcode.');
+                                return;
+                            }
+
+                            try {
+                                const response = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(postcode)}`);
+                                const data = await response.json();
+
+                                if (data.status === 200 && data.result) {
+                                    window.postcodeData = data.result;
+                                    await populateLocationFields(data.result);
+                                } else {
+                                    alert('No data found for this postcode. You can enter your address manually.');
+                                }
+                            } catch (error) {
+                                console.error('Error fetching postcode data:', error);
+                                alert('Error fetching postcode data. Please try again.');
+                            }
                         });
-                    })
-                    .catch(error => console.error("Error fetching counties:", error));
-            }
-
-            // Function to update regions based on country selection
-            function updateRegions(countryCode) {
-                regionSelect.innerHTML = '<option value="">Select Region</option>';
-                constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
-
-                if (!countryCode) return;
-
-                fetch(`/regions/${countryCode}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(region => {
-                            let option = document.createElement("option");
-                            option.value = region.code;
-                            option.textContent = region.name;
-                            regionSelect.appendChild(option);
-                        });
-                    })
-                    .catch(error => console.error("Error fetching regions:", error));
-            }
-
-            // Function to update constituencies based on country selection
-            function updateConstituencies(countryCode) {
-                constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
-
-                if (!countryCode) return;
-
-                fetch(`/constituencies/${countryCode}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(constituency => {
-                            let option = document.createElement("option");
-                            option.value = constituency.code;
-                            option.textContent = constituency.name;
-                            constituencySelect.appendChild(option);
-                        });
-                    })
-                    .catch(error => console.error("Error fetching constituencies:", error));
-            }
-
-            // Event listener for country selection
-            countrySelect.addEventListener('change', function() {
-                const countryCode = this.value;
-                updateCounties(countryCode);
-                updateRegions(countryCode);
-                updateConstituencies(countryCode);
-            });
-
-            // Address search functionality
-            document.getElementById('searchAddress').addEventListener('click', async function() {
-                let postcode = document.getElementById('postcode').value.trim();
-                if (!postcode) {
-                    alert('Please enter a postcode.');
-                    return;
-                }
-
-                let apiUrl = `https://api.postcodes.io/postcodes/${postcode}`;
-
-                try {
-                    let response = await fetch(apiUrl);
-                    let data = await response.json();
-
-                    if (data.status === 200 && data.result) {
-                        window.postcodeData = data.result;
-                        populateLocationFields(data.result);
-                    } else {
-                        alert('No data found for this postcode. You can enter your address manually.');
                     }
-                } catch (error) {
-                    console.error('Error fetching postcode data:', error);
-                    alert('Error fetching postcode data. Please try again.');
-                }
-            });
 
-            // Populate location fields from postcode data
-            async function populateLocationFields(postcodeData) {
-                townCity.value = postcodeData.admin_district || postcodeData.parish || '';
+                    // Populate location fields from postcode data
+                    async function populateLocationFields(postcodeData) {
+                        if (townCity) {
+                            townCity.value = postcodeData.admin_district || postcodeData.parish || '';
+                        }
 
-                if (postcodeData.country) {
-                    let countrySelected = false;
-                    for (let i = 0; i < countrySelect.options.length; i++) {
-                        if (countrySelect.options[i].textContent === postcodeData.country) {
-                            countrySelect.selectedIndex = i;
-                            countrySelected = true;
-                            break;
+                        if (postcodeData.country && countrySelect) {
+                            let countrySelected = false;
+                            for (let i = 0; i < countrySelect.options.length; i++) {
+                                if (countrySelect.options[i].textContent === postcodeData.country) {
+                                    countrySelect.selectedIndex = i;
+                                    countrySelected = true;
+                                    break;
+                                }
+                            }
+
+                            if (countrySelected) {
+                                const countryCode = countrySelect.value;
+
+                                // Update all dependent selects
+                                await Promise.all([
+                                    updateCounties(countryCode),
+                                    updateRegions(countryCode),
+                                    updateConstituencies(countryCode)
+                                ]);
+
+                                // Attempt to match appropriate values
+                                if (postcodeData.admin_county && countySelect) {
+                                    selectOptionByText(countySelect, postcodeData.admin_county);
+                                }
+                                if (postcodeData.region && regionSelect) {
+                                    selectOptionByText(regionSelect, postcodeData.region);
+                                }
+                                if (postcodeData.parliamentary_constituency && constituencySelect) {
+                                    selectOptionByText(constituencySelect, postcodeData.parliamentary_constituency);
+                                }
+                            }
                         }
                     }
 
-                    if (countrySelected) {
-                        const countryCode = countrySelect.value;
-                        await updateCounties(countryCode);
-                        await updateRegions(countryCode);
-                        await updateConstituencies(countryCode);
+                    // Helper function to select dropdown option by text
+                    function selectOptionByText(selectElement, text) {
+                        if (!text || !selectElement) return false;
 
-                        if (postcodeData.admin_county) {
-                            selectOptionByText(countySelect, postcodeData.admin_county);
+                        // Direct match
+                        for (let i = 0; i < selectElement.options.length; i++) {
+                            if (selectElement.options[i].textContent === text) {
+                                selectElement.selectedIndex = i;
+                                return true;
+                            }
                         }
-                        if (postcodeData.region) {
-                            selectOptionByText(regionSelect, postcodeData.region);
+
+                        // Case-insensitive match
+                        for (let i = 0; i < selectElement.options.length; i++) {
+                            if (selectElement.options[i].textContent.toLowerCase() === text.toLowerCase()) {
+                                selectElement.selectedIndex = i;
+                                return true;
+                            }
                         }
-                        if (postcodeData.parliamentary_constituency) {
-                            selectOptionByText(constituencySelect, postcodeData.parliamentary_constituency);
+
+                        // Partial match
+                        for (let i = 0; i < selectElement.options.length; i++) {
+                            if (selectElement.options[i].textContent.toLowerCase().includes(text.toLowerCase()) ||
+                                text.toLowerCase().includes(selectElement.options[i].textContent.toLowerCase())) {
+                                selectElement.selectedIndex = i;
+                                return true;
+                            }
                         }
+
+                        console.log(`Could not find a match for "${text}" in ${selectElement.id}`);
+                        return false;
                     }
-                }
-            }
-
-            // Helper function to select dropdown option by text
-            function selectOptionByText(selectElement, text) {
-                if (!text || !selectElement) return false;
-
-                for (let i = 0; i < selectElement.options.length; i++) {
-                    if (selectElement.options[i].textContent === text) {
-                        selectElement.selectedIndex = i;
-                        return true;
-                    }
-                }
-
-                for (let i = 0; i < selectElement.options.length; i++) {
-                    if (selectElement.options[i].textContent.toLowerCase() === text.toLowerCase()) {
-                        selectElement.selectedIndex = i;
-                        return true;
-                    }
-                }
-
-                for (let i = 0; i < selectElement.options.length; i++) {
-                    if (selectElement.options[i].textContent.toLowerCase().includes(text.toLowerCase()) ||
-                        text.toLowerCase().includes(selectElement.options[i].textContent.toLowerCase())) {
-                        selectElement.selectedIndex = i;
-                        return true;
-                    }
-                }
-
-                console.log(`Could not find a match for "${text}" in ${selectElement.id}`);
-                return false;
-            }
-        });
-    </script>
-    @endpush
+                });
+            </script>
+        @endpush
 </x-front.layout>

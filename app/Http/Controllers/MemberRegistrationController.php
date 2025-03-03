@@ -358,7 +358,6 @@ class MemberRegistrationController extends Controller
             'constituency_code' => 'required|exists:constituencies,code',
             'postcode' => 'required|string|regex:/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/',
             'house_name_number' => 'required|string|max:255',
-            'street' => 'required|string|max:255',
             'town_city' => 'required|string|max:255',
         ]);
 
