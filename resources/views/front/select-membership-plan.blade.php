@@ -49,7 +49,7 @@
                         <div class="contact-form style-01">
                             <form action="{{route('paymentGateway',['email'=>$email,'id'=>1])}}" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
-                                <h6 class="title">This is our membership plan</h6>
+                                <h6 class="title"> Membership plan</h6>
 
                                 @php
                                 $memberShipPlans = [
