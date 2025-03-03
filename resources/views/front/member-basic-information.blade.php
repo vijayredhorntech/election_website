@@ -32,10 +32,8 @@
                     <div class="volunteer-form style-01">
                         <div class="donate-programm">
                             <div class="content">
-                                <h6 class="subtitle">Tell Us More About Your Self</h6>
-                                <p class="description style-01">
-                                    Join hundreds of thousands of party members as we fix the foundations and rebuild UK.
-                                </p>
+                                <h6 class="subtitle">Complete your profile</h6>
+
 
                                 @if(session('error'))
                                 <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
@@ -48,14 +46,7 @@
                             <form action="{{route('storeMemberBasicInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="profile_photo">Profile Photo </label>
-                                            <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required style="color: black; font-weight: 400;" size="10">
-                                            @error('profile_photo')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                            <span id="file-error" style="color: red; font-weight: 500; display: none;">Invalid file type or file size must be between 50KB and 500KB.</span>
-                                        </div>
-                                    </div>
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Title <span class="text-danger">*</span></label>
@@ -211,53 +202,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="alternate_mobile_number">Alternate Mobile Number</label>
-                                            <div class="input-group">
-                                                <select name="alternate_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;" value="{{ old('alternate_country_code') }}">
-                                                    <option value="">Select</option>
-                                                    <option value="+44">+44 (UK)</option>
-                                                    <option value="+1">+1 (US/CA)</option>
-                                                    <option value="+91">+91 (India)</option>
-                                                    <option value="+86">+86 (China)</option>
-                                                    <option value="+852">+852 (Hong Kong)</option>
-                                                    <option value="+853">+853 (Macau)</option>
-                                                    <option value="+886">+886 (Taiwan)</option>
-                                                    <option value="+65">+65 (Singapore)</option>
-                                                    <option value="+60">+60 (Malaysia)</option>
-                                                    <option value="+63">+63 (Philippines)</option>
-                                                    <option value="+62">+62 (Indonesia)</option>
-                                                    <option value="+61">+61 (Australia)</option>
-                                                    <option value="+64">+64 (New Zealand)</option>
-                                                    <option value="+66">+66 (Thailand)</option>
-                                                    <option value="+81">+81 (Japan)</option>
-                                                    <option value="+82">+82 (South Korea)</option>
-                                                    <option value="+84">+84 (Vietnam)</option>
-                                                    <option value="+855">+855 (Cambodia)</option>
-                                                    <option value="+856">+856 (Laos)</option>
-                                                    <option value="+857">+857 (Myanmar)</option>
-                                                    <option value="+858">+858 (Bangladesh)</option>
-                                                    <option value="+859">+859 (Sri Lanka)</option>
-                                                    <option value="+880">+880 (Bangladesh)</option>
-                                                    <option value="+881">+881 (Bangladesh)</option>
-                                                    <option value="+882">+882 (Bangladesh)</option>
-                                                </select>
-                                                <input
-                                                    name="alternate_mobile_number"
-                                                    class="form-control"
-                                                    style="width: 70%; color: black; font-weight: 400; "
-                                                    value="{{ old('alternate_mobile_number') }}"
-                                                    placeholder="Enter mobile number">
-                                            </div>
-                                            @error('alternate_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-
+                                            <label for="profile_photo"> Photo for ID Card </label>
+                                            <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required style="color: black; font-weight: 400;" size="10">
+                                            @error('profile_photo')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                            <span id="file-error" style="color: red; font-weight: 500; display: none;">Invalid file type or file size must be between 50KB and 500KB.</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                    <button type="submit" class="boxed-btn btn-sanatory"> Save basic informations <span class="icon-paper-plan"></span></button>
+                                    <button type="submit" class="boxed-btn btn-sanatory"> Save basic Informations <span class="icon-paper-plan"></span></button>
                                 </div>
                             </form>
                         </div>

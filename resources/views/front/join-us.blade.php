@@ -40,12 +40,10 @@
                     <div class="volunteer-form style-01">
                         <div class="donate-programm">
                             <div class="content">
-                                <h6 class="subtitle">Change has begun, be part of it</h6>
+                                <h6 class="subtitle">Change has begun—be part of the movement!</h6>
                                 <p class="description style-01">
-                                    Join hundreds of thousands of party members as we fix the foundations and rebuild UK.
+                                    Join hundreds of thousands of One Nation members as we strengthen our foundations and rebuild the UK for a brighter, fairer future.
                                 </p>
-
-
                             </div>
                         </div>
                         <div class="contact-form style-01">

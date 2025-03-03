@@ -48,7 +48,7 @@
                             <div class="content">
                                 <h6 class="subtitle">Fill your address information</h6>
                                 <p class="description style-01">
-                                    We need your address information to send you the membership card and other important information.
+                                    We need your address details to send you your membership card and other important updates. Ensure your information is accurate to stay connected with One Nation
                                 </p>
 
                                 @if(session('error'))

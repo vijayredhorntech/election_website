@@ -4123,7 +4123,7 @@ ul {
 }
 .contact-form .form-group .form-control {
   padding: 22px 30px;
-  border: 1px solid #cccccc;
+  border: 1px solid #7e7e7e;
   font-size: 16px;
   line-height: 21px;
   font-family: var(--body-font);
@@ -6181,7 +6181,7 @@ ul {
   color: #4F4F6B;
 }
 .donation-content-section .donate-programm .content .description.style-01 {
-  max-width: 520px;
+  max-width: 70%;
 }
 .donation-content-section .donate-programm .content .notice {
   display: -webkit-box;
