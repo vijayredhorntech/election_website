@@ -34,9 +34,9 @@
                     <div class="volunteer-form style-01">
                         <div class="donate-programm">
                             <div class="content">
-                                <h6 class="subtitle">Change has begun, be part of it</h6>
+                                <h6 class="subtitle">Your Support Empower One Nation </h6>
                                 <p class="description style-01">
-                                    Join hundreds of thousands of party members as we fix the foundations and rebuild UK.
+                                    Your generous support empowers One Nation to strengthen communities, drive change, and build a brighter future for Great Britain.
                                 </p>
 
                                 @if(session('error'))
