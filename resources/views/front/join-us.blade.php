@@ -12,6 +12,7 @@
             border-color: #007bff;
             /* Change to desired color */
         }
+
     </style>
     @endpush
     <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
@@ -106,6 +107,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group" id="referralCodeField" style="display: {{$formData['hasReferralCode']==='true' ? 'block' : 'none'}}">
                                         <div class="form-group" id="referralCodeField" style="display: {{$formData['hasReferralCode']==='true' ? 'block' : 'none'}}">
                                             <input type="text"
                                                 name="referral_code"

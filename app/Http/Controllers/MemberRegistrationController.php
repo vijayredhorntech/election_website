@@ -478,4 +478,13 @@ class MemberRegistrationController extends Controller
         ];
         return view('front.join-us')->with('formData', $formData);
     }
+
+    public function become_core_member()
+    {
+        return view('front.become-core-member');
+    }
+    public function core_member_form()
+    {
+        return view('front.core-member-form');
+    }
 }

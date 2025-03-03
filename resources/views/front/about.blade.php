@@ -29,8 +29,8 @@
                         </div>
                     </div>
                     <div class="icon-box-item-02 margin-bottom-30">
-                        <div class="icon">
-                            <i class="fas fa-bullseye"></i>
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-bullseye" style="color: #c31c39"></i>
                         </div>
                         <div class="content">
                             <h4 class="title">Our Mission</h4>

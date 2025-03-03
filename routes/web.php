@@ -61,6 +61,13 @@ Route::post('/verify_otp', [MemberRegistrationController::class, 'verifyOtp'])->
 Route::get('/select_membership_plan', [MemberRegistrationController::class, 'selectMemberShipPlan'])->name('selectMemberShipPlan');
 Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::class, 'paymentGateway'])->name('paymentGateway');
 
+
+
+Route::get('/become_core_member', [MemberRegistrationController::class, 'become_core_member'])->name('become_core_member');
+Route::get('/core_member_form', [MemberRegistrationController::class, 'core_member_form'])->name('core_member_form');
+
+
+
 // Route to check if the email is already in the database
 Route::get('/check_email', [MemberRegistrationController::class, 'checkEmail'])->name('checkEmail');
 

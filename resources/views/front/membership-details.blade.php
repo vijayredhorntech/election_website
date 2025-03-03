@@ -91,8 +91,6 @@
                                                 <li style="color: black"> Members must be at least 16 years old.</li>
                                                 <li style="color: black"> All applicants must align with the party's values and not be a member of another political party.</li>
                                             </ul>
-                                            <p class="mt-4" style="color: black"><strong>Join Today & Be Part of Something Bigger!</strong></p>
-                                            <p style="color: black">Don't just stand on the sidelines—get involved! Whether you're looking to make an impact, connect with others, or take on leadership opportunities, this is your chance. Sign up now and start your journey towards making a difference!</p>
                                         </div>
                                     </div>
                                 </div>
@@ -247,7 +245,11 @@
                     </div>
 
                     <!-- Join Now Section -->
-                    <div class="text-center mb-5">
+                    <div class=" mb-5">
+                        <p class="mt-4" style="color: black"><strong>Join Today & Be Part of Something Bigger!</strong></p>
+                        <p style="color: black">Don't just stand on the sidelines—get involved! Whether you're looking to make an impact, connect with others, or take on leadership opportunities, this is your chance. Sign up now and start your journey towards making a difference!</p>
+
+
                         <a href="{{route('joinUs')}}" class="btn btn-primary btn-lg" style="background-color:#b30d00; border:1px solid #b30d00">Join Now</a>
                     </div>
                 </div>
