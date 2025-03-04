@@ -16,6 +16,7 @@ class IsMember
     public function handle(Request $request, Closure $next): Response
     {
         if (!auth()->check() || auth()->user()->role !== 'member') {
+            return redirect()->route('login');
             abort(403, 'Unauthorized access.');
         }
 

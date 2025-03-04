@@ -85,7 +85,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/member_address_information', [MemberRegistrationController::class, 'memberAddressInformation'])->name('memberAddressInformation');
     Route::post('/member_address_information', [MemberRegistrationController::class, 'storeMemberAddressInformation'])->name('storeMemberAddressInformation');
     Route::get('/members_profile', [MemberController::class, 'memberProfile'])
-//        ->middleware('isMember')
+        ->middleware('isMember')
         ->name('memberProfile');
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
 
