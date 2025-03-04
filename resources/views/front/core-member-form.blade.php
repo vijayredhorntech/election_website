@@ -27,7 +27,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title">Core Team Member</h1>
+                        <h1 class="title" style="color: white">Core Team Member</h1>
                     </div>
 
                 </div>
