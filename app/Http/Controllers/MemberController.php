@@ -294,7 +294,6 @@ class MemberController extends Controller
     public function memberProfile()
     {
 
-        dd(auth()->user()->member->profile_status);
         if (auth()->user()->member->profile_status === 'active') {
             $memberDetails = auth()->user()->member;
             return view('front.member-profile')->with('memberDetails', $memberDetails);
