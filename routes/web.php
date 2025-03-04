@@ -77,6 +77,9 @@ Route::get('/check_primary_mobile_number', [MemberRegistrationController::class,
 
 // Route to check if the alternate mobile number is already in the database
 Route::get('/check_alternate_mobile_number', [MemberRegistrationController::class, 'checkAlternateMobileNumber'])->name('checkAlternateMobileNumber');
+Route::get('/members_profile', [MemberController::class, 'memberProfile'])
+    ->middleware('isMember')
+    ->name('memberProfile');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -84,9 +87,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/member_basic_information', [MemberRegistrationController::class, 'storeMemberBasicInformation'])->name('storeMemberBasicInformation');
     Route::get('/member_address_information', [MemberRegistrationController::class, 'memberAddressInformation'])->name('memberAddressInformation');
     Route::post('/member_address_information', [MemberRegistrationController::class, 'storeMemberAddressInformation'])->name('storeMemberAddressInformation');
-    Route::get('/members_profile', [MemberController::class, 'memberProfile'])
-        ->middleware('isMember')
-        ->name('memberProfile');
+
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
