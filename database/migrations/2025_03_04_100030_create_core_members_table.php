@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->boolean('comfortable_with_public_speaking')->default(false);
             $table->boolean('willing_to_relocate')->default(false);
             $table->string('how_much_time_for_party')->nullable();
+            $table->longText('political_ideology')->nullable();
             $table->timestamps();
         });
     }

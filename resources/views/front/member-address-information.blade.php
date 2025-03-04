@@ -128,6 +128,14 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
+                                            <label for="">Post Code <span class="text-danger">*</span></label>
+                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postal_code" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
+                                            @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
                                             <label for="">Country <span class="text-danger">*</span></label>
 
                                             <select name="country_code" id="country" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
@@ -166,13 +174,7 @@
                                             @error('constituency_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="">Post Code <span class="text-danger">*</span></label>
-                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postal_code" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
-                                            @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                        </div>
-                                    </div>
+
 
 
                                     <!-- <div class="col-md-6 col-12">
