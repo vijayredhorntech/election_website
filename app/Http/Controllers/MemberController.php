@@ -310,8 +310,16 @@ class MemberController extends Controller
         ]);
 
         $user = auth()->user();
+        $member = Member::where('user_id', $user->id)->first();
+
+        // password can't be the same as the previous password
+        if (Hash::check($request->password, $user->password)) {
+            return redirect()->route('memberProfile')->with('error', 'Password can not be the same as the previous password');
+        }
         $user->password = Hash::make($request->password);
         $user->save();
+        $member->password_updated = 1;
+        $member->save();
 
         return redirect()->route('memberProfile')->with('success', 'Password updated successfully');
     }

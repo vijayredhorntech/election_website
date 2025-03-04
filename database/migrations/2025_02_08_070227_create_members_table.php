@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('profession')->nullable();
             $table->string('profile_photo')->nullable();
             $table->string('profile_status')->default('active');
+            $table->string('password_updated')->default(0);
             $table->timestamps();
         });
     }
