@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\CustomLog;
 use App\Mail\MemberShipMail;
 use App\Mail\OtpMail;
+use App\Models\Core_member;
 use App\Models\Member;
 use App\Models\Country;
 use App\Models\County;
@@ -523,12 +524,21 @@ class MemberRegistrationController extends Controller
         }
         else
         {
+
+            $core_member = Core_member::where('user_id', $member->user->id)->first();
+
+            if ($core_member != null) {
+                return back()->with('error', 'Request to become core member already submitted.');
+            }
+
             return view('front.core-member-form')->with('member', $member);
         }
     }
 
     public function core_member_form(Request $request, $id)
     {
+
+
          if ($request->declaration != 'on') {
             return back()->with('error', 'Please accept the declaration');
          }
@@ -543,12 +553,54 @@ class MemberRegistrationController extends Controller
                 'experience_in_media_interaction' => 'required|boolean',
                 'communication_skill' => 'required',
                 'area_of_interest' => 'required',
-                'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'id_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'other_document' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'photo' => 'required|max:2048',
+                'id_proof' => 'required|max:2048',
+                'other_document' => 'max:2048',
          ]);
 
-         dd($request->all());
+        $requestData = $request->except(['user_id', 'photo', 'id_proof', 'other_document']);
+        $requestData['user_id'] = $id;
+        $requestData['area_of_interest'] = json_encode($request->input('area_of_interest', []));
+        $requestData['political_issue_care'] = json_encode($request->input('political_issue_care', []));
+
+// Handle radio buttons (set 1 if checked, 0 if unchecked)
+        $requestData['any_business'] = $request->has('any_business') ? 1 : 0;
+        $requestData['associated_with_other_party'] = $request->has('associated_with_other_party') ? 1 : 0;
+        $requestData['any_criminal_record'] = $request->has('any_criminal_record') ? 1 : 0;
+        $requestData['communication_skill'] = $request->input('communication_skill', 0); // Default to 0
+
+
+        // Create Core Member record
+        $core_member = Core_member::create($requestData);
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->store('coreMemberPhoto', 'public');
+            $core_member->update([
+                'photo' => $filePath,
+            ]);
+        }
+        if ($request->hasFile('id_proof')) {
+            $file = $request->file('id_proof');
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->store('coreMemberIdProof', 'public');
+            $core_member->update([
+                'id_proof' => $filePath,
+            ]);
+        }
+        if ($request->hasFile('other_document')) {
+            $file = $request->file('other_document');
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->store('coreMemberOtherDocuments', 'public');
+            $core_member->update([
+                'other_document' => $filePath,
+            ]);
+        }
+        return redirect()->route('become_core_member')->with('success', 'Request to become core member submitted successfully. We will review your application and get back to you soon.');
+
+
+
     }
 
 }

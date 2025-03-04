@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="contact-form style-01" style="margin-top: 40px">
-                            <form action="{{route('core_member_form',['id'=>$member->id])}}" enctype="multipart/form-data" class="contact-page-form" novalidate="novalidate">
+                            <form action="{{route('core_member_form',['id'=>$member->user->id])}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <h6 class="title">Basic Information</h6>
 

@@ -39,6 +39,12 @@
                     <div class="volunteer-form style-01">
                         <div class="donate-programm">
                             <div class="content">
+
+                                @if(session('error'))
+                                    <div class="text-red-600 text-sm font-semibold" style="font-weight: bold ; color: orangered; font-size: 21px; margin-bottom: 15px; text-decoration: underline">*{{session('error')}}</div>
+                                @endif @if(session('success'))
+                                    <div class="text-green-600 text-sm font-semibold" style="font-weight: bold ; color: green; font-size: 21px; margin-bottom: 15px; text-decoration: underline">*{{session('success')}}</div>
+                                @endif
                                 <h6 class="subtitle">Become a Core Team Member</h6>
                                 <p class="description style-01">
                                     Joining our political party as a core member is an opportunity to make a real impact on society. As a core member, you will actively participate in decision-making, community outreach, and party initiatives.
@@ -74,11 +80,6 @@
                             <form action="{{route('verify_member')}}" method="get" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <h6 class="title">Enter you member id</h6>
-                                @if(session('error'))
-                                    <div class="text-red-600 text-sm font-semibold mt-4" style="font-weight: bold ; color: orangered; font-size: 15px">*{{session('error')}}</div>
-                                @endif @if(session('success'))
-                                    <div class="text-green-600 text-sm font-semibold mt-4" style="font-weight: bold ; color: green; font-size: 15px">*{{session('success')}}</div>
-                                @endif
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="form-group">

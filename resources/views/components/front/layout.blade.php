@@ -320,6 +320,7 @@
                                     <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
                                     <li><a href="{{route('terms')}}">Terms & Conditions</a></li>
                                     <li><a href="{{route('whatIsMembership')}}">What is Membership?</a></li>
+                                    <li><a href="{{route('become_core_member')}}">Become Core Member</a></li>
                                     <li><a href="{{route('contact')}}">Contact Us</a></li>
                                 </ul>
                             </div>
