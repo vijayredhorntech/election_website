@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="contact-form style-01" style="margin-top: 20px">
-                            <form class="contact-page-form" novalidate="novalidate">
+                            <form action="{{route('verify_member')}}" method="get" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <h6 class="title">Enter you member id</h6>
                                 @if(session('error'))
@@ -82,15 +82,14 @@
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="text"  id="member_id" name="member_id" placeholder="Member id" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
+                                            <input type="text"  id="member_id" name="member_id" placeholder="Member id" value="{{old('member_id')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                             @error('member_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                            {{--                                        make it button to submit the form--}}
-                                            <a href="{{route('core_member_form')}}" type="submit" class="boxed-btn btn-sanatory"> Verify ID<span class="icon-paper-plan"></span></a>
+                                            <button type="submit" class="boxed-btn btn-sanatory"> Verify ID<span class="icon-paper-plan"></span></button>
                                         </div>
                                     </div>
                                     <div class="col-12 mt-2 d-flex align-items-center justify-content-between ">
@@ -100,12 +99,6 @@
                                         </p>
                                     </div>
 
-
-
-                                    <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-{{--                                        make it button to submit the form--}}
-                                        <a href="{{route('core_member_form')}}" type="submit" class="boxed-btn btn-sanatory"> Next <span class="icon-paper-plan"></span></a>
-                                    </div>
                                 </div>
 
                             </form>

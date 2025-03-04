@@ -483,11 +483,45 @@ class MemberRegistrationController extends Controller
 
     public function become_core_member()
     {
-        $member_verified= false;
         return view('front.become-core-member');
     }
-    public function core_member_form()
+    public function verify_member(Request $request)
     {
-        return view('front.core-member-form');
+        $request->validate([
+            'member_id' => 'required',
+        ]);
+        $member = Member::where('custom_id', $request->member_id)->first();
+        if (!$member) {
+            return back()->with('error', 'No member found with the provided ID');
+        }
+        else
+        {
+            return view('front.core-member-form')->with('member', $member);
+        }
     }
+
+    public function core_member_form(Request $request, $id)
+    {
+         if ($request->declaration != 'on') {
+            return back()->with('error', 'Please accept the declaration');
+         }
+            $request->validate([
+                'annual_income' => 'required',
+                'participated_in_social_movement' => 'required|boolean',
+                'comfortable_with_public_speaking' => 'required|boolean',
+                'willing_to_relocate' => 'required|boolean',
+                'how_much_time_for_party' => 'required',
+                'political_ideology' => 'required',
+                'leadership_experience' => 'required|boolean',
+                'experience_in_media_interaction' => 'required|boolean',
+                'communication_skill' => 'required',
+                'area_of_interest' => 'required',
+                'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'id_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'other_document' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+         ]);
+
+         dd($request->all());
+    }
+
 }

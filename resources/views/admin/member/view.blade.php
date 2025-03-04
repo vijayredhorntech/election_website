@@ -259,33 +259,43 @@
                         </div>
                         <table class="w-full">
                             <tr>
-                                <td class="w-[200px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                    style="color: black; font-weight: 700">Member id</td>
+                                <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                    style="color: black; font-weight: 700; width: 120px">Member id</td>
                                 <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                         class="font-semibold text-black"></span> {{$memberDetails->custom_id}}</td>
                             </tr>
                             <tr>
-                                <td class="w-[200px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                    style="color: black; font-weight: 700">Enrolled On</td>
+                                <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                    style="color: black; font-weight: 700;width: 120px">Enrolled On</td>
                                 <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                         class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->enrollment_date)->format('d-m-Y') }}
                                 </td>
                             </tr>
                             </tr>
                             <tr>
-                                <td class="w-[200px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                    style="color: black; font-weight: 700">Referral Code</td>
+                                <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                    style="color: black; font-weight: 700;width: 120px">Referral Code</td>
                                 <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                         class="font-semibold text-black"></span> {{$memberDetails->user->referral_code}}</td>
                             </tr>
                             </tr>
                             <tr>
-                                <td class="w-[200px] font-semibold text-black" style="color: black; font-weight: 700">Total Members
+                                <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 170px">Total Members
                                     Added</td>
                                 <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
                                                                                                  style="color: black; font-weight: 400"></span>
                                     {{$memberDetails->referredMembers->count()}}
                                 </td>
+                            </tr>
+                            <tr>
+                                <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 120px">Region
+                                </td>
+                                <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->region_id}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 120px">Constituency
+                                </td>
+                                <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->constituency->name}}</td>
                             </tr>
                         </table>
                     </div>
@@ -302,60 +312,57 @@
                         </div>
                     </div>
                     <div class="card-body bg-white p-4">
-                        <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40 ">
-                            <span>Membership Info</span>
+                        <div>
+                            <span class="text-black font-semibold lg:text-lg"> Membership Information</span>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full p-2">
                             <table class="w-full">
 
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700">Start Date</td>
+                                        style="color: black; font-weight: 700;width: 120px">Start Date</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> 01-01-2025</td>
+                                            class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->start_date)->format('d-m-Y') }}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700">End Date</td>
+                                        style="color: black; font-weight: 700;width: 120px">End Date</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> 31-12-2025</td>
+                                            class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->format('d-m-Y') }}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700">Amount</td>
+                                        style="color: black; font-weight: 700;width: 120px">Amount</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> £ 15.2</td>
+                                            class="font-semibold text-black"></span> £ {{ $memberDetails->user?->membership?->payment_amount }}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700">Type</td>
+                                        style="color: black; font-weight: 700;width: 120px">Payment Mode</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> Annually </td>
+                                            class="font-semibold text-black"></span> {{ $memberDetails->user?->membership?->membership_type }}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700">Days Remaining</td>
+                                        style="color: black; font-weight: 700;width: 123px">Days Remaining</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> 298 days </td>
+                                            class="font-semibold text-black"></span> {{ abs(\Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->diffInDays(today(), false)) }} days </td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700">Renewal Date</td>
+                                        style="color: black; font-weight: 700;width: 120px">Renewal Date</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> 01-01-2026 </td>
+                                            class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->subDays(30)->format('d-m-Y')}} </td>
                                 </tr>
-                                <tr>
-                                    <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Invoice</td>
-                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> <a href="" class="text-[#b30d00] underline">Generate</a></td>
-                                </tr>
+
                             </table>
                         </div>
 
 
-                        <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40 mt-6">
-                            <span>Donation Info</span>
+                        <div>
+                            <span class="text-black font-semibold lg:text-lg"> Donation/ Payment Information</span>
                         </div>
-                        <div class="w-full">
+                        <div class="w-full p-2">
                             <table style="width: 100%" class="w-full">
                                 <tr>
                                     <td class="w-[100px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
@@ -365,36 +372,21 @@
                                     <td class=" font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700">Amount</td>
                                     <td class=" font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700">Invoice</td>
+                                        style="color: black; font-weight: 700">Receipt</td>
                                 </tr>
-                                <tr>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">1</td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">10-01-2025</td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 100.00 </td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                                            class="fa fa-file cursor-pointer"></i> </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">2</td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">18-01-2025</td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 08.00 </td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                                            class="fa fa-file cursor-pointer"></i> </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">3</td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">25-01-2025</td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ 15.00 </td>
-                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <i
-                                            class="fa fa-file cursor-pointer"></i> </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-[100px] py-0.5" style="color: black">4</td>
-                                    <td class="w-[100px] py-0.5" style="color: black">30-01-2025</td>
-                                    <td class="w-[100px] py-0.5" style="color: black"> £ 25.00 </td>
-                                    <td class="w-[100px] py-0.5" style="color: black"> <i class="fa fa-file cursor-pointer"></i> </td>
-                                </tr>
-
+                                @foreach ($memberDetails->user?->donations as $donation)
+                                    <tr>
+                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$loop->iteration}}</td>
+                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$donation->created_at->format('d-m-Y')}}</td>
+                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ {{number_format($donation->amount, 2)}} </td>
+                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <a href="" class="text-[#b30d00] underline"><i class="fa fa-file cursor-pointer"></i></a></td>
+                                    </tr>
+                                @endforeach
+                                @if($memberDetails->user?->donations->isEmpty())
+                                    <tr>
+                                        <td colspan="4" class="w-[100px] py-0.5" style="color: black; text-align: center">No donations found</td>
+                                    </tr>
+                                @endif
 
                             </table>
                         </div>
@@ -412,133 +404,147 @@
                         </div>
                     </div>
                     <div class="card-body bg-white p-4 grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4  ">
-                        <div class="w-full">
-                            <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40 ">
-                                <span>General Info</span>
+                        <div class="w-full p-2">
+                            <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40">
+                                <span>Basic Info</span>
                             </div>
 
-                            <div class="w-full" >
+                            <table class="w-full">
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Title</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->title}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Name</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->first_name}}
+                                        {{$memberDetails->last_name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">DOB</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span>
+                                        {{\Carbon\Carbon::parse($memberDetails->date_of_birth)->format('d-m-Y')}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Gender</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->gender}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Marital Status</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->marital_status}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Qualification</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->qualification}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black" style="color: black; font-weight: 700; width: 120px">Profession</td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
+                                                                                                     style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[30px] font-semibold text-black" style="color: black; font-weight: 700; width: 120px">NI Number</td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
+                                                                                                     style="color: black; font-weight: 400"></span> {{$memberDetails->national_insurance_number}}</td>
+                                </tr>
+                                </tr>
 
-                                <table class="w-full">
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Title</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->title}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Name</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->first_name}}
-                                            {{$memberDetails->last_name}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">DOB</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span>
-                                            {{\Carbon\Carbon::parse($memberDetails->date_of_birth)->format('d-m-Y')}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Gender</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->gender}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Marital Status</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->marital_status}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Qualification</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->qualification}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Profession</td>
-                                        <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
-                                                                                                         style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
-                                    </tr>
-                                    </tr>
-
-                                </table>
-                            </div>
+                            </table>
                         </div>
 
-                        <div class="w-full">
-                            <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40 ">
+                        <div class="w-full p-2">
+                            <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40">
                                 <span>Contact Info</span>
                             </div>
-                            <div class="w-full">
-                                <table class="w-full">
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Email id</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->email}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Phone</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span>{{$memberDetails->primary_country_code}}
-                                            {{$memberDetails->primary_mobile_number}}
-                                        </td>
-                                    </tr>
+                            <table class="w-full">
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Email id</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->email}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700;width: 120px">Phone</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span>
+                                        {{$memberDetails->primary_mobile_number}}
+                                    </td>
+                                </tr>
 
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Alternate Number
-                                        </td>
-                                        <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
-                                                                                                         style="color: black; font-weight: 400"></span>{{$memberDetails->alternate_country_code}} {{$memberDetails->alternate_mobile_number}}
-                                        </td>
-                                    </tr>
-                                </table>
 
-                            </div>
+                            </table>
+
                         </div>
 
 
-                        <div class="w-full">
-                            <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40 ">
+                        <div class="w-full p-2">
+                            <div class="w-max pr-6 mb-4 font-semibold text-black text-xl border-b-[1px] border-b-primaryLight/40">
                                 <span>Address Info</span>
                             </div>
-                            <div class="w-full">
-                                <table class="w-full">
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Address</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span>{{$memberDetails->house_name_number}},
-                                            {{$memberDetails->street}}, {{$memberDetails->town_city}}, {{$memberDetails->postcode}}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">Country</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->country->name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                            style="color: black; font-weight: 700">County</td>
-                                        <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                class="font-semibold text-black"></span> {{$memberDetails->county->name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700">Constituency
-                                        </td>
-                                        <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->constituency->name}}</td>
-                                    </tr>
-                                </table>
+                            <table class="w-full">
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 130px">Address Line 1</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span>{{$memberDetails->house_name_number}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Address Line 2</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span>
+                                        {{$memberDetails->street}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Town/ City</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span>
+                                        {{$memberDetails->town_city}}
+                                    </td>
+                                </tr>
 
-                            </div>
+
+
+
+
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">County</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->county->name}}</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 120px">Postcode
+                                    </td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->postcode}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
+                                        style="color: black; font-weight: 700; width: 120px">Country</td>
+                                    <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
+                                            class="font-semibold text-black"></span> {{$memberDetails->country->name}}</td>
+                                </tr>
+                            </table>
+
                         </div>
                     </div>
                 </div>

@@ -29,12 +29,7 @@
                     <div class="about-inner donation-single">
                         <h1 class="title">Core Team Member</h1>
                     </div>
-                    <div class="breadcrumbs">
-                        <ul>
-                            <li><a href="{{route('index')}}">Home</a></li>
-                            <li><a href="{{route('joinUs')}}">Become core team member</a></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -56,7 +51,7 @@
                             </div>
                         </div>
                         <div class="contact-form style-01" style="margin-top: 40px">
-                            <form class="contact-page-form" novalidate="novalidate">
+                            <form action="{{route('core_member_form',['id'=>$member->id])}}" enctype="multipart/form-data" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <h6 class="title">Basic Information</h6>
 
@@ -73,9 +68,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="color: black" for="name" style="color: black">Name</label>
-                                            <input type="text" id="name" name="name" value="James William"
+                                            <input type="text" id="name" name="name" value="{{$member->first_name}} {{$member->last_name}}"
                                                    placeholder="Member id" class="form-control" required=""
-                                                   aria-required="true"
+                                                   aria-required="true" disabled
                                                    style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                             @error('name')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -85,9 +80,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="color: black" for="name" style="color: black">Email</label>
-                                            <input type="email" id="email" name="email" value="james@gmail.com"
+                                            <input type="email" id="email" name="email" value="{{$member->email}}"
                                                    placeholder="Email id" class="form-control" required=""
-                                                   aria-required="true"
+                                                   aria-required="true" disabled
                                                    style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                             @error('email')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -97,9 +92,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="color: black" for="name" style="color: black">Phone</label>
-                                            <input type="number" id="phone" name="phone" value="0123456789"
+                                            <input type="number" id="phone" name="phone" value="{{$member->primary_mobile_number}}"
                                                    placeholder="Phone Number" class="form-control" required=""
-                                                   aria-required="true"
+                                                   aria-required="true" disabled
                                                    style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                             @error('phone')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -109,9 +104,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="color: black" for="name" style="color: black">Address</label>
-                                            <input type="address" id="address" name="address" value="123, king street "
+                                            <input type="address" id="address" name="address" value="{{$member->house_name_number}}, {{$member->street}}"
                                                    placeholder="Address" class="form-control" required=""
-                                                   aria-required="true"
+                                                   aria-required="true" disabled
                                                    style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                             @error('address')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -123,45 +118,23 @@
 
                                 <h6 class="title">Financial Details</h6>
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Job Title/
-                                                Designation <span class="text-danger">*</span></label>
-                                            <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
-                                                        style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+91">-- Select you job --</option>
-                                                    <option value="+93">None</option>
-                                                    <option value="+93">Student</option>
-                                                    <option value="+93">Teacher</option>
-                                                    <option value="+93">Doctor</option>
-                                                    <option value="+93">Engineer</option>
-                                                </select>
-                                            </div>
-                                            @error('primary_mobile_number')<span
-                                                style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
-                                        </div>
-                                    </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Annual Income <span
+                                            <label style="color: black" for="annual_income">Annual Income <span
                                                     class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="annual_income" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+91">-- Select you annual income --</option>
-                                                    <option value="+93">None</option>
-                                                    <option value="+93">£1 - $100</option>
-                                                    <option value="+93">£100 - $500</option>
-                                                    <option value="+93">£500 - $1000</option>
-                                                    <option value="+93">£1000 - $5000</option>
-                                                    <option value="+93">£5000 - $10000</option>
-                                                    <option value="+93">£10000 - $50000</option>
-                                                    <option value="+93">£50000 - above</option>
+                                                    <option value=none>None</option>
+                                                    <option value="1-100">£1-£100</option>
+                                                    <option value="100-1000">£100- £1000</option>
+                                                    <option value="1000-10000">£100- £10000</option>
+                                                    <option value="10000-50000">£1000-£50000</option>
+                                                    <option value="50000-above">£50000-Above</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('annual_income')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
@@ -172,12 +145,12 @@
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Do you own any business?
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" name="any_business">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                             </div>
-                                            @error ('termsAndConditionCheckbox')<span
+                                            @error ('any_business')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
@@ -187,104 +160,119 @@
 
                                 <h6 class="title"> Political & Social Involvement</h6>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-question">
                                             <div class="check-box-wrapper">
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Have you been associated with any political party before?
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" name="associated_with_other_party">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                             </div>
-                                            @error ('termsAndConditionCheckbox')<span
+                                            @error ('associated_with_other_party')<span
+                                                style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-question">
+                                            <div class="check-box-wrapper">
+                                                <div class="check-box">
+                                                    <label style="color: black" class="container-box">
+                                                        Do you have any criminal record?
+                                                        <input type="checkbox" name="any_criminal_record">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            @error ('any_crime_record')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
 
                                     </div>
 
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Have you
+                                            <label style="color: black" for="participated_in_social_movement">Have you
                                                 participated in any social or political movement? <span
                                                     class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="participated_in_social_movement" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('participated_in_social_movement')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Are you comfortable
+                                            <label style="color: black" for="comfortable_with_public_speaking">Are you comfortable
                                                 with public speaking? <span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="comfortable_with_public_speaking" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('comfortable_with_public_speaking')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Are you willing to
+                                            <label style="color: black" for="willing_to_relocate">Are you willing to
                                                 relocate for party work? <span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="willing_to_relocate" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('willing_to_relocate')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">How much time can
+                                            <label style="color: black" for="how_much_time_for_party">How much time can
                                                 you dedicate to the party? <span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="how_much_time_for_party" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Few hours a week</option>
-                                                    <option value="+93">Few hours a month</option>
-                                                    <option value="+93">Available full-time</option>
-                                                    <option value="+93">Available occasionally</option>
+                                                    <option value="Full time">Available full-time</option>
+                                                    <option value="Few hours a week">Few hours a week</option>
+                                                    <option value="Few hours a month">Few hours a month</option>
+                                                    <option value="Occasionally">Available occasionally</option>
+                                                    <option value="No Time">No Time</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('how_much_time_for_party')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Which political
+                                            <label style="color: black" for="political_ideology">Which political
                                                 ideology do you align with the most? <span class="text-danger">*</span></label>
-                                            <textarea id="ideology" name="ideology" placeholder="Enter description"
+                                            <textarea  id="ideology" name="political_ideology" placeholder="Enter description"
                                                       class="form-control" required="" aria-required="true"
-                                                      style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
+                                                      style=" color: black;  border: 1px solid darkgray">
                                             </textarea>
-                                            @error('ideology')<span
+                                            @error('political_ideology')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -293,75 +281,75 @@
                                         <div class="form-group">
                                             <label style="color: black" for="primary_mobile_number">What political
                                                 issues do you
-                                                care about the most? <span class="text-danger">*</span></label>
+                                                care about the most?</label>
                                         </div>
                                         <div class="form-question">
                                             <div class="check-box-wrapper">
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Employment
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Employment" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Education
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Education" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Healthcare
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Healthcare" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Infrastructure
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Infrastructure" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Economy
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Economy" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Women Empowerment
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Women Empowerment" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Agriculture
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Agriculture" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Law & Order
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Law & Order" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black" class="container-box">
                                                         Other
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Other" name="political_issue_care[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                             </div>
-                                            @error ('termsAndConditionCheckbox')<span
+                                            @error ('political_issue_care')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -373,148 +361,146 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Do you have leadership experience?</label>
+                                            <label style="color: black" for="leadership_experience">Do you have leadership experience?</label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="leadership_experience" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('leadership_experience')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Do you have experience in handling media interactions?</label>
+                                            <label style="color: black" for="experience_in_media_interaction">Do you have experience in handling media interactions?</label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="experience_in_media_interaction" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('experience_in_media_interaction')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">How is your communication skill?</label>
+                                            <label style="color: black" for="communication_skill">How is your communication skill? <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="form-question">
-                                            <div class="check-box-wrapper">
+                                            <div class="radio-box-wrapper">
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Below Average
-                                                        <input type="radio" name="termsAndConditionCheckbox">
+                                                        <input type="radio" value="Below Average" name="communication_skill">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Average
-                                                        <input type="radio" name="termsAndConditionCheckbox">
+                                                        <input type="radio" value="Average" name="communication_skill">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Good
-                                                        <input type="radio" name="termsAndConditionCheckbox">
+                                                        <input type="radio" value="Good" name="communication_skill">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Excellent
-                                                        <input type="radio" name="termsAndConditionCheckbox">
+                                                        <input type="radio" value="Excellent" name="communication_skill">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
 
                                             </div>
-                                            @error ('termsAndConditionCheckbox')<span
+                                            @error ('communication_skill')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Which areas of party work interest you the most?</label>
+                                            <label style="color: black" for="area_of_interest">Which areas of party work interest you most? <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="form-question">
                                             <div class="check-box-wrapper">
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Policy Making
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Policy Making" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Campaign Management
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Campaign Management" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Public Relations
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Public Relations" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Social Work
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Social Work" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Fundraising
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Fundraising" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Media Handling
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Media Handling" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         IT & Digital Media
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="IT & Digital Media" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Legal Affairs
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Legal Affairs" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="check-box">
                                                     <label style="color: black"  class="container-box">
                                                         Other
-                                                        <input type="checkbox" name="termsAndConditionCheckbox">
+                                                        <input type="checkbox" value="Other" name="area_of_interest[]">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
 
                                             </div>
-                                            @error ('termsAndConditionCheckbox')<span
+                                            @error ('area_of_interest')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -523,132 +509,129 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Who inspired you to join politics?</label>
+                                            <label style="color: black" for="who_inspired">Who inspired you to join politics?</label>
                                             <div class="input-group">
-                                                <textarea name="primary_country_code" rows="1" class="form-control"
+                                                <textarea name="who_inspired" rows="1" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
 
                                                 </textarea>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('who_inspired')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">What are your expectations from the party?</label>
+                                            <label style="color: black" for="expectations_from_party">What are your expectations from the party?</label>
                                             <div class="input-group">
-                                                <textarea name="primary_country_code" rows="1" class="form-control"
+                                                <textarea name="expectations_from_party" rows="1" class="form-control"
                                                           style="width: 30%; color: black; font-weight: 400;">
 
                                                 </textarea>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('expectations_from_party')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">What contributions do you want to make as a core party member?</label>
+                                            <label style="color: black" for="contribution_to_party">What contributions do you want to make as a core party member?</label>
                                             <div class="input-group">
-                                                <textarea name="primary_country_code" rows="1" class="form-control"
+                                                <textarea name="contribution_to_party" rows="1" class="form-control"
                                                           style="width: 30%; color: black; font-weight: 400;">
 
                                                 </textarea>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('contribution_to_party')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Do you have a strong social media presence?</label>
+                                            <label style="color: black" for="have_social_media_presence">Do you have a strong social media presence?</label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="have_social_media_presence" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('have_social_media_presence')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Do you have a network of volunteers who can support the party?</label>
+                                            <label style="color: black" for="have_network_of_volunteers">Do you have a network of volunteers who can support the party?</label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="have_network_of_volunteers" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('have_network_of_volunteers')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Would you be willing to fundraise for the party?</label>
+                                            <label style="color: black" for="willing_to_fundraise">Would you be willing to fundraise for the party?</label>
                                             <div class="input-group">
-                                                <select name="primary_country_code" class="form-control"
+                                                <select name="willing_to_fundraise" class="form-control"
                                                         style="width: 30%; color: black; font-weight: 400;">
-                                                    <option value="+93">-- Select --</option>
-                                                    <option value="+93">Yes</option>
-                                                    <option value="+93">No</option>
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
                                                 </select>
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('willing_to_fundraise')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                 </div>
-                                <h6 class="title">Upload Documents</h6>
+                                <h6 class="title">Upload Documents </h6>
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Photo</label>
+                                            <label style="color: black" for="photo">Photo <span class="text-danger">* Image less than 2MB</span></label>
                                             <div class="input-group">
-                                                <input type="file" name="primary_country_code" class="form-control"
+                                                <input type="file" name="photo" class="form-control"
                                                           style="width: 30%; color: black; font-weight: 400;"/>
 
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('photo')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Govt. ID Proof</label>
+                                            <label style="color: black" for="id_proof">Govt. ID Proof <span class="text-danger">* Image less than 2MB</span></label>
                                             <div class="input-group">
-                                                <input type="file" name="primary_country_code" class="form-control"
+                                                <input type="file" name="id_proof" class="form-control"
                                                        style="width: 30%; color: black; font-weight: 400;"/>
 
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('id_proof')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label style="color: black" for="primary_mobile_number">Other Document</label>
+                                            <label style="color: black" for="other_document">Other Document <span class="text-danger">Image less than 2MB</span></label>
                                             <div class="input-group">
-                                                <input type="file" name="primary_country_code" class="form-control"
+                                                <input type="file" name="other_document" class="form-control"
                                                        style="width: 30%; color: black; font-weight: 400;"/>
 
                                             </div>
-                                            @error('primary_mobile_number')<span
+                                            @error('other_document')<span
                                                 style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
@@ -666,9 +649,13 @@
                                                 <div class="check-box">
                                                     <label class="container-box" style="color: black; font-weight: 600;">
                                                         “I declare that all the information provided is accurate and I agree to abide by the party’s policies and code of conduct.”
-                                                        <input type="checkbox" id="hasReferralCode"  checked name="conditions" style="color: black; font-weight: 600;">
+                                                        <input type="checkbox" id="declarationCheckBox"  checked name="declaration" style="color: black; font-weight: 600;">
                                                         <span class="checkmark" style="color: black; font-weight: 600; border: 1px solid darkgray; border-radius: 5px;"></span>
                                                     </label>
+                                                    <span id="declarationCheckbox"
+                                                        style="color: orangered; font-weight: 500; display: none">
+                                                        Please check the box to proceed
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -678,7 +665,7 @@
 
                                 <div class="row">
                                     <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                        <button type="submit" class="boxed-btn btn-sanatory"> Submit Form <span
+                                        <button type="submit" id="submitButton" class="boxed-btn btn-sanatory"> Submit Form <span
                                                 class="icon-paper-plan"></span></button>
                                     </div>
                                 </div>
@@ -694,5 +681,27 @@
     </div>
 
     @push('scripts')
+            <script>
+                // Get references to the checkbox and submit button
+                const declarationCheckbox = document.getElementById('declarationCheckBox');
+                const submitButton = document.getElementById('submitButton');
+                const declarationCheckboxContent = document.getElementById('declarationCheckbox');
+
+                // Function to toggle submit button visibility based on checkbox state
+                function toggleSubmitButton() {
+                    if (declarationCheckbox.checked) {
+                        submitButton.style.display = 'block';
+                        declarationCheckboxContent.style.display = 'none';
+                    } else {
+                        submitButton.style.display = 'none';
+                        declarationCheckboxContent.style.display = 'block';
+                    }
+                }
+
+                // Set initial state (since checkbox is checked by default)
+                toggleSubmitButton();
+                // Add event listener to checkbox to handle changes
+                declarationCheckbox.addEventListener('change', toggleSubmitButton);
+            </script>
     @endpush
 </x-front.layout>

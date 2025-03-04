@@ -64,7 +64,8 @@ Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::clas
 
 
 Route::get('/become_core_member', [MemberRegistrationController::class, 'become_core_member'])->name('become_core_member');
-Route::get('/core_member_form', [MemberRegistrationController::class, 'core_member_form'])->name('core_member_form');
+Route::get('/verify_member', [MemberRegistrationController::class, 'verify_member'])->name('verify_member');
+Route::get('/core_member_form/{id}', [MemberRegistrationController::class, 'core_member_form'])->name('core_member_form');
 
 
 

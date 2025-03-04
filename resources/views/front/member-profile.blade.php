@@ -489,10 +489,7 @@
               </table>
             </div>
 
-
-
-            <div
-              class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
+            <div class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
               style="border-left: 4px solid #b30d00;">
               <span style="color: black; font-weight: 500; font-size: 20px">Contact Information</span>
             </div>
@@ -519,8 +516,7 @@
             </div>
 
 
-            <div
-              class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
+            <div class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
               style="border-left: 4px solid #b30d00;">
               <span style="color: black; font-weight: 500; font-size: 20px">Address Information</span>
             </div>

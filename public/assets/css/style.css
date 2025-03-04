@@ -1161,7 +1161,7 @@ ul {
   background-color: var(--secondary-color);
   color: #fff;
   display: inline-block;
-  padding: 17px 27px;
+  padding: 13px 27px;
   border-radius: 5px;
   text-transform: capitalize;
   text-align: center;
@@ -4157,7 +4157,17 @@ ul {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
+.volunteer-form .form-question .radio-box-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
 .volunteer-form .form-question .check-box-wrapper .check-box {
+  margin-right: 30px;
+}
+.volunteer-form .form-question .radio-box-wrapper .check-box {
   margin-right: 30px;
 }
 .volunteer-form .form-question .check-box-wrapper .check-box .container-box {
@@ -4174,7 +4184,7 @@ ul {
   border: 1px solid #C9C9C9;
   width: 18px;
   height: 18px;
-  border-radius: 50%;
+  border-radius: 3px;
 }
 .volunteer-form .form-question .check-box-wrapper .check-box .container-box .checkmark::after {
   content: "";
@@ -4187,7 +4197,7 @@ ul {
   border: 1px solid var(--main-color-one);
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
-  border-radius: 50%;
+  border-radius: 3px
 }
 .volunteer-form .form-question .check-box-wrapper .check-box .container-box .checkmark::before {
   content: "";
@@ -4197,12 +4207,51 @@ ul {
   background: #fff;
   width: 8px;
   z-index: 1;
-  border-radius: 50%;
+  border-radius: 3px;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
+
+.volunteer-form .form-question .radio-box-wrapper .check-box .container-box .checkmark {
+    background: #fff;
+    border: 1px solid #C9C9C9;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%
+}
+.volunteer-form .form-question .radio-box-wrapper .check-box .container-box .checkmark::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 18px;
+    height: 18px;
+    background: var(--main-color-one);
+    border: 1px solid var(--main-color-one);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    border-radius: 50%
+}
+.volunteer-form .form-question .radio-box-wrapper .check-box .container-box .checkmark::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    width: 8px;
+    z-index: 1;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
+
+
 .volunteer-form .form-question .form-group .form-control {
   padding: 22px 30px;
   border: 1px solid #cccccc;
