@@ -15,6 +15,12 @@
                 color: #999;
                 opacity: 0.7;
             }
+            #searchAddress
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+            }
             #searchAddress input{
                 padding: 15px 30px !important;
                 border: 1px solid #7e7e7e !important;
@@ -23,6 +29,7 @@
                 font-family: var(--body-font) !important;
                 font-weight: 300 !important;
                 border-radius: 10px !important;
+                width: 100%;
             }
             #searchAddress select{
                 padding: 15px 30px !important;
@@ -32,6 +39,20 @@
                 font-family: var(--body-font) !important;
                 font-weight: 300 !important;
                 border-radius: 10px !important;
+                width: 100%;
+                margin-top: 20px;
+            }
+            #searchAddress button{
+                padding: 15px 30px !important;
+                border: 1px solid #7e7e7e !important;
+                font-size: 16px !important;
+                background-color: #b30d00 !important;
+                color: white;
+                font-weight: bold;
+                line-height: 21px !important;
+                font-family: var(--body-font) !important;
+                border-radius: 5px !important;
+                margin-top: 10px;
             }
     </style>
     @endpush
@@ -78,33 +99,10 @@
                             <form action="{{route('storeMemberAddressInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-6" id="searchAddress">
+                                    <div class="col-md-12" id="searchAddress">
 
                                     </div>
-                                    <div class="col-md-9 col-12">
-
-
-                                    </div>
-                                    <div class="col-md-3 col-12 " style="display: flex; align-items: center;">
-                                        <div class="btn-wrapper">
-                                            <button type="button" id="searchAddress" class="boxed-btn btn-sanatory"> Search <span class="icon-paper-plan"></span></button>
-                                        </div>
-
-
-                                    </div>
-                                    <!-- <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="">Address <span class="text-danger">*</span></label>
-
-                                            <select class="form-control" id="addressSelect" name="address" style="color: black; font-weight: 400; width: 100%;">
-                                                <option value="">Select Address</option>
-                                            </select>
-                                            <input type="text" name="address" id="fillAddress" value="{{old('address')}}" class="form-control" style="display: none; color: black; font-weight: 400;">
-                                            @error('address')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
-                                        </div>
-                                    </div> -->
-
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-6 col-12" style="margin-top: 20px">
                                         <div class="form-group">
                                             <label for="">House Name/Number/ Street <span class="text-danger">*</span></label>
                                             <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
@@ -112,7 +110,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-6 col-12" style="margin-top: 20px">
                                         <div class="form-group">
                                             <label for="">Address Line 2 </label>
                                             <input type="text" name="street" placeholder="Enter Street Name" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">

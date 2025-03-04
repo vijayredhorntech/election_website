@@ -483,6 +483,7 @@ class MemberRegistrationController extends Controller
 
     public function become_core_member()
     {
+        $member_verified= false;
         return view('front.become-core-member');
     }
     public function core_member_form()
