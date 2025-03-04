@@ -89,6 +89,11 @@ class Member extends Model
         return $this->belongsTo(Constituency::class);
     }
 
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
     public function getCustomIdPrefix(): string
     {
         return 'ONM';

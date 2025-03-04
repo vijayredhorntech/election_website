@@ -285,28 +285,37 @@ class MemberRegistrationController extends Controller
     }
 
 
-    public function memberBasicInformation()
+    public function memberBasicInformation($update= 0)
     {
 
-        return view('front.member-basic-information')    ;
+        return view('front.member-basic-information')->with('update', $update);
     }
 
-    public function storeMemberBasicInformation(Request $request)
+    public function storeMemberBasicInformation(Request $request, $update)
     {
-        $request->validate([
-            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
-            'dob' => 'required|date|before:16 years ago',
-            'gender' => 'required|in:MALE,FEMALE,OTHER',
-            'marital_status' => 'nullable|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
-            'qualification' => 'nullable|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
-            'profession' => 'nullable|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
-            'national_insurance_number' => 'required|unique:members,national_insurance_number|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
-            'primary_country_code' => 'required|string|max:255',
-            'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
-            'alternate_country_code' => 'nullable|string|max:255',
-            'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
-        ]);
+        if($update) {
+            $request->validate([
+                'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
+                'dob' => 'required|date|before:16 years ago',
+                'gender' => 'required|in:MALE,FEMALE,OTHER',
+                'marital_status' => 'nullable|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
+                'qualification' => 'nullable|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
+                'profession' => 'nullable|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
+                'national_insurance_number' => 'required|unique:members,national_insurance_number|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
+                'primary_country_code' => 'required|string|max:255',
+                'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
+                'alternate_country_code' => 'nullable|string|max:255',
+                'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
+            ]);
+        }
+        else {
+            $request->validate([
+                'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'dob' => 'required|date|before:16 years ago',
+            ]);
+
+        }
 
         try {
             $member = Member::where('user_id', auth()->user()->id)->first();
@@ -331,6 +340,17 @@ class MemberRegistrationController extends Controller
                 'alternate_country_code' => $request->alternate_country_code,
                 'profile_status' => 'inActive',
             ]);
+            if($update)
+            {
+                $member->update([
+                    'profile_status' => 'inActive',
+                ]);
+            }
+            else {
+                $member->update([
+                    'profile_status' => 'active',
+                ]);
+            }
 
             if ($request->hasFile('profile_photo')) {
                 $file = $request->file('profile_photo');
@@ -351,15 +371,15 @@ class MemberRegistrationController extends Controller
 
     public function storeMemberAddressInformation(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'country_code' => 'required|exists:countries,code',
-            'county_code' => 'required|exists:counties,code',
-            'region_code' => 'nullable|exists:regions,code',
-            'constituency_code' => 'required|exists:constituencies,code',
-            'postcode' => 'required|string|regex:/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/',
-            'house_name_number' => 'required|string|max:255',
-            'town_city' => 'required|string|max:255',
-        ]);
+            $validator = Validator::make($request->all(), [
+                'country_code' => 'required|exists:countries,code',
+                'county_code' => 'required|exists:counties,code',
+                'region_code' => 'nullable|exists:regions,code',
+                'constituency_code' => 'required|exists:constituencies,code',
+                'postcode' => 'required|string|regex:/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/',
+                'house_name_number' => 'required|string|max:255',
+                'town_city' => 'required|string|max:255',
+            ]);
 
 
         // Add conditional validation for region_code when country_code is ENG
@@ -397,6 +417,7 @@ class MemberRegistrationController extends Controller
                 'town_city' => $request->town_city,
                 'profile_status' => 'active',
             ]);
+
 
             session()->flash('success', 'Address information saved successfully');
             return redirect()->route('memberProfile');

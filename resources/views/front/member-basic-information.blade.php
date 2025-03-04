@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="contact-form style-01">
-                            <form action="{{route('storeMemberBasicInformation')}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
+                            <form action="{{route('storeMemberBasicInformation', ['isUpdate'=>$update])}}" enctype="multipart/form-data" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <div class="row">
 
@@ -54,11 +54,11 @@
                                                 <option value="">Select title</option>
                                                 <option value="MR." {{ (old('title', $data->title ?? '') == 'MR.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MR.'?'selected': ''}}>MR.</option>
                                                 <option value="MRS." {{ (old('title', $data->title ?? '') == 'MRS.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MRS.'?'selected': ''}}>MRS.</option>
-                                                <option value="MISS" {{ (old('title', $data->title ?? '') == 'MISS') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MISS.'?'selected': ''}}>MISS</option>
+                                                <option value="MISS" {{ (old('title', $data->title ?? '') == 'MISS') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MISS'?'selected': ''}}>MISS</option>
                                                 <option value="DR." {{ (old('title', $data->title ?? '') == 'DR.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='DR.'?'selected': ''}}>DR.</option>
                                                 <option value="MS." {{ (old('title', $data->title ?? '') == 'MS.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='MS.'?'selected': ''}}>MS.</option>
                                                 <option value="PROF." {{ (old('title', $data->title ?? '') == 'PROF.') ? 'selected' : '' }} {{auth()->user()?->member?->title=='PROF.'?'selected': ''}}>PROF.</option>
-                                                <option value="OTHER" {{ (old('title', $data->title ?? '') == 'OTHER') ? 'selected' : '' }} {{auth()->user()?->member?->title=='OTHER.'?'selected': ''}}>OTHER</option>
+                                                <option value="OTHER" {{ (old('title', $data->title ?? '') == 'OTHER') ? 'selected' : '' }} {{auth()->user()?->member?->title=='OTHER'?'selected': ''}}>OTHER</option>
                                             </select>
                                             @error('title')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -76,7 +76,6 @@
                                         <div class="form-group">
                                             <label for="">Last Name </label>
                                             <input class="form-control" name="last_name" value="{{auth()->user()?->member?->last_name}}" required style="color: black; font-weight: 400;"/>
-
                                             @error('last_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -85,12 +84,16 @@
                                         <div class="form-group">
                                             <label for="dob">Date of Birth <span class="text-danger">*</span></label>
                                             <input type="date"
-                                                id="dob"
-                                                name="dob"
-                                                value="{{old('dob')}}"
-                                                class="form-control"
-                                                required style="color: black; font-weight: 400;">
-                                            @error('dob')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                                   id="dob"
+                                                   name="dob"
+                                                   value="{{ auth()->user() ? \Carbon\Carbon::parse(auth()->user()->member->date_of_birth)->format('Y-m-d') : old('dob') }}"
+                                                   class="form-control"
+                                                   required
+                                                   style="color: black; font-weight: 400;">
+                                            @error('dob')
+                                            <span style="color: orangered; font-weight: 500">{{$message}}</span>
+                                            @enderror
+
                                             <span id="dob-error" style="color: red; font-weight: 500; display: none;"></span>
                                         </div>
                                     </div>
@@ -100,9 +103,9 @@
                                             <label for="">Gender <span class="text-danger">*</span></label>
                                             <select name="gender" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Gender</option>
-                                                <option value="MALE" {{ (old('gender') == 'MALE') ? 'selected' : '' }} {{auth()->user()?->member?->gender=='MALE'?'selected': ''}}>MALE</option>
-                                                <option value="FEMALE" {{ (old('gender') == 'FEMALE') ? 'selected' : '' }} {{auth()->user()?->member?->gender=='FEMALE'?'selected': ''}}>FEMALE</option>
-                                                <option value="OTHER" {{ (old('gender') == 'OTHER') ? 'selected' : '' }} {{auth()->user()?->member?->gender=='OTHER'?'selected': ''}}>OTHER</option>
+                                                <option value="MALE" {{ (old('gender') || auth()->user()?->member?->gender == 'MALE') ? 'selected' : '' }} >MALE</option>
+                                                <option value="FEMALE" {{ (old('gender') || auth()->user()?->member?->gender == 'FEMALE') ? 'selected' : '' }} >FEMALE</option>
+                                                <option value="OTHER" {{ (old('gender') ||auth()->user()?->member?->gender == 'OTHER') ? 'selected' : '' }} >OTHER</option>
                                             </select>
                                             @error('gender')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -113,11 +116,11 @@
                                             <label for="">Marital Status </label>
                                             <select name="marital_status" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Marital Status</option>
-                                                <option value="SINGLE" {{ (old('marital_status') == 'SINGLE') ? 'selected' : '' }}>SINGLE</option>
-                                                <option value="MARRIED" {{ (old('marital_status') == 'MARRIED') ? 'selected' : '' }}>MARRIED</option>
-                                                <option value="DIVORCED" {{ (old('marital_status') == 'DIVORCED') ? 'selected' : '' }}>DIVORCED</option>
-                                                <option value="WIDOWED" {{ (old('marital_status') == 'WIDOWED') ? 'selected' : '' }}>WIDOWED</option>
-                                                <option value="OTHER" {{ (old('marital_status') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                                                <option value="SINGLE" {{ (old('marital_status') || auth()->user()?->member?->marital_status == 'SINGLE') ? 'selected' : '' }}>SINGLE</option>
+                                                <option value="MARRIED" {{ (old('marital_status') || auth()->user()?->member?->marital_status  == 'MARRIED') ? 'selected' : '' }}>MARRIED</option>
+                                                <option value="DIVORCED" {{ (old('marital_status') || auth()->user()?->member?->marital_status == 'DIVORCED') ? 'selected' : '' }}>DIVORCED</option>
+                                                <option value="WIDOWED" {{ (old('marital_status') || auth()->user()?->member?->marital_status == 'WIDOWED') ? 'selected' : '' }}>WIDOWED</option>
+                                                <option value="OTHER" {{ (old('marital_status') || auth()->user()?->member?->marital_status == 'OTHER') ? 'selected' : '' }}>OTHER</option>
                                             </select>
                                             @error('marital_status')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -128,13 +131,13 @@
                                             <label for="">Qualification </label>
                                             <select name="qualification" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Qualification</option>
-                                                <option value="PRIMARY" {{ (old('qualification') == 'PRIMARY') ? 'selected' : '' }}>PRIMARY</option>
-                                                <option value="SECONDARY" {{ (old('qualification') == 'SECONDARY') ? 'selected' : '' }}>SECONDARY</option>
-                                                <option value="HIGHER SECONDARY" {{ (old('qualification') == 'HIGHER SECONDARY') ? 'selected' : '' }}>HIGHER SECONDARY</option>
-                                                <option value="GRADUATE" {{ (old('qualification') == 'GRADUATE') ? 'selected' : '' }}>GRADUATE</option>
-                                                <option value="POST GRADUATE" {{ (old('qualification') == 'POST GRADUATE') ? 'selected' : '' }}>POST GRADUATE</option>
-                                                <option value="DOCTORATE" {{ (old('qualification') == 'DOCTORATE') ? 'selected' : '' }}>DOCTORATE</option>
-                                                <option value="OTHER" {{ (old('qualification') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                                                <option value="PRIMARY" {{ (old('qualification') || auth()->user()?->member?->qualification == 'PRIMARY')  ? 'selected' : '' }}>PRIMARY</option>
+                                                <option value="SECONDARY" {{ (old('qualification') || auth()->user()?->member?->qualification == 'SECONDARY') ? 'selected' : '' }}>SECONDARY</option>
+                                                <option value="HIGHER SECONDARY" {{ (old('qualification') || auth()->user()?->member?->qualification == 'HIGHER SECONDARY') ? 'selected' : '' }}>HIGHER SECONDARY</option>
+                                                <option value="GRADUATE" {{ (old('qualification') || auth()->user()?->member?->qualification == 'GRADUATE') ? 'selected' : '' }}>GRADUATE</option>
+                                                <option value="POST GRADUATE" {{ (old('qualification') || auth()->user()?->member?->qualification == 'POST GRADUATE') ? 'selected' : '' }}>POST GRADUATE</option>
+                                                <option value="DOCTORATE" {{ (old('qualification') || auth()->user()?->member?->qualification == 'DOCTORATE') ? 'selected' : '' }}>DOCTORATE</option>
+                                                <option value="OTHER" {{ (old('qualification') || auth()->user()?->member?->qualification == 'OTHER') ? 'selected' : '' }}>OTHER</option>
                                             </select>
                                             @error('qualification')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -145,16 +148,16 @@
                                             <label for="">Profession</label>
                                             <select name="profession" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Profession</option>
-                                                <option value="STUDENT" {{ (old('profession') == 'STUDENT') ? 'selected' : '' }}>STUDENT</option>
-                                                <option value="EMPLOYEE" {{ (old('profession') == 'EMPLOYEE') ? 'selected' : '' }}>EMPLOYEE</option>
-                                                <option value="BUSINESS" {{ (old('profession') == 'BUSINESS') ? 'selected' : '' }}>BUSINESS</option>
-                                                <option value="SELF EMPLOYED" {{ (old('profession') == 'SELF EMPLOYED') ? 'selected' : '' }}>SELF EMPLOYED</option>
-                                                <option value="HOUSEWIFE" {{ (old('profession') == 'HOUSEWIFE') ? 'selected' : '' }}>HOUSEWIFE</option>
-                                                <option value="RETIRED" {{ (old('profession') == 'RETIRED') ? 'selected' : '' }}>RETIRED</option>
-                                                <option value="LAWYER" {{ (old('profession') == 'LAWYER') ? 'selected' : '' }}>LAWYER</option>
-                                                <option value="DOCTOR" {{ (old('profession') == 'DOCTOR') ? 'selected' : '' }}>DOCTOR</option>
-                                                <option value="TEACHER" {{ (old('profession') == 'TEACHER') ? 'selected' : '' }}>TEACHER</option>
-                                                <option value="OTHER" {{ (old('profession') == 'OTHER') ? 'selected' : '' }}>OTHER</option>
+                                                <option value="STUDENT" {{ (old('profession') || auth()->user()?->member?->profession == 'STUDENT') ? 'selected' : '' }}>STUDENT</option>
+                                                <option value="EMPLOYEE" {{ (old('profession') || auth()->user()?->member?->profession == 'EMPLOYEE') ? 'selected' : '' }}>EMPLOYEE</option>
+                                                <option value="BUSINESS" {{ (old('profession') || auth()->user()?->member?->profession == 'BUSINESS') ? 'selected' : '' }}>BUSINESS</option>
+                                                <option value="SELF EMPLOYED" {{ (old('profession') || auth()->user()?->member?->profession == 'SELF EMPLOYED') ? 'selected' : '' }}>SELF EMPLOYED</option>
+                                                <option value="HOUSEWIFE" {{ (old('profession') || auth()->user()?->member?->profession == 'HOUSEWIFE') ? 'selected' : '' }}>HOUSEWIFE</option>
+                                                <option value="RETIRED" {{ (old('profession') || auth()->user()?->member?->profession == 'RETIRED') ? 'selected' : '' }}>RETIRED</option>
+                                                <option value="LAWYER" {{ (old('profession') || auth()->user()?->member?->profession == 'LAWYER') ? 'selected' : '' }}>LAWYER</option>
+                                                <option value="DOCTOR" {{ (old('profession') || auth()->user()?->member?->profession == 'DOCTOR') ? 'selected' : '' }}>DOCTOR</option>
+                                                <option value="TEACHER" {{ (old('profession') || auth()->user()?->member?->profession == 'TEACHER') ? 'selected' : '' }}>TEACHER</option>
+                                                <option value="OTHER" {{ (old('profession') || auth()->user()?->member?->profession == 'OTHER') ? 'selected' : '' }}>OTHER</option>
                                             </select>
                                             @error('profession')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -165,38 +168,38 @@
                                             <label for="primary_mobile_number">Primary Mobile Number <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <select name="primary_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;" value="{{ old('primary_country_code') }}">
-                                                    <option value="+44">+44 (UK)</option>
-                                                    <option value="+1">+1 (US/CA)</option>
-                                                    <option value="+91">+91 (India)</option>
-                                                    <option value="+86">+86 (China)</option>
-                                                    <option value="+852">+852 (Hong Kong)</option>
-                                                    <option value="+853">+853 (Macau)</option>
-                                                    <option value="+886">+886 (Taiwan)</option>
-                                                    <option value="+65">+65 (Singapore)</option>
-                                                    <option value="+60">+60 (Malaysia)</option>
-                                                    <option value="+63">+63 (Philippines)</option>
-                                                    <option value="+62">+62 (Indonesia)</option>
-                                                    <option value="+61">+61 (Australia)</option>
-                                                    <option value="+64">+64 (New Zealand)</option>
-                                                    <option value="+66">+66 (Thailand)</option>
-                                                    <option value="+81">+81 (Japan)</option>
-                                                    <option value="+82">+82 (South Korea)</option>
-                                                    <option value="+84">+84 (Vietnam)</option>
-                                                    <option value="+855">+855 (Cambodia)</option>
-                                                    <option value="+856">+856 (Laos)</option>
-                                                    <option value="+857">+857 (Myanmar)</option>
-                                                    <option value="+858">+858 (Bangladesh)</option>
-                                                    <option value="+859">+859 (Sri Lanka)</option>
-                                                    <option value="+880">+880 (Bangladesh)</option>
-                                                    <option value="+881">+881 (Bangladesh)</option>
-                                                    <option value="+882">+882 (Bangladesh)</option>
+                                                    <option value="+44" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+44') ? 'selected' : '' }}>+44 (UK)</option>
+                                                    <option value="+1" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+1') ? 'selected' : '' }}>+1 (US/CA)</option>
+                                                    <option value="+91" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+91') ? 'selected' : '' }}>+91 (India)</option>
+                                                    <option value="+86" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+86') ? 'selected' : '' }}>+86 (China)</option>
+                                                    <option value="+852" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+852') ? 'selected' : '' }}>+852 (Hong Kong)</option>
+                                                    <option value="+853" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+853') ? 'selected' : '' }}>+853 (Macau)</option>
+                                                    <option value="+886" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+886') ? 'selected' : '' }}>+886 (Taiwan)</option>
+                                                    <option value="+65" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+65') ? 'selected' : '' }}>+65 (Singapore)</option>
+                                                    <option value="+60" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+60') ? 'selected' : '' }}>+60 (Malaysia)</option>
+                                                    <option value="+63" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+63') ? 'selected' : '' }}>+63 (Philippines)</option>
+                                                    <option value="+62" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+62') ? 'selected' : '' }}>+62 (Indonesia)</option>
+                                                    <option value="+61" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+61') ? 'selected' : '' }}>+61 (Australia)</option>
+                                                    <option value="+64" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+64') ? 'selected' : '' }}>+64 (New Zealand)</option>
+                                                    <option value="+66" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+66') ? 'selected' : '' }}>+66 (Thailand)</option>
+                                                    <option value="+81" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+81') ? 'selected' : '' }}>+81 (Japan)</option>
+                                                    <option value="+82" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+82') ? 'selected' : '' }}>+82 (South Korea)</option>
+                                                    <option value="+84" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+84') ? 'selected' : '' }}>+84 (Vietnam)</option>
+                                                    <option value="+855" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+885') ? 'selected' : '' }}>+855 (Cambodia)</option>
+                                                    <option value="+856" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+856') ? 'selected' : '' }}>+856 (Laos)</option>
+                                                    <option value="+857" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+857') ? 'selected' : '' }}>+857 (Myanmar)</option>
+                                                    <option value="+858" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+858') ? 'selected' : '' }}>+858 (Bangladesh)</option>
+                                                    <option value="+859" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+859') ? 'selected' : '' }}>+859 (Sri Lanka)</option>
+                                                    <option value="+880" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+880') ? 'selected' : '' }}>+880 (Bangladesh)</option>
+                                                    <option value="+881" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+881') ? 'selected' : '' }}>+881 (Bangladesh)</option>
+                                                    <option value="+882" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+882') ? 'selected' : '' }}>+882 (Bangladesh)</option>
                                                 </select>
                                                 <input type="tel"
                                                     name="primary_mobile_number"
                                                     class="form-control"
                                                     style="width: 70% ;color: black; font-weight: 400;"
                                                     required
-                                                    value="{{ old('primary_mobile_number') }}"
+                                                    value="{{ old('primary_mobile_number') ?? auth()->user()?->member?->primary_mobile_number}}"
                                                     placeholder="Enter mobile number">
                                             </div>
                                             @error('primary_mobile_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -214,7 +217,7 @@
                                                 placeholder="AB123456C"
                                                 oninput="this.value = this.value.toUpperCase()"
                                                 style="color: black; font-weight: 400;"
-                                                value="{{ old('national_insurance_number') }}">
+                                                value="{{ old('national_insurance_number') ?? auth()->user()?->member?->national_insurance_number}}">
                                             @error('national_insurance_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -223,6 +226,12 @@
                                         <div class="form-group">
                                             <label for="profile_photo"> Photo for ID Card </label>
                                             <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required style="color: black; font-weight: 400;" size="10">
+
+                                              @if(auth()->user()?->member?->profile_photo)
+                                                <img src="{{ auth()->user()?->member?->profile_photo ? asset('storage/'.auth()->user()?->member?->profile_photo) : asset('assets/images/default-profile.png') }}" alt="" style="height: 150px; width: 100px; margin-top: 20px; border-radius: 10px; object-fit: cover;">
+
+                                            @endif
+
                                             @error('profile_photo')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             <span id="file-error" style="color: red; font-weight: 500; display: none;">Invalid file type or file size must be between 50KB and 500KB.</span>
                                         </div>

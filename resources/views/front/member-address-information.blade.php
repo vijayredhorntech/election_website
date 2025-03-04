@@ -105,15 +105,15 @@
                                     <div class="col-md-6 col-12" style="margin-top: 20px">
                                         <div class="form-group">
                                             <label for="">House Name/Number/ Street <span class="text-danger">*</span></label>
-                                            <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                            <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="house_name_number" value="{{old('house_name_number') ?? auth()->user()?->member?->house_name_number}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12" style="margin-top: 20px">
                                         <div class="form-group">
-                                            <label for="">Address Line 2 </label>
-                                            <input type="text" name="street" placeholder="Enter Street Name" id="street" value="{{old('street')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                            <label for="">Address Line 2 {{auth()->user()?->member?->street    }} </label>
+                                            <input type="text" name="street" placeholder="Enter Street Name" id="street" value="{{old('street') ?? auth()->user()?->member?->street}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('street')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Town/City <span class="text-danger">*</span></label>
-                                            <input type="text" name="town_city" id="town_city" placeholder="Enter Town/City" value="{{old('town_city')}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
+                                            <input type="text" name="town_city" id="town_city" placeholder="Enter Town/City" value="{{old('town_city') ?? auth()->user()?->member?->town_city}}" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
                                             @error('town_city')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -129,7 +129,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Post Code <span class="text-danger">*</span></label>
-                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postal_code" value="{{old('postcode')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
+                                            <input type="text" name="postcode" placeholder="Enter Post Code" id="postal_code" value="{{old('postcode') ?? auth()->user()?->member?->postcode}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
                                             @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -139,7 +139,7 @@
                                             <label for="">Country <span class="text-danger">*</span></label>
 
                                             <select name="country_code" id="country" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
-                                                <option value="">Select Country</option>
+                                                <option value="{{auth()->user()?->member?->country->code??''}}">{{auth()->user()?->member?->country->name??'Select Country'}}</option>
                                             </select>
                                             @error('country_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -149,7 +149,7 @@
                                             <label for="">County <span class="text-danger">*</span></label>
 
                                             <select name="county_code" id="county" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
-                                                <option value="">Select County</option>
+                                                <option value="{{auth()->user()?->member?->county->code??''}}">{{auth()->user()?->member?->county->name??'Select County'}}</option>
                                             </select>
                                             @error('county_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -159,7 +159,7 @@
                                             <label for="">Region </label>
 
                                             <select name="region_code" id="region" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
-                                                <option value="">Select Region</option>
+                                                <option value="{{auth()->user()?->member?->region->code??''}}">{{auth()->user()?->member?->region->name??'Select Region'}}</option>
                                             </select>
                                             @error('region_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -169,7 +169,7 @@
                                             <label for="">Constituency <span class="text-danger">*</span></label>
 
                                             <select name="constituency_code" id="constituency" class="form-control" required="" aria-required="true" style="color: black; font-weight: 400;">
-                                                <option value="">Select Constituency</option>
+                                                <option value="{{auth()->user()?->member?->constituency->code??''}}">{{auth()->user()?->member?->constituency->name??'Select Constituency'}}</option>
                                             </select>
                                             @error('constituency_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -216,7 +216,7 @@
                             line_2: '#street',
                             line_3: '#line3',
                             post_town: '#town_city',
-                            county: '#county',
+                            // county: '#county',
                             postcode: '#postal_code'
                         }
                     });

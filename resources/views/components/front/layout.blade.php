@@ -51,6 +51,10 @@
             color: grey;
             opacity: 0.6;
         }
+        .mobileProfileList
+        {
+            display: none !important;
+        }
 
         /* Added styles for labels and placeholders */
         .form-group label {
@@ -103,6 +107,12 @@
             }
         }
 
+        @media (max-width: 1200px) {
+            .mobileProfileList
+            {
+                display: block !important;
+            }
+        }
         @media (max-width: 500px) {
 
             .logoImage {
@@ -206,52 +216,64 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children">
                             @if(!auth()->check())
-                            <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
-                                Login
-                            </a>
-                            @endif
-                            <div class="line style-01">
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                                <span class="dot style-02"></span>
-                            </div>
-                        </li>
+                                <li class="menu-item-has-children">
+                                    <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
+                                        Login
+                                    </a>
+                                    <div class="line style-01">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </div>
+                                </li>
+                           @else
+                            <li class="menu-item-has-children mobileProfileList" >
+                                <a href="{{ route('memberProfile') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
+                                    Profile
+                                </a>
+                                <div class="line style-01">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot style-02"></span>
+                                </div>
+                            </li>
+                          @endif
+
                     </ul>
                 </div>
                 <div class="nav-right-content">
 
-                    <div class="btn-wrapper" style="margin-left: 10px; ">
-                        @if(!auth()->check())
-                        <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black; box-shadow:none">
-                            Join Us
-                            <i class="icon-paper-plan"></i>
-                        </a>
-
-                        @else
-                        @if(auth()->user()?->member?->profile_status == 'active' && route('memberProfile') !== request()->url())
-                        <a href="{{route('memberProfile')}}" class="boxed-btn btn-sanatory">
-                            Profile
-                            <i class="icon-paper-plan"></i>
-                        </a>
-                        @else
-                        <form action="{{route('logout')}}" method="POST">
-                            @csrf
-                            <button type="submit" class="boxed-btn btn-sanatory">
-                                Logout
+                    @if(!auth()->check())
+                        <div class="btn-wrapper" style="margin-left: 10px; ">
+                                <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory" style="background-color: black; box-shadow:none">
+                                    Join Us
+                                    <i class="icon-paper-plan"></i>
+                                </a>
+                        </div>
+                        <div class="btn-wrapper" style="margin-left: 10px">
+                            <a href="{{route('donate')}}" class="boxed-btn btn-sanatory">
+                                Donate Now
                                 <i class="icon-paper-plan"></i>
-                            </button>
-                        </form>
-                        @endif
-                        @endif
-                    </div>
-                    <div class="btn-wrapper" style="margin-left: 10px">
-                        <a href="{{route('donate')}}" class="boxed-btn btn-sanatory">
-                            Donate Now
-                            <i class="icon-paper-plan"></i>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @else
+                        <div class="btn-wrapper" style="margin-left: 10px; ">
+                            <a href="{{route('memberProfile')}}" >
+                                <div style="display: flex; align-items: center">
+                                    <img src="{{auth()->user()?->member?->profile_photo ? asset('storage/'.auth()->user()?->member?->profile_photo) : asset('assets/images/default-profile.png') }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 1px solid gray">
+                                     <div style="display: flex; flex-direction: column; margin-left: 10px">
+                                         <span style="font-weight: bold; color: black; font-size: 18px">{{ucfirst(auth()->user()?->member?->first_name)}} {{ucfirst(auth()->user()?->member?->last_name)}}</span>
+                                         <p style="font-weight: 400; color: black; font-size: 13px; line-height: 10px">{{auth()->user()?->member?->email}}</p>
+                                     </div>
+                                </div>
+
+                            </a>
+                        </div>
+                    @endif
+
+
+
                 </div>
             </div>
         </nav>

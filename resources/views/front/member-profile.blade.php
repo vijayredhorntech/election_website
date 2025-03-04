@@ -209,6 +209,9 @@
           <div class="card-body">
             <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">
               <div style="display:flex; gap:10px">
+                <a href="{{route('memberBasicInformation')}}" style="background-color:orangered; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
+                  <i class="fa fa-pencil" style="margin-right:5px"></i>Update Profile <span
+                    class="icon-paper-plan"></span></a>
                 <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">
                   <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span
                     class="icon-paper-plan"></span></button>
