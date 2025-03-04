@@ -599,7 +599,7 @@
               <div class="card-content">
                   <!-- Keep the printableDiv exactly as it was -->
                   <div id="printableDiv" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
-                      <div style="height: 430px; width: 700px; border:1px solid gray; position: relative; border-radius: 10px; background-position: bottom left; background-image: url({{asset('assets/images/id_signature.jpg')}}); background-repeat: no-repeat; background-size: cover;">
+                      <div style="height: 430px; min-width: 700px;border:1px solid gray; position: relative; border-radius: 10px; background-position: bottom left; background-image: url({{asset('assets/images/id_signature.jpg')}}); background-repeat: no-repeat; background-size: cover;">
                           <div style="position: absolute; width: 100%; height: 100%; border-radius: 10px; ">
                               <div style="width: 100%; height: max-content; display: flex; justify-content: space-between; align-items: center; padding-top: 5px; padding-right: 10px; position: relative">
 
@@ -636,7 +636,7 @@
                                           </p>
                                           <p style="font-size: 26px; padding-left: 15px; line-height: 25px;">
                                               <span style="font-weight: 600; color:black">Constituency:</span>
-                                              <span style="font-weight: 400; color:black">{{$memberDetails->constituency->name}}</span>
+                                              <span style="font-weight: 400; color:black">{{ \Illuminate\Support\Str::limit($memberDetails->constituency->name, 21, '...') }}</span>
                                           </p>
                                           <p style="font-size: 26px; padding-left: 15px; line-height: 25px;">
                                               <span style="font-weight: 600; color:black">Website:</span>
@@ -675,7 +675,7 @@
                           <div class="volunteer-form style-01">
                               <div class="donate-programm">
                                   <div class="content">
-                                      <h6 class="subtitle">Welcome {{$memberDetails->first_name}} {{$memberDetails->last_name}}</h6>
+                                      <h6 class="subtitle">Welcome {{strtoupper($memberDetails->first_name)}} {{strtoupper(ucfirst($memberDetails->last_name))}}</h6>
                                       <p class="description style-01">
                                           You have been logged in with default password. Please update your password to continue.
                                       </p>
