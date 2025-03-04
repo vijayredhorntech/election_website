@@ -106,7 +106,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="referralCodeField" style="display: {{$formData['hasReferralCode']==='true' ? 'block' : 'none'}}">
-                                        <div class="form-group" id="referralCodeField" style="display: {{$formData['hasReferralCode']==='true' ? 'block' : 'none'}}">
                                             <input type="text"
                                                 name="referral_code"
                                                 placeholder="ENTER REFERRAL CODE"
@@ -137,6 +136,7 @@
 
                                     <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                                         <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
+                                    </div>
                                     </div>
 
                             </form>
