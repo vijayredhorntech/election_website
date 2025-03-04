@@ -144,6 +144,7 @@ class MemberController extends Controller
                 'marital_status' => $validatedData['marital_status'],
                 'qualification' => $validatedData['qualification'],
                 'profession' => $validatedData['profession'],
+                'profile_status' => 'active',
             ];
 
             $member->update($updateData);
