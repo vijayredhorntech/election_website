@@ -296,6 +296,8 @@ class MemberRegistrationController extends Controller
         if($update) {
             $request->validate([
                 'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'nullable|string|max:255',
                 'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
                 'dob' => 'required|date|before:16 years ago',
                 'gender' => 'required|in:MALE,FEMALE,OTHER',
@@ -312,6 +314,8 @@ class MemberRegistrationController extends Controller
         else {
             $request->validate([
                 'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'nullable|string|max:255',
                 'dob' => 'required|date|before:16 years ago',
             ]);
 
@@ -328,6 +332,8 @@ class MemberRegistrationController extends Controller
 
             $member->update([
                 'title' => $request->title,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
                 'date_of_birth' => $dateOfBirth,
                 'gender' => $request->gender,
                 'marital_status' => $request->marital_status,
