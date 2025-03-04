@@ -86,7 +86,7 @@
                                             <input type="date"
                                                    id="dob"
                                                    name="dob"
-                                                   value="{{ auth()->user() ? \Carbon\Carbon::parse(auth()->user()->member->date_of_birth)->format('Y-m-d') : old('dob') }}"
+                                                   value="{{ auth()->user() && auth()->user()->member->date_of_birth ? \Carbon\Carbon::parse(auth()->user()->member->date_of_birth)->format('Y-m-d') : old('dob', '') }}"
                                                    class="form-control"
                                                    required
                                                    style="color: black; font-weight: 400;">
