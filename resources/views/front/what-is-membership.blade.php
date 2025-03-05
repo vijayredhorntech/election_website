@@ -33,7 +33,9 @@
                     <div class="help-single-item">
                         <div class="content">
                             <h4 class="title">Frequently Asked Questions</h4>
-                            <p style="color: black">Proin rutrum sem at rutrum ultrirecies. Nunc felis neque, dictum ut porta a, ullamcorper vel ante. Quisque none consequat.</p>
+                            <p style="color: black">
+                                Find answers to common questions about One Nation membership, benefits, and how to get involved.
+                            </p>
                         </div>
                     </div>
                     <div class="icon-box-item-02">

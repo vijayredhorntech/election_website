@@ -151,6 +151,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('donation.')->group(function () {
             Route::get('/donation', [DonationController::class, 'index'])->name('index');
             Route::post('/donation/store', [DonationController::class, 'store'])->name('store');
+            Route::get('/donation/printReceipt/{id}', [DonationController::class, 'printReceipt'])->name('printReceipt');
+
         });
 
         Route::name('budget.')->group(function () {
