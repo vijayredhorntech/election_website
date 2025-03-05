@@ -425,7 +425,6 @@ class MemberRegistrationController extends Controller
                 'profile_status' => 'active',
             ]);
 
-
             session()->flash('success', 'Address information saved successfully');
             return redirect()->route('memberProfile');
         } catch (\Exception $e) {

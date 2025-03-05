@@ -10,14 +10,10 @@ class DonationController extends Controller
 {
     public function index()
     {
-        $formData = [
-            'type' => 'Create',
-            'method' => 'POST',
-            'url' => route('donation.store')
-        ];
+
         $donations = Donation::get()->all();
 
-        return view('admin.donations.index')->with('formData', $formData)->with('donations', $donations);
+        return view('admin.donations.index')->with('donations', $donations);
     }
 
     public function store(Request $request)
