@@ -45,7 +45,7 @@
             <span style="font-size: 12px;font-family: Roboto; color: black">{{ $donation->payment_id }}</span>
         </div>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: end; padding-left: 30px; padding-right: 30px; margin-top: 35px; ">
+    <div style="display: flex; flex-direction: column; align-items: end; padding-left: 30px; padding-right: 30px; margin-top: 30px; ">
         <div style="width: 130px;border-bottom: 1px solid transparent; display: flex; justify-content: end">
             <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Received by</span>
         </div>
