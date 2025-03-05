@@ -10,16 +10,24 @@ class Donation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'donor_name',
+        'name',
         'email',
-        'constituency_id',
         'amount',
-        'donation_date',
+        'payment_id',
         'status',
+        'user_id',
+        'payment_method',
+        'message',
+        'is_anonymous'
     ];
 
-    public function constituency()
+    protected $casts = [
+        'amount' => 'decimal:2',
+        'is_anonymous' => 'boolean',
+    ];
+
+    public function user()
     {
-        return $this->belongsTo(Constituency::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -43,7 +43,9 @@ class PageController extends Controller
      }
      public function donate()
      {
-          return view('front.donate');
+          return view('front.donate', [
+               'stripeKey' => config('services.stripe.key')
+          ]);
      }
      public function donnerDetails()
      {
