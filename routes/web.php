@@ -27,6 +27,7 @@ use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\PaymentController;
 
 
 Route::get('/', [PageController::class, 'index'])->name('index');
@@ -45,8 +46,8 @@ Route::get('/memberShipDetails', [PageController::class, 'memberShipDetails'])->
 
 
 Route::get('/donate', [PageController::class, 'donate'])->name('donate');
-Route::get('/doner_details', [PageController::class, 'donnerDetails'])->name('donnerDetails');
-Route::get('/payment_method', [PageController::class, 'paymentMethod'])->name('paymentMethod');
+Route::post('/process-donation', [PaymentController::class, 'processPayment'])->name('donation.process');
+Route::post('/stripe-webhook', [PaymentController::class, 'webhook'])->name('stripe.webhook');
 
 Route::get('/what_is_membership', [PageController::class, 'whatIsMembership'])->name('whatIsMembership');
 
@@ -265,5 +266,10 @@ use App\Http\Controllers\FeedbackController;
 
 Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback');
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
+// Donation routes
+Route::post('/create-checkout-session', [PaymentController::class, 'createCheckoutSession'])->name('checkout.session');
+Route::get('/donation/success', [PaymentController::class, 'handleSuccess'])->name('donation.success');
+Route::get('/donation/cancel', [PaymentController::class, 'handleCancel'])->name('donation.cancel');
 
 require __DIR__ . '/auth.php';
