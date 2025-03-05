@@ -27,8 +27,8 @@
         <div style="width: 70px;border-bottom: 1px solid transparent;">
             <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Amount</span>
         </div>
-        <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 400px">
-            <span style="font-size: 16px;font-family: Roboto;color: black">£ {{$donation->amount}}</span>
+        <div style="padding-left: 15px;border-bottom: 1px solid gray; width: 400px">
+            <span style="font-size: 16px;font-family: Roboto;color: black"> <span style="font-size: 18px">£</span> {{$donation->amount}}</span>
         </div>
         <div style="width: 130px;border-bottom: 1px solid transparent;">
             <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Method</span>
