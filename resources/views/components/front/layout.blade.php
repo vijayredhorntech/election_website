@@ -123,6 +123,30 @@
         .nav-link.active::after {
             animation: activeIndicator 0.3s ease forwards;
         }
+        .logoutButton
+        {
+            border: none;
+            background-color: transparent;
+            text-align: left;
+            padding: 5px 20px;
+        }
+        .profileNavIcons
+        {
+            color: black !important;
+            cursor:pointer; !important;
+            padding: 5px 20px !important;
+            transition:  0.3s ease !important;
+            width: 100% !important;
+            font-weight: 500 !important;
+            font-size: 16px !important;
+        }
+
+        .profileNavIcons:hover
+        {
+            background-color: #7c0805;
+            color: white !important;
+            transition:  0.3s ease;
+        }
     </style>
 </head>
 
@@ -216,30 +240,6 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                            @if(!auth()->check())
-                                <li class="menu-item-has-children">
-                                    <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
-                                        Login
-                                    </a>
-                                    <div class="line style-01">
-                                        <span class="dot"></span>
-                                        <span class="dot"></span>
-                                        <span class="dot style-02"></span>
-                                    </div>
-                                </li>
-                           @else
-                            <li class="menu-item-has-children mobileProfileList" >
-                                <a href="{{ route('memberProfile') }}" class="nav-link {{ request()->routeIs('memberProfile') ? 'disabled-link' : '' }}">
-                                    Profile
-                                </a>
-                                <div class="line style-01">
-                                    <span class="dot"></span>
-                                    <span class="dot"></span>
-                                    <span class="dot style-02"></span>
-                                </div>
-                            </li>
-                          @endif
-
                     </ul>
                 </div>
                 <div class="nav-right-content">
@@ -258,17 +258,59 @@
                             </a>
                         </div>
                     @else
-                        <div class="btn-wrapper" style="margin-left: 10px; ">
-                            <a href="{{route('memberProfile')}}" >
-                                <div style="display: flex; align-items: center">
-                                    <img src="{{auth()->user()?->member?->profile_photo ? asset('storage/'.auth()->user()?->member?->profile_photo) : asset('assets/images/default-profile.png') }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 1px solid gray">
-                                     <div style="display: flex; flex-direction: column; margin-left: 10px">
-                                         <span style="font-weight: bold; color: black; font-size: 18px">{{ucfirst(auth()->user()?->member?->first_name)}} {{ucfirst(auth()->user()?->member?->last_name)}}</span>
-                                         <p style="font-weight: 400; color: black; font-size: 13px; line-height: 10px">{{auth()->user()?->member?->email}}</p>
-                                     </div>
+                        <div class="btn-wrapper" style="margin-left: 10px; position: relative">
+                            <div style="display: flex; align-items: center; cursor:pointer"
+                                onclick="document.getElementById('editProfileDiv').style.display = document.getElementById('editProfileDiv').style.display === 'none' ? 'block' : 'none'">
+                                <img src="{{auth()->user()?->member?->profile_photo ? asset('storage/'.auth()->user()?->member?->profile_photo) : asset('assets/images/default-profile.png') }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 1px solid gray">
+                                <div style="display: flex; flex-direction: column; margin-left: 10px">
+                                    <span style="font-weight: bold; color: black; font-size: 18px">{{ucfirst(auth()->user()?->member?->first_name)}} {{ucfirst(auth()->user()?->member?->last_name)}}</span>
+                                    <p style="font-weight: 400; color: black; font-size: 13px; line-height: 10px">{{auth()->user()?->member?->email}}</p>
                                 </div>
 
-                            </a>
+
+
+                            <div id="editProfileDiv" style="display: none; position: absolute; background-color: #f8f8f8; height: max-content; box-shadow: 5px 5px 20px 2px #b2b2b2; border-radius: 3PX;  padding: 10px 0px; width: 100%; top: 100%; right: 0px; z-index: 99">
+                               <div style="display: flex; flex-direction: column;">
+                                   @if(!request()->routeIs('memberProfile'))
+                                       <a  href="{{route('memberProfile')}}">
+                                           <div class="profileNavIcons">
+                                               <i class="fa fa-eye" style="margin-right:10px"></i>View Profile
+                                           </div>
+                                       </a>
+                                   @endif
+                                   <a  href="{{route('memberBasicInformation')}}">
+                                      <div class="profileNavIcons">
+                                          <i class="fa fa-pencil" style="margin-right:10px"></i>Update Profile
+                                      </div>
+                                   </a>
+
+                                  @if(request()->routeIs('memberProfile'))
+                                       <a  onclick="printCard()">
+                                           <div class="profileNavIcons">
+                                               <i class="fa fa-print" style="margin-right:10px"></i> Print ID
+                                           </div>
+                                       </a>
+                                  @endif
+                                  @if(request()->routeIs('memberProfile'))
+                                       <a  onclick="downloadCard()">
+                                           <div class="profileNavIcons">
+                                               <i class="fa fa-download" style="margin-right:10px"></i>
+                                               Download ID
+                                           </div>
+                                       </a>
+                                  @endif
+
+
+
+                                   <form action="{{ route('logout') }}" method="post" style="margin-top: 10px; border-top: 1px solid #c9c9c9; padding-top: 10px">
+                                       @csrf
+                                       <button class="profileNavIcons logoutButton" type="submit">
+                                           <i class="fa fa-right-from-bracket" style="margin-right:10px; margin-left: 5px;"></i>
+                                           Log Out
+                                       </button>
+                                   </form>
+                               </div>
+                            </div>
                         </div>
                     @endif
 
@@ -303,6 +345,9 @@
                                     <li><a href="{{route('leadership')}}">Leadership</a></li>
                                     <li><a href="{{route('news')}}">News</a></li>
                                     <li><a href="{{route('events')}}">Events</a></li>
+                                    @if(!auth()->check())
+                                        <li><a href="{{route('login')}}">Login</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>

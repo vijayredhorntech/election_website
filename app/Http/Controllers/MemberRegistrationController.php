@@ -528,7 +528,7 @@ class MemberRegistrationController extends Controller
             $core_member = Core_member::where('user_id', $member->user->id)->first();
 
             if ($core_member != null) {
-                return back()->with('error', 'Request to become core member already submitted.');
+                return back()->with('error', 'We\'ve received your core membership request, and it\'s under review. No further submissions are needed at this time.');
             }
 
             return view('front.core-member-form')->with('member', $member);
@@ -597,7 +597,10 @@ class MemberRegistrationController extends Controller
                 'other_document' => $filePath,
             ]);
         }
-        return redirect()->route('become_core_member')->with('success', 'Request to become core member submitted successfully. We will review your application and get back to you soon.');
+        return redirect()->route('become_core_member')->with('success', 'Request to Become a Core Member Submitted
+
+Thank you for your interest in joining One Nation’s Core Team. Your request has been received and is under review.
+');
 
 
 

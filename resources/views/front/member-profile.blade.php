@@ -217,29 +217,7 @@
                               </h5>
                           </div>
                           <div class="card-body">
-                              <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">
-                                  <div style="display:flex; gap:10px">
-                                      <a href="{{route('memberBasicInformation')}}" style="background-color:orangered; color:white; padding:5px 15px; border-radius:3px; border:0px; cursor:pointer">
-                                          <i class="fa fa-pencil" style="margin-right:5px"></i>Update Profile <span
-                                              class="icon-paper-plan"></span></a>
-                                      <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 15px; border-radius:3px; border:0px; cursor:pointer">
-                                          <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span
-                                              class="icon-paper-plan"></span></button>
-                                      <button type="submit" onclick="downloadCard()" style="background-color:green; color:white; padding:5px 15px; border-radius:3px; border:0px; cursor:pointer">
-                                          <i class="fa fa-download" style="margin-right:5px"></i>
-                                          Download ID <span
-                                              class="icon-paper-plan"></span></button>
-                                      <form action="{{ route('logout') }}" method="post">
-                                          @csrf
-                                      <button type="submit" style="background-color:red; color:white; padding:5px 15px; border-radius:3px; border:0px; cursor:pointer">
-                                          <i class="fa fa-right-from-bracket" style="margin-right:5px"></i>
-                                          Log Out <span
-                                              class="icon-paper-plan"></span>
-                                      </button>
-                                      </form>
-                                  </div>
 
-                              </div>
                               <div class="w-full p-2">
                                   <div style="display: flex; align-items: start; justify-content: space-between; gap: 10px">
                                       <div>

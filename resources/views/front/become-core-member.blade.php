@@ -47,7 +47,7 @@
                                 @endif
                                 <h6 class="subtitle">Become a Core Team Member</h6>
                                 <p class="description style-01">
-                                    Joining our political party as a core member is an opportunity to make a real impact on society. As a core member, you will actively participate in decision-making, community outreach, and party initiatives.
+                                    Joining One Nation as a core member is an opportunity to make a real impact on society. As a core member, you will actively participate in decision-making, community outreach, and party initiatives.
                                 </p>
 
 
@@ -56,20 +56,20 @@
                                 <h6 class="subtitle">Process to Become a Core Team Member</h6>
                                  <ul>
                                      <li style="font-size: 16px; color: black">
-                                         <strong>Party Membership ID:</strong>
-                                         The applicant must already be a registered member of the party. If not, they should complete the party membership process first.
+                                         <strong>1)   Party Membership ID:</strong>
+                                         The applicant must be a registered member of One Nation. If not, they must complete the membership process first.
                                      </li>
                                      <li style="font-size: 16px; color: black">
-                                         <strong>Application Submission:</strong>
+                                         <strong>2)   Application Submission:</strong>
                                          Fill out the Core Member Application Form with accurate personal, professional, and preference details.
                                      </li>
                                      <li style="font-size: 16px; color: black">
-                                         <strong>Approval Process: </strong>
-                                         The submitted application will undergo a review by the party's internal committee. Based on eligibility, skills, and availability, the application may be approved or rejected.
+                                         <strong>3)   Approval Process:</strong>
+                                         The application will be reviewed by the party’s internal committee based on eligibility, skills, and availability. It may be approved or rejected accordingly.
                                      </li>
                                      <li style="font-size: 16px; color: black">
-                                         <strong>Confirmation & Induction:</strong>
-                                         Approved applicants will receive confirmation and further instructions on their role and responsibilities as core members.
+                                         <strong>4)   Confirmation & Induction:</strong>
+                                         Approved applicants will receive a confirmation email with further instructions on their role and responsibilities.
                                      </li>
                                  </ul>
 
