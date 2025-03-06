@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OtpMail;
+use App\Facades\CustomLog;
+use App\Mail\ContactMail;
 use App\Models\News;
 use App\Models\Event;
 use App\Models\Contact;
@@ -257,7 +258,7 @@ class PageController extends Controller
      {
           $validated = request()->validate([
                'name' => 'required|string|max:255',
-                'email' => 'required|email:rfc,dns|max:255',
+               'email' => 'required|email:rfc,dns|max:255',
                // 'email' => 'required|email|max:255',
                'subject' => 'required|string|max:255',
                'message' => 'required|string'
@@ -266,9 +267,19 @@ class PageController extends Controller
 
           // dd($validated);
 
-         contact::create($validated);
+          try {
+               Mail::to($validated['email'])->queue(new ContactMail($validated['name']));
+          } catch (\Exception $e) {
+               CustomLog::error('Failed to send email', [
+                    'error' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'file' => $e->getFile(),
+                    'trace' => $e->getTraceAsString()
+               ]);
+               return redirect()->back()->with('error', 'Failed to send email');
+          }
+
+          contact::create($validated);
           return redirect()->back()->with('success', 'Thank you for your message. We will get back to you soon.');
      }
-
-
 }
