@@ -53,9 +53,10 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title">
-                        <h2 class="title">Party Aims & Goals</h2>
-                        <p style="text-align:center; font-size:17px; color: black">Our mission is to build a stronger,
-                            fairer, and more united society by addressing the real issues affecting our people.</p>
+                        <h2 class="title">Party Aims & Goals
+                        </h2>
+                        <p style="text-align:center; font-size:17px; color: black">Our mission is to build a stronger, fairer, and more united society by addressing the real issues affecting our people.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -67,13 +68,17 @@
                             <i class="fas fa-graduation-cap" style="color: #c31c39"></i>
                         </div>
                         <div class="content">
-                            <h4 class="title">Educating & Empowering</h4>
-                            <p style="color: black">Education is key to positive change. We focus on raising awareness
-                                about critical social, environmental, and political issues.</p>
+                            <h4 class="title">Educating & Empowering
+                            </h4>
+                            <p style="color: black">Education is key to positive change. We raise awareness about critical social, environmental, and political issues.
+                            </p>
                             <ul class="mission-list">
-                                <li style="color: black">Climate change and sustainability</li>
-                                <li style="color: black">Public health and prevention</li>
-                                <li style="color: black">Social justice and equality</li>
+                                <li style="color: black">Climate Change & Sustainability
+                                </li>
+                                <li style="color: black">Public Health & Prevention
+                                </li>
+                                <li style="color: black">Social Justice & Equality
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -84,13 +89,16 @@
                             <i class="fas fa-balance-scale" style="color: #c31c39"></i>
                         </div>
                         <div class="content">
-                            <h4 class="title">Addressing and Resolving Issues</h4>
-                            <p style="color: black">We are dedicated to addressing injustices and concerns raised by our
-                                members and the public, using all available resources to find effective solutions.</p>
+                            <h4 class="title">Addressing & Resolving Issues</h4>
+                            <p style="color: black">We are committed to tackling injustices and concerns raised by our members and the public, using all available resources to create real solutions.
+                            </p>
                             <ul class="mission-list">
-                                <li style="color: black">Commitment to Problem-Solving</li>
-                                <li style="color: black">Fighting for Change</li>
-                                <li style="color: black">A Platform for Every Voice</li>
+                                <li style="color: black">Commitment to Problem-Solving
+                                </li>
+                                <li style="color: black">Fighting for Change
+                                </li>
+                                <li style="color: black">A Platform for Every Voice
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -101,13 +109,17 @@
                             <i class="fas fa-hands-helping" style="color: #c31c39"></i>
                         </div>
                         <div class="content">
-                            <h4 class="title">Promoting Unity & Solidarity</h4>
-                            <p style="color: black">We stand for a united and inclusive society, fostering national and
-                                local unity by working together for the common good.</p>
+                            <h4 class="title">Promoting Unity & Solidarity
+                            </h4>
+                            <p style="color: black">We stand for a united and inclusive society, fostering national and local unity by working together for the common good.
+                            </p>
                             <ul class="mission-list">
-                                <li style="color: black">Bringing People Together</li>
-                                <li style="color: black">Stronger Together</li>
-                                <li style="color: black">A Voice for All</li>
+                                <li style="color: black">Bringing People Together
+                                </li>
+                                <li style="color: black">Stronger Together
+                                </li>
+                                <li style="color: black">A Voice for All
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -116,14 +128,14 @@
         </div>
     </div>
 
-    <div class="political-support-section padding-top-115 padding-bottom-120">
+    <div class="political-support-section padding-top-115 padding-bottom-20">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title">
                         <h2 class="title">Why Join Us</h2>
-                        <p style="text-align:center; font-size:17px; color: black">Be the Voice of Change! Join our
-                            movement for those who want to make a difference.</p>
+                        <p style="text-align:center; font-size:17px; color: black">Be the Voice of Change! Join One Nation and be part of a movement that truly makes a difference.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -132,29 +144,9 @@
                     <div class="political-support-item">
 
                         <div class="content">
-                            <h4 class="title">Your Voice Matters</h4>
-                            <p style="color: black">We listen, we act, and we fight for the issues that truly impact you
-                                and your community.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="political-support-item">
-
-                        <div class="content">
-                            <h4 class="title">People Over Politics</h4>
-                            <p style="color: black">We focus on real change, not empty promises. Our goal is to serve
-                                the people, not the system.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="political-support-item">
-
-                        <div class="content">
-                            <h4 class="title"> Stand for Justice & Equality</h4>
-                            <p style="color: black">We are committed to fairness, equal opportunities, and ensuring that
-                                no one is left behind.
+                            <h4 class="title">Your Voice Matters
+                            </h4>
+                            <p style="color: black">We listen, we act, and we fight for real issues that impact you and your community.
                             </p>
                         </div>
                     </div>
@@ -163,9 +155,9 @@
                     <div class="political-support-item">
 
                         <div class="content">
-                            <h4 class="title">Shape the Future</h4>
-                            <p style="color: black">As a member, you have the power to influence policies, campaigns,
-                                and the direction of our party.
+                            <h4 class="title">People Over Politics
+                            </h4>
+                            <p style="color: black">We stand for real change—not empty promises. Our focus is on serving people, not the system.
                             </p>
                         </div>
                     </div>
@@ -174,9 +166,9 @@
                     <div class="political-support-item">
 
                         <div class="content">
-                            <h4 class="title">Be Part of a Supportive Community</h4>
-                            <p style="color: black">Connect with like-minded individuals who share your passion for
-                                progress, fairness, and positive change.
+                            <h4 class="title">Stand for Justice & Equality
+                            </h4>
+                            <p style="color: black">We are committed to fairness, equal opportunities, and ensuring no one is left behind.
                             </p>
                         </div>
                     </div>
@@ -185,17 +177,37 @@
                     <div class="political-support-item">
 
                         <div class="content">
-                            <h4 class="title">Opportunity for Leadership & Growth</h4>
-                            <p style="color: black">Whether you want to take an active role in politics or simply
-                                support from the sidelines, we offer opportunities for leadership, learning, and making
-                                an impact.
+                            <h4 class="title">Shape the Future
+                            </h4>
+                            <p style="color: black">As a member, you can help influence policies, campaigns, and the direction of our party.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="political-support-item">
+
+                        <div class="content">
+                            <h4 class="title">Be Part of a Supportive Community
+                            </h4>
+                            <p style="color: black">Connect with like-minded individuals who share your passion for progress and positive change.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="political-support-item">
+
+                        <div class="content">
+                            <h4 class="title">Opportunities for Leadership & Growth
+                            </h4>
+                            <p style="color: black">Get involved as much or as little as you choose—whether supporting from the sidelines or stepping into leadership.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="btn-wrapper text-center margin-top-40">
-                <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory">Join Us Today</a>
+                <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory">Join One Nation today and be a part of the change!</a>
             </div>
         </div>
     </div>
@@ -206,8 +218,8 @@
                 <div class="col-lg-8">
                     <div class="section-title">
                         <h2 class="title">Why Donate?</h2>
-                        <p style="text-align:center; font-size:17px; color: black">Your donation empowers us to take
-                            action, amplify voices, and create a better future for all.</p>
+                        <p style="text-align:center; font-size:17px; color: black">Your donation empowers One Nation to take action, amplify voices, and build a better future for all.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -216,9 +228,11 @@
                     <div class="donation-single-items style-01">
 
                         <div class="content">
-                            <h4 class="title">Fuel Real Change</h4>
-                            <p style="color: black">Your contribution directly funds campaigns and community
-                                initiatives.</p>
+                            <h4 class="title">
+                                Fuel Real Change
+                            </h4>
+                            <p style="color: black">Your contribution directly supports campaigns and community initiatives.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -227,7 +241,8 @@
 
                         <div class="content">
                             <h4 class="title">Support People-First</h4>
-                            <p style="color: black">We rely on grassroots support, not big corporations.</p>
+                            <p style="color: black">We rely on grassroots support—not big corporations.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -236,7 +251,8 @@
 
                         <div class="content">
                             <h4 class="title">Amplify Voices</h4>
-                            <p style="color: black">Help us speak louder for the people who need it most.</p>
+                            <p style="color: black">Help us speak louder for those who need it most.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -244,8 +260,9 @@
                     <div class="donation-single-items style-01">
 
                         <div class="content">
-                            <h4 class="title">Make an Impact</h4>
-                            <p style="color: black">Every contribution helps us make a real difference.</p>
+                            <h4 class="title">Make an Impact
+                            </h4>
+                            <p style="color: black">Every contribution brings us closer to real change.</p>
                         </div>
                     </div>
                 </div>

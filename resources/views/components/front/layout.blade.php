@@ -338,13 +338,12 @@
                                     </span>
                                 </h4>
                                 <ul>
-                                    <li><a href="{{route('about')}}">About Us</a></li>
-                                    <li><a href="{{route('leadership')}}">Leadership</a></li>
                                     <li><a href="{{route('news')}}">News</a></li>
                                     <li><a href="{{route('events')}}">Events</a></li>
-                                    @if(!auth()->check())
-                                        <li><a href="{{route('login')}}">Login</a></li>
-                                    @endif
+                                    <li><a href="{{route('whatIsMembership')}}">FAQ's</a></li>
+                                    <li><a href="{{route('contact')}}">Contact Us</a></li>
+
+
                                 </ul>
                             </div>
                         </div>
@@ -359,11 +358,10 @@
                                     </span>
                                 </h4>
                                 <ul>
-                                    <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
-                                    <li><a href="{{route('terms')}}">Terms & Conditions</a></li>
-                                    <li><a href="{{route('whatIsMembership')}}">What is Membership?</a></li>
                                     <li><a href="{{route('become_core_member')}}">Become Core Member</a></li>
-                                    <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                    @if(!auth()->check())
+                                        <li><a href="{{route('login')}}">Login</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -378,10 +376,9 @@
                                     </span>
                                 </h4>
                                 <ul>
-                                    <li><a href="{{route('policies')}}#justice">Justice & Representation</a></li>
-                                    <li><a href="{{route('policies')}}#education">Public Education</a></li>
-                                    <li><a href="{{route('policies')}}#economy">Economic Growth</a></li>
-                                    <li><a href="{{route('policies')}}#welfare">Welfare Reform</a></li>
+                                    <li><a href="{{route('policies')}}">Policies</a></li>
+                                    <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
+                                    <li><a href="{{route('terms')}}">Terms & Conditions</a></li>
                                 </ul>
                             </div>
                         </div>

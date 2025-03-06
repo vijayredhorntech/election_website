@@ -49,7 +49,7 @@
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">£ {{$donation->amount}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[200px]">{{ substr($donation->payment_id, 0, 30) . '...' }}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{ucfirst($donation->payment_method)}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[100px]">{{ ucfirst($donation->status) }}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[100px]">{{ $donation->status==='completed'?'Success':'Rejected'}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{ $donation->is_anonymous?'Yes':'No' }}</td>
 
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm ">

@@ -37,15 +37,21 @@
             <span style="font-size: 16px;font-family: Roboto; color: black">{{ucfirst($donation->payment_method)}}</span>
         </div>
     </div>
-    <div style="display: flex;padding-left: 30px; padding-right: 30px; margin-top: 30px; ">
-        <div style="width: 130px;border-bottom: 1px solid transparent;">
-            <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Cash/ Txn. Id</span>
+    @php
+        $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+        $amountInWords = ucfirst($f->format($donation->amount)) . ' pound  only/-';
+    @endphp
+
+    <div style="display: flex;padding-left: 30px; padding-right: 30px; margin-top: 30px;">
+        <div style="width: 180px; border-bottom: 1px solid transparent;">
+            <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Amount (in words)</span>
         </div>
         <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
-            <span style="font-size: 12px;font-family: Roboto; color: black">{{ $donation->payment_id }}</span>
+            <span style="font-size: 16px;font-family: Roboto; color: black">{{ $amountInWords }}</span>
         </div>
+
     </div>
-    <div style="display: flex; flex-direction: column; align-items: end; padding-left: 30px; padding-right: 30px; margin-top: 30px; ">
+    <div style="display: flex; flex-direction: column; align-items: end; padding-left: 30px; padding-right: 30px; margin-top: 10px; ">
         <div style="width: 130px;border-bottom: 1px solid transparent; display: flex; justify-content: end">
             <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Received by</span>
         </div>
