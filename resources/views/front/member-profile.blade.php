@@ -43,6 +43,7 @@
         link.click();
       });
       document.getElementById("idCardContainer").style.display = "none";
+      document.getElementById("idCardContainer").style.display = "none";
     }
   </script>
 
@@ -653,7 +654,7 @@
               </div>
           </div>
           @else
-          <div class="donation-content-section" style="margin-top: 50px">
+          <div class="donation-content-section" style="padding-top: 100px; background-color: rgba(0,0,0,0.89); z-index: 99;  position: absolute; top: 0px; left: 0px; height: 100%; width:100vw; display:flex; justify-content:center;">
               <div class="container">
                   <div class="row">
                       <div class="col-lg-2"></div>

@@ -150,7 +150,7 @@
     </style>
 </head>
 
-<body>
+<body style="min-height: 100vh; position: relative">
 
     <div class="header-style-01">
         <!-- support bar area end -->
@@ -266,10 +266,7 @@
                                     <span style="font-weight: bold; color: black; font-size: 18px">{{ucfirst(auth()->user()?->member?->first_name)}} {{ucfirst(auth()->user()?->member?->last_name)}}</span>
                                     <p style="font-weight: 400; color: black; font-size: 13px; line-height: 10px">{{auth()->user()?->member?->email}}</p>
                                 </div>
-
-
-
-                            <div id="editProfileDiv" style="display: none; position: absolute; background-color: #f8f8f8; height: max-content; box-shadow: 5px 5px 20px 2px #b2b2b2; border-radius: 3PX;  padding: 10px 0px; width: 100%; top: 100%; right: 0px; z-index: 99">
+                            <div id="editProfileDiv" style="display: none; position: absolute; background-color: #f8f8f8; height: max-content; box-shadow: 5px 5px 20px 2px #b2b2b2; border-radius: 3PX;  padding: 10px 0px; min-width: 200px; width: 100%; top: 100%; right: 0px; z-index: 99">
                                <div style="display: flex; flex-direction: column;">
                                    @if(!request()->routeIs('memberProfile'))
                                        <a  href="{{route('memberProfile')}}">
