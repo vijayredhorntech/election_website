@@ -60,9 +60,9 @@
       padding: 5px 10px;
     }
 
-    /*#idCardContainer {*/
-    /*  display: none;*/
-    /*}*/
+    #idCardContainer {
+      display: none;
+    }
 
     .barcode-container {
       display: flex;
@@ -594,7 +594,7 @@
                                       <span style="font-size: 35px;">Member of One Nation Party</span>
                                   </div>
                                   <div style="padding: 10px; position: absolute; right: 0px; top: 0px">
-                                      <img src="{{asset('assets/images/logo.png')}}" style="height: 120px;" alt="">
+                                      <img src="{{asset('assets/images/logo.png')}}" style="height: 138px;" alt="">
 
                                   </div>
 
@@ -603,13 +603,13 @@
 
                               <div style="display: flex; flex-direction: column; padding-left: 20px; margin-top: 30px">
                                   <div style="display: flex;">
-                                      <div style="flex: 0 0 180px; height:240px;  border-radius: 10px; position: relative; background-image: url({{$memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png')}}); background-repeat: no-repeat; background-position: center; background-size: cover;">
+                                      <div style="flex: 0 0 180px; margin-top:17px; height:240px;  border-radius: 10px; position: relative; background-image: url({{$memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png')}}); background-repeat: no-repeat; background-position: center; background-size: cover;">
                                           <div style="height: 100px; width: 100px; position: absolute; right: -50%; transform: translateX(-50%); bottom: 5px; border-radius: 50%; background-color: white; padding: 0px; border: 1px solid black;">
                                               <img src="{{asset('assets/images/id_sign.jpg')}}" alt="" style="height: 100%; width: 100%; border-radius: 50%; object-fit: cover;">
                                           </div>
                                       </div>
 
-                                      <div style="flex: 1;">
+                                      <div style="flex: 1; margin-top:17px;">
                                           <p style="font-size: 26px; padding-left: 15px; line-height: 25px;">
                                               <span style="font-weight: 600; color:black">Name:</span>
                                               <span style="font-weight: 400; color:black">{{$memberDetails->first_name}}
@@ -629,7 +629,7 @@
                                               <span style="font-weight: 400; color:black">www.one-nation.org.uk</span>
                                           </p>
                                           <div style="display: flex; justify-content: end;">
-                                              <div style="width: max-content; padding: 0px 25px; padding-right: 20px; margin-top: 5px; background-color: #b30d00; color: white; height: max-content; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
+                                              <div style="width: max-content; padding: 0px 25px; padding-right: 20px; margin-top: 1px; background-color: #b30d00; color: white; height: max-content; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
                                                   <span style="font-size: 29px;">HQ Contact No: 07955555561</span>
                                               </div>
                                           </div>
@@ -640,7 +640,7 @@
                                   </div>
                               </div>
 
-                              <div style="width: 100%; display: flex; justify-content: end; margin-top: -30px;">
+                              <div style="width: 100%; display: flex; justify-content: end; margin-top: -40px;">
                                   <div style="display:flex; flex-direction: column; align-items: center; justify-content: end;">
                                       <img id="barcode" style="width:460px; height: 50px;" />
                                       <span style="font-weight: bold; color: black; font-size: 18px">{{$memberDetails->custom_id}}</span>

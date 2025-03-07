@@ -288,11 +288,20 @@
                                 </p>
                             </div>
 
+                               <a href="{{route('donationTerms')}}" style="margin-top: 10px;  color: #b30d00;cursor: pointer; font-size: 16px; margin-right: 10px">
+                                   Donation Terms & Conditions
+                                </a>
+
+
                             <button type="submit" class="btn-donate" id="submit-button">
                                 <span id="button-text">Make Donation</span>
                                 <span id="spinner" class="loading" style="display: none;"></span>
                             </button>
+
+
+
                         </form>
+
                     </div>
                 </div>
             </div>

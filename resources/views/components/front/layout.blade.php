@@ -379,6 +379,7 @@
                                     <li><a href="{{route('policies')}}">Policies</a></li>
                                     <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
                                     <li><a href="{{route('terms')}}">Terms & Conditions</a></li>
+                                    <li><a href="{{route('donationTerms')}}">Donation Terms</a></li>
                                 </ul>
                             </div>
                         </div>
