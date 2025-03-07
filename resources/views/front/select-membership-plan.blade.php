@@ -65,8 +65,10 @@
                                     <div class="form-question" style="padding-left: 20px">
                                         <div class="check-box-wrapper">
                                             <div class="check-box">
+                                                <h6>1 year plan (£ 36/ Y)</h6>
+
                                                 <label class="container-box">
-                                                    £ {{$plan['amount']}}/ MO
+                                                    <span style="font-weight: bold; color: black"> £ {{$plan['amount']}}/ MO</span>
                                                     <input type="radio" value="{{$plan['id']}}" name="memberShip" {{$loop->iteration===1?'checked':''}}>
                                                     <span class="checkmark"></span>
                                                 </label>
