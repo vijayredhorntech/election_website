@@ -88,7 +88,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/member_address_information', [MemberRegistrationController::class, 'memberAddressInformation'])->name('memberAddressInformation');
     Route::post('/member_address_information', [MemberRegistrationController::class, 'storeMemberAddressInformation'])->name('storeMemberAddressInformation');
     Route::get('/members_profile', [MemberController::class, 'memberProfile'])
-//        ->middleware('isMember')
+        //        ->middleware('isMember')
         ->name('memberProfile');
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
 
@@ -152,7 +152,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/donation', [DonationController::class, 'index'])->name('index');
             Route::post('/donation/store', [DonationController::class, 'store'])->name('store');
             Route::get('/donation/printReceipt/{id}', [DonationController::class, 'printReceipt'])->name('printReceipt');
-
         });
 
         Route::name('budget.')->group(function () {
@@ -254,6 +253,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('/expense-categories/store', [ExpenseCategoryController::class, 'store'])->name('expense.category.store');
             Route::delete('/expense-categories/{id}', [ExpenseCategoryController::class, 'destroy'])->name('expense.category.destroy');
         });
+
+        Route::get('/download/{filename}', [ExpenseController::class, 'download'])->name('download');
     });
 });
 

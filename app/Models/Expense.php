@@ -13,6 +13,7 @@ class Expense extends Model
         'amount',
         'date',
         'description',
+        'bill',
     ];
 
     /**

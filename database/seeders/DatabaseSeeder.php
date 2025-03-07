@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             TitleSeeder::class,
             DesignationSeeder::class,
+            // ExpenseCategorySeeder::class,
         ]);
 
         // Seed a Super Admin user

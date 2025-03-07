@@ -15,6 +15,15 @@
     </nav>
     @endsection
 
+    @section('alertBox')
+    @if (session('success'))
+    <x-alert-box :message="session('success')" :type="'success'" />
+    @endif
+    @if (session('error'))
+    <x-alert-box :message="session('error')" :type="'error'" />
+    @endif
+    @endsection
+
 
     {{-- dashboard stats heading and content here--}}
     <div class="w-full bg-primaryHeading  rounded-[3px] p-4">
@@ -326,7 +335,7 @@
             @endforeach
         </ul>
         @endif
-        <form id="addExpanseForm" action="{{ route('expense.store') }}" method="POST" class="p-4 rounded-[3px] hidden w-full grid lg:grid-col-2 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 bg-white mt-4 gap-4 pb-4">
+        <form id="addExpanseForm" action="{{ route('expense.store') }}" method="POST" enctype="multipart/form-data" class="p-4 rounded-[3px] hidden w-full grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 bg-white mt-4 gap-4 pb-4">
             @csrf
             <div class="w-full">
                 <div class="flex flex-col gap-1 ">
@@ -358,7 +367,18 @@
                     <textarea type="text" name="description" placeholder="Enter remark....." class=" text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000">{{ $expanse->description ?? old('description') }}</textarea>
                 </div>
             </div>
-            <div class="w-full lg:col-span-2 md:col-span-2 flex justify-end">
+            <!-- Expense bill upload -->
+            <div class="w-full lg:col-span-1 md:col-span-1">
+                <div class="flex flex-col gap-1">
+                    <label for="bill" class="font-semibold text-sm text-black">Expense Bill</label>
+                    <input type="file" name="bill" id="bill"
+                        class="text-sm px-4 py-1.5 rounded-[3px] border-[1px] border-primaryLight/50 placeholder-black text-black focus:outline-none focus:ring-0 focus:border-primaryLight/80 transition ease-in duration-2000"
+                        accept=".jpg,.jpeg,.png,.gif,.pdf,.xls,.xlsx"
+                        onchange="validateFile(this)">
+                    <span id="fileError" class="text-sm text-red-500 mt-1 hidden"></span>
+                </div>
+            </div>
+            <div class="w-full lg:col-span-3 md:col-span-3 flex justify-end">
                 <div class="flex flex-col gap-1 ">
                     <label for="name" class="font-semibold text-sm text-black">&nbsp</label>
                     <button class="w-max px-4 py-1.5 rounded-[3px] text-white bg-success hover:bg-primaryLight transition ease-in duration-2000 text-md font-semibold">Add</button>
@@ -399,9 +419,10 @@
 
                                 </td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">
-                                    <a href="" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="Edit Expanse"><i class="fa fa-edit text-xs"></i></a>
-                                    <a href="" class="bg-info text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Invoice"><i class="fa fa-file text-xs"></i></a>
-
+                                    <!-- <a href="" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="Edit Expanse"><i class="fa fa-edit text-xs"></i></a> -->
+                                    @if ($expanse->bill)
+                                    <a href="{{ route('download', basename($expanse->bill)) }}" class="bg-info text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Expense Bill"><i class="fa fa-file text-xs"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             @empty
@@ -535,6 +556,33 @@
 
 
 
+    <script>
+        function validateFile(input) {
+            const file = input.files[0];
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf',
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            ];
+            const maxSize = 2 * 1024 * 1024; // 2MB in bytes
 
+            const errorSpan = document.getElementById('fileError');
+            errorSpan.classList.add('hidden'); // Hide error by default
+
+            if (file) {
+                if (!allowedTypes.includes(file.type)) {
+                    errorSpan.textContent = "Invalid file type! Only images, PDFs, and Excel files are allowed.";
+                    errorSpan.classList.remove('hidden');
+                    input.value = ""; // Clear the file input
+                    return;
+                }
+                if (file.size > maxSize) {
+                    errorSpan.textContent = "File size must be less than 2MB!";
+                    errorSpan.classList.remove('hidden');
+                    input.value = ""; // Clear the file input
+                    return;
+                }
+            }
+        }
+    </script>
 
 </x-app-layout>
