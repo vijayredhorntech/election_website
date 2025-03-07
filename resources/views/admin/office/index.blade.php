@@ -46,6 +46,58 @@
                     @endif
                     <form id="createNewOfficeDiv" action="{{$formData['url']}}" method="{{$formData['method']}}" class="{{$formData['type']==='Create' && !$errors->any() ?'hidden':''}} w-full grid lg:grid-col-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 bg-white mt-4 gap-4 pb-4">
                         @csrf
+                        <div class="w-full lg:col-span-3 md:col-span-3 sm:col-span-2 col-span-1">
+                            <div x-data="{
+                                search: '',
+                                selected: {{ $selectedConstituencies ?? '[]' }},
+                                open: false
+                            }" class="relative">
+                                <label for="search" class="font-semibold text-sm text-black">
+                                    Constituencies Under Management
+                                </label>
+
+                                <!-- Display selected constituencies -->
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <template x-for="(item, index) in selected" :key="item.id">
+                                        <div class="flex items-center bg-blue-500 text-white px-3 py-1 rounded-full">
+                                            <span x-text="item.name"></span>
+                                            <button type="button" class="ml-2 focus:outline-none" @click="selected.splice(index, 1)">
+                                                ✖
+                                            </button>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- Search & Select -->
+                                <div class="relative mt-2">
+                                    <input
+                                        type="text"
+                                        id="search"
+                                        x-model="search"
+                                        placeholder="Search constituencies..."
+                                        @focus="open = true"
+                                        @click.away="open = false"
+                                        class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300">
+
+                                    <div x-show="open" class="absolute w-full bg-white border rounded-md mt-1 max-h-40 overflow-y-auto shadow-lg z-10">
+                                        @foreach ($constituencies as $constituency)
+                                        <div
+                                            class="px-3 py-2 cursor-pointer hover:bg-blue-100"
+                                            x-show="$el.innerText.toLowerCase().includes(search.toLowerCase())"
+                                            @click="selected.push({ id: {{ $constituency->id }}, name: '{{ addslashes($constituency->name) }}', code: '{{ $constituency->code }}' }), open = false, search = ''">
+                                            {{ $constituency->name }}
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <!-- Hidden inputs for selected constituencies -->
+                                <template x-for="item in selected">
+                                    <input type="hidden" name="constituencies[]" :value="item.code">
+                                </template>
+                            </div>
+                        </div>
+
                         <div class="w-full">
                             <div class="flex flex-col gap-1 ">
                                 <label for="name" class="font-semibold text-sm text-black">Office Name <span class="text-danger">*</span></label>
@@ -82,12 +134,14 @@
                                 </td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Name</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Address</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">In Charge</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Budget</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Remaining Budget</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Employees</td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Constituencies </td>
+                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Members</td>
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Events</td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Constituency </td>
-                                <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Status</td>
+                                <!-- <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Status</td> -->
                                 <td class="border-[1px] border-primaryLight/50 font-semibold text-black px-4 py-2">Actions</td>
                             </tr>
                         </thead>
@@ -96,21 +150,64 @@
                             <tr class="{{$loop->iteration%2 ===0?'bg-primaryDark/10':''}}">
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[100px]">{{$loop->iteration}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-bold text-black px-4 py-0.5 text-sm w-[200px]">{{$office->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{ $office->house_name_number }} {{ $office->street }} {{ $office->town_city }} {{ $office->postcode }}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">
+                                    {{ Str::limit($office->house_name_number . ' ' . $office->street . ' ' . $office->town_city . ' ' . $office->postcode, 10) }}
+                                </td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">
+                                    {{$office->in_charge}}
+                                </td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">£ {{number_format($office->budgets->sum('amount'), 2)}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">£ {{number_format($office->budgets->sum('amount') - $office->expenses->sum('amount'), 2)}}</td>
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->employees->count()}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->events->count()}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->constituency->name}}</td>
-                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
-                                    <a href="{{route('office.status',['id'=>$office->id])}}" class="bg-{{$office->status?"success":"danger"}}/10 border-[1px] border-{{$office->status?"success":"danger"}} font-bold text-{{$office->status?"success":"danger"}} px-4 py-0.5 rounded-[3px]"> {{$office->status?"Active":"Inactive"}}</a>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px] relative"
+                                    x-data="{ showTooltip: false }">
+
+                                    <button
+                                        @mouseover="showTooltip = true"
+                                        @mouseleave="showTooltip = false"
+                                        class="bg-primary text-sm px-3 py-1 text-sm rounded-md hover:bg-primary/80 transition duration-300">
+                                        Show
+                                    </button>
+
+                                    <!-- Tooltip (Now Appears Above) -->
+                                    <!-- <div
+                                        x-show="showTooltip"
+                                        x-transition
+                                        class="fixed left-1/2 bottom-[100%] transform -translate-x-1/2 mb-2 bg-black text-white text-xs rounded-lg p-2 w-48 shadow-lg z-[9999]"
+                                        style="display: none;">
+                                        <ul class="list-none text-left">
+                                            @foreach ($office->constituencies as $constituency)
+                                            <li class="py-1 border-b border-gray-700 last:border-none">
+                                                <strong>{{$constituency->name}}:</strong> {{$constituency->members_count}}
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div> -->
+                                    <div
+                                        x-show="showTooltip"
+                                        x-transition
+                                        class="absolute left-1/2 bottom-full transform -translate-x-1/2 mb-2 bg-black text-white text-xs rounded-lg p-2 w-48 shadow-lg z-10"
+                                        style="display: none;">
+                                        <ul class="list-none text-left">
+                                            @foreach ($office->constituencies as $constituency)
+                                            <li class="py-1 border-b border-gray-700 last:border-none">
+                                                <strong>{{$constituency->name}}:</strong> {{$constituency->members_count}}
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->total_members}}</td>
+                                <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm w-[200px]">{{$office->events->count()}}</td>
+                                <!-- <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-0.5 text-sm">
+                                    <a href="{{route('office.status',['id'=>$office->id])}}" class="bg-{{$office->status?"success":"danger"}}/10 border-[1px] border-{{$office->status?"success":"danger"}} font-bold text-{{$office->status?"success":"danger"}} px-4 py-0.5 rounded-[3px]"> {{$office->status?"Active":"Inactive"}}</a>
+                                </td> -->
 
                                 <td class="border-[1px] border-primaryLight/50 font-medium text-black px-4 py-1 text-sm ">
                                     <div class="flex h-full">
                                         <a href="{{route('office.edit',['id'=>$office->id])}}" class="bg-info text-white px-3 py-1 rounded-[3px]" title="Edit Office"><i class="fa fa-pen text-xs"></i></a>
                                         <a href="{{route('office.view',['id'=>$office->id])}}" class="bg-success text-white px-3 py-1 rounded-[3px] ml-0.5" title="View Office"><i class="fa fa-eye text-xs"></i></a>
-                                        <a href="{{route('office.delete',['id'=>$office->id])}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Office"><i class="fa fa-trash text-xs"></i></a>
+                                        <!-- <a href="{{route('office.delete',['id'=>$office->id])}}" class="bg-danger text-white px-3 py-1 rounded-[3px] ml-0.5" title="Delete Office"><i class="fa fa-trash text-xs"></i></a> -->
 
                                     </div>
                                 </td>
@@ -130,3 +227,7 @@
         </div>
     </div>
 </x-app-layout>
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+@endpush

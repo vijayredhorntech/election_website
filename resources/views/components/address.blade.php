@@ -1,7 +1,7 @@
 <div class="w-full">
     <label for="" class="text-gray-500 text-sm">Post Code <span class="text-danger">*</span></label>
     <div class="relative">
-        <input type="text" name="postcode" placeholder="Enter Post Code" id="postcode" value="{{old('postcode')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
+        <input type="text" name="postcode" placeholder="Enter Post Code" id="postcode" value="{{$data->postcode ?? old('postcode')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 400;">
         <button type="button" id="searchAddress" class="absolute right-0 top-0 h-full px-4 text-white font-semibold transition ease-in duration-200 cursor-pointer rounded-r-[3px]" style="background-color: rgb(247 44 91 / 0.7);">Find your Address</button>
     </div>
     @error('postcode')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
@@ -16,17 +16,17 @@
 
 <div class="w-full">
     <label for="" class="text-gray-500 text-sm">House Name/Number <span class="text-danger">*</span></label>
-    <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="house_name_number" value="{{old('house_name_number')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true">
+    <input type="text" placeholder="Enter House Name/Number" name="house_name_number" id="house_name_number" value="{{$data->house_name_number ?? old('house_name_number')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true">
     @error('house_name_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 </div>
 <div class="w-full">
     <label for="" class="text-gray-500 text-sm">Street <span class="text-danger">*</span></label>
-    <input type="text" name="street" placeholder="Enter Street Name" id="street" value="{{old('street')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true">
+    <input type="text" name="street" placeholder="Enter Street Name" id="street" value="{{$data->street ?? old('street')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true">
     @error('street')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 </div>
 <div class="w-full">
     <label for="" class="text-gray-500 text-sm">Town/City <span class="text-danger">*</span></label>
-    <input type="text" name="town_city" id="town_city" placeholder="Enter Town/City" value="{{old('town_city')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true">
+    <input type="text" name="town_city" id="town_city" placeholder="Enter Town/City" value="{{$data->town_city ?? old('town_city')}}" class="w-full bg-gray-100 rounded-[3px] border-[1px] border-red-600 px-4 lg:py-3 py-2 focus:outline-none focus:ring-0 focus:border-red-700 placeholder:text-black" required="" aria-required="true">
     @error('town_city')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 </div>
 
@@ -78,6 +78,12 @@
         const constituencySelect = document.getElementById("constituency");
         const countySelect = document.getElementById("county");
 
+        // Store the saved values from the $data variable
+        const savedCountryCode = "{{ $data->country_code ?? old('country_code') }}";
+        const savedCountyCode = "{{ $data->county_code ?? old('county_code') }}";
+        const savedRegionCode = "{{ $data->region_code ?? old('region_code') }}";
+        const savedConstituencyCode = "{{ $data->constituency_code ?? old('constituency_code') }}";
+
         // Load countries
         fetch("/countries")
             .then(response => response.json())
@@ -86,10 +92,42 @@
                     let option = document.createElement("option");
                     option.value = country.code;
                     option.textContent = country.name;
+                    // Set selected if matches saved country code
+                    if (country.code === savedCountryCode) {
+                        option.selected = true;
+                    }
                     countrySelect.appendChild(option);
                 });
+
+                // Once countries are loaded, if we have a saved country, load the dependent dropdowns
+                if (savedCountryCode) {
+                    // Load the dependent dropdowns with the saved country
+                    Promise.all([
+                        updateCounties(savedCountryCode),
+                        updateRegions(savedCountryCode),
+                        updateConstituencies(savedCountryCode)
+                    ]).then(() => {
+                        // Now set the selected values for the dependent dropdowns
+                        if (savedCountyCode) selectOptionByValue(countySelect, savedCountyCode);
+                        if (savedRegionCode) selectOptionByValue(regionSelect, savedRegionCode);
+                        if (savedConstituencyCode) selectOptionByValue(constituencySelect, savedConstituencyCode);
+                    });
+                }
             })
             .catch(error => console.error("Error fetching countries:", error));
+
+        // Helper function to select option by value
+        function selectOptionByValue(selectElement, value) {
+            if (!value || !selectElement) return false;
+
+            for (let i = 0; i < selectElement.options.length; i++) {
+                if (selectElement.options[i].value === value) {
+                    selectElement.selectedIndex = i;
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // Address search functionality
         document.getElementById('searchAddress').addEventListener('click', async function() {
@@ -98,9 +136,6 @@
                 alert('Please enter a postcode.');
                 return;
             }
-
-            // Clear previous options
-            // addressSelect.innerHTML = '<option value="">Select Address</option>';
 
             // Using postcode.io API
             let apiUrl = `https://api.postcodes.io/postcodes/${postcode}`;
@@ -115,39 +150,6 @@
 
                     // Auto-populate fields from API response
                     populateLocationFields(data.result);
-
-                    // For addresses at this postcode, we'd need a different approach
-                    // Postcodes.io doesn't provide individual addresses
-                    // Let's fetch addresses list from a hypothetical endpoint in your system
-                    // try {
-                    //     // This would be your own endpoint that provides addresses for a postcode
-                    //     // If you don't have such an endpoint, we'll enable manual entry
-                    //     let addressResponse = await fetch(`/api/addresses/${postcode}`);
-
-                    //     if (addressResponse.ok) {
-                    //         let addressData = await addressResponse.json();
-
-                    //         // Show addresses if available
-                    //         addressData.forEach((address, index) => {
-                    //             let option = document.createElement('option');
-                    //             option.value = index;
-                    //             option.textContent = address.full_address;
-                    //             addressSelect.appendChild(option);
-                    //         });
-
-                    //         // Show the address select dropdown
-                    //         addressSelect.style.display = "block";
-                    //         fillAddress.style.display = "none";
-                    //     } else {
-                    //         // No specific address lookup available, enable manual entry
-                    //         // But we've already populated location data from postcode
-                    //         enableManualAddressEntry();
-                    //     }
-                    // } catch (error) {
-                    //     // Error or no endpoint available
-                    //     console.log('No address lookup available, using manual entry');
-                    //     enableManualAddressEntry();
-                    // }
                 } else {
                     // Postcode not found
                     alert('No data found for this postcode. You can enter your address manually.');
@@ -256,43 +258,11 @@
             return false;
         }
 
-        // Handle address selection
-        // addressSelect.addEventListener('change', function() {
-        //     if (this.value !== "") {
-        //         // When an address is selected from your system's API
-        //         // You would populate address-specific fields here
-        //         fillAddress.value = this.options[this.selectedIndex].textContent;
-
-        //         // In a real implementation, you'd have more address details
-        //         // like house number and street name from your backend
-        //     }
-        // });
-
-        // Function to enable manual address entry
-        // function enableManualAddressEntry() {
-        //     // Hide the dropdown and show the text field
-        //     // addressSelect.style.display = "none";
-        //     fillAddress.style.display = "block";
-
-        //     // Add a helper message
-        //     fillAddress.placeholder = "Enter your full address manually";
-        // }
-
-        // Add a "Enter manually" button
-        // const addressFieldContainer = addressSelect.parentElement;
-        // const manualEntryBtn = document.createElement("button");
-        // manualEntryBtn.type = "button";
-        // manualEntryBtn.className = "boxed-btn btn-sanatory mt-2";
-        // manualEntryBtn.style.cssText = "padding: 5px 10px; font-size: 14px;";
-        // manualEntryBtn.textContent = "Enter address manually";
-        // manualEntryBtn.addEventListener("click", enableManualAddressEntry);
-        // addressFieldContainer.appendChild(manualEntryBtn);
-
         // Country, county, region, constituency handlers
         // Modified version of the update functions to return Promises for better chaining
         // Convert update functions to async
         async function updateCounties(countryCode) {
-            countySelect.innerHTML = '<option value="">Select county</option>';
+            countySelect.innerHTML = '<option value="">Select County</option>';
 
             if (!countryCode) return;
 
@@ -312,7 +282,7 @@
         }
 
         async function updateRegions(countryCode) {
-            regionSelect.innerHTML = '<option value="">Select region</option>';
+            regionSelect.innerHTML = '<option value="">Select Region</option>';
 
             if (!countryCode) return;
 
@@ -332,7 +302,7 @@
         }
 
         async function updateConstituencies(countryCode) {
-            constituencySelect.innerHTML = '<option value="">Select constituency</option>';
+            constituencySelect.innerHTML = '<option value="">Select Constituency</option>';
 
             if (!countryCode) return;
 

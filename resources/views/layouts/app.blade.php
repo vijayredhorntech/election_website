@@ -23,6 +23,7 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Main Styling -->
     <link href="{{asset('assets/css/argon-dashboard-tailwind.css')}}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     @yield('extraLib')
 
     <style>
@@ -70,9 +71,9 @@
 
 
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}" async></script>
-<script src="{{asset('assets/js/argon-dashboard-tailwind.js')}}" async></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+<script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
+<script src="{{ asset('assets/js/argon-dashboard-tailwind.js') }}" async></script>
 
 @stack('scripts')
 

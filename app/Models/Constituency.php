@@ -24,9 +24,9 @@ class Constituency extends Model
         return $this->hasMany(Donation::class);
     }
 
-    public function office()
+    public function offices()
     {
-        return $this->belongsTo(Office::class);
+        return $this->belongsToMany(Office::class, 'offices_constituencies');
     }
 
     public function region()

@@ -22,9 +22,9 @@ class Office extends Model
         'constituency_id',
     ];
 
-    public function constituency()
+    public function constituencies()
     {
-        return $this->belongsTo(Constituency::class);
+        return $this->belongsToMany(Constituency::class, 'offices_constituencies');
     }
 
     public function country()
@@ -35,11 +35,6 @@ class Office extends Model
     public function county()
     {
         return $this->belongsTo(County::class);
-    }
-
-    public function constituencies()
-    {
-        return $this->hasMany(Constituency::class);
     }
 
     public function employees()
