@@ -22,6 +22,11 @@ class Office extends Model
         'constituency_id',
     ];
 
+    public function constituency()
+    {
+        return $this->belongsTo(Constituency::class);
+    }
+
     public function constituencies()
     {
         return $this->belongsToMany(Constituency::class, 'offices_constituencies');
