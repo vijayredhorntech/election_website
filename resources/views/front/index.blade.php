@@ -13,9 +13,7 @@
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
 
                 </div>
-                <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide4.jpg')}})">
 
-                </div>
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>

@@ -278,7 +278,7 @@
                             </div>
 
                             <div class="checkbox-wrapper">
-                                <input type="checkbox" id="is_anonymous" name="is_anonymous">
+                                <input type="checkbox" id="is_anonymous" name="is_anonymous" style="display: block; height: 15px ; width: 15px; ">
                                 <label for="is_anonymous">Make this donation anonymous</label>
                             </div>
 
@@ -286,6 +286,10 @@
                                 <p style="margin: 0; color: #4b5563; font-size: 0.9rem;">
                                     When making an anonymous donation, your name will not be displayed publicly, but we'll still need your details for our records and to process your donation.
                                 </p>
+                            </div>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="" name="" style="display: block; height: 15px ; width: 15px; ">
+                                <label for=""> I confirm that I have read and accept the Payment Policies.</label>
                             </div>
 
                                <a href="{{route('donationTerms')}}" style="margin-top: 10px;  color: #b30d00;cursor: pointer; font-size: 16px; margin-right: 10px">

@@ -64,25 +64,37 @@
 
 
                                 <div class="row">
-                                    <div class="form-question" style="padding-left: 20px">
+                                    <div class="form-question" style="padding-left: 20px; padding-bottom: 0px; margin-bottom: 0px">
                                         <div class="check-box-wrapper">
                                             <div class="check-box">
 
                                                 <label class="container-box">
-                                                    <span style="font-weight: bold; color: black"> £ 36/Year</span>
+                                                    <span style="font-weight: bold; color: black"> £ 36/Year <span style="font-size: 13px">(cost you £ 3/ month only)</span></span>
                                                     <input type="radio" value="36" name="memberShip" checked>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="container-box">
-                                                    <span style="font-weight: bold; color: black"> £ 3/Month via Standing Order</span>
-                                                    <input type="radio" value="3" name="memberShip" id="monthlyplan">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-question" id="monthlyAggrement" style="display: none">
+
+                                <div>
+                                    <div class="form-question">
+                                        <div class="check-box-wrapper">
+                                            <div class="check-box">
+                                                <label style="color: black" class="container-box">
+                                                    I confirm that I have read and accept the Payment Policies.
+                                                    <input type="checkbox" name="any_criminal_record">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @error ('any_crime_record')<span
+                                            style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+
+                                    </div>
+                                </div>
+                                <div class="form-question" id="monthlyAggrements" style="display: none">
                                     <div class="check-box-wrapper">
                                         <div class="check-box">
                                             <label class="container-box">
