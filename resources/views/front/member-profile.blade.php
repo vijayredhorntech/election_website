@@ -643,7 +643,7 @@
                               <div style="width: 100%; display: flex; justify-content: end; margin-top: -40px;">
                                   <div style="display:flex; flex-direction: column; align-items: center; justify-content: end;">
                                       <img id="barcode" style="width:460px; height: 50px;" />
-                                      <span style="font-weight: bold; color: black; font-size: 18px">{{$memberDetails->custom_id}}</span>
+                                      <span style="font-weight: bold; color: black; font-size: 18px">Referral Id: {{$memberDetails->custom_id}}</span>
                                   </div>
                               </div>
                           </div>
