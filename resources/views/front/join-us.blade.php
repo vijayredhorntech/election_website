@@ -116,6 +116,12 @@
                                                 style="color: black; font-weight: 600; ">
                                             @error('referral_code')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
+
+                                        <div class="why-to-join-us">
+                                            <p style="font-size: 18px">
+                                                Already user? <a href="{{route('login')}}" target="_blank" style="color: #b30d00; ">Login</a>
+                                            </p>
+                                        </div>
                                     </div>
                                     @endif
                                     @if ($formData['type']==='register')
