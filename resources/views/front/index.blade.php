@@ -31,7 +31,7 @@
                         <h1 class="title" style="color:white; font-size: 50px">Welcome to One Nation</h1>
                         <p style="color:whitesmoke">Building a stronger, fairer, and more united society for all</p>
                         <div class="btn-wrapper" style="margin-top:10px">
-                            <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory"
+                            <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory"
                                style="padding: 5px 10px">Join Us Today</a>
                             <a href="{{route('donate')}}" class="boxed-btn btn-sanatory-2" style="padding: 5px 10px">Donate
                                 Now</a>
@@ -320,10 +320,10 @@
                     <h2 class=" mb-4">Join One Nation Today</h2>
                     <p class=" mb-4" style="color: black">Be part of a movement that values justice, education, and
                         unity. Together, we can build a better Britain for everyone.</p>
-                    <div class="cta-buttons">
-                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Become a Member <i
+                    <div class="cta-buttons" >
+                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg" style="margin-top: 20px">Become a Member <i
                                 class="fas fa-users"></i></a>
-                        <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Support Our Cause <i
+                        <a href="{{ route('donate') }}" class="btn btn-primary btn-lg" style="margin-top: 20px">Support Our Cause <i
                                 class="fas fa-heart"></i></a>
                     </div>
                     <div class="cta-buttons mt-4">
