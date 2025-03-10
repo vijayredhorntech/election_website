@@ -75,6 +75,17 @@
       width: 100%;
       height: 100%;
     }
+    .share-button
+    {
+        padding: 8px 15px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .share-button
+        {
+            padding: 1px 2px;
+        }
+    }
 
     @media print {
       body {
@@ -221,49 +232,55 @@
 
                               <div class="w-full p-2">
                                   <div style="display: flex; align-items: start; justify-content: space-between; gap: 10px">
-                                      <div>
+                                      <div style="margin-top: 30px">
                                           <img class="rounded-[3px] mb-4"
                                                src="{{ $memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png') }}"
                                                alt="Profile Photo" style="height: 200px; object-fit:cover; width: 200px; border-radius:3px">
                                       </div>
 
                                       <div style="display: flex; flex-direction:column; align-items: end; gap: 10px; margin-bottom:20px">
+                                          <span class="referral-link" id="referralLink" style="color: black ; font-weight: bold">
+                                                 Referral QR Code
+                                                </span>
                                           <div id="qrcode"></div>
                                       </div>
 
                                   </div>
                                   <div class="referral-share-container" style="display:flex; flex-direction:column; align-items:end">
-                <span class="referral-link" id="referralLink" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
-                  {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
-                  <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
-                </span>
+                                                <span class="referral-link" id="referralLink" style="color: black ; font-weight: bold">
+                                                 Referral Link
+                                                </span>
+                                                <span class="referral-link" id="referralLink" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
+                                                  {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
+                                                  <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
+                                                </span>
 
                                       <div class="social-share-buttons" style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap">
                                           <a href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
                                              target="_blank"
                                              class="share-button facebook"
-                                             style="background: #3b5998; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                             style="background: #3b5998; color: white; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                               <i class="fab fa-facebook-f"></i> Share
                                           </a>
 
                                           <a href="https://wa.me/?text={{ urlencode('Be the change! Join One-Nation through my referral and make a difference:') }}%0A%0A{{ urlencode(route('index').'/referral/'.$memberDetails->user->referral_code) }}"
                                              target="_blank"
                                              class="share-button whatsapp"
-                                             style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                             style="background: #25D366; color: white; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                               <i class="fab fa-whatsapp"></i> Share
                                           </a>
 
                                           <a href="https://twitter.com/intent/tweet?text={{urlencode('Be the change! Join One-Nation through my referral and make a difference:')}}%20{{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
                                              target="_blank"
                                              class="share-button twitter"
-                                             style="background: #1DA1F2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                             style="background: #1DA1F2; color: white; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                               <i class="fa-brands fa-x-twitter"></i> Share
                                           </a>
 
                                           <a href="https://www.linkedin.com/sharing/share-offsite/?url={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
                                              target="_blank"
                                              class="share-button linkedin"
-                                             style="background: #0077b5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                             style="background: #0077b5; color: white; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                               <i class="fab fa-linkedin-in"></i> Share
                                           </a>
                                       </div>
@@ -643,7 +660,7 @@
                               <div style="width: 100%; display: flex; justify-content: end; margin-top: -40px;">
                                   <div style="display:flex; flex-direction: column; align-items: center; justify-content: end;">
                                       <img id="barcode" style="width:460px; height: 50px;" />
-                                      <span style="font-weight: bold; color: black; font-size: 18px">Referral Id: {{$memberDetails->custom_id}}</span>
+                                      <span style="font-weight: bold; color: black; font-size: 18px">{{$memberDetails->custom_id}}</span>
                                   </div>
                               </div>
                           </div>
