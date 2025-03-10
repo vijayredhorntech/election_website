@@ -223,10 +223,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">
+                            <h4 class="title" style="line-height: 0px">
                                 Fuel Real Change
                             </h4>
                             <p style="color: black">Your contribution directly supports campaigns and community initiatives.
@@ -235,30 +235,30 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">Support People-First</h4>
+                            <h4 class="title" style="line-height: 0px">Support People-First</h4>
                             <p style="color: black">We rely on grassroots support—not big corporations.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">Amplify Voices</h4>
+                            <h4 class="title" style="line-height: 0px">Amplify Voices</h4>
                             <p style="color: black">Help us speak louder for those who need it most.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">Make an Impact
+                            <h4 class="title" style="line-height: 0px">Make an Impact
                             </h4>
                             <p style="color: black">Every contribution brings us closer to real change.</p>
                         </div>
