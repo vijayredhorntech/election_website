@@ -240,7 +240,7 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
+                        <li style="border-bottom: 0pc" class="menu-item-has-children {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
                             <a href="{{ route('contact') }}" class="nav-link">
                                 Contact
                             </a>
@@ -251,7 +251,7 @@
                             </div>
                         </li>
                         @if(!auth()->check())
-                        <li class="menu-item-has-children mobileNavLinks {{ request()->routeIs('login') ? 'current-menu-item' : '' }}">
+                        <li style="border-top: 1px solid #b30d00;" class="menu-item-has-children mobileNavLinks {{ request()->routeIs('login') ? 'current-menu-item' : '' }}">
                             <a href="{{ route('login') }}" class="nav-link">
                                 Login
                             </a>
@@ -262,7 +262,7 @@
                             </div>
                         </li>
                         @else
-                            <li class="menu-item-has-children mobileNavLinks {{ request()->routeIs('memberProfile') ? 'current-menu-item' : '' }}">
+                            <li style="border-top: 2px solid #b30d00; margin-top: 20px" class="menu-item-has-children mobileNavLinks  {{ request()->routeIs('memberProfile') ? 'current-menu-item' : '' }}">
                                 <a href="{{ route('memberProfile') }}" class="nav-link">
                                     Profile
                                 </a>

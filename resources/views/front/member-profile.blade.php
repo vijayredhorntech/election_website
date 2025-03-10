@@ -214,7 +214,7 @@
 
               <div class="row" style="padding:20px">
 
-                  <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white; margin-bottom: 20px">
                       <div
                           class="card wow animate__animated animate__fadeInUp shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300"
                           style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; box-shadow:0px 0px 10px 2px #e9e9e9">
@@ -332,7 +332,7 @@
                       </div>
 
                   </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white; margin-bottom: 20px">
                       <div
                           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
                           style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; box-shadow:0px 0px 10px 2px #e9e9e9">
@@ -433,7 +433,7 @@
                       </div>
 
                   </div>
-                  <div class=" col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white;">
+                  <div class=" col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white; margin-bottom: 20px">
                       <div
                           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
                           style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; ">
