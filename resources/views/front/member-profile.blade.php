@@ -238,7 +238,7 @@
                   <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
                 </span>
 
-                                      <div class="social-share-buttons" style="display: flex; gap: 10px; justify-content: flex-end">
+                                      <div class="social-share-buttons" style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap">
                                           <a href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
                                              target="_blank"
                                              class="share-button facebook"
