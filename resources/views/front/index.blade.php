@@ -126,7 +126,7 @@
         </div>
     </div>
 
-    <div class="political-support-section padding-top-115 padding-bottom-20">
+    <div class="political-support-section padding-top-20 padding-bottom-20">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -210,7 +210,7 @@
         </div>
     </div>
 
-    <div class="donation-section-area padding-top-60 padding-bottom-60" style="background-color:whitesmoke">
+    <div class="donation-section-area padding-top-60 padding-bottom-60" style="background-color:whitesmoke; margin-top: 0px">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -223,7 +223,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
 
                         <div class="content">
                             <h4 class="title">
@@ -235,7 +235,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
 
                         <div class="content">
                             <h4 class="title">Support People-First</h4>
@@ -245,7 +245,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
 
                         <div class="content">
                             <h4 class="title">Amplify Voices</h4>
@@ -255,7 +255,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 5px">
 
                         <div class="content">
                             <h4 class="title">Make an Impact
