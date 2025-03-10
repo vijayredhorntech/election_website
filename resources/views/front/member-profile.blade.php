@@ -375,7 +375,7 @@
                                       </tr>
                                       <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                              style="color: black; font-weight: 700;width: 120px">Payment Mode</td>
+                                              style="color: black; font-weight: 700;width: 135px">Membership Plan</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{ $memberDetails->user?->membership?->membership_type }}</td>
                                       </tr>
