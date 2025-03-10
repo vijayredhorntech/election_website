@@ -289,12 +289,11 @@
                             </div>
                             <div class="checkbox-wrapper">
                                 <input type="checkbox" id="" name="" style="display: block; height: 15px ; width: 15px; ">
-                                <label for=""> I confirm that I have read and accept the Payment Policies.</label>
+                                <label for="">
+                                    I confirm that I have read and accept the <a href="{{route('donationTerms')}}" style="color: #b30d00;cursor: pointer;" >Terms & Conditions.</a>
+                                </label>
                             </div>
 
-                               <a href="{{route('donationTerms')}}" style="margin-top: 10px;  color: #b30d00;cursor: pointer; font-size: 16px; margin-right: 10px">
-                                   Donation Terms & Conditions
-                                </a>
 
 
                             <button type="submit" class="btn-donate" id="submit-button">

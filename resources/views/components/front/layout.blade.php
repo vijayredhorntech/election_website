@@ -272,6 +272,30 @@
                                     <span class="dot style-02"></span>
                                 </div>
                             </li>
+                            @if(request()->routeIs('memberProfile'))
+                                <li class="menu-item-has-children mobileNavLinks">
+                                    <a onclick="printCard()" class="nav-link">
+                                        Print Id
+                                    </a>
+                                    <div class="line">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children mobileNavLinks">
+                                    <a onclick="downloadCard()" class="nav-link">
+                                        Download Id
+                                    </a>
+                                    <div class="line">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </div>
+                                </li>
+                            @endif
+
+
                             <li class="menu-item-has-children mobileNavLinks {{ request()->routeIs('memberProfile') ? 'current-menu-item' : '' }}">
                                 <form action="{{ route('logout') }}" method="post" style="">
                                     @csrf
