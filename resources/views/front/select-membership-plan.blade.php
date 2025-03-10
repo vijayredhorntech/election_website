@@ -64,12 +64,13 @@
 
 
                                 <div class="row">
+
                                     <div class="form-question" style="padding-left: 20px; padding-bottom: 0px; margin-bottom: 0px">
                                         <div class="check-box-wrapper">
                                             <div class="check-box">
 
                                                 <label class="container-box">
-                                                    <span style="font-weight: bold; color: black"> £ 36/Year <span style="font-size: 13px">(cost you £ 3/ month only)</span></span>
+                                                    <span style="font-weight: bold; color: black"> £ 36/Year <span style="font-size: 13px">(only £ 3/ month)</span></span>
                                                     <input type="radio" value="36" name="memberShip" checked>
                                                     <span class="checkmark"></span>
                                                 </label>
@@ -83,7 +84,7 @@
                                         <div class="check-box-wrapper">
                                             <div class="check-box">
                                                 <label style="color: black" class="container-box">
-                                                    I confirm that I have read and accept the Payment Policies.
+                                                    I confirm that I have read and accept the <span style="color: #b30d00;cursor: pointer;" data-toggle="modal" data-target="#cancelationPolicyModel">Terms & Conditions.</span>
                                                     <input type="checkbox" name="any_criminal_record">
                                                     <span class="checkmark"></span>
                                                 </label>
@@ -242,11 +243,6 @@
                                 </div>
                             </form>
                             <div class="why-to-join-us">
-                                <h4 style="color: black">Read our</h4>
-                                <span style="color: #b30d00;cursor: pointer; font-size: 16px; margin-right: 10px" data-toggle="modal" data-target="#cancelationPolicyModel">
-                                    Membership Cancellation/ Reactivation & Refund Policy?
-                                </span>
-
                                 <!-- Modal -->
                                 <div class="modal fade" id="cancelationPolicyModel" tabindex="-1" role="dialog" aria-labelledby="cancelationPolicyModelLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
