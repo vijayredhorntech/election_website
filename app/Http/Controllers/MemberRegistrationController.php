@@ -173,7 +173,7 @@ class MemberRegistrationController extends Controller
         }
 
         $request->validate([
-            'profile_photo' => $update ? 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048' : 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
@@ -191,7 +191,7 @@ class MemberRegistrationController extends Controller
             'primary_mobile_number' => [
                 'required',
                 'numeric',
-                'digits:10',
+                'digits_between:10,15',
                 Rule::unique('members', 'primary_mobile_number')->ignore($member->id),
             ],
             'alternate_country_code' => 'nullable|string|max:255',

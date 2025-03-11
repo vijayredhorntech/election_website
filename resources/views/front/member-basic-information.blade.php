@@ -67,7 +67,7 @@
                                     <div class="col-md-5 col-12">
                                         <div class="form-group">
                                             <label for="">First Name - Middle Name </label>
-                                            <input class="form-control" name="first_name" value="{{auth()->user()?->member?->first_name}}" required style="color: black; font-weight: 400;"/>
+                                            <input class="form-control" name="first_name" value="{{auth()->user()?->member?->first_name}}" required style="color: black; font-weight: 400;" />
 
                                             @error('first_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -75,7 +75,7 @@
                                     <div class="col-md-4 col-12">
                                         <div class="form-group">
                                             <label for="">Last Name </label>
-                                            <input class="form-control" name="last_name" value="{{auth()->user()?->member?->last_name}}" required style="color: black; font-weight: 400;"/>
+                                            <input class="form-control" name="last_name" value="{{auth()->user()?->member?->last_name}}" required style="color: black; font-weight: 400;" />
                                             @error('last_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -84,12 +84,12 @@
                                         <div class="form-group">
                                             <label for="dob">Date of Birth <span class="text-danger">*</span></label>
                                             <input type="date"
-                                                   id="dob"
-                                                   name="dob"
-                                                   value="{{ auth()->user() && auth()->user()->member->date_of_birth ? \Carbon\Carbon::parse(auth()->user()->member->date_of_birth)->format('Y-m-d') : old('dob', '') }}"
-                                                   class="form-control"
-                                                   required
-                                                   style="color: black; font-weight: 400;">
+                                                id="dob"
+                                                name="dob"
+                                                value="{{ auth()->user() && auth()->user()->member->date_of_birth ? \Carbon\Carbon::parse(auth()->user()->member->date_of_birth)->format('Y-m-d') : old('dob', '') }}"
+                                                class="form-control"
+                                                required
+                                                style="color: black; font-weight: 400;">
                                             @error('dob')
                                             <span style="color: orangered; font-weight: 500">{{$message}}</span>
                                             @enderror
@@ -103,9 +103,9 @@
                                             <label for="">Gender <span class="text-danger">*</span></label>
                                             <select name="gender" class="form-control" required style="color: black; font-weight: 400;">
                                                 <option value="">Select Gender</option>
-                                                <option value="MALE" {{ (old('gender') || auth()->user()?->member?->gender == 'MALE') ? 'selected' : '' }} >MALE</option>
-                                                <option value="FEMALE" {{ (old('gender') || auth()->user()?->member?->gender == 'FEMALE') ? 'selected' : '' }} >FEMALE</option>
-                                                <option value="OTHER" {{ (old('gender') ||auth()->user()?->member?->gender == 'OTHER') ? 'selected' : '' }} >OTHER</option>
+                                                <option value="MALE" {{ (old('gender') || auth()->user()?->member?->gender == 'MALE') ? 'selected' : '' }}>MALE</option>
+                                                <option value="FEMALE" {{ (old('gender') || auth()->user()?->member?->gender == 'FEMALE') ? 'selected' : '' }}>FEMALE</option>
+                                                <option value="OTHER" {{ (old('gender') ||auth()->user()?->member?->gender == 'OTHER') ? 'selected' : '' }}>OTHER</option>
                                             </select>
                                             @error('gender')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
@@ -168,31 +168,31 @@
                                             <label for="primary_mobile_number">Primary Mobile Number <span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <select name="primary_country_code" class="form-control" style="width: 30%; color: black; font-weight: 400;" value="{{ old('primary_country_code') }}">
-                                                    <option value="+44" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+44') ? 'selected' : '' }}>+44 (UK)</option>
-                                                    <option value="+1" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+1') ? 'selected' : '' }}>+1 (US/CA)</option>
-                                                    <option value="+91" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+91') ? 'selected' : '' }}>+91 (India)</option>
-                                                    <option value="+86" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+86') ? 'selected' : '' }}>+86 (China)</option>
-                                                    <option value="+852" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+852') ? 'selected' : '' }}>+852 (Hong Kong)</option>
-                                                    <option value="+853" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+853') ? 'selected' : '' }}>+853 (Macau)</option>
-                                                    <option value="+886" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+886') ? 'selected' : '' }}>+886 (Taiwan)</option>
-                                                    <option value="+65" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+65') ? 'selected' : '' }}>+65 (Singapore)</option>
-                                                    <option value="+60" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+60') ? 'selected' : '' }}>+60 (Malaysia)</option>
-                                                    <option value="+63" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+63') ? 'selected' : '' }}>+63 (Philippines)</option>
-                                                    <option value="+62" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+62') ? 'selected' : '' }}>+62 (Indonesia)</option>
-                                                    <option value="+61" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+61') ? 'selected' : '' }}>+61 (Australia)</option>
-                                                    <option value="+64" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+64') ? 'selected' : '' }}>+64 (New Zealand)</option>
-                                                    <option value="+66" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+66') ? 'selected' : '' }}>+66 (Thailand)</option>
-                                                    <option value="+81" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+81') ? 'selected' : '' }}>+81 (Japan)</option>
-                                                    <option value="+82" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+82') ? 'selected' : '' }}>+82 (South Korea)</option>
-                                                    <option value="+84" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+84') ? 'selected' : '' }}>+84 (Vietnam)</option>
-                                                    <option value="+855" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+885') ? 'selected' : '' }}>+855 (Cambodia)</option>
-                                                    <option value="+856" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+856') ? 'selected' : '' }}>+856 (Laos)</option>
-                                                    <option value="+857" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+857') ? 'selected' : '' }}>+857 (Myanmar)</option>
-                                                    <option value="+858" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+858') ? 'selected' : '' }}>+858 (Bangladesh)</option>
-                                                    <option value="+859" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+859') ? 'selected' : '' }}>+859 (Sri Lanka)</option>
-                                                    <option value="+880" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+880') ? 'selected' : '' }}>+880 (Bangladesh)</option>
-                                                    <option value="+881" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+881') ? 'selected' : '' }}>+881 (Bangladesh)</option>
-                                                    <option value="+882" {{ (old('primary_country_code') || auth()->user()?->member?->primary_country_code == '+882') ? 'selected' : '' }}>+882 (Bangladesh)</option>
+                                                    <option value="+44">+44 (UK)</option>
+                                                    <option value="+1">+1 (US/CA)</option>
+                                                    <option value="+91">+91 (India)</option>
+                                                    <option value="+86">+86 (China)</option>
+                                                    <option value="+852">+852 (Hong Kong)</option>
+                                                    <option value="+853">+853 (Macau)</option>
+                                                    <option value="+886">+886 (Taiwan)</option>
+                                                    <option value="+65">+65 (Singapore)</option>
+                                                    <option value="+60">+60 (Malaysia)</option>
+                                                    <option value="+63">+63 (Philippines)</option>
+                                                    <option value="+62">+62 (Indonesia)</option>
+                                                    <option value="+61">+61 (Australia)</option>
+                                                    <option value="+64">+64 (New Zealand)</option>
+                                                    <option value="+66">+66 (Thailand)</option>
+                                                    <option value="+81">+81 (Japan)</option>
+                                                    <option value="+82">+82 (South Korea)</option>
+                                                    <option value="+84">+84 (Vietnam)</option>
+                                                    <option value="+855">+855 (Cambodia)</option>
+                                                    <option value="+856">+856 (Laos)</option>
+                                                    <option value="+857">+857 (Myanmar)</option>
+                                                    <option value="+858">+858 (Bangladesh)</option>
+                                                    <option value="+859">+859 (Sri Lanka)</option>
+                                                    <option value="+880">+880 (Bangladesh)</option>
+                                                    <option value="+881">+881 (Bangladesh)</option>
+                                                    <option value="+882">+882 (Bangladesh)</option>
                                                 </select>
                                                 <input type="tel"
                                                     name="primary_mobile_number"
@@ -227,8 +227,8 @@
                                             <label for="profile_photo"> Photo for ID Card </label>
                                             <input type="file" name="profile_photo" accept="image/jpeg, image/png, image/jpg" id="profile_photo" class="form-control" required style="color: black; font-weight: 400;" size="10">
 
-                                              @if(auth()->user()?->member?->profile_photo)
-                                                <img src="{{ auth()->user()?->member?->profile_photo ? asset('storage/'.auth()->user()?->member?->profile_photo) : asset('assets/images/default-profile.png') }}" alt="" style="height: 150px; width: 100px; margin-top: 20px; border-radius: 10px; object-fit: cover;">
+                                            @if(auth()->user()?->member?->profile_photo)
+                                            <img src="{{ auth()->user()?->member?->profile_photo ? asset('storage/'.auth()->user()?->member?->profile_photo) : asset('assets/images/default-profile.png') }}" alt="" style="height: 150px; width: 100px; margin-top: 20px; border-radius: 10px; object-fit: cover;">
 
                                             @endif
 
