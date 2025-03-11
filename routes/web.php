@@ -62,7 +62,11 @@ Route::get('/reset_otp', [MemberRegistrationController::class, 'resetOTP'])->nam
 Route::get('/email_verification_otp', [MemberRegistrationController::class, 'sendEmailVerificationOtp'])->name('sendEmailVerificationOtp');
 Route::post('/verify_otp', [MemberRegistrationController::class, 'verifyOtp'])->name('verifyOtp');
 Route::get('/select_membership_plan', [MemberRegistrationController::class, 'selectMemberShipPlan'])->name('selectMemberShipPlan');
-Route::post('/payment_gateway/{email}/{id}', [MemberRegistrationController::class, 'paymentGateway'])->name('paymentGateway');
+Route::post('/create-membership-session', [PaymentController::class, 'createMembershipSession'])->name('membership.session');
+Route::get('/membership/success', [PaymentController::class, 'handleMembershipSuccess'])->name('membership.success');
+Route::get('/membership/cancel', function() {
+    return redirect()->route('selectMemberShipPlan')->with('error', 'Payment was cancelled.');
+})->name('membership.cancel');
 
 
 
