@@ -229,7 +229,8 @@
                     const houseNameNumber = document.getElementById("house_name_number");
                     const street = document.getElementById("street");
                     const townCity = document.getElementById("town_city");
-                    const postcodeInput = document.getElementById("postcode");
+                    const postcodeInput = document.getElementById("getaddress_input");
+                    const searchAddressBtn = document.getElementById("getaddress_button");
 
                     // Load countries
                     fetch("/countries")

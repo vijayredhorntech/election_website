@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\Region;
 use App\Models\Membership;
+use Illuminate\Validation\Rule;
 
 class MemberRegistrationController extends Controller
 {
@@ -142,10 +143,10 @@ class MemberRegistrationController extends Controller
     public function paymentGateway(Request $request)
     {
         $memberShipPlans = [
-                'id' => '1',
-                'type' => 'Standard Plan',
-                'amount' => '1',
-                'label' => 'Membership 1',
+            'id' => '1',
+            'type' => 'Standard Plan',
+            'amount' => '1',
+            'label' => 'Membership 1',
         ];
 
         $request->validate([
@@ -158,48 +159,46 @@ class MemberRegistrationController extends Controller
     }
 
 
-    public function memberBasicInformation($update= 0)
+    public function memberBasicInformation($update = 0)
     {
 
         return view('front.member-basic-information')->with('update', $update);
     }
     public function storeMemberBasicInformation(Request $request, $update)
     {
-        if($update) {
-            $request->validate([
-                'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'nullable|string|max:255',
-                'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
-                'dob' => 'required|date|before:16 years ago',
-                'gender' => 'required|in:MALE,FEMALE,OTHER',
-                'marital_status' => 'nullable|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
-                'qualification' => 'nullable|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
-                'profession' => 'nullable|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
-                'national_insurance_number' => 'required|unique:members,national_insurance_number|regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
-                'primary_country_code' => 'required|string|max:255',
-                'primary_mobile_number' => 'required|numeric|digits:10|unique:members,primary_mobile_number',
-                'alternate_country_code' => 'nullable|string|max:255',
-                'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
-            ]);
-        }
-        else {
-            $request->validate([
-                'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'nullable|string|max:255',
-                'dob' => 'required|date|before:16 years ago',
-            ]);
+        $member = Member::where('user_id', auth()->user()->id)->first();
 
+        if (!$member) {
+            return back()->with('error', 'Member not found');
         }
+
+        $request->validate([
+            'profile_photo' => $update ? 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048' : 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'title' => 'required|in:MR.,MRS.,MISS,DR.,MS.,PROF.,OTHER',
+            'dob' => 'required|date|before:16 years ago',
+            'gender' => 'required|in:MALE,FEMALE,OTHER',
+            'marital_status' => 'required|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
+            'qualification' => 'required|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
+            'profession' => 'required|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
+            'national_insurance_number' => [
+                'required',
+                'regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
+                Rule::unique('members', 'national_insurance_number')->ignore($member->id),
+            ],
+            'primary_country_code' => 'required|string|max:255',
+            'primary_mobile_number' => [
+                'required',
+                'numeric',
+                'digits:10',
+                Rule::unique('members', 'primary_mobile_number')->ignore($member->id),
+            ],
+            'alternate_country_code' => 'nullable|string|max:255',
+            'alternate_mobile_number' => 'nullable|numeric|digits:10|unique:members,alternate_mobile_number',
+        ]);
 
         try {
-            $member = Member::where('user_id', auth()->user()->id)->first();
-
-            if (!$member) {
-                return back()->with('error', 'Member not found');
-            }
-
             $dateOfBirth = \Carbon\Carbon::createFromFormat('Y-m-d', $request->dob)->format('Y-m-d');
 
             $member->update([
@@ -216,27 +215,13 @@ class MemberRegistrationController extends Controller
                 'alternate_mobile_number' => $request->alternate_mobile_number,
                 'primary_country_code' => $request->primary_country_code,
                 'alternate_country_code' => $request->alternate_country_code,
-                'profile_status' => 'inActive',
+                'profile_status' => $update ? 'inActive' : 'active',
             ]);
-            if($update)
-            {
-                $member->update([
-                    'profile_status' => 'inActive',
-                ]);
-            }
-            else {
-                $member->update([
-                    'profile_status' => 'active',
-                ]);
-            }
 
             if ($request->hasFile('profile_photo')) {
                 $file = $request->file('profile_photo');
-                $fileName = $file->getClientOriginalName();
                 $filePath = $file->store('membersPhotos', 'public');
-                $member->update([
-                    'profile_photo' => $filePath,
-                ]);
+                $member->update(['profile_photo' => $filePath]);
             }
 
             session()->flash('success', 'Basic information saved successfully');
@@ -248,15 +233,15 @@ class MemberRegistrationController extends Controller
     }
     public function storeMemberAddressInformation(Request $request)
     {
-            $validator = Validator::make($request->all(), [
-                'country_code' => 'required|exists:countries,code',
-                'county_code' => 'required|exists:counties,code',
-                'region_code' => 'nullable|exists:regions,code',
-                'constituency_code' => 'required|exists:constituencies,code',
-                'postcode' => 'required|string|regex:/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/',
-                'house_name_number' => 'required|string|max:255',
-                'town_city' => 'required|string|max:255',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'country_code' => 'required|exists:countries,code',
+            'county_code' => 'required|exists:counties,code',
+            'region_code' => 'nullable|exists:regions,code',
+            'constituency_code' => 'required|exists:constituencies,code',
+            'postcode' => 'required|string|regex:/^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/',
+            'house_name_number' => 'required|string|max:255',
+            'town_city' => 'required|string|max:255',
+        ]);
 
 
         // Add conditional validation for region_code when country_code is ENG
@@ -383,9 +368,7 @@ class MemberRegistrationController extends Controller
         $member = Member::where('custom_id', $request->member_id)->first();
         if (!$member) {
             return back()->with('error', 'No member found with the provided ID');
-        }
-        else
-        {
+        } else {
 
             $core_member = Core_member::where('user_id', $member->user->id)->first();
 
@@ -400,31 +383,31 @@ class MemberRegistrationController extends Controller
     {
 
 
-         if ($request->declaration != 'on') {
+        if ($request->declaration != 'on') {
             return back()->with('error', 'Please accept the declaration');
-         }
-            $request->validate([
-                'annual_income' => 'required',
-                'participated_in_social_movement' => 'required|boolean',
-                'comfortable_with_public_speaking' => 'required|boolean',
-                'willing_to_relocate' => 'required|boolean',
-                'how_much_time_for_party' => 'required',
-                'political_ideology' => 'required',
-                'leadership_experience' => 'required|boolean',
-                'experience_in_media_interaction' => 'required|boolean',
-                'communication_skill' => 'required',
-                'area_of_interest' => 'required',
-                'photo' => 'required|max:2048',
-                'id_proof' => 'required|max:2048',
-                'other_document' => 'max:2048',
-         ]);
+        }
+        $request->validate([
+            'annual_income' => 'required',
+            'participated_in_social_movement' => 'required|boolean',
+            'comfortable_with_public_speaking' => 'required|boolean',
+            'willing_to_relocate' => 'required|boolean',
+            'how_much_time_for_party' => 'required',
+            'political_ideology' => 'required',
+            'leadership_experience' => 'required|boolean',
+            'experience_in_media_interaction' => 'required|boolean',
+            'communication_skill' => 'required',
+            'area_of_interest' => 'required',
+            'photo' => 'required|max:2048',
+            'id_proof' => 'required|max:2048',
+            'other_document' => 'max:2048',
+        ]);
 
         $requestData = $request->except(['user_id', 'photo', 'id_proof', 'other_document']);
         $requestData['user_id'] = $id;
         $requestData['area_of_interest'] = json_encode($request->input('area_of_interest', []));
         $requestData['political_issue_care'] = json_encode($request->input('political_issue_care', []));
 
-// Handle radio buttons (set 1 if checked, 0 if unchecked)
+        // Handle radio buttons (set 1 if checked, 0 if unchecked)
         $requestData['any_business'] = $request->has('any_business') ? 1 : 0;
         $requestData['associated_with_other_party'] = $request->has('associated_with_other_party') ? 1 : 0;
         $requestData['any_criminal_record'] = $request->has('any_criminal_record') ? 1 : 0;
@@ -462,9 +445,5 @@ class MemberRegistrationController extends Controller
 
 Thank you for your interest in joining One Nation’s Core Team. Your request has been received and is under review.
 ');
-
-
-
     }
-
 }
