@@ -20,10 +20,10 @@
 
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide1.jpeg')}})">
 
-                </div>
+                            </div>
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide3.jpg')}})">
 
-                </div>
+                        </div>
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
 
                 </div>
@@ -40,7 +40,7 @@
 
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
+                    <div class="col-lg-8">
                     <div class="header-inner-02">
                         <h1 class="title" style="color:white; font-size: 50px">Welcome to One Nation</h1>
                         <p style="color:whitesmoke">Building a stronger, fairer, and more united society for all</p>
@@ -63,7 +63,7 @@
     <div class="our-mission-section  padding-bottom-90">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                    <div class="col-lg-8">
                     <div class="section-title">
                         <h2 class="title">Party Aims & Goals
                         </h2>
@@ -205,11 +205,11 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                                    </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="political-support-item">
 
-                        <div class="content">
+                                <div class="content">
                             <h4 class="title">Opportunities for Leadership & Growth
                             </h4>
                             <p style="color: black">Get involved as much or as little as you choose—whether supporting from the sidelines or stepping into leadership.
@@ -247,7 +247,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                        </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
@@ -257,7 +257,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                        </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
@@ -267,7 +267,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                        </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
@@ -296,8 +296,8 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
-            </div>
+                            </div>
+                        </div>
             <div class="row">
                 @foreach($data['latest_news'] as $index => $news)
                     <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="{{ 300 + ($index * 100) }}">
@@ -308,8 +308,8 @@
                                     <div class="news-date">
                                         <span>{{ $news->created_at->format('d') }}</span>
                                         <span>{{ $news->created_at->format('M') }}</span>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
                             @endif
                             <div class="news-content">
                                 <h3>{{ $news->title }}</h3>
@@ -339,7 +339,7 @@
                                 class="fas fa-users"></i></a>
                         <a href="{{ route('donate') }}" class="btn btn-primary btn-lg" style="margin-top: 20px">Support Our Cause <i
                                 class="fas fa-heart"></i></a>
-                    </div>
+                                        </div>
                     <div class="cta-buttons mt-4">
                         <a href="{{ route('feedback') }}" class="btn btn-primary btn-lg">Share Your Feedback <i
                                 class="fas fa-users"></i></a>
