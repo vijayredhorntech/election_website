@@ -1,6 +1,6 @@
 <x-front.layout>
-  @push('styles')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    @push('styles')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/barcodes/JsBarcode.code39.min.js"></script>
@@ -173,37 +173,37 @@
       padding: 20px;
     }
   </style>
-  @endpush
+    @endpush
 
   <div class="non-printable about-us-section-area about-bg" style="background-image: url({{asset('assets/images/about-bg.png')}});">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-6 col-12">
-          <div class="about-inner donation-single">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="about-inner donation-single">
             <h4 class="title" style="color:white">{{ucfirst(strtolower(auth()->user()->name))}}</h4>
-          </div>
+                    </div>
           <!-- <div class="breadcrumbs">
-            <ul>
-              <li><a href="{{route('index')}}">Home</a></li>
-              <li><a href="{{route('joinUs')}}">{{ucfirst(strtolower(auth()->user()->name))}}'s Profile</a></li>
-            </ul>
+                        <ul>
+                            <li><a href="{{route('index')}}">Home</a></li>
+                            <li><a href="{{route('joinUs')}}">{{ucfirst(strtolower(auth()->user()->name))}}'s Profile</a></li>
+                        </ul>
           </div> -->
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
 
       @if($memberDetails->password_updated)
-          <!-- Faq section Start here -->
+    <!-- Faq section Start here -->
           <div class="non-printable accoridion-section" style="margin-top: 0px; padding-top: 0px; padding-bottom: 10px">
-              <div class="container">
-                  <img src="{{asset('assets/images/shape-06.png')}}" class="shape" alt="">
-                  <img src="{{asset('assets/images/Ellipse-01.png')}}" class="shape-01" alt="">
-                  <img src="{{asset('assets/images/Ellipse-02.png')}}" class="shape-02" alt="">
+        <div class="container">
+            <img src="{{asset('assets/images/shape-06.png')}}" class="shape" alt="">
+            <img src="{{asset('assets/images/Ellipse-01.png')}}" class="shape-01" alt="">
+            <img src="{{asset('assets/images/Ellipse-02.png')}}" class="shape-02" alt="">
 
 
-              </div>
+        </div>
                <div style="padding: 5px 20px">
                    @if(session('error'))
                        <div class="text-red-600 text-sm font-semibold mt-4" style="font-weight: bold ; color: orangered; font-size: 15px">*{{session('error')}}</div>
@@ -284,9 +284,9 @@
                                               <i class="fab fa-linkedin-in"></i> Share
                                           </a>
                                       </div>
-                                  </div>
+                        </div>
 
-                              </div>
+                        </div>
                               <table class="w-full">
                                   <tr>
                                       <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
@@ -328,64 +328,64 @@
                                       <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->constituency->name}}</td>
                                   </tr>
                               </table>
-                          </div>
-                      </div>
+                </div>
+            </div>
 
-                  </div>
+        </div>
                   <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white; margin-bottom: 20px">
                       <div
                           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
                           style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; box-shadow:0px 0px 10px 2px #e9e9e9">
                           <div class="card-header" id="headingTwo"
                                style="background: linear-gradient(135deg, #b30d00 0%, #6a0606 100%); color: white; border: none;">
-                              <h5 class="mb-0">
+                        <h5 class="mb-0">
                                   <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                      aria-controls="collapseOwo"
                                      style="color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; ">
                                       <i class="fas fa-money-check-alt mr-2"></i> Membership/  Donation Info
-                                  </a>
-                              </h5>
-                          </div>
-                          <div class="card-body">
+                            </a>
+                        </h5>
+                    </div>
+                    <div class="card-body">
                               <div
                                   class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
                                   style="border-left: 4px solid #b30d00;">
                                   <span style="color: black; font-weight: 500; font-size: 20px">Membership Information</span>
                               </div>
-                              <div class="w-full p-2">
-                                  <table class="w-full">
+                        <div class="w-full p-2">
+                            <table class="w-full">
 
                                       <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700;width: 120px">Start Date</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->start_date)->format('d-m-Y') }}</td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700;width: 120px">End Date</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{ \Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->format('d-m-Y') }}</td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700;width: 120px">Amount</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> £ {{ $memberDetails->user?->membership?->payment_amount }}</td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700;width: 135px">Membership Plan</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{ $memberDetails->user?->membership?->membership_type }}</td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700;width: 123px">Days Remaining</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{ abs(\Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->diffInDays(today(), false)) }} days </td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700;width: 120px">Renewal Date</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
@@ -412,42 +412,42 @@
                                               style="color: black; font-weight: 700">Amount</td>
                                           <td class=" font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700">Receipt</td>
-                                      </tr>
+                                </tr>
                                       @foreach ($memberDetails->user?->donations as $donation)
                                           <tr>
                                               <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$loop->iteration}}</td>
                                               <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$donation->created_at->format('d-m-Y')}}</td>
                                               <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ {{number_format($donation->amount, 2)}} </td>
                                               <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <a href="" class="text-[#b30d00] underline"><i class="fa fa-file cursor-pointer"></i></a></td>
-                                          </tr>
+                                </tr>
                                       @endforeach
                                       @if($memberDetails->user?->donations->isEmpty())
-                                          <tr>
+                                <tr>
                                               <td colspan="4" class="w-[100px] py-0.5" style="color: black; text-align: center">No donations found</td>
-                                          </tr>
+                                </tr>
                                       @endif
 
-                                  </table>
-                              </div>
-                          </div>
-                      </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-                  </div>
+            </div>
                   <div class=" col-lg-4 col-md-6 col-sm-6 col-12" style="background-color: white; margin-bottom: 20px">
                       <div
                           class="card wow animate__animated animate__fadeInUp animate__delay-1s shadow-lg rounded-lg hover:shadow-2xl transition-shadow duration-300"
                           style="border: none; border-radius: 15px; overflow: hidden; border:1px solid #e9e9e9; ">
                           <div class="card-header" id="headingTwo"
                                style="background: linear-gradient(135deg, #b30d00 0%, #6a0606 100%); color: white; border: none;">
-                              <h5 class="mb-0">
+                        <h5 class="mb-0">
                                   <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                      aria-controls="collapseOwo"
                                      style="color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
                                       <i class="fas fa-user mr-2"></i>Profile Information
-                                  </a>
-                              </h5>
-                          </div>
-                          <div class="card-body">
+                            </a>
+                        </h5>
+                    </div>
+                    <div class="card-body">
                               <div class="w-full p-2">
 
                                   <table class="w-full">
@@ -508,60 +508,60 @@
 
                               <div class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
                                    style="border-left: 4px solid #b30d00;">
-                                  <span style="color: black; font-weight: 500; font-size: 20px">Contact Information</span>
-                              </div>
-                              <div class="w-full p-2">
-                                  <table class="w-full">
-                                      <tr>
+                            <span style="color: black; font-weight: 500; font-size: 20px">Contact Information</span>
+                        </div>
+                        <div class="w-full p-2">
+                            <table class="w-full">
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700; width: 120px">Email id</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{$memberDetails->email}}</td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700;width: 120px">Phone</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span>
                                               {{$memberDetails->primary_mobile_number}}
                                           </td>
-                                      </tr>
+                                </tr>
 
 
-                                  </table>
+                            </table>
 
-                              </div>
+                        </div>
 
 
                               <div class="w-full py-1 px-3 font-semibold text-[#b30d00] bg-gradient-to-r from-[#b30d00]/5 to-[#b30d00]/10 rounded-lg mb-1"
                                    style="border-left: 4px solid #b30d00;">
-                                  <span style="color: black; font-weight: 500; font-size: 20px">Address Information</span>
-                              </div>
-                              <div class="w-full p-2">
-                                  <table class="w-full">
-                                      <tr>
+                            <span style="color: black; font-weight: 500; font-size: 20px">Address Information</span>
+                        </div>
+                        <div class="w-full p-2">
+                            <table class="w-full">
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700; width: 130px">Address Line 1</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span>{{$memberDetails->house_name_number}}
                                           </td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700; width: 120px">Address Line 2</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span>
                                               {{$memberDetails->street}}
                                           </td>
-                                      </tr>
-                                      <tr>
+                                </tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700; width: 120px">Town/ City</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span>
                                               {{$memberDetails->town_city}}
                                           </td>
-                                      </tr>
+                                </tr>
 
 
 
@@ -572,27 +572,27 @@
                                               style="color: black; font-weight: 700; width: 120px">County</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{$memberDetails->county->name}}</td>
-                                      </tr>
+                                </tr>
 
 
-                                      <tr>
+                                <tr>
                                           <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 120px">Postcode
                                           </td>
                                           <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->postcode}}</td>
-                                      </tr>
+                                </tr>
                                       <tr>
                                           <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700; width: 120px">Country</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                                   class="font-semibold text-black"></span> {{$memberDetails->country->name}}</td>
-                                      </tr>
-                                  </table>
+                                </tr>
+                            </table>
 
-                              </div>
-                          </div>
-                      </div>
+                        </div>
+                    </div>
+                </div>
 
-                  </div>
+            </div>
 
 
               </div>
@@ -609,13 +609,13 @@
 
                                   <div style="width: max-content; padding: 10px 40px; background-color: #b30d00; margin-top: 25px; color: white; height: max-content; border-top-right-radius: 50px; border-bottom-right-radius: 50px;">
                                       <span style="font-size: 35px;">Member of One Nation Party</span>
-                                  </div>
+                    </div>
                                   <div style="padding: 10px; position: absolute; right: 0px; top: 0px">
                                       <img src="{{asset('assets/images/logo.png')}}" style="height: 138px;" alt="">
 
-                                  </div>
+                        </div>
 
-                              </div>
+                        </div>
 
 
                               <div style="display: flex; flex-direction: column; padding-left: 20px; margin-top: 30px">
@@ -624,7 +624,7 @@
                                           <div style="height: 100px; width: 100px; position: absolute; right: -50%; transform: translateX(-50%); bottom: 5px; border-radius: 50%; background-color: white; padding: 0px; border: 1px solid black;">
                                               <img src="{{asset('assets/images/id_sign.jpg')}}" alt="" style="height: 100%; width: 100%; border-radius: 50%; object-fit: cover;">
                                           </div>
-                                      </div>
+                        </div>
 
                                       <div style="flex: 1; margin-top:17px;">
                                           <p style="font-size: 26px; padding-left: 15px; line-height: 25px;">
@@ -662,9 +662,9 @@
                                       <img id="barcode" style="width:460px; height: 50px;" />
                                       <span style="font-weight: bold; color: black; font-size: 18px">{{$memberDetails->custom_id}}</span>
                                   </div>
-                              </div>
-                          </div>
-                      </div>
+                        </div>
+                    </div>
+                </div>
 
                   </div>
               </div>
@@ -714,13 +714,13 @@
                                       </div>
 
                                   </form>
-                              </div>
+            </div>
 
-                          </div>
+        </div>
                       </div>
                       <div class="col-lg-2"></div>
 
-                  </div>
+    </div>
               </div>
           </div>
 
@@ -730,23 +730,23 @@
 
 
 
-  @push('scripts')
-  <script>
+    @push('scripts')
+    <script>
     window.addEventListener('load', function() {
-      const qrContainer = document.getElementById("qrcode");
+            const qrContainer = document.getElementById("qrcode");
       const referralUrl = "{{route('index')}}/referral/{{$memberDetails->user->referral_code}}";
 
       // Clear any existing content
-      qrContainer.innerHTML = "";
+            qrContainer.innerHTML = "";
 
-      // Generate QR Code
-      new QRCode(qrContainer, {
+            // Generate QR Code
+            new QRCode(qrContainer, {
         text: referralUrl,
-        width: 200,
+                width: 200,
         height: 200
       });
-    });
-  </script>
-  @endpush
+            });
+    </script>
+    @endpush
 
 </x-front.layout>
