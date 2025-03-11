@@ -17,7 +17,17 @@
             {
                 color: black;
             }
+            @media only screen and (max-width: 668) {
+                .description.style-01 
+                {
+                    width:100% !important;
+                    min-width:100% !important;
+                }
+            }
         </style>
+
+
+         
     @endpush
 
     <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
@@ -45,10 +55,15 @@
                     <div class="volunteer-form style-01">
                         <div class="donate-programm">
                             <div class="content">
-                                <h6 class="subtitle">Donation Amount : £ {{ $memberShip['amount'] }}</h6>
-                                <p class="description style-01">
-                                    Your generous support empowers One Nation to strengthen communities, drive change, and build a brighter future for Great Britain.
-                                </p>
+                                <!-- <h6 class="subtitle">Membership Amount : £ {{ $memberShip['amount'] }}</h6> -->
+                                <h6 class="subtitle">Complete Your Membership Fee</h6>
+                                <p class="description style-01" style="color:black">Thank you for joining One Nation. You’re now at the final stage of your membership.</p>
+                                        <ul>
+                                                                <p class="description style-01" style="color:black; font-size:16px; line-height:20px">•	Fee: £36.00</p>
+                                <p class="description style-01" style="color:black; font-size:16px; line-height:20px">•	Next Step: Complete your payment to activate your membership and start enjoying your benefits.
+</p>
+                                        </ul>
+                                <p class="description style-01" style="color:black">Thank you for being part of the change!</p>
 
                                 @if(session('error'))
                                     <div class="text-red-600 text-sm font-semibold mt-4">{{session('error')}}</div>
