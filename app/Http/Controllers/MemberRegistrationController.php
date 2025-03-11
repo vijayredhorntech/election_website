@@ -215,7 +215,6 @@ class MemberRegistrationController extends Controller
                 'alternate_mobile_number' => $request->alternate_mobile_number,
                 'primary_country_code' => $request->primary_country_code,
                 'alternate_country_code' => $request->alternate_country_code,
-                'profile_status' => $update ? 'inActive' : 'active',
             ]);
 
             if ($request->hasFile('profile_photo')) {

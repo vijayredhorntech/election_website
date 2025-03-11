@@ -26,6 +26,7 @@ class PaymentController extends Controller
 
     public function createMembershipSession(Request $request)
     {
+
         try {
             $request->validate([
                 'email' => 'required|email',
@@ -147,7 +148,7 @@ class PaymentController extends Controller
                 'email' => 'required|email',
                 'is_anonymous' => 'boolean',
                 'message' => 'nullable|string',
-                'termsCheckbox' => 'required|accepted',
+                'terms_and_condition_checkbox' => 'required|accepted',
             ]);
 
             $session = Session::create([
@@ -191,7 +192,6 @@ class PaymentController extends Controller
     public function handleSuccess(Request $request)
     {
 
-        dd($request->all());
         try {
             if (!$request->session_id) {
                 return redirect()->route('donate')->with('error', 'Invalid session.');
