@@ -95,6 +95,10 @@
         .logoImage {
             height: 100px;
         }
+        .mobileNavLinks
+        {
+            display: none !important;
+        }
 
         /* Optional: Add a subtle animation for the active state */
         @keyframes activeIndicator {
@@ -109,6 +113,12 @@
 
         @media (max-width: 1200px) {
             .mobileProfileList
+            {
+                display: block !important;
+            }
+        }
+        @media (max-width: 991px) {
+            .mobileNavLinks
             {
                 display: block !important;
             }
@@ -134,7 +144,7 @@
         {
             color: black !important;
             cursor:pointer; !important;
-            padding: 5px 20px !important;
+            padding: 5px 20px ;
             transition:  0.3s ease !important;
             width: 100% !important;
             font-weight: 500 !important;
@@ -230,7 +240,7 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
+                        <li style="border-bottom: 0pc" class="menu-item-has-children {{ request()->routeIs('contact') ? 'current-menu-item' : '' }}">
                             <a href="{{ route('contact') }}" class="nav-link">
                                 Contact
                             </a>
@@ -240,6 +250,67 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
+                        @if(!auth()->check())
+                        <li style="border-top: 1px solid #b30d00;" class="menu-item-has-children mobileNavLinks {{ request()->routeIs('login') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('login') }}" class="nav-link">
+                                Login
+                            </a>
+                            <div class="line">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot style-02"></span>
+                            </div>
+                        </li>
+                        @else
+                            <li style="border-top: 2px solid #b30d00; margin-top: 20px" class="menu-item-has-children mobileNavLinks  {{ request()->routeIs('memberProfile') ? 'current-menu-item' : '' }}">
+                                <a href="{{ route('memberProfile') }}" class="nav-link">
+                                    Profile
+                                </a>
+                                <div class="line">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot style-02"></span>
+                                </div>
+                            </li>
+                            @if(request()->routeIs('memberProfile'))
+                                <li class="menu-item-has-children mobileNavLinks">
+                                    <a onclick="printCard()" class="nav-link">
+                                        Print Id
+                                    </a>
+                                    <div class="line">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children mobileNavLinks">
+                                    <a onclick="downloadCard()" class="nav-link">
+                                        Download Id
+                                    </a>
+                                    <div class="line">
+                                        <span class="dot"></span>
+                                        <span class="dot"></span>
+                                        <span class="dot style-02"></span>
+                                    </div>
+                                </li>
+                            @endif
+
+
+                            <li class="menu-item-has-children mobileNavLinks {{ request()->routeIs('memberProfile') ? 'current-menu-item' : '' }}">
+                                <form action="{{ route('logout') }}" method="post" style="">
+                                    @csrf
+                                    <button class="profileNavIcons logoutButton" style="padding: 0px 0px" type="submit">
+                                        <i class="fa fa-right-from-bracket" style="margin-right:10px; "></i>
+                                        Log Out
+                                    </button>
+                                </form>
+                                <div class="line">
+                                    <span class="dot"></span>
+                                    <span class="dot"></span>
+                                    <span class="dot style-02"></span>
+                                </div>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="nav-right-content">
@@ -379,6 +450,7 @@
                                     <li><a href="{{route('policies')}}">Policies</a></li>
                                     <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
                                     <li><a href="{{route('terms')}}">Terms & Conditions</a></li>
+                                    <li><a href="{{route('donationTerms')}}">Donation Terms</a></li>
                                 </ul>
                             </div>
                         </div>

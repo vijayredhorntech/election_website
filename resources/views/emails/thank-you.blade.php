@@ -21,14 +21,15 @@
                         <td align="center">
                             <h2 style="color:#333333;margin:0;font-size:24px;">🙏 Thank You for Reaching Out! 🙏</h2>
                             <p style="color:#555555;font-size:16px;line-height:24px;margin:15px 0 20px;">
-                                Hello <strong>{{ $name }}</strong>, we appreciate you contacting us. Our team has received your message and will get back to you as soon as possible.
+                                Hello <strong>{{ $name }}</strong>,
+                                We appreciate you contacting us! Our team has received your message and will get back to you within 4 to 5 working days (minimum).
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
                             <p style="color:#555555;font-size:16px;line-height:24px;margin:0;">
-                                In the meantime, feel free to browse our website or contact us for any urgent inquiries.
+                                In the meantime, feel free to browse our website or reach out if you have any further questions—we’re here to help!
                             </p>
                         </td>
                     </tr>
@@ -42,7 +43,10 @@
                     <tr>
                         <td align="center" style="padding-top:30px;">
                             <p style="color:#888888;font-size:14px;margin:0;">
-                                If you have any further questions, don't hesitate to reach out. We're here to help!
+                                Best regards,
+                            </p>
+                            <p style="color:#888888;font-size:14px;margin:0;">
+                                One Nation Team
                             </p>
                         </td>
                     </tr>

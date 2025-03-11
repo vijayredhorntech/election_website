@@ -9944,11 +9944,11 @@ input[type=checkbox] {
     padding: 10px 0px;
   }
   .navbar-area.nav-style-01 .nav-container .responsive-mobile-menu .navbar-toggler {
-    background-color: #000565;
+    background-color: #b30d00;
   }
   .navbar-area.nav-style-01 .nav-container .navbar-collapse .navbar-nav {
     text-align: left;
-    background-color: #000565;
+    background-color: #e9e9e9;
     padding: 0 20px;
   }
   .navbar-area.nav-style-01 .nav-container .navbar-collapse .navbar-nav li {
@@ -9983,7 +9983,7 @@ input[type=checkbox] {
   .navbar-area.nav-style-01 .nav-container .navbar-collapse .navbar-nav li a {
     -webkit-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in;
-    color: #fff;
+    color: black;
   }
   .navbar-area.nav-style-01 .nav-container .navbar-collapse .navbar-nav li:hover.menu-item-has-children:before {
     color: var(--main-color-one);

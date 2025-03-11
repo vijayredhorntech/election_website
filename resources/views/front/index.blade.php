@@ -13,9 +13,7 @@
                 <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide2.jpeg')}})">
 
                 </div>
-                <div class="swiper-slide" style="background-image: url({{asset('assets/images/slide4.jpg')}})">
 
-                </div>
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
@@ -33,7 +31,7 @@
                         <h1 class="title" style="color:white; font-size: 50px">Welcome to One Nation</h1>
                         <p style="color:whitesmoke">Building a stronger, fairer, and more united society for all</p>
                         <div class="btn-wrapper" style="margin-top:10px">
-                            <a href="{{route('memberShipDetails')}}" class="boxed-btn btn-sanatory"
+                            <a href="{{route('joinUs')}}" class="boxed-btn btn-sanatory"
                                style="padding: 5px 10px">Join Us Today</a>
                             <a href="{{route('donate')}}" class="boxed-btn btn-sanatory-2" style="padding: 5px 10px">Donate
                                 Now</a>
@@ -128,7 +126,7 @@
         </div>
     </div>
 
-    <div class="political-support-section padding-top-115 padding-bottom-20">
+    <div class="political-support-section padding-top-20 padding-bottom-20">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -212,7 +210,7 @@
         </div>
     </div>
 
-    <div class="donation-section-area padding-top-60 padding-bottom-60" style="background-color:whitesmoke">
+    <div class="donation-section-area padding-top-60 padding-bottom-60" style="background-color:whitesmoke; margin-top: 0px">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -225,10 +223,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">
+                            <h4 class="title" style="line-height: 0px">
                                 Fuel Real Change
                             </h4>
                             <p style="color: black">Your contribution directly supports campaigns and community initiatives.
@@ -237,30 +235,30 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">Support People-First</h4>
+                            <h4 class="title" style="line-height: 0px">Support People-First</h4>
                             <p style="color: black">We rely on grassroots support—not big corporations.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">Amplify Voices</h4>
+                            <h4 class="title" style="line-height: 0px">Amplify Voices</h4>
                             <p style="color: black">Help us speak louder for those who need it most.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="donation-single-items style-01">
+                    <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title">Make an Impact
+                            <h4 class="title" style="line-height: 0px">Make an Impact
                             </h4>
                             <p style="color: black">Every contribution brings us closer to real change.</p>
                         </div>
@@ -322,10 +320,10 @@
                     <h2 class=" mb-4">Join One Nation Today</h2>
                     <p class=" mb-4" style="color: black">Be part of a movement that values justice, education, and
                         unity. Together, we can build a better Britain for everyone.</p>
-                    <div class="cta-buttons">
-                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg">Become a Member <i
+                    <div class="cta-buttons" >
+                        <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg" style="margin-top: 20px">Become a Member <i
                                 class="fas fa-users"></i></a>
-                        <a href="{{ route('donate') }}" class="btn btn-primary btn-lg">Support Our Cause <i
+                        <a href="{{ route('donate') }}" class="btn btn-primary btn-lg" style="margin-top: 20px">Support Our Cause <i
                                 class="fas fa-heart"></i></a>
                     </div>
                     <div class="cta-buttons mt-4">

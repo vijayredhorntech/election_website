@@ -110,6 +110,10 @@ class PageController extends Controller
 
           return view('front.terms', compact('data'));
      }
+     public function donationTerms()
+     {
+         return view('front.donation-terms');
+     }
 
      public function manifesto()
      {

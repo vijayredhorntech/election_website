@@ -13,12 +13,12 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title" style="color:white">Membership</h1>
+                        <h1 class="title" style="color:white">FAQ's</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
                             <li><a href="{{route('index')}}">Home</a></li>
-                            <li><a href="{{route('whatIsMembership')}}">What is membership?</a></li>
+                            <li><a href="{{route('whatIsMembership')}}">Frequently asked questions</a></li>
                         </ul>
                     </div>
                 </div>

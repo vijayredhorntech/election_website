@@ -34,9 +34,10 @@ Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy');
+Route::get('/donation_terms', [PageController::class, 'donationTerms'])->name('donationTerms');
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
 Route::get('/manifesto', [PageController::class, 'manifesto'])->name('manifesto');
-Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/faqs', [PageController::class, 'faq'])->name('faq');
 Route::get('/code-of-conduct', [PageController::class, 'codeOfConduct'])->name('code-of-conduct');
 Route::get('/leadership', [PageController::class, 'leadership'])->name('leadership');
 Route::get('/policies', [PageController::class, 'policies'])->name('policies');
@@ -49,7 +50,7 @@ Route::get('/donate', [PageController::class, 'donate'])->name('donate');
 Route::post('/process-donation', [PaymentController::class, 'processPayment'])->name('donation.process');
 Route::post('/stripe-webhook', [PaymentController::class, 'webhook'])->name('stripe.webhook');
 
-Route::get('/what_is_membership', [PageController::class, 'whatIsMembership'])->name('whatIsMembership');
+Route::get('/faq', [PageController::class, 'whatIsMembership'])->name('whatIsMembership');
 
 Route::get('/referral/{code}', [MemberRegistrationController::class, 'referral'])->name('referral');
 
