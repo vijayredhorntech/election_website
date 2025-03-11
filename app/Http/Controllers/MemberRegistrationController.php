@@ -144,7 +144,7 @@ class MemberRegistrationController extends Controller
         $memberShipPlans = [
                 'id' => '1',
                 'type' => 'Standard Plan',
-                'amount' => '36',
+                'amount' => '1',
                 'label' => 'Membership 1',
         ];
 
