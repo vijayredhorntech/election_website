@@ -139,150 +139,22 @@ class MemberRegistrationController extends Controller
         return view('front.select-membership-plan')->with('email', $email);
     }
 
-    public function memberShipPayment(Request $request)
+    public function paymentGateway(Request $request)
     {
         $memberShipPlans = [
-            [
                 'id' => '1',
                 'type' => 'Standard Plan',
-                'amount' => '5.88',
+                'amount' => '36',
                 'label' => 'Membership 1',
-            ],
-            [
-                'id' => '2',
-                'type' => 'Premium Plan',
-                'amount' => '10.88',
-                'label' => 'Membership 2',
-            ],
-            [
-                'id' => '3',
-                'type' => 'Ultimate Plan',
-                'amount' => '15.88',
-                'label' => 'Membership 3',
-            ],
-
         ];
 
         $request->validate([
             'memberShip' => 'required',
+            'acceptTerms' => 'required',
+
         ]);
         $email = session('email');
-        $memberShip = collect($memberShipPlans)->where('id', $request->memberShip)->first();
-        return view('front.membership-payment')->with('memberShip', $memberShip)->with('email', $email);
-    }
-
-    public function paymentGateway($email, $id)
-    {
-        $memberShipPlans = [
-            [
-                'id' => '1',
-                'type' => 'Standard Plan',
-                'amount' => '5.88',
-                'label' => 'Membership 1',
-            ],
-            [
-                'id' => '2',
-                'type' => 'Premium Plan',
-                'amount' => '10.88',
-                'label' => 'Membership 2',
-            ],
-            [
-                'id' => '3',
-                'type' => 'Ultimate Plan',
-                'amount' => '15.88',
-                'label' => 'Membership 3',
-            ],
-        ];
-
-        $memberShip = collect($memberShipPlans)->where('id', $id)->first();
-
-        DB::beginTransaction();
-        try {
-            // Generate referral code
-            $otp = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
-            $referrar = User::where('referral_code', session('request_referral_code'))->first();
-
-            // Create user
-            $user = User::create([
-                'name' => strtoupper(session('name')),
-                'email' => $email,
-                'password' => bcrypt($otp),
-            ]);
-
-            if (!$user) {
-                throw new \Exception('Failed to create user account');
-            }
-
-            // Create member
-            $member = Member::create([
-                'user_id' => $user->id,
-                'enrollment_date' => now(),
-                'first_name' => strtoupper(session('name')),
-                'email' => $email,
-                'profile_status' => 'inActive',
-                'referrer_id' => $referrar?->id,
-            ]);
-
-            // Create membership
-            Membership::create([
-                'user_id' => $user->id,
-                'membership_type' => 'Standard Plan',
-                'payment_amount' => 36,
-                'payment_status' => 'success',
-                'start_date' => now(),
-                'end_date' => now()->addDays(365),
-                'status' => 'active',
-            ]);
-
-            if (!$member) {
-                throw new \Exception('Failed to create member profile');
-            }
-
-            // Queue OTP email
-            // Mail::to($email)->queue(new OtpMail($otp));
-
-            $data = [
-                'email' => $email,
-                'password' => $otp,
-            ];
-
-            // Queue membership email
-            Mail::to($email)->queue(new MemberShipMail($data));
-
-            // Clear session data
-            session()->forget([
-                'request_referral_code',
-                'name',
-                'email'
-            ]);
-
-            // Commit transaction
-            DB::commit();
-
-            // Login user
-            auth()->login($user);
-
-            return redirect()
-                ->route('memberBasicInformation')
-                ->with('success', 'Your account has been created successfully. Please complete your profile.');
-        } catch (\Exception $e) {
-            // Rollback transaction
-            DB::rollBack();
-
-            // Log the error
-            CustomLog::error('Payment gateway error', [
-                'email' => $email,
-                'membership_id' => $id,
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-
-            session()->flash('error', 'Registration failed. Please try again later. If the problem persists, contact support.');
-            // Return error response
-            return redirect()
-                ->route('selectMemberShipPlan')
-                ->with('error', 'Registration failed. Please try again later. If the problem persists, contact support.');
-        }
+        return view('front.membership-payment')->with('memberShip', $memberShipPlans)->with('email', $email);
     }
 
 
@@ -291,7 +163,6 @@ class MemberRegistrationController extends Controller
 
         return view('front.member-basic-information')->with('update', $update);
     }
-
     public function storeMemberBasicInformation(Request $request, $update)
     {
         if($update) {
@@ -375,7 +246,6 @@ class MemberRegistrationController extends Controller
             return back()->with('error', 'An error occurred while saving the basic information');
         }
     }
-
     public function storeMemberAddressInformation(Request $request)
     {
             $validator = Validator::make($request->all(), [
@@ -432,35 +302,30 @@ class MemberRegistrationController extends Controller
             return back()->with('error', 'An error occurred while saving the address information');
         }
     }
-
     public function memberAddressInformation()
     {
         $countries = Country::all();
 
         return view('front.member-address-information')->with('countries', $countries);
     }
-
     public function checkEmail(Request $request)
     {
         $email = $request->input('email');
         $exists = User::where('email', $email)->exists();
         return response()->json(['exists' => $exists]);
     }
-
     public function checkPrimaryMobileNumber(Request $request)
     {
         $mobileNumber = $request->input('mobile_number');
         $exists = Member::where('primary_mobile_number', $mobileNumber)->exists();
         return response()->json(['exists' => $exists]);
     }
-
     public function checkAlternateMobileNumber(Request $request)
     {
         $mobileNumber = $request->input('mobile_number');
         $exists = Member::where('alternate_mobile_number', $mobileNumber)->exists();
         return response()->json(['exists' => $exists]);
     }
-
     public function resendOtp(Request $request)
     {
         $email = $request->query('email');
@@ -490,7 +355,6 @@ class MemberRegistrationController extends Controller
             ]);
         }
     }
-
     public function referral($code)
     {
         // check if the code is valid
@@ -507,7 +371,6 @@ class MemberRegistrationController extends Controller
         ];
         return view('front.join-us')->with('formData', $formData);
     }
-
     public function become_core_member()
     {
         return view('front.become-core-member');
@@ -533,7 +396,6 @@ class MemberRegistrationController extends Controller
             return view('front.core-member-form')->with('member', $member);
         }
     }
-
     public function core_member_form(Request $request, $id)
     {
 
