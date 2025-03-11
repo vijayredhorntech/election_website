@@ -288,10 +288,13 @@
                                 </p>
                             </div>
                             <div class="checkbox-wrapper">
-                                <input type="checkbox" id="" name="" style="display: block; height: 15px ; width: 15px; ">
+                                <input type="checkbox" id="" name="termsCheckbox" style="display: block; height: 15px ; width: 15px; ">
                                 <label for="">
                                     I confirm that I have read and accept the <a href="{{route('donationTerms')}}" style="color: #b30d00;cursor: pointer;" >Terms & Conditions.</a>
                                 </label>
+                                @error('termsCheckbox')
+                                <div class="error">{{ $message }}</div>
+                                @enderror
                             </div>
 
 

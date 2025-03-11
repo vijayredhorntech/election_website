@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="contact-form style-01">
-                            <form action="{{route('paymentGateway',['email'=>$email,'id'=>1])}}" method="post" class="contact-page-form" novalidate="novalidate">
+                            <form action="{{route('paymentGateway')}}" method="post" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <h6 class="title"> Membership plan</h6>
 
@@ -74,6 +74,8 @@
                                                     <input type="radio" value="36" name="memberShip" checked>
                                                     <span class="checkmark"></span>
                                                 </label>
+                                                @error ('memberShip')<span
+                                                    style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
@@ -85,12 +87,12 @@
                                             <div class="check-box">
                                                 <label style="color: black" class="container-box">
                                                     I confirm that I have read and accept the <span style="color: #b30d00;cursor: pointer;" data-toggle="modal" data-target="#cancelationPolicyModel">Terms & Conditions.</span>
-                                                    <input type="checkbox" name="any_criminal_record">
+                                                    <input type="checkbox" name="acceptTerms">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
                                         </div>
-                                        @error ('any_crime_record')<span
+                                        @error ('acceptTerms')<span
                                             style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                     </div>
@@ -401,14 +403,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
     @push('scripts')
     <script>
