@@ -1,4 +1,18 @@
 <x-front.layout>
+
+
+        @push('styles')
+        <style>
+
+            @media only screen and (max-width: 991px) {
+                .whyDonateTitle
+                {
+                    line-height: 0px !important;
+                }
+            }
+        </style>
+        @endpush
+
     <!-- Hero Swiper Section -->
     <div class="banner-carousel">
         <div class="swiper hero-swiper">
@@ -226,7 +240,7 @@
                     <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title" style="line-height: 0px">
+                            <h4 class="title whyDonateTitle">
                                 Fuel Real Change
                             </h4>
                             <p style="color: black">Your contribution directly supports campaigns and community initiatives.
@@ -238,7 +252,7 @@
                     <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title" style="line-height: 0px">Support People-First</h4>
+                            <h4 class="title whyDonateTitle">Support People-First</h4>
                             <p style="color: black">We rely on grassroots support—not big corporations.
                             </p>
                         </div>
@@ -248,7 +262,7 @@
                     <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title" style="line-height: 0px">Amplify Voices</h4>
+                            <h4 class="title whyDonateTitle">Amplify Voices</h4>
                             <p style="color: black">Help us speak louder for those who need it most.
                             </p>
                         </div>
@@ -258,7 +272,7 @@
                     <div class="donation-single-items style-01" style="padding-bottom: 0px; margin-bottom: 20px">
 
                         <div class="content">
-                            <h4 class="title" style="line-height: 0px">Make an Impact
+                            <h4 class="title whyDonateTitle">Make an Impact
                             </h4>
                             <p style="color: black">Every contribution brings us closer to real change.</p>
                         </div>
