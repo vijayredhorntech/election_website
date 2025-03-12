@@ -33,10 +33,10 @@
                 <span style="font-size: 16px;font-family: Roboto;color: black"> <span style="font-size: 18px">£</span> {{$membership->payment_amount}}</span>
             </div>
             <div style="width: 130px;border-bottom: 1px solid transparent;">
-                <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Status</span>
+                <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Membership Type</span>
             </div>
             <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
-                <span style="font-size: 16px;font-family: Roboto; color: black">{{ucfirst($membership->status)}}</span>
+                <span style="font-size: 16px;font-family: Roboto; color: black">{{ucfirst($membership->membership_type)}}</span>
             </div>
         </div>
 
