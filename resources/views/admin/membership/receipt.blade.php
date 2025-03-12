@@ -36,7 +36,7 @@
                 <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Status</span>
             </div>
             <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
-                <span style="font-size: 16px;font-family: Roboto; color: black">{{ucfirst($membership->payment_status)}}</span>
+                <span style="font-size: 16px;font-family: Roboto; color: black">{{ucfirst($membership->status)}}</span>
             </div>
         </div>
 
