@@ -14,8 +14,7 @@
                 <a href="{{ route('about') }}" class="text-gray-700 hover:text-primary">About</a>
                 <a href="{{ route('leadership') }}" class="text-gray-700 hover:text-primary">Leadership</a>
                 <a href="{{ route('policies') }}" class="text-gray-700 hover:text-primary">Policies</a>
-                <a href="{{ route('events') }}" class="text-gray-700 hover:text-primary">Events</a>
-                <a href="{{ route('news') }}" class="text-gray-700 hover:text-primary">News</a>
+                <a href="{{ route('events') }}" class="text-gray-700 hover:text-primary">Events & News</a>
                 <a href="{{ route('contact') }}" class="text-gray-700 hover:text-primary">Contact</a>
             </div>
 
@@ -29,7 +28,7 @@
             <div class="md:hidden">
                 <button type="button" class="mobile-menu-button">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
@@ -41,8 +40,7 @@
             <a href="{{ route('about') }}" class="block py-2 text-gray-700 hover:text-primary">About</a>
             <a href="{{ route('leadership') }}" class="block py-2 text-gray-700 hover:text-primary">Leadership</a>
             <a href="{{ route('policies') }}" class="block py-2 text-gray-700 hover:text-primary">Policies</a>
-            <a href="{{ route('events') }}" class="block py-2 text-gray-700 hover:text-primary">Events</a>
-            <a href="{{ route('news') }}" class="block py-2 text-gray-700 hover:text-primary">News</a>
+            <a href="{{ route('events') }}" class="block py-2 text-gray-700 hover:text-primary">Events & News</a>
             <a href="{{ route('contact') }}" class="block py-2 text-gray-700 hover:text-primary">Contact</a>
             <div class="mt-4 space-y-2">
                 <a href="{{ route('donate') }}" class="block w-full text-center bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark transition">Donate</a>
@@ -62,4 +60,4 @@
         mobileMenu.classList.toggle('hidden');
     });
 </script>
-@endpush 
+@endpush

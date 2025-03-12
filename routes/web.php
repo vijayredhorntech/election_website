@@ -43,8 +43,8 @@ Route::get('/code-of-conduct', [PageController::class, 'codeOfConduct'])->name('
 Route::get('/leadership', [PageController::class, 'leadership'])->name('leadership');
 Route::get('/policies', [PageController::class, 'policies'])->name('policies');
 Route::get('/events', [PageController::class, 'events'])->name('events');
-Route::get('/news', [PageController::class, 'news'])->name('news');
 Route::get('/memberShipDetails', [PageController::class, 'memberShipDetails'])->name('memberShipDetails');
+Route::get('/womens-organization', [PageController::class, 'womensOrganization'])->name('womens-organization');
 
 
 Route::get('/donate', [PageController::class, 'donate'])->name('donate');

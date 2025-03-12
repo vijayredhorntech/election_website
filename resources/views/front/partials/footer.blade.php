@@ -25,8 +25,7 @@
                     <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-white">About Us</a></li>
                     <li><a href="{{ route('leadership') }}" class="text-gray-400 hover:text-white">Leadership</a></li>
                     <li><a href="{{ route('policies') }}" class="text-gray-400 hover:text-white">Policies</a></li>
-                    <li><a href="{{ route('events') }}" class="text-gray-400 hover:text-white">Events</a></li>
-                    <li><a href="{{ route('news') }}" class="text-gray-400 hover:text-white">News</a></li>
+                    <li><a href="{{ route('events') }}" class="text-gray-400 hover:text-white">Events & News</a></li>
                 </ul>
             </div>
 
@@ -59,4 +58,4 @@
             </div>
         </div>
     </div>
-</footer> 
+</footer>

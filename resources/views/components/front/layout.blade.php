@@ -266,7 +266,7 @@
                         </li>
                         <li class="menu-item-has-children {{ request()->routeIs('events') ? 'current-menu-item' : '' }}">
                             <a href="{{ route('events') }}" class="nav-link">
-                                Events
+                                News & Events
                             </a>
                             <div class="line style-01">
                                 <span class="dot"></span>
@@ -274,9 +274,9 @@
                                 <span class="dot style-02"></span>
                             </div>
                         </li>
-                        <li class="menu-item-has-children {{ request()->routeIs('news') ? 'current-menu-item' : '' }}">
-                            <a href="{{ route('news') }}" class="nav-link">
-                                News
+                        <li class="menu-item-has-children {{ request()->routeIs('womens-organization') ? 'current-menu-item' : '' }}">
+                            <a href="{{ route('womens-organization') }}" class="nav-link">
+                                Women's Organisation
                             </a>
                             <div class="line style-01">
                                 <span class="dot"></span>
@@ -453,8 +453,7 @@
                                     </span>
                                 </h4>
                                 <ul>
-                                    <li><a href="{{route('news')}}">News</a></li>
-                                    <li><a href="{{route('events')}}">Events</a></li>
+                                    <li><a href="{{route('events')}}">Events & News</a></li>
                                     <li><a href="{{route('whatIsMembership')}}">FAQ's</a></li>
                                     <li><a href="{{route('contact')}}">Contact Us</a></li>
 

@@ -88,7 +88,14 @@ class PageController extends Controller
      public function events()
      {
           $events = Event::upcoming()->paginate(9);
-          return view('front.events', compact('events'));
+          $data = [
+               'title' => 'Latest News - One Nation',
+               'meta_description' => 'Stay updated with the latest news and updates from One Nation Party.'
+          ];
+
+          $news = News::latest()->paginate(9);
+          // return view('front.news', compact('data', 'news'));
+          return view('front.events', compact('events', 'data', 'news'));
      }
 
      public function privacyPolicy()
@@ -161,16 +168,16 @@ class PageController extends Controller
           return view('front.contact', compact('data'));
      }
 
-     public function news()
-     {
-          $data = [
-               'title' => 'Latest News - One Nation',
-               'meta_description' => 'Stay updated with the latest news and updates from One Nation Party.'
-          ];
+     // public function news()
+     // {
+     //      $data = [
+     //           'title' => 'Latest News - One Nation',
+     //           'meta_description' => 'Stay updated with the latest news and updates from One Nation Party.'
+     //      ];
 
-          $news = News::latest()->paginate(9);
-          return view('front.news', compact('data', 'news'));
-     }
+     //      $news = News::latest()->paginate(9);
+     //      return view('front.news', compact('data', 'news'));
+     // }
 
      public function leadership()
      {
@@ -291,5 +298,10 @@ class PageController extends Controller
 
           contact::create($validated);
           return redirect()->back()->with('success', 'Thank you for your message. We will get back to you soon.');
+     }
+
+     public function womensOrganization()
+     {
+          return view('front.womens-organization');
      }
 }

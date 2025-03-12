@@ -4,12 +4,12 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title" style="color:white">Events</h1>
+                        <h1 class="title" style="color:white">Events & News</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
                             <li><a href="{{route('index')}}">Home</a></li>
-                            <li><a href="{{route('events')}}">Events</a></li>
+                            <li><a href="{{route('events')}}">Events & News</a></li>
                         </ul>
                     </div>
                 </div>
@@ -18,6 +18,22 @@
     </div>
 
     <section class="help-and-faq-section">
+        @if(!$events->count() && !$news->count())
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="text-align: center; padding: 20px;">
+                        <div class="content">
+                            <i class="fas fa-exclamation-triangle" style="color: #b30d00; font-size: 40px;"></i>
+                            <p style="color: black; font-size: 20px; font-weight: 600">No events or news found</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @if($events->count() > 0)
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -77,6 +93,63 @@
                 </div>
             </div>
         </div>
+        @endif
+        @if($news->count() > 0)
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="help-single-item">
+                        <div class="content">
+                            <h4 class="title">News & Updates</h4>
+                            <p style="color: black">Stay informed about One Nation's latest activities and initiatives.</p>
+                        </div>
+                    </div>
+                    <div class="icon-box-item-02">
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-newspaper" style="color: #b30d00"></i>
+                        </div>
+                        <div class="content">
+                            <h4 class="title">Press Releases</h4>
+                            <p style="color: black">Official statements and announcements.</p>
+                        </div>
+                    </div>
+                    <div class="icon-box-item-02">
+                        <div class="icon" style="background-color: transparent">
+                            <i class="fas fa-calendar-alt" style="color: #b30d00"></i>
+                        </div>
+                        <div class="content">
+                            <h4 class="title">Upcoming Events</h4>
+                            <p style="color: black">Join us at our next event.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        @foreach($news as $article)
+                        <div class="col-md-6 mb-4">
+                            <div class="single-faq-item">
+                                @if($article->image)
+                                <img src="{{ asset($article->image) }}" alt="{{ $article->title }}" class="news-image mb-3">
+                                @endif
+                                <div class="content">
+                                    <div class="news-date mb-2">
+                                        <i class="far fa-calendar-alt"></i> {{ $article->created_at->format('d M Y') }}
+                                    </div>
+                                    <h3>{{ $article->title }}</h3>
+                                    <p>{{ Str::limit($article->excerpt, 120) }}</p>
+                                    <a href="{{ route('news.show', $article->slug) }}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="pagination-wrapper">
+                        {{ $news->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </section>
 </x-front.layout>
 
