@@ -276,7 +276,7 @@
                         </li>
                         <li class="menu-item-has-children {{ request()->routeIs('womens-organization') ? 'current-menu-item' : '' }}">
                             <a href="{{ route('womens-organization') }}" class="nav-link">
-                                ONWO
+                                Womens
                             </a>
                             <div class="line style-01">
                                 <span class="dot"></span>

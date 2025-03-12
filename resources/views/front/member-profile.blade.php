@@ -234,7 +234,7 @@
                                 <div style="margin-top: 30px">
                                     <img class="rounded-[3px] mb-4"
                                         src="{{ $memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png') }}"
-                                        alt="Profile Photo" style="height: 200px; object-fit:cover; width: 200px; border-radius:3px">
+                                        alt="Profile Photo" style="height: 240px; object-fit:cover; width: 240px; border-radius:3px">
                                 </div>
 
                                 <div style="display: flex; flex-direction:column; align-items: end; gap: 10px; margin-bottom:20px">
@@ -746,8 +746,8 @@
             // Generate QR Code
             new QRCode(qrContainer, {
                 text: referralUrl,
-                width: 200,
-                height: 200
+                width: 240,
+                height: 240
             });
         });
     </script>
