@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\PaymentController;
-
+use App\Http\Controllers\MembershipController;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 Route::get('/about', [PageController::class, 'about'])->name('about');
@@ -66,7 +66,7 @@ Route::get('/select_membership_plan', [MemberRegistrationController::class, 'sel
 Route::post('/payment_gateway', [MemberRegistrationController::class, 'paymentGateway'])->name('paymentGateway');
 Route::post('/create-membership-session', [PaymentController::class, 'createMembershipSession'])->name('membership.session');
 Route::get('/membership/success', [PaymentController::class, 'handleMembershipSuccess'])->name('membership.success');
-Route::get('/membership/cancel', function() {
+Route::get('/membership/cancel', function () {
     return redirect()->route('selectMemberShipPlan')->with('error', 'Payment was cancelled.');
 })->name('membership.cancel');
 
@@ -159,6 +159,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/donation', [DonationController::class, 'index'])->name('index');
             Route::post('/donation/store', [DonationController::class, 'store'])->name('store');
             Route::get('/donation/printReceipt/{id}', [DonationController::class, 'printReceipt'])->name('printReceipt');
+        });
+
+        Route::name('membership.')->group(function () {
+            Route::get('/membership', [MembershipController::class, 'index'])->name('index');
+            Route::get('/membership/printReceipt/{id}', [MembershipController::class, 'printReceipt'])->name('printReceipt');
         });
 
         Route::name('budget.')->group(function () {

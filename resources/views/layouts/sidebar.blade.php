@@ -1,6 +1,6 @@
 <aside style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{asset('assets/img/bg1.jpg')}}); background-size: cover; background-position: center;"
-       class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl shadow-none bg-slate-850 max-w-64 ease-nav-brand z-990 xl:left-0 xl:translate-x-0"
-       aria-expanded="false" id="sideBar">
+    class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl shadow-none bg-slate-850 max-w-64 ease-nav-brand z-990 xl:left-0 xl:translate-x-0"
+    aria-expanded="false" id="sideBar">
 
     <div class="h-24 border-b-white border-b-[1px]">
         <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-white  xl:hidden" sidenav-close onclick="document.getElementById('sideBar').classList.toggle('-translate-x-full')"></i>
@@ -28,6 +28,14 @@
                         <i class="fa fa-sterling-sign"></i>
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease text-lg">Donations</span>
+                </a>
+            </li>
+            <li class="mt-0.5 w-full">
+                <a href="{{route('membership.index')}}" class="{{Route::currentRouteName()==='membership.index'?'bg-primaryLight':''}} hover:bg-primaryLight  py-2.7 border-b-[1px] border-b-primaryLight  text-white/90  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-[3px] px-4 font-semibold transition-colors">
+                    <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-[3px] bg-center stroke-0 text-center xl:p-2.5">
+                        <i class="fa fa-sterling-sign"></i>
+                    </div>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease text-lg">Membership</span>
                 </a>
             </li>
             <li class="mt-0.5 w-full">
