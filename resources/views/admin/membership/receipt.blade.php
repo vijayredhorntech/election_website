@@ -32,7 +32,7 @@
             <div style="padding-left: 15px;border-bottom: 1px solid gray; width: 400px">
                 <span style="font-size: 16px;font-family: Roboto;color: black"> <span style="font-size: 18px">£</span> {{$membership->payment_amount}}</span>
             </div>
-            <div style="width: 130px;border-bottom: 1px solid transparent;">
+            <div style="width: 110px;border-bottom: 1px solid transparent;">
                 <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Type</span>
             </div>
             <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
@@ -41,7 +41,7 @@
         </div>
 
         <div style="display: flex;padding-left: 30px; padding-right: 30px; margin-top: 30px;">
-            <div style="width: 180px; border-bottom: 1px solid transparent;">
+            <div style="width: 120px; border-bottom: 1px solid transparent;">
                 <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Description</span>
             </div>
             <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
