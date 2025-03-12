@@ -27,6 +27,22 @@
                             <p style="color: black">Meet the dedicated individuals leading One Nation towards a better future.</p>
                         </div>
                     </div>
+                    @foreach($leaders as $leader)
+                    <div class="col-md-12 mb-4">
+                        <div class="single-faq-item text-center">
+                            <div class="leader-image-wrapper mb-4">
+                                <img src="{{ asset($leader['image']) }}"
+                                    alt="{{ $leader['name'] }}" style="height: 300px"
+                                    class="leader-image rounded-circle">
+                            </div>
+                            <div class="content">
+                                <h3>{{ $leader['name'] }}</h3>
+                                <p class="role text-primary">{{ $leader['position'] }}</p>
+                                <p class="bio" style="color: black">{{ $leader['bio'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                     <div class="icon-box-item-02">
                         <div class="icon" style="background-color: transparent">
                             <i class="fas fa-flag" style="color: #b30d00"></i>
@@ -47,28 +63,8 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="row">
-                        @foreach($leaders as $leader)
-                        <div class="col-md-6 mb-4">
-                            <div class="single-faq-item text-center">
-                                <div class="leader-image-wrapper mb-4">
-                                    <img src="{{ asset($leader['image']) }}"
-                                        alt="{{ $leader['name'] }}" style="height: 300px"
-                                        class="leader-image rounded-circle">
-                                </div>
-                                <div class="content">
-                                    <h3>{{ $leader['name'] }}</h3>
-                                    <p class="role text-primary">{{ $leader['position'] }}</p>
-                                    <p class="bio" style="color: black">{{ $leader['bio'] }}</p>
-                                    <div class="social-links mt-3">
-                                        <a href="#" class="social-link" style="color: black"><i class="fab fa-twitter"></i></a>
-                                        <a href="#" class="social-link" style="color: black"><i class="fab fa-linkedin"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
+                    <!-- <div class="row">
+                    </div> -->
 
                     <!-- Why Join Section -->
                     <div class="policy-category mb-5" id="why-join">

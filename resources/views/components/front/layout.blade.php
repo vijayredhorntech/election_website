@@ -171,7 +171,7 @@
             justify-content: space-between;
             align-items: center;
             min-width: 300px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             z-index: 999;
         }
 
@@ -193,18 +193,17 @@
         .cookie-popup button:hover {
             background: #8f162c;
         }
-
     </style>
 </head>
 
 <body style="min-height: 100vh; position: relative">
 
-<div id="cookie-popup" class="cookie-popup">
-    <p style="color: white; margin-top: 10px">This website uses cookies to ensure you get the best experience.
-        <a href="{{route('cookie-policy')}}" target="_blank">Learn More</a>
-    </p>
-    <button id="accept-cookies">Accept</button>
-</div>
+    <div id="cookie-popup" class="cookie-popup">
+        <p style="color: white; margin-top: 10px">This website uses cookies to ensure you get the best experience.
+            <a href="{{route('cookie-policy')}}" target="_blank">Learn More</a>
+        </p>
+        <button id="accept-cookies">Accept</button>
+    </div>
 
 
     <div class="header-style-01">
@@ -514,6 +513,10 @@
                                     <li style="color:white">info@one-nation.org.uk</li>
                                     <li style="color:white">07955555561</li>
                                 </ul>
+                                <div class="social-links mt-3">
+                                    <a href="#" class="social-link" style="color: black"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="social-link" style="color: black"><i class="fab fa-linkedin"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -594,23 +597,23 @@
         });
     </script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let cookiePopup = document.getElementById("cookie-popup");
-        let acceptButton = document.getElementById("accept-cookies");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let cookiePopup = document.getElementById("cookie-popup");
+            let acceptButton = document.getElementById("accept-cookies");
 
-        // Check if cookie consent is already given
-        if (localStorage.getItem("cookieConsent")) {
-            cookiePopup.style.display = "none";
-        }
+            // Check if cookie consent is already given
+            if (localStorage.getItem("cookieConsent")) {
+                cookiePopup.style.display = "none";
+            }
 
-        // Handle Accept Button Click
-        acceptButton.addEventListener("click", function () {
-            localStorage.setItem("cookieConsent", "true");
-            cookiePopup.style.display = "none";
+            // Handle Accept Button Click
+            acceptButton.addEventListener("click", function() {
+                localStorage.setItem("cookieConsent", "true");
+                cookiePopup.style.display = "none";
+            });
         });
-    });
-</script>
+    </script>
 
     @stack('scripts')
 </body>
