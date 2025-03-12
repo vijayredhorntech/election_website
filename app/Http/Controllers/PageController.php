@@ -115,6 +115,12 @@ class PageController extends Controller
          return view('front.donation-terms');
      }
 
+     public function cookiePolicy()
+    {
+
+            return view('front.cookie-policy');
+}
+
      public function manifesto()
      {
           $data = [

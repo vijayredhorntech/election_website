@@ -180,7 +180,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-            <h4 class="title" style="color:white">{{ucfirst(strtolower(auth()->user()->name))}}</h4>
+            <h4 class="title" style="color:white">{{strtoupper(auth()->user()->name)}}</h4>
                     </div>
           <!-- <div class="breadcrumbs">
                         <ul>
@@ -461,8 +461,8 @@
                                           <td class="w-[30px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                               style="color: black; font-weight: 700; width: 120px">Name</td>
                                           <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                                  class="font-semibold text-black"></span> {{$memberDetails->first_name}}
-                                              {{$memberDetails->last_name}}
+                                                  class="font-semibold text-black"></span> {{strtoupper($memberDetails->first_name)}}
+                                              {{strtoupper($memberDetails->last_name)}}
                                           </td>
                                       </tr>
                                       <tr>

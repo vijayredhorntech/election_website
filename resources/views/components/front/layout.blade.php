@@ -157,10 +157,55 @@
             color: white !important;
             transition: 0.3s ease;
         }
+
+        .cookie-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+
+        .cookie-popup a {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+
+        .cookie-popup button {
+            background: #c41e3a;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .cookie-popup button:hover {
+            background: #8f162c;
+        }
+
     </style>
 </head>
 
 <body style="min-height: 100vh; position: relative">
+
+<div id="cookie-popup" class="cookie-popup">
+    <p style="color: white; margin-top: 10px">This website uses cookies to ensure you get the best experience.
+        <a href="{{route('cookie-policy')}}" target="_blank">Learn More</a>
+    </p>
+    <button id="accept-cookies">Accept</button>
+</div>
+
 
     <div class="header-style-01">
         <!-- support bar area end -->
@@ -334,7 +379,7 @@
                             onclick="document.getElementById('editProfileDiv').style.display = document.getElementById('editProfileDiv').style.display === 'none' ? 'block' : 'none'">
                             <img src="{{auth()->user()?->member?->profile_photo ? asset('storage/'.auth()->user()?->member?->profile_photo) : asset('assets/images/default-profile.png') }}" alt="" style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 1px solid gray">
                             <div style="display: flex; flex-direction: column; margin-left: 10px">
-                                <span style="font-weight: bold; color: black; font-size: 18px">{{ucfirst(auth()->user()?->member?->first_name)}} {{ucfirst(auth()->user()?->member?->last_name)}}</span>
+                                <span style="font-weight: bold; color: black; font-size: 18px">{{strtoupper(auth()->user()?->member?->first_name)}} {{strtoupper(auth()->user()?->member?->last_name)}}</span>
                                 <p style="font-weight: 400; color: black; font-size: 13px; line-height: 10px">{{auth()->user()?->member?->email}}</p>
                             </div>
                             <div id="editProfileDiv" style="display: none; position: absolute; background-color: #f8f8f8; height: max-content; box-shadow: 5px 5px 20px 2px #b2b2b2; border-radius: 3PX;  padding: 10px 0px; min-width: 200px; width: 100%; top: 100%; right: 0px; z-index: 99">
@@ -548,6 +593,25 @@
             });
         });
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let cookiePopup = document.getElementById("cookie-popup");
+        let acceptButton = document.getElementById("accept-cookies");
+
+        // Check if cookie consent is already given
+        if (localStorage.getItem("cookieConsent")) {
+            cookiePopup.style.display = "none";
+        }
+
+        // Handle Accept Button Click
+        acceptButton.addEventListener("click", function () {
+            localStorage.setItem("cookieConsent", "true");
+            cookiePopup.style.display = "none";
+        });
+    });
+</script>
+
     @stack('scripts')
 </body>
 

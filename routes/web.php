@@ -36,6 +36,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy');
 Route::get('/donation_terms', [PageController::class, 'donationTerms'])->name('donationTerms');
 Route::get('/terms', [PageController::class, 'terms'])->name('terms');
+Route::get('/cookie-policy', [PageController::class, 'cookiePolicy'])->name('cookie-policy');
 Route::get('/manifesto', [PageController::class, 'manifesto'])->name('manifesto');
 Route::get('/faqs', [PageController::class, 'faq'])->name('faq');
 Route::get('/code-of-conduct', [PageController::class, 'codeOfConduct'])->name('code-of-conduct');
