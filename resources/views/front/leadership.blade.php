@@ -53,7 +53,7 @@
                             <div class="single-faq-item text-center">
                                 <div class="leader-image-wrapper mb-4">
                                     <img src="{{ asset($leader['image']) }}"
-                                        alt="{{ $leader['name'] }}"
+                                        alt="{{ $leader['name'] }}" style="height: 300px"
                                         class="leader-image rounded-circle">
                                 </div>
                                 <div class="content">
@@ -69,6 +69,65 @@
                         </div>
                         @endforeach
                     </div>
+
+                    <!-- Why Join Section -->
+                    <div class="policy-category mb-5" id="why-join">
+                        <div class="faq-contents">
+                            <h2 class="title">A Vision for a Stronger Britain</h2>
+                            <p style="color: black">Welcome to One Nation. I am Jaginder Singh Nichal, the Founder and Leader of this movement, built on the principles of fairness, justice, and unity. Our mission is clear: to restore integrity in politics, protect hardworking citizens, and create a nation that works for everyone—not just the elite.
+                            </p>
+                            <p style="color: black; margin-top: 20px">For too long, Britain has been held back by weak leadership, rising inequality, and policies that fail the people. One Nation stands as a powerful force to challenge corruption, demand accountability, and fight for the rights of workers, students, families, and communities who have been ignored for too long.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="policy-category mb-5" id="why-join">
+                        <div class="faq-contents">
+                            <h2 class="title">My Commitment to the People
+                            </h2>
+                            <p style="color: black">As your leader, I pledge to:
+                            </p>
+
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="single-faq-item">
+                                        <div class="content">
+                                            <ul class="check-list">
+                                                <li style="color: black"><strong>End Corruption-</strong> No more political games; the system must work for the people, not career politicians.
+                                                </li>
+                                                <li style="color: black"><strong>Fair Immigration Policies-</strong> Ensuring asylum seekers and students get the respect and opportunities they deserve.
+                                                </li>
+                                                <li style="color: black"><strong>Protect Hardworking Citizens-</strong> Fair jobs, fair wages, and an end to exploitation.
+                                                </li>
+                                                <li style="color: black"><strong>Fix the Housing Crisis-</strong> Affordable homes, fair rent laws, and action against homelessness.
+                                                </li>
+                                                <li style="color: black"><strong>Strengthen the NHS-</strong> More funding, better services, and shorter waiting times.</li>
+                                                <li style="color: black"><strong>Defend British Values-</strong> Our nation must remain strong, secure, and respected.
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="policy-category mb-5" id="why-join">
+                        <div class="faq-contents">
+                            <h2 class="title">Join the Movement</h2>
+                            <p style="color: black">I did not enter politics for power—I entered it to give power back to the people. One Nation is not just a political party—it is a revolution for fairness, truth, and justice.
+                            </p>
+                            <p style="color: black; margin-top: 20px">If you believe in a stronger Britain, a better future, and a government that puts the people first, then I invite you to join us today. Together, we will build a Britain that we can all be proud of.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="policy-category mb-5" id="why-join">
+                        <div class="faq-contents">
+                            <h2 class="title">One Leader. One Vision. One Nation.
+                            </h2>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

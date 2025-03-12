@@ -181,10 +181,10 @@ class PageController extends Controller
 
           $leaders = [
                [
-                    'name' => 'Jaginder Singh Nichal',
+                    'name' => 'Jaginder Singh',
                     'position' => 'Founder',
                     'image' => 'assets/images/js_nichal.jpeg',
-                    'bio' => 'Founder of One Nation Party, dedicated to building a stronger, more united Britain.'
+                    'bio' => 'Leader of One Nation'
                ]
                // Add more leaders as needed
           ];
