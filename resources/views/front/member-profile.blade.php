@@ -625,7 +625,7 @@
                         <div style="display: flex; flex-direction: column; padding-left: 20px; margin-top: 30px">
                             <div style="display: flex;">
                                 <div style="flex: 0 0 180px; margin-top:17px; height:240px;  border-radius: 10px; position: relative; background-image: url({{$memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png')}}); background-repeat: no-repeat; background-position: center; background-size: cover;">
-                                    <div style="height: 100px; width: 100px; position: absolute; right: -50%; transform: translateX(-50%); bottom: 5px; border-radius: 50%; background-color: white; padding: 0px; border: 1px solid black;">
+                                    <div style="height: 100px; width: 100px; position: absolute; right: -50%; transform: translateX(-50%); bottom: 5px; border-radius: 50%; background-color: white; padding: 0px;">
                                         <img src="{{asset('assets/images/id_sign.jpg')}}" alt="" style="height: 100%; width: 100%; border-radius: 50%; object-fit: cover;">
                                     </div>
                                 </div>
