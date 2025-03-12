@@ -74,7 +74,7 @@
                     <div class="policy-category mb-5" id="why-join">
                         <div class="faq-contents">
                             <h2 class="title">A Vision for a Stronger Britain</h2>
-                            <p style="color: black">Welcome to One Nation. I am Jaginder Singh Nichal, the Founder and Leader of this movement, built on the principles of fairness, justice, and unity. Our mission is clear: to restore integrity in politics, protect hardworking citizens, and create a nation that works for everyone—not just the elite.
+                            <p style="color: black">Welcome to One Nation. I am Jaginder Singh, the Founder and Leader of this movement, built on the principles of fairness, justice, and unity. Our mission is clear: to restore integrity in politics, protect hardworking citizens, and create a nation that works for everyone—not just the elite.
                             </p>
                             <p style="color: black; margin-top: 20px">For too long, Britain has been held back by weak leadership, rising inequality, and policies that fail the people. One Nation stands as a powerful force to challenge corruption, demand accountability, and fight for the rights of workers, students, families, and communities who have been ignored for too long.
                             </p>
@@ -121,12 +121,12 @@
                             </p>
                         </div>
                     </div>
-                    <div class="policy-category mb-5" id="why-join">
+                    <!-- <div class="policy-category mb-5" id="why-join">
                         <div class="faq-contents">
                             <h2 class="title">One Leader. One Vision. One Nation.
                             </h2>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

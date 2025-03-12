@@ -76,7 +76,7 @@ class PageController extends Controller
                     ]
                ],
                'leadership' => [
-                    'name' => 'Jaginder Singh Nichal',
+                    'name' => 'Jaginder Singh',
                     'role' => 'Founder',
                     'bio' => '...' // Add bio
                ]
@@ -112,14 +112,14 @@ class PageController extends Controller
      }
      public function donationTerms()
      {
-         return view('front.donation-terms');
+          return view('front.donation-terms');
      }
 
      public function cookiePolicy()
-    {
+     {
 
-            return view('front.cookie-policy');
-}
+          return view('front.cookie-policy');
+     }
 
      public function manifesto()
      {
