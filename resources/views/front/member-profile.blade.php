@@ -394,7 +394,7 @@
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700;width: 120px">Receipt</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> <a href="{{route('membership.receipt')}}" class="text-[#b30d00] underline">DOWNLOAD</a> </td>
+                                            class="font-semibold text-black"></span> <a href="{{route('membership.receipt')}}" style="color:rgb(28, 109, 231); text-decoration: underline;">DOWNLOAD</a> </td>
                                 </tr>
                             </table>
                         </div>
