@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CustomLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Member;
@@ -366,5 +367,17 @@ class MemberController extends Controller
 
         // return $pdf->download('member_id_' . $member->custom_id . '.pdf');
         return view('id_card.template')->with('data', $data);
+    }
+
+    public function printReceipt()
+    {
+        try {
+            $user = auth()->user();
+            $membership = $user->membership;
+            return view('admin.membership.receipt', compact('membership'));
+        } catch (\Exception $e) {
+            CustomLog::error($e->getMessage());
+            return back()->with('error', 'An error occurred while printing the receipt');
+        }
     }
 }

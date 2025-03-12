@@ -98,6 +98,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         //        ->middleware('isMember')
         ->name('memberProfile');
     Route::post('/members_security_info_update', [MemberController::class, 'securityInfoUpdate'])->name('securityInfoUpdate');
+    Route::get('/membership/printReceipt', [MemberController::class, 'printReceipt'])->name('membership.receipt');
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');
     Route::get('/counties', [CountyController::class, 'index'])->name('counties');
