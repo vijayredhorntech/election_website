@@ -17,7 +17,6 @@ class DonationController extends Controller
     public function printReceipt($id)
     {
         $donation = Donation::find($id);
-        return view('admin.donations.receipt')->with('donation', $donation);
-
+        return view('admin.donations.receipt')->with('donation', $donation)->with('description', 'Donation Receipt');
     }
 }

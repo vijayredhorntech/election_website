@@ -15,6 +15,6 @@ class MembershipController extends Controller
     public function printReceipt($id)
     {
         $membership = Membership::find($id);
-        return view('admin.membership.receipt', compact('membership'));
+        return view('admin.membership.receipt')->with('membership', $membership)->with('description', 'Membership Receipt');
     }
 }

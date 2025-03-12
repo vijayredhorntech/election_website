@@ -39,17 +39,13 @@
                 <span style="font-size: 16px;font-family: Roboto; color: black">{{ucfirst($membership->payment_status)}}</span>
             </div>
         </div>
-        @php
-        $f = new NumberFormatter("en", NumberFormatter::SPELLOUT);
-        $amountInWords = ucfirst($f->format($membership->payment_amount)) . ' pound only/-';
-        @endphp
 
         <div style="display: flex;padding-left: 30px; padding-right: 30px; margin-top: 30px;">
             <div style="width: 180px; border-bottom: 1px solid transparent;">
-                <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Amount (in words)</span>
+                <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Description</span>
             </div>
             <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
-                <span style="font-size: 16px;font-family: Roboto; color: black">{{ $amountInWords }}</span>
+                <span style="font-size: 16px;font-family: Roboto; color: black">{{ $description }}</span>
             </div>
 
         </div>

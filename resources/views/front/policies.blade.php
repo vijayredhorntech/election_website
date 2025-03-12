@@ -72,7 +72,7 @@
                                             @if(isset($policy['key_points']))
                                             <ul class="check-list">
                                                 @foreach($policy['key_points'] as $point)
-                                                <li style="color: black"><i class="fas fa-check"></i> {{ $point }}</li>
+                                                <li style="color: black"> {{ $point }}</li>
                                                 @endforeach
                                             </ul>
                                             @endif
