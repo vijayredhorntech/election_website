@@ -319,12 +319,12 @@
                             <tr>
                                 <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 120px">Region
                                 </td>
-                                <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->region->name}}</td>
+                                <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{strtoupper($memberDetails->region->name)}}</td>
                             </tr>
                             <tr>
                                 <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 120px">Constituency
                                 </td>
-                                <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->constituency->name}}</td>
+                                <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{strtoupper($memberDetails->constituency->name)}}</td>
                             </tr>
                         </table>
                     </div>
@@ -376,13 +376,13 @@
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700;width: 135px">Membership Plan</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> {{ $memberDetails->user?->membership?->membership_type }}</td>
+                                            class="font-semibold text-black"></span> {{ strtoupper($memberDetails->user?->membership?->membership_type) }}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700;width: 123px">Days Remaining</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> {{ abs(\Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->diffInDays(today(), false)) }} days </td>
+                                            class="font-semibold text-black"></span> {{ abs(\Carbon\Carbon::parse($memberDetails->user?->membership?->end_date)->diffInDays(today(), false)) }} DAYS </td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
@@ -394,7 +394,7 @@
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700;width: 120px">Receipt</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> <a href="{{route('membership.receipt')}}" class="text-[#b30d00] underline">Download</a> </td>
+                                            class="font-semibold text-black"></span> <a href="{{route('membership.receipt')}}" class="text-[#b30d00] underline">DOWNLOAD</a> </td>
                                 </tr>
                             </table>
                         </div>
@@ -518,9 +518,9 @@
                             <table class="w-full">
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
-                                        style="color: black; font-weight: 700; width: 120px">Email id</td>
+                                        style="color: black; font-weight: 700; width: 120px">Email ID</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> {{$memberDetails->email}}</td>
+                                            class="font-semibold text-black"></span> {{strtoupper($memberDetails->email)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
@@ -547,7 +547,7 @@
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700; width: 130px">Address Line 1</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span>{{$memberDetails->house_name_number}}
+                                            class="font-semibold text-black"></span>{{strtoupper($memberDetails->house_name_number)}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -555,7 +555,7 @@
                                         style="color: black; font-weight: 700; width: 120px">Address Line 2</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                             class="font-semibold text-black"></span>
-                                        {{$memberDetails->street}}
+                                        {{strtoupper($memberDetails->street)}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -563,7 +563,7 @@
                                         style="color: black; font-weight: 700; width: 120px">Town/ City</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
                                             class="font-semibold text-black"></span>
-                                        {{$memberDetails->town_city}}
+                                        {{strtoupper($memberDetails->town_city)}}
                                     </td>
                                 </tr>
 
@@ -575,20 +575,20 @@
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700; width: 120px">County</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> {{$memberDetails->county->name}}</td>
+                                            class="font-semibold text-black"></span> {{strtoupper($memberDetails->county->name)}}</td>
                                 </tr>
 
 
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 120px">Postcode
                                     </td>
-                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{$memberDetails->postcode}}</td>
+                                    <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"></span> {{strtoupper($memberDetails->postcode)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="w-[150px] font-semibold text-black border-b-[1px] border-b-[#b30d00]/10 py-0.5"
                                         style="color: black; font-weight: 700; width: 120px">Country</td>
                                     <td class="border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black; font-weight: 400"><span
-                                            class="font-semibold text-black"></span> {{$memberDetails->country->name}}</td>
+                                            class="font-semibold text-black"></span> {{strtoupper($memberDetails->country->name)}}</td>
                                 </tr>
                             </table>
 
