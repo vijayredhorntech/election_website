@@ -42,12 +42,12 @@
 
                 </div>
                 <div class="col-lg-8">
-                      <div style="margin-bottom: 10px">
-                          <img src="{{asset('assets/images/Women-Empowerment_11zon-1.jpg')}}" alt="" style="height: 350px; width: 100%; border-radius: 20px">
-                      </div>
+                    <div style="margin-bottom: 10px">
+                        <img src="{{asset('assets/images/Women-Empowerment_11zon-1.jpg')}}" alt="" style="height: 350px; width: 100%; border-radius: 20px">
+                    </div>
                     <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
-                            <h2 class="title" >Our Objectives</h2>
+                            <h2 class="title">Our Objectives</h2>
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
@@ -65,7 +65,7 @@
 
                     <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
-                            <h2 class="title" >How We Support Women</h2>
+                            <h2 class="title">How We Support Women</h2>
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
@@ -80,7 +80,7 @@
                     </div>
                     <div class="vision-values">
                         <div class="faq-contents">
-                            <h2 class="title" >Join Us & Get Involved!</h2>
+                            <h2 class="title">Join Us & Get Involved!</h2>
                             <p style="color: black">Whether you&apos;re new to politics or an experienced leader, ONWO welcomes all women who share our vision for a stronger, fairer nation. We believe that when women lead, communities thrive, and the nation prospers.</p>
                             <!-- <div class="single-faq-item">
                                 <div class="content">
@@ -93,6 +93,10 @@
                                     </ul>
                                 </div>
                             </div> -->
+                        </div>
+                        <!-- Join Now Section -->
+                        <div class=" mb-5">
+                            <a href="{{route('joinUs')}}" class="btn btn-primary btn-lg" style="background-color:#b30d00; border:1px solid #b30d00">Join Now</a>
                         </div>
                     </div>
                 </div>
