@@ -21,7 +21,7 @@
                         <td align="center">
                             <h2 style="color:#333333;margin:0;font-size:24px;">🎉 Congratulations! 🎉</h2>
                             <p style="color:#555555;font-size:16px;line-height:24px;margin:15px 0 20px;">
-                                Welcome <strong>{{ $data['name'] }}</strong>! You are now part of a community dedicated to Justice & Representation, Public Education, and Economic Growth.
+                                Welcome <strong>{{ strtoupper($data['name']) }}</strong>! You are now part of a community dedicated to Justice & Representation, Public Education, and Economic Growth.
                             </p>
                         </td>
                     </tr>

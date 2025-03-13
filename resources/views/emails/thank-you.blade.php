@@ -21,7 +21,7 @@
                         <td align="center">
                             <h2 style="color:#333333;margin:0;font-size:24px;">🙏 Thank You for Reaching Out! 🙏</h2>
                             <p style="color:#555555;font-size:16px;line-height:24px;margin:15px 0 20px;">
-                                Hello <strong>{{ $name }}</strong>,
+                                Hello <strong>{{ strtoupper($name) }}</strong>,
                                 We appreciate you contacting us! Our team has received your message and will get back to you within 4 to 5 working days (minimum).
                             </p>
                         </td>
