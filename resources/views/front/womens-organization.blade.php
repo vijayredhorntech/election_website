@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-lg-8">
                       <div style="margin-bottom: 10px">
-                          <img src="{{asset('assets/images/Women-Empowerment_11zon-1.jpg')}}" alt="" style="height: 350px; width: 100%">
+                          <img src="{{asset('assets/images/Women-Empowerment_11zon-1.jpg')}}" alt="" style="height: 350px; width: 100%; border-radius: 20px">
                       </div>
                     <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
