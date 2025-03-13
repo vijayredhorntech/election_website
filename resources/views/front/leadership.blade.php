@@ -21,28 +21,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="help-single-item">
-                        <div class="content">
-                            <h4 class="title">Leadership Team</h4>
-                            <p style="color: black">Meet the dedicated individuals leading One Nation towards a better future.</p>
-                        </div>
-                    </div>
                     @foreach($leaders as $leader)
-                    <div class="col-md-12 mb-4">
-                        <div class="single-faq-item text-center">
-                            <div class="leader-image-wrapper mb-4">
-                                <img src="{{ asset($leader['image']) }}"
-                                    alt="{{ $leader['name'] }}" style="height: 300px"
-                                    class="leader-image rounded-circle">
-                            </div>
-                            <div class="content">
-                                <h3>{{ $leader['name'] }}</h3>
-                                <p class="role text-primary">{{ $leader['position'] }}</p>
-                                <p class="bio" style="color: black">{{ $leader['bio'] }}</p>
+                        <div class="col-md-12 mb-4">
+                            <div class="single-faq-item text-center">
+                                <div class="leader-image-wrapper mb-4">
+                                    <img src="{{ asset($leader['image']) }}"
+                                         alt="{{ $leader['name'] }}" style="height: 335px; width: 300px; object-fit: cover"
+                                         class="leader-image ">
+                                </div>
+                                <div class="content">
+                                    <h3>{{ $leader['name'] }}</h3>
+                                    <p class="role text-primary" style="line-height: 5px">{{ $leader['position'] }}</p>
+                                    <p class="bio" style="color: black">{{ $leader['bio'] }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
+
                     <div class="icon-box-item-02">
                         <div class="icon" style="background-color: transparent">
                             <i class="fas fa-flag" style="color: #b30d00"></i>
@@ -67,7 +62,7 @@
                     </div> -->
 
                     <!-- Why Join Section -->
-                    <div class="policy-category mb-5" id="why-join">
+                    <div class="policy-category" id="why-join">
                         <div class="faq-contents">
                             <h2 class="title">A Vision for a Stronger Britain</h2>
                             <p style="color: black">Welcome to One Nation. I am Jaginder Singh, the Founder and Leader of this movement, built on the principles of fairness, justice, and unity. Our mission is clear: to restore integrity in politics, protect hardworking citizens, and create a nation that works for everyone—not just the elite.
@@ -77,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="policy-category mb-5" id="why-join">
+                    <div class="policy-category" id="why-join">
                         <div class="faq-contents">
                             <h2 class="title">My Commitment to the People
                             </h2>
@@ -108,7 +103,7 @@
                         </div>
                     </div>
 
-                    <div class="policy-category mb-5" id="why-join">
+                    <div class="policy-category" id="why-join">
                         <div class="faq-contents">
                             <h2 class="title">Join the Movement</h2>
                             <p style="color: black">I did not enter politics for power—I entered it to give power back to the people. One Nation is not just a political party—it is a revolution for fairness, truth, and justice.

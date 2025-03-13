@@ -238,7 +238,7 @@
                         </li>
                         <li class="menu-item-has-children {{ request()->routeIs('about') ? 'current-menu-item' : '' }}">
                             <a href="{{ route('about') }}" class="nav-link">
-                                About
+                                About Us
                                 <div class="line">
                                     <span class="dot"></span>
                                     <span class="dot"></span>

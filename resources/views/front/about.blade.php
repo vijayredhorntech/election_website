@@ -9,7 +9,7 @@
                     <div class="breadcrumbs">
                         <ul>
                             <li><a href="{{route('index')}}">Home</a></li>
-                            <li><a href="{{route('about')}}">About</a></li>
+                            <li><a href="{{route('about')}}">About Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
 
                 </div>
                 <div class="col-lg-8">
-                    <div class="vision-values margin-bottom-40">
+                    <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
                             <h2 class="title" style="color: black">Our Story</h2>
                             <div class="single-faq-item">
@@ -54,9 +54,9 @@
                         </div>
                     </div>
 
-                    <div class="vision-values margin-bottom-40">
+                    <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">We are committed to:</h2>
+                            <h2 class="title" style="color: black">We Are Committed To</h2>
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="vision-values">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">What We Stand For: </h2>
+                            <h2 class="title" style="color: black">What We Stand For </h2>
                             <p style="color: black">We believe that change happens when people come together with a shared purpose. Our core values include:
                             </p>
                             <div class="single-faq-item">
@@ -101,7 +101,7 @@
                 <div class="col-md-12 ">
                     <div class="single-faq-item">
                         <div class="content text-center">
-                            <p class="margin-bottom-40" style="color: black">Want to be part of the change? Here's how you can help:</p>
+                            <p class="margin-bottom-40" style="color: black; line-height: 2px; font-size: 16px">Want to be part of the change? Here's how you can help:</p>
                             <div class="row">
                                 <div class="col-md-6 margin-bottom-30">
                                     <div class="action-box p-4 bg-white rounded shadow-sm">
@@ -148,7 +148,7 @@
             <div class="row">
                 <div class="col-12 text-center margin-bottom-20">
                     <h2 class="title">Contact Us</h2>
-                    <p style="color: black">Have questions? Want to learn more? We'd love to hear from you!</p>
+                    <p style="color: black; font-size: 16px">Have questions? Want to learn more? We'd love to hear from you!</p>
                 </div>
                 <div class="col-md-12">
                     <div class="contact-item-wrapper text-center" style="margin-bottom:0px">
@@ -178,14 +178,14 @@
                                 <div class="contact-single-item">
                                     <i class="fas fa-globe fa-2x margin-bottom-30" style="color:#b30d00"></i>
                                     <h4 style="color: black">Website</h4>
-                                    <p style="color: black">https://one-nation.org.uk</p>
+                                    <p style="color: black">www.one-nation.org.uk</p>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="text-center margin-top-20">
-                            <p class="margin-bottom-0" style="color: black">Together, We Are Stronger!</p>
-                            <p class="margin-bottom-40" style="color: black">At One Nation, we believe that when people unite, real change happens. Join us in shaping a fairer, brighter, and more just future for everyone.</p>
+                        <div class="text-center ">
+                            <p class="margin-bottom-0 title" style="color: black; font-size: 23px">Together, We Are Stronger!</p>
+                            <p class="margin-bottom-40" style="color: black; font-size: 16px; margin-top: 10px">At One Nation, we believe that when people unite, real change happens. Join us in shaping a fairer, brighter, and more just future for everyone.</p>
                             <a href="{{ route('contact') }}" class="btn btn-primary" style="background-color:#b30d00; border:1px solid #b30d00 ">Get in Touch</a>
                         </div>
                     </div>
