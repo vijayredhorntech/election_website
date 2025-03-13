@@ -182,11 +182,11 @@ class MemberRegistrationController extends Controller
             'marital_status' => 'required|in:SINGLE,MARRIED,DIVORCED,WIDOWED,OTHER',
             'qualification' => 'required|in:PRIMARY,SECONDARY,HIGHER SECONDARY,GRADUATE,POST GRADUATE,DOCTORATE,OTHER',
             'profession' => 'required|string|in:STUDENT,EMPLOYEE,BUSINESS,SELF EMPLOYED,HOUSEWIFE,RETIRED,LAWYER,DOCTOR,TEACHER,OTHER',
-            'national_insurance_number' => [
-                'required',
-                'regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
-                Rule::unique('members', 'national_insurance_number')->ignore($member->id),
-            ],
+            // 'national_insurance_number' => [
+            //     'required',
+            //     'regex:/^\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*$/',
+            //     Rule::unique('members', 'national_insurance_number')->ignore($member->id),
+            // ],
             'primary_country_code' => 'required|string|max:255',
             'primary_mobile_number' => [
                 'required',
@@ -210,7 +210,7 @@ class MemberRegistrationController extends Controller
                 'marital_status' => $request->marital_status,
                 'qualification' => $request->qualification,
                 'profession' => $request->profession,
-                'national_insurance_number' => $request->national_insurance_number,
+                // 'national_insurance_number' => $request->national_insurance_number,
                 'primary_mobile_number' => $request->primary_mobile_number,
                 'alternate_mobile_number' => $request->alternate_mobile_number,
                 'primary_country_code' => $request->primary_country_code,

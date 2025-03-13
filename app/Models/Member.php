@@ -42,7 +42,7 @@ class Member extends Model
         'marital_status',
         'qualification',
         'profession',
-        'national_insurance_number',
+        // 'national_insurance_number',
         'profile_photo',
         'profile_status',
     ];

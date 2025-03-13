@@ -500,11 +500,11 @@
                                     <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
                                             style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td class="w-[30px] font-semibold text-black" style="color: black; font-weight: 700; width: 120px">NI Number</td>
                                     <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
                                             style="color: black; font-weight: 400"></span> {{$memberDetails->national_insurance_number}}</td>
-                                </tr>
+                                </tr> -->
                                 </tr>
 
                             </table>

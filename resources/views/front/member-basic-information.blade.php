@@ -207,7 +207,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12">
+                                    <!-- <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="national_insurance_number">National Insurance Number <span class="text-danger">*</span></label>
                                             <input type="text"
@@ -220,7 +220,7 @@
                                                 value="{{ old('national_insurance_number') ?? auth()->user()?->member?->national_insurance_number}}">
                                             @error('national_insurance_number')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
@@ -680,14 +680,14 @@
         // });
 
         // NI number validation
-        document.querySelector('input[name="national_insurance_number"]').addEventListener('input', function(e) {
-            let value = e.target.value.toUpperCase();
-            if (value && !value.match(/^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/)) {
-                this.setCustomValidity('Please enter a valid National Insurance number');
-            } else {
-                this.setCustomValidity('');
-            }
-        });
+        // document.querySelector('input[name="national_insurance_number"]').addEventListener('input', function(e) {
+        //     let value = e.target.value.toUpperCase();
+        //     if (value && !value.match(/^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/)) {
+        //         this.setCustomValidity('Please enter a valid National Insurance number');
+        //     } else {
+        //         this.setCustomValidity('');
+        //     }
+        // });
 
         // Phone number validation patterns for different countries
         const phonePatterns = {

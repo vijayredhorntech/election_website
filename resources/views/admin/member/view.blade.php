@@ -1,186 +1,187 @@
 <x-app-layout>
 
     @section('breadcrumb')
-        <nav>
-            <!-- breadcrumb -->
-            <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
-                <li class="text-sm leading-normal">
-                    <a class="text-black opacity-50" {{route('dashboard')}}>Dashboard</a>
-                </li>
-                <li class="text-sm pl-2 capitalize leading-normal text-black before:float-left before:pr-2 before:text-black before:content-['/']"
-                    aria-current="page">Members</li>
-            </ol>
-            <h6 class="mb-0 font-bold text-black capitalize">Member Detail</h6>
-        </nav>
+    <nav>
+        <!-- breadcrumb -->
+        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+            <li class="text-sm leading-normal">
+                <a class="text-black opacity-50" {{route('dashboard')}}>Dashboard</a>
+            </li>
+            <li class="text-sm pl-2 capitalize leading-normal text-black before:float-left before:pr-2 before:text-black before:content-['/']"
+                aria-current="page">Members</li>
+        </ol>
+        <h6 class="mb-0 font-bold text-black capitalize">Member Detail</h6>
+    </nav>
     @endsection
     @push('styles')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/barcodes/JsBarcode.code39.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/barcodes/JsBarcode.code39.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
 
-        <script>
-            window.onload = function() {
-                JsBarcode("#barcode", "{{$memberDetails->custom_id}}", {
-                    format: "code39",
-                    lineColor: "#000",
-                    width: 1,
-                    height: 7,
-                    displayValue: false
-                });
-            };
+    <script>
+        window.onload = function() {
+            JsBarcode("#barcode", "{{$memberDetails->custom_id}}", {
+                format: "code39",
+                lineColor: "#000",
+                width: 1,
+                height: 7,
+                displayValue: false
+            });
+        };
 
-            function printCard() {
-                window.print();
-            }
-            function copyReferralLink() {
-                const referralText = document.getElementById('referralLink').innerText;
-                navigator.clipboard.writeText(referralText).then(() => {
-                    alert('Referral link copied to clipboard!');
-                }).catch(err => {
-                    console.error('Failed to copy text: ', err);
-                });
-            }
+        function printCard() {
+            window.print();
+        }
 
-            function downloadCard() {
+        function copyReferralLink() {
+            const referralText = document.getElementById('referralLink').innerText;
+            navigator.clipboard.writeText(referralText).then(() => {
+                alert('Referral link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
 
-                document.getElementById("idCardContainer").style.display = "flex";
-                html2canvas(document.getElementById("printableDiv")).then(canvas => {
-                    let link = document.createElement('a');
-                    link.href = canvas.toDataURL("image/png");
-                    link.download = 'Member_ID_Card.png';
-                    link.click();
-                });
-                document.getElementById("idCardContainer").style.display = "none";
-            }
-        </script>
+        function downloadCard() {
 
-        <style>
-            table {
-                border: 1px solid #cdcdcd;
-                width: 100%;
-                border-collapse: collapse;
+            document.getElementById("idCardContainer").style.display = "flex";
+            html2canvas(document.getElementById("printableDiv")).then(canvas => {
+                let link = document.createElement('a');
+                link.href = canvas.toDataURL("image/png");
+                link.download = 'Member_ID_Card.png';
+                link.click();
+            });
+            document.getElementById("idCardContainer").style.display = "none";
+        }
+    </script>
 
-            }
+    <style>
+        table {
+            border: 1px solid #cdcdcd;
+            width: 100%;
+            border-collapse: collapse;
 
-            table tr td {
-                border: 1px solid #cdcdcd;
-                padding: 5px 10px;
+        }
+
+        table tr td {
+            border: 1px solid #cdcdcd;
+            padding: 5px 10px;
+        }
+
+        #idCardContainer {
+            display: none;
+        }
+
+        .barcode-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px;
+        }
+
+        .barcode-container svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @media print {
+            body {
+                background-color: white !important;
+                display: flex;
+                justify-content: start;
+                align-items: start;
+
             }
 
             #idCardContainer {
-                display: none;
+                display: flex !important;
             }
 
-            .barcode-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 0px;
+            .non-printable {
+                display: none !important;
             }
 
-            .barcode-container svg {
-                width: 100%;
-                height: 100%;
+            footer {
+                display: none !important;
             }
 
-            @media print {
-                body {
-                    background-color: white !important;
-                    display: flex;
-                    justify-content: start;
-                    align-items: start;
-
-                }
-
-                #idCardContainer {
-                    display: flex !important;
-                }
-
-                .non-printable {
-                    display: none !important;
-                }
-
-                footer {
-                    display: none !important;
-                }
-
-                .print-button,
-                .card-header {
-                    display: none !important;
-                }
-
-                .card-container {
-                    box-shadow: none !important;
-                    margin: 0 !important;
-                    padding: 0 !important;
-                }
-
-                #printableDiv {
-                    margin: 0 !important;
-                    padding: 0 !important;
-                }
+            .print-button,
+            .card-header {
+                display: none !important;
             }
-
-
 
             .card-container {
-                background-color: white;
-                border-radius: 15px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-                max-width: 800px;
-                overflow: hidden;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
-            .card-header {
-                background-color: #b30d00;
-                color: white;
-                padding: 20px 30px;
-                font-size: 24px;
-                font-weight: bold;
-            }
-
-
-
-            .print-button {
-                background-color: #b30d00;
-                color: white;
-                border: none;
-                padding: 12px 25px;
-                font-size: 18px;
-                border-radius: 5px;
-                cursor: pointer;
-                margin: 20px 0;
-                font-weight: bold;
-                transition: background-color 0.3s, transform 0.2s;
-                box-shadow: 0 4px 6px rgba(179, 13, 0, 0.3);
-            }
-
-            .print-button:hover {
-                background-color: #8a0a00;
-                transform: translateY(-2px);
-            }
-
-            /* Keep the printableDiv styles exactly as they were */
             #printableDiv {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 20px;
+                margin: 0 !important;
+                padding: 0 !important;
             }
-        </style>
+        }
+
+
+
+        .card-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: #b30d00;
+            color: white;
+            padding: 20px 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+
+        .print-button {
+            background-color: #b30d00;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(179, 13, 0, 0.3);
+        }
+
+        .print-button:hover {
+            background-color: #8a0a00;
+            transform: translateY(-2px);
+        }
+
+        /* Keep the printableDiv styles exactly as they were */
+        #printableDiv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+    </style>
     @endpush
 
 
-        <div class="w-full bg-primaryHeading  rounded-[3px] p-4 flex justify-between gap-4 flex-wrap">
-            <div>
-                <span class="text-white font-semibold lg:text-xl">{{$memberDetails->title}} {{$memberDetails->first_name}} {{$memberDetails->last_name}}</span>
-            </div>
+    <div class="w-full bg-primaryHeading  rounded-[3px] p-4 flex justify-between gap-4 flex-wrap">
+        <div>
+            <span class="text-white font-semibold lg:text-xl">{{$memberDetails->title}} {{$memberDetails->first_name}} {{$memberDetails->last_name}}</span>
         </div>
+    </div>
 
     <!-- Faq section Start here -->
     <div class="non-printable accoridion-section" style="margin-top: 0px; padding-top: 0px; padding-bottom: 10px; margin-top: 10px">
@@ -194,24 +195,24 @@
                         </div>
                     </div>
                     <div class="card-body bg-white p-4">
-{{--                        <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">--}}
-{{--                            <div style="display:flex; gap:10px">--}}
-{{--                                <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">--}}
-{{--                                    <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span--}}
-{{--                                        class="icon-paper-plan"></span></button>--}}
-{{--                                <button type="submit" onclick="downloadCard()" style="background-color:green; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">--}}
-{{--                                    <i class="fa fa-download" style="margin-right:5px"></i>--}}
-{{--                                    Download ID <span--}}
-{{--                                        class="icon-paper-plan"></span></button>--}}
-{{--                            </div>--}}
+                        {{-- <div style="display:flex; gap:10px; justify-content:end; margin-bottom:20px">--}}
+                        {{-- <div style="display:flex; gap:10px">--}}
+                        {{-- <button type="submit" onclick="printCard()" style="background-color:blue; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">--}}
+                        {{-- <i class="fa fa-print" style="margin-right:5px"></i> Print ID <span--}}
+                        {{-- class="icon-paper-plan"></span></button>--}}
+                        {{-- <button type="submit" onclick="downloadCard()" style="background-color:green; color:white; padding:5px 20px; border-radius:3px; border:0px; cursor:pointer">--}}
+                        {{-- <i class="fa fa-download" style="margin-right:5px"></i>--}}
+                        {{-- Download ID <span--}}
+                        {{-- class="icon-paper-plan"></span></button>--}}
+                        {{-- </div>--}}
 
-{{--                        </div>--}}
+                        {{-- </div>--}}
                         <div class="w-full p-2">
                             <div style="display: flex; align-items: start; justify-content: space-between; gap: 10px">
                                 <div>
                                     <img class="rounded-[3px] mb-4"
-                                         src="{{ $memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png') }}"
-                                         alt="Profile Photo" style="height: 200px; object-fit:cover; width: 200px; border-radius:3px">
+                                        src="{{ $memberDetails->profile_photo ? asset('storage/'.$memberDetails->profile_photo) : asset('assets/images/default-profile.png') }}"
+                                        alt="Profile Photo" style="height: 200px; object-fit:cover; width: 200px; border-radius:3px">
                                 </div>
 
                                 <div style="display: flex; flex-direction:column; align-items: end; gap: 10px; margin-bottom:20px">
@@ -220,37 +221,37 @@
 
                             </div>
                             <div class="referral-share-container" style="display:flex; flex-direction:column; align-items:end">
-                    <span class="referral-link" id="referralLink" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
-                      {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
-                      <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
-                    </span>
+                                <span class="referral-link" id="referralLink" style="color: darkblue; display: flex; align-items: center; gap: 5px; margin-bottom: 10px">
+                                    {{route('index')}}/referral/{{$memberDetails->user->referral_code}}
+                                    <i class="fa fa-copy" onclick="copyReferralLink(this)" style="cursor: pointer" title="Copy link"></i>
+                                </span>
 
                                 <div class="social-share-buttons" style="display: flex; gap: 10px; justify-content: flex-end">
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
-                                       target="_blank"
-                                       class="share-button facebook"
-                                       style="background: #3b5998; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                        target="_blank"
+                                        class="share-button facebook"
+                                        style="background: #3b5998; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                         <i class="fab fa-facebook-f"></i> Share
                                     </a>
 
                                     <a href="https://wa.me/?text={{ urlencode('Be the change! Join One-Nation through my referral and make a difference:') }}%0A%0A{{ urlencode(route('index').'/referral/'.$memberDetails->user->referral_code) }}"
-                                       target="_blank"
-                                       class="share-button whatsapp"
-                                       style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                        target="_blank"
+                                        class="share-button whatsapp"
+                                        style="background: #25D366; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                         <i class="fab fa-whatsapp"></i> Share
                                     </a>
 
                                     <a href="https://twitter.com/intent/tweet?text={{urlencode('Be the change! Join One-Nation through my referral and make a difference:')}}%20{{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
-                                       target="_blank"
-                                       class="share-button twitter"
-                                       style="background: #1DA1F2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                        target="_blank"
+                                        class="share-button twitter"
+                                        style="background: #1DA1F2; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                         <i class="fa-brands fa-x-twitter"></i> Share
                                     </a>
 
                                     <a href="https://www.linkedin.com/sharing/share-offsite/?url={{urlencode(route('index'))}}/referral/{{$memberDetails->user->referral_code}}"
-                                       target="_blank"
-                                       class="share-button linkedin"
-                                       style="background: #0077b5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
+                                        target="_blank"
+                                        class="share-button linkedin"
+                                        style="background: #0077b5; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; display: flex; align-items: center; gap: 5px">
                                         <i class="fab fa-linkedin-in"></i> Share
                                     </a>
                                 </div>
@@ -283,7 +284,7 @@
                                 <td class="w-[150px] font-semibold text-black" style="color: black; font-weight: 700;width: 170px">Total Members
                                     Added</td>
                                 <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
-                                                                                                 style="color: black; font-weight: 400"></span>
+                                        style="color: black; font-weight: 400"></span>
                                     {{$memberDetails->referredMembers->count()}}
                                 </td>
                             </tr>
@@ -375,17 +376,17 @@
                                         style="color: black; font-weight: 700">Receipt</td>
                                 </tr>
                                 @foreach ($memberDetails->user?->donations as $donation)
-                                    <tr>
-                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$loop->iteration}}</td>
-                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$donation->created_at->format('d-m-Y')}}</td>
-                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ {{number_format($donation->amount, 2)}} </td>
-                                        <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <a href="" class="text-[#b30d00] underline"><i class="fa fa-file cursor-pointer"></i></a></td>
-                                    </tr>
+                                <tr>
+                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$loop->iteration}}</td>
+                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black">{{$donation->created_at->format('d-m-Y')}}</td>
+                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> £ {{number_format($donation->amount, 2)}} </td>
+                                    <td class="w-[100px] border-b-[1px] border-b-[#b30d00]/10 py-0.5" style="color: black"> <a href="" class="text-[#b30d00] underline"><i class="fa fa-file cursor-pointer"></i></a></td>
+                                </tr>
                                 @endforeach
                                 @if($memberDetails->user?->donations->isEmpty())
-                                    <tr>
-                                        <td colspan="4" class="w-[100px] py-0.5" style="color: black; text-align: center">No donations found</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="4" class="w-[100px] py-0.5" style="color: black; text-align: center">No donations found</td>
+                                </tr>
                                 @endif
 
                             </table>
@@ -396,8 +397,7 @@
             </div>
             <div class=" w-full xl:col-span-2 lg:col-span-2 bg-white">
                 <div
-                    class="card wow animate__animated animate__fadeInUp animate__delay-1s h transition-shadow duration-300"
-                    >
+                    class="card wow animate__animated animate__fadeInUp animate__delay-1s h transition-shadow duration-300">
                     <div class="w-full bg-primaryHeading  px-4 py-2 flex justify-between gap-4 flex-wrap">
                         <div>
                             <span class="text-white font-semibold lg:text-lg"> <i class="fas fa-user-alt mr-2"></i>Profile Information</span>
@@ -453,13 +453,13 @@
                                 <tr>
                                     <td class="w-[30px] font-semibold text-black" style="color: black; font-weight: 700; width: 120px">Profession</td>
                                     <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
-                                                                                                     style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
+                                            style="color: black; font-weight: 400"></span> {{$memberDetails->profession}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td class="w-[30px] font-semibold text-black" style="color: black; font-weight: 700; width: 120px">NI Number</td>
                                     <td class=" py-0.5" style="color: black; font-weight: 400"><span class="font-semibold text-black"
                                                                                                      style="color: black; font-weight: 400"></span> {{$memberDetails->national_insurance_number}}</td>
-                                </tr>
+                                </tr> -->
                                 </tr>
 
                             </table>
@@ -619,7 +619,7 @@
                         </div>
 
                         <div style="width: 100%; display:flex; justify-content: end; margin-top: 5px; padding-right:40px">
-                            <img id="barcode"  style="width:370px"/>
+                            <img id="barcode" style="width:370px" />
                         </div>
                     </div>
                 </div>
@@ -630,22 +630,22 @@
 
 
     @push('scripts')
-        <script>
-            window.addEventListener('load', function() {
-                const qrContainer = document.getElementById("qrcode");
-                const referralUrl = "{{route('index')}}/referral/{{$memberDetails->user->referral_code}}";
+    <script>
+        window.addEventListener('load', function() {
+            const qrContainer = document.getElementById("qrcode");
+            const referralUrl = "{{route('index')}}/referral/{{$memberDetails->user->referral_code}}";
 
-                // Clear any existing content
-                qrContainer.innerHTML = "";
+            // Clear any existing content
+            qrContainer.innerHTML = "";
 
-                // Generate QR Code
-                new QRCode(qrContainer, {
-                    text: referralUrl,
-                    width: 200,
-                    height: 200
-                });
+            // Generate QR Code
+            new QRCode(qrContainer, {
+                text: referralUrl,
+                width: 200,
+                height: 200
             });
-        </script>
+        });
+    </script>
     @endpush
 
 </x-app-layout>
