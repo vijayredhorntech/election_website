@@ -71,7 +71,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-4">
                                         <label for="name">Name</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required style="text-transform: uppercase;">
                                         @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
