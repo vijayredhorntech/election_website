@@ -4,12 +4,12 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner donation-single">
-                        <h1 class="title" style="color:white">Women's Organisation</h1>
+                        <h1 class="title" style="color:white">Women in Power</h1>
                     </div>
                     <div class="breadcrumbs">
                         <ul>
                             <li><a href="{{route('index')}}">Home</a></li>
-                            <li><a href="{{route('womens-organization')}}">Women's Organisation (ONWO)</a></li>
+                            <li><a href="{{route('womens-organization')}}">Women in Power (ONWO)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -20,6 +20,7 @@
     <section class="help-and-faq-section padding-bottom-60">
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-4">
                     <!-- <div class="help-single-item margin-bottom-30">
                         <div class="content">
@@ -28,7 +29,7 @@
                             </p>
                         </div>
                     </div> -->
-                    <div class="icon-box-item-02 margin-bottom-30">
+                    <div class="icon-box-item-02 margin-bottom-30" style="display: flex; flex-direction: column">
                         <div class="icon" style="background-color: transparent">
                             <i class="fas fa-bullseye" style="color: #c31c39"></i>
                         </div>
@@ -41,6 +42,9 @@
 
                 </div>
                 <div class="col-lg-8">
+                      <div style="margin-bottom: 10px">
+                          <img src="{{asset('assets/images/Women-Empowerment_11zon-1.jpg')}}" alt="" style="height: 350px; width: 100%">
+                      </div>
                     <div class="vision-values margin-bottom-40">
                         <div class="faq-contents">
                             <h2 class="title" style="color: black">Our Objectives</h2>

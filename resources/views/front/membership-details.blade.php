@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-lg-8">
                     <!-- Why Join Section -->
-                    <div class="policy-category mb-5" id="why-join">
+                    <div class="policy-category" id="why-join">
                         <div class="faq-contents">
                             <h2 class="title">Why Join?</h2>
                             <div class="row">
@@ -79,7 +79,7 @@
                     </div>
 
                     <!-- Application Process Section -->
-                    <div class="policy-category mb-5" id="application-process">
+                    <div class="policy-category" id="application-process">
                         <div class="faq-contents">
                             <h2 class="title">Application Process</h2>
                             <div class="row">
@@ -99,7 +99,7 @@
                     </div>
 
                     <!-- Membership Fees Section -->
-                    <div class="policy-category mb-5" id="membership-fees">
+                    <div class="policy-category " id="membership-fees">
                         <div class="faq-contents">
                             <h2 class="title">Membership Fees & Payment Terms</h2>
                             <div class="row">
@@ -111,34 +111,34 @@
                                         <div class="content">
                                             <p style="color: black">One-time payment for the full year.</p>
                                             <ul class="check-list">
-                                                <li style="color: black"> £36 annual fee</li>
+                                                <li style="color: black"> £36 annual fee (only £ 3/ month)</li>
                                                 <li style="color: black"> Full member benefits</li>
                                                 <li style="color: black"> Convenient one-time payment</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="single-faq-item">
-                                        <div class="header">
-                                            <h3>Monthly Payment</h3>
-                                        </div>
-                                        <div class="content">
-                                            <p style="color: black">Spread the cost over 12 months.</p>
-                                            <ul class="check-list">
-                                                <li style="color: black"> £3 per month</li>
-                                                <li style="color: black"> 12-month commitment</li>
-                                                <li style="color: black"> Non-cancellable term</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="col-md-6 mb-4">--}}
+{{--                                    <div class="single-faq-item">--}}
+{{--                                        <div class="header">--}}
+{{--                                            <h3>Monthly Payment</h3>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="content">--}}
+{{--                                            <p style="color: black">Spread the cost over 12 months.</p>--}}
+{{--                                            <ul class="check-list">--}}
+{{--                                                <li style="color: black"> £3 per month</li>--}}
+{{--                                                <li style="color: black"> 12-month commitment</li>--}}
+{{--                                                <li style="color: black"> Non-cancellable term</li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
 
                     <!-- Membership Categories Section -->
-                    <div class="policy-category mb-5" id="membership-categories">
+                    <div class="policy-category " id="membership-categories">
                         <div class="faq-contents">
                             <h2 class="title">Membership Categories</h2>
                             <div class="row">
@@ -177,7 +177,7 @@
                     </div>
 
                     <!-- Code of Conduct Section -->
-                    <div class="policy-category mb-5" id="code-of-conduct">
+                    <div class="policy-category" id="code-of-conduct">
                         <div class="faq-contents">
                             <h2 class="title">Code of Conduct</h2>
                             <div class="row">
@@ -203,7 +203,7 @@
                     </div>
 
                     <!-- Terms and Renewals Section -->
-                    <div class="policy-category mb-5" id="terms-renewals">
+                    <div class="policy-category" id="terms-renewals">
                         <div class="faq-contents">
                             <h2 class="title">Membership Terms & Renewals</h2>
                             <div class="row">
@@ -224,7 +224,7 @@
                     </div>
 
                     <!-- Where Does Your Money Go Section -->
-                    <div class="policy-category mb-5" id="fund-allocation">
+                    <div class="policy-category" id="fund-allocation">
                         <div class="faq-contents">
                             <h2 class="title">Where Does Your Money Go?</h2>
                             <div class="row">

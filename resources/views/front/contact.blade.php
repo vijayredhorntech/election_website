@@ -17,16 +17,11 @@
         </div>
     </div>
 
-    <section class="help-and-faq-section">
+    <section class="help-and-faq-section margin-bottom-15">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="help-single-item">
-                        <div class="content">
-                            <h4 class="title">Get in Touch</h4>
-                            <p style="color: black">We're here to listen and help. Reach out to us today.</p>
-                        </div>
-                    </div>
+
                     <div class="icon-box-item-02">
                         <div class="icon" style="background-color: transparent">
                             <i class="fas fa-map-marker-alt" style="color: #b30d00"></i>
@@ -59,6 +54,12 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
+                    <div class="help-single-item" style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+                        <div class="content">
+                            <h3  style="text-align: center; font-size: 40px">Get in Touch</h3>
+                            <p style="color: black; line-height: 14px; font-size: 16px">We're here to listen and help. Reach out to us today.</p>
+                        </div>
+                    </div>
                     <div class="single-faq-item">
                         @if(session('success'))
                         <div class="alert alert-success mb-4">
@@ -68,43 +69,52 @@
                         <form action="{{ route('contact.submit') }}" method="POST" class="contact-form">
                             @csrf
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-4">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required style="text-transform: uppercase;">
+                                <div class="col-md-6" style="padding: 0px 5px">
+                                    <div class="form-group ">
+                                        <label for="name" style="margin-bottom: 0px">First Name</label>
+                                        <input type="text" placeholder="Enter your first name" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required style="text-transform: uppercase;padding: 8px 20px; border-radius: 7px; color: black">
                                         @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-4">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
+                                <div class="col-md-6" style="padding: 0px 5px">
+                                    <div class="form-group ">
+                                        <label for="name" style="margin-bottom: 0px">Last Name</label>
+                                        <input type="text" placeholder="Enter your last name"  class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required style="text-transform: uppercase;padding: 8px 20px; border-radius: 7px; color: black">
+                                        @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="padding: 0px 5px">
+                                    <div class="form-group ">
+                                        <label for="email" style="margin-bottom: 0px">Email</label>
+                                        <input type="email" placeholder="Enter your email"  class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" style="padding: 8px 20px; border-radius: 7px; color: black" required>
                                         @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group mb-4">
-                                        <label for="subject">Subject</label>
-                                        <input type="text" class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject" value="{{ old('subject') }}" required>
+                                <div class="col-12" style="padding: 0px 5px">
+                                    <div class="form-group x">
+                                        <label for="subject" style="margin-bottom: 0px">Subject</label>
+                                        <input type="text" placeholder="Enter your subject"  class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject" value="{{ old('subject') }}" style="padding: 8px 20px; border-radius: 7px; color: black" required>
                                         @error('subject')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group mb-4">
-                                        <label for="message">Message</label>
-                                        <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="5" required>{{ old('message') }}</textarea>
+                                <div class="col-12" style="padding: 0px 5px">
+                                    <div class="form-group ">
+                                        <label for="message" style="margin-bottom: 0px">Message</label>
+                                        <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="5" required style="padding: 8px 20px; border-radius: 7px; color: black">{{ old('message') }}</textarea>
                                         @error('message')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12" style="padding: 0px 5px">
                                     <button type="submit" class="btn btn-primary" style="background-color: #b30d00; color: white; border: 1px solid #b30d00">Send Message</button>
                                 </div>
                             </div>
