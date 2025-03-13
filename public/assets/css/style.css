@@ -14167,6 +14167,7 @@ input[type=checkbox] {
   -webkit-transition: 0.5s all ease;
   transition: 0.5s all ease;
   margin-bottom: 30px;
+    border-radius: 30px;
 }
 .mission-single-item:hover {
   background: var(--main-color-one);
@@ -14176,6 +14177,18 @@ input[type=checkbox] {
 }
 .mission-single-item:hover .content .title {
   color: #fff;
+}
+.mission-single-item .content p {
+    color: black !important;
+}
+.mission-single-item:hover .content p {
+  color: #fff !important;
+}
+.mission-single-item .content ul li{
+  color: black !important;
+}
+.mission-single-item:hover .content ul li{
+  color: #fff !important;
 }
 .mission-single-item:hover .content p {
   color: #fff;

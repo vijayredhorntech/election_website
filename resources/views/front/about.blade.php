@@ -40,9 +40,12 @@
 
                 </div>
                 <div class="col-lg-8">
+                    <div style="margin-bottom: 10px">
+                        <img src="{{asset('assets/images/about.png')}}" alt="" style="height: 350px; width: 100%">
+                    </div>
                     <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">Our Story</h2>
+                            <h2 class="title" >Our Story</h2>
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
@@ -56,7 +59,7 @@
 
                     <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">We Are Committed To</h2>
+                            <h2 class="title" >We Are Committed To</h2>
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
@@ -71,7 +74,7 @@
                     </div>
                     <div class="vision-values">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">What We Stand For </h2>
+                            <h2 class="title" >What We Stand For </h2>
                             <p style="color: black">We believe that change happens when people come together with a shared purpose. Our core values include:
                             </p>
                             <div class="single-faq-item">

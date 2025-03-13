@@ -45,9 +45,9 @@
                       <div style="margin-bottom: 10px">
                           <img src="{{asset('assets/images/Women-Empowerment_11zon-1.jpg')}}" alt="" style="height: 350px; width: 100%">
                       </div>
-                    <div class="vision-values margin-bottom-40">
+                    <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">Our Objectives</h2>
+                            <h2 class="title" >Our Objectives</h2>
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
@@ -63,9 +63,9 @@
                         </div>
                     </div>
 
-                    <div class="vision-values margin-bottom-40">
+                    <div class="vision-values margin-bottom-10">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">How We Support Women</h2>
+                            <h2 class="title" >How We Support Women</h2>
                             <div class="single-faq-item">
                                 <div class="content">
                                     <ul class="check-list">
@@ -80,7 +80,7 @@
                     </div>
                     <div class="vision-values">
                         <div class="faq-contents">
-                            <h2 class="title" style="color: black">Join Us & Get Involved!</h2>
+                            <h2 class="title" >Join Us & Get Involved!</h2>
                             <p style="color: black">Whether you&apos;re new to politics or an experienced leader, ONWO welcomes all women who share our vision for a stronger, fairer nation. We believe that when women lead, communities thrive, and the nation prospers.</p>
                             <!-- <div class="single-faq-item">
                                 <div class="content">

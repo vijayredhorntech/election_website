@@ -63,9 +63,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title">
-                        <h2 class="title">Party Aims & Goals
+                        <h2 class="title" style="margin-bottom: 0px">Party Aims & Goals
                         </h2>
-                        <p style="text-align:center; font-size:17px; color: black">Our mission is to build a stronger, fairer, and more united society by addressing the real issues affecting our people.
+                        <p style="text-align:center; font-size:16px; color: black">Our mission is to build a stronger, fairer, and more united society by addressing the real issues affecting our people.
                         </p>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         <div class="content">
                             <h4 class="title">Educating & Empowering
                             </h4>
-                            <p style="color: black">Education is key to positive change. We raise awareness about critical social, environmental, and political issues.
+                            <p  style="margin-bottom: 5px">Education is key to positive change. We raise awareness about critical social, environmental, and political issues.
                             </p>
                             <ul class="mission-list">
                                 <li style="color: black">Climate Change & Sustainability
@@ -100,7 +100,7 @@
                         </div>
                         <div class="content">
                             <h4 class="title">Addressing & Resolving Issues</h4>
-                            <p style="color: black">We are committed to tackling injustices and concerns raised by our members and the public, using all available resources to create real solutions.
+                            <p  style="margin-bottom: 5px">We are committed to tackling injustices and concerns raised by our members and the public, using all available resources to create real solutions.
                             </p>
                             <ul class="mission-list">
                                 <li style="color: black">Commitment to Problem-Solving
@@ -121,14 +121,14 @@
                         <div class="content">
                             <h4 class="title">Promoting Unity & Solidarity
                             </h4>
-                            <p style="color: black">We stand for a united and inclusive society, fostering national and local unity by working together for the common good.
+                            <p style="margin-bottom: 5px">We stand for a united and inclusive society, fostering national and local unity by working together for the common good.
                             </p>
                             <ul class="mission-list">
-                                <li style="color: black">Bringing People Together
+                                <li >Bringing People Together
                                 </li>
-                                <li style="color: black">Stronger Together
+                                <li >Stronger Together
                                 </li>
-                                <li style="color: black">A Voice for All
+                                <li >A Voice for All
                                 </li>
                             </ul>
                         </div>
@@ -143,7 +143,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title">
-                        <h2 class="title">Why Join Us</h2>
+                        <h2 class="title" style="margin-bottom: 0px">Why Join Us</h2>
                         <p style="text-align:center; font-size:17px; color: black">Be the Voice of Change! Join One Nation and be part of a movement that truly makes a difference.
                         </p>
                     </div>
@@ -227,7 +227,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title">
-                        <h2 class="title">Why Donate?</h2>
+                        <h2 class="title" style="margin-bottom: 0px">Why Donate?</h2>
                         <p style="text-align:center; font-size:17px; color: black">Your donation empowers One Nation to take action, amplify voices, and build a better future for all.
                         </p>
                     </div>
