@@ -59,7 +59,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group" style="margin-bottom: 4px">
-                                                    <input type="text" {{$formData['type']==='validate'?'disabled':''}} value="{{ $first_name ?? old('first_name') }}" id="first_name" name="first_name" placeholder="Enter first name" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
+                                                    <input type="text" {{$formData['type']==='validate'?'disabled':''}} value="{{ $first_name ?? old('first_name') }}" id="first_name" name="first_name" placeholder="Enter first name *" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                                     @error('first_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input {{$formData['type']==='validate'?'disabled':''}} value="{{ $email ?? old('email') }}" type="email" id="email" name="email" placeholder="ENTER EMAIL" class="form-control" required="" aria-required="true" style="color: black; font-weight: 600; ">
+                                            <input {{$formData['type']==='validate'?'disabled':''}} value="{{ $email ?? old('email') }}" type="email" id="email" name="email" placeholder="ENTER EMAIL *" class="form-control" required="" aria-required="true" style="color: black; font-weight: 600; ">
                                             @error('email')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
                                             <span id="email-availability-status"></span>
                                         </div>

@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Region;
 use App\Models\Membership;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 
 class MemberRegistrationController extends Controller
 {
@@ -359,26 +361,114 @@ class MemberRegistrationController extends Controller
     }
     public function become_core_member()
     {
-        return view('front.become-core-member');
+        $formData = [
+            'url' => route('sendOtp'),
+            'method' => 'GET',
+            'type' => 'verify',
+            // 'hasReferralCode' => 'false',
+            // 'referral_code' => '',
+        ];
+
+        return view('front.become-core-member')->with('formData', $formData);
     }
-    public function verify_member(Request $request)
+
+    public function sendOtp(Request $request)
     {
         $request->validate([
             'member_id' => 'required',
         ]);
+
+        // Rate limiting for OTP sending - 3 attempts per 5 minutes per IP and member_id combination
+        $ipKey = 'send_otp_ip_' . $request->ip();
+        $memberKey = 'send_otp_member_' . $request->member_id;
+
+        if (RateLimiter::tooManyAttempts($ipKey, 3)) {
+            $seconds = RateLimiter::availableIn($ipKey);
+            return back()->with('error', "Too many attempts. Please try again in {$seconds} seconds.");
+        }
+
+        if (RateLimiter::tooManyAttempts($memberKey, 3)) {
+            $seconds = RateLimiter::availableIn($memberKey);
+            return back()->with('error', "Too many OTP requests for this member. Please try again in {$seconds} seconds.");
+        }
+
         $member = Member::where('custom_id', $request->member_id)->first();
         if (!$member) {
             return back()->with('error', 'No member found with the provided ID');
-        } else {
-
-            $core_member = Core_member::where('user_id', $member->user->id)->first();
-
-            if ($core_member != null) {
-                return back()->with('error', 'We\'ve received your core membership request, and it\'s under review. No further submissions are needed at this time.');
-            }
-
-            return view('front.core-member-form')->with('member', $member);
         }
+
+        $otp = rand(100000, 999999);
+
+        try {
+            Mail::to($member->user->email)->queue(new OtpMail($otp));
+
+            // Store OTP with expiry time (10 minutes)
+            session([
+                'otp' => $otp,
+                'otp_expiry' => now()->addMinutes(10)->timestamp,
+                'member_id' => $member->custom_id
+            ]);
+
+            // Hit rate limiters
+            RateLimiter::hit($ipKey, 300); // 5 minutes decay
+            RateLimiter::hit($memberKey, 300);
+
+            $formData = [
+                'url' => route('verify_member'),
+                'method' => 'GET',
+                'type' => 'validate',
+                'member_id' => $member->custom_id,
+            ];
+
+            return view('front.become-core-member')
+                ->with('formData', $formData)
+                ->with('member_id', $member->custom_id);
+        } catch (\Exception $e) {
+            Log::error('Failed to send OTP: ' . $e->getMessage());
+            return back()->with('error', 'Failed to send OTP');
+        }
+    }
+    public function verify_member(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|numeric|digits:6',
+        ]);
+
+        // Rate limiting for OTP verification - 5 attempts per 15 minutes per IP
+        $key = 'verify_otp_' . $request->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            $seconds = RateLimiter::availableIn($key);
+            return back()->with('error', "Too many verification attempts. Please try again in {$seconds} seconds.");
+        }
+
+        // Check if OTP is expired
+        if (!session('otp_expiry') || now()->timestamp > session('otp_expiry')) {
+            return back()->with('error', 'OTP has expired. Please request a new one.');
+        }
+
+        // Verify OTP
+        if ($request->otp != session('otp')) {
+            RateLimiter::hit($key, 900); // 15 minutes decay
+            return back()->with('error', 'Invalid OTP');
+        }
+
+        $member_id = session('member_id');
+        $member = Member::where('custom_id', $member_id)->first();
+
+        if (!$member) {
+            return back()->with('error', 'No member found with the provided ID');
+        }
+
+        $core_member = Core_member::where('user_id', $member->user->id)->first();
+        if ($core_member) {
+            return back()->with('error', 'We\'ve received your core membership request, and it\'s under review. No further submissions are needed at this time.');
+        }
+
+        // Clear OTP session data after successful verification
+        session()->forget(['otp', 'otp_expiry', 'member_id']);
+
+        return view('front.core-member-form')->with('member', $member);
     }
     public function core_member_form(Request $request, $id)
     {
@@ -443,8 +533,7 @@ class MemberRegistrationController extends Controller
             ]);
         }
         return redirect()->route('become_core_member')->with('success', 'Request to Become a Core Member Submitted
-
-Thank you for your interest in joining One Nation’s Core Team. Your request has been received and is under review.
+Thank you for your interest in joining One Nation\'s Core Team. Your request has been received and is under review.
 ');
     }
 }

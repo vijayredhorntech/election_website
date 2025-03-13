@@ -1,18 +1,18 @@
 <x-front.layout>
 
     @push('styles')
-        <style>
-            .gradient-bg {
-                background: linear-gradient(to right, #d53369, #daae51);
-            }
+    <style>
+        .gradient-bg {
+            background: linear-gradient(to right, #d53369, #daae51);
+        }
 
-            .container-box input[type="checkbox"]:checked+.checkmark {
-                background-color: #007bff;
-                /* Change to desired color */
-                border-color: #007bff;
-                /* Change to desired color */
-            }
-        </style>
+        .container-box input[type="checkbox"]:checked+.checkmark {
+            background-color: #007bff;
+            /* Change to desired color */
+            border-color: #007bff;
+            /* Change to desired color */
+        }
+    </style>
     @endpush
     <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
         <div class="container">
@@ -41,9 +41,9 @@
                             <div class="content">
 
                                 @if(session('error'))
-                                    <div class="text-red-600 text-sm font-semibold" style="font-weight: bold ; color: orangered; font-size: 21px; margin-bottom: 15px; text-decoration: underline">*{{session('error')}}</div>
+                                <div class="text-red-600 text-sm font-semibold" style="font-weight: bold ; color: orangered; font-size: 21px; margin-bottom: 15px; text-decoration: underline">*{{session('error')}}</div>
                                 @endif @if(session('success'))
-                                    <div class="text-green-600 text-sm font-semibold" style="font-weight: bold ; color: green; font-size: 21px; margin-bottom: 15px; text-decoration: underline">*{{session('success')}}</div>
+                                <div class="text-green-600 text-sm font-semibold" style="font-weight: bold ; color: green; font-size: 21px; margin-bottom: 15px; text-decoration: underline">*{{session('success')}}</div>
                                 @endif
                                 <h6 class="subtitle">Become a Core Team Member</h6>
                                 <p class="description style-01">
@@ -54,43 +54,52 @@
                             </div>
                             <div class="content">
                                 <h6 class="subtitle">Process to Become a Core Team Member</h6>
-                                 <ul>
-                                     <li style="font-size: 16px; color: black">
-                                         <strong>1)   Party Membership ID:</strong>
-                                         The applicant must be a registered member of One Nation. If not, they must complete the membership process first.
-                                     </li>
-                                     <li style="font-size: 16px; color: black">
-                                         <strong>2)   Application Submission:</strong>
-                                         Fill out the Core Member Application Form with accurate personal, professional, and preference details.
-                                     </li>
-                                     <li style="font-size: 16px; color: black">
-                                         <strong>3)   Approval Process:</strong>
-                                         The application will be reviewed by the party’s internal committee based on eligibility, skills, and availability. It may be approved or rejected accordingly.
-                                     </li>
-                                     <li style="font-size: 16px; color: black">
-                                         <strong>4)   Confirmation & Induction:</strong>
-                                         Approved applicants will receive a confirmation email with further instructions on their role and responsibilities.
-                                     </li>
-                                 </ul>
+                                <ul>
+                                    <li style="font-size: 16px; color: black">
+                                        <strong>1) Party Membership ID:</strong>
+                                        The applicant must be a registered member of One Nation. If not, they must complete the membership process first.
+                                    </li>
+                                    <li style="font-size: 16px; color: black">
+                                        <strong>2) Application Submission:</strong>
+                                        Fill out the Core Member Application Form with accurate personal, professional, and preference details.
+                                    </li>
+                                    <li style="font-size: 16px; color: black">
+                                        <strong>3) Approval Process:</strong>
+                                        The application will be reviewed by the party’s internal committee based on eligibility, skills, and availability. It may be approved or rejected accordingly.
+                                    </li>
+                                    <li style="font-size: 16px; color: black">
+                                        <strong>4) Confirmation & Induction:</strong>
+                                        Approved applicants will receive a confirmation email with further instructions on their role and responsibilities.
+                                    </li>
+                                </ul>
 
 
                             </div>
                         </div>
                         <div class="contact-form style-01" style="margin-top: 20px">
-                            <form action="{{route('verify_member')}}" method="get" class="contact-page-form" novalidate="novalidate">
+                            <form action="{{$formData['url']}}" method="{{$formData['method']}}" class="contact-page-form" novalidate="novalidate">
                                 @csrf
                                 <h6 class="title">Enter you member id</h6>
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="text"  id="member_id" name="member_id" placeholder="Member id" value="{{old('member_id')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
+                                            <input {{$formData['type']==='validate'?'disabled':''}} type="text" id="member_id" name="member_id" placeholder="Member id" value="{{ $formData['member_id'] ?? old('member_id') }}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
                                             @error('member_id')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
 
                                         </div>
                                     </div>
+                                    @if($formData['type']==='validate')
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <input type="text" id="otp" name="otp" placeholder="OTP" value="{{old('otp')}}" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
+                                            @error('otp')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+
+                                        </div>
+                                    </div>
+                                    @endif
                                     <div class="col-md-2">
                                         <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
-                                            <button type="submit" class="boxed-btn btn-sanatory"> Verify ID<span class="icon-paper-plan"></span></button>
+                                            <button type="submit" class="boxed-btn btn-sanatory">@if($formData['type']==='verify') Send OTP @else Verify OTP @endif<span class="icon-paper-plan"></span></button>
                                         </div>
                                     </div>
                                     <div class="col-12 mt-2 d-flex align-items-center justify-content-between ">
