@@ -38,7 +38,8 @@ class MemberRegistrationController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'name' => 'required',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
             'email' => 'required|email|unique:users,email',
             'termsAndConditionCheckbox' => 'required',
             'hasReferralCode' => 'nullable',
@@ -74,7 +75,8 @@ class MemberRegistrationController extends Controller
             Mail::to($request->email)->queue(new OtpMail($otp));
             session()->flash('success', 'OTP sent successfully');
             session(['email' => $request->email]);
-            session(['name' => $request->name]);
+            session(['first_name' => $request->first_name]);
+            session(['last_name' => $request->last_name]);
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to send OTP');
         }
@@ -88,7 +90,7 @@ class MemberRegistrationController extends Controller
             'hasReferralCode' => 'false',
             'referral_code' => '',
         ];
-        return view('front.join-us')->with('formData', $formData)->with('email', $request->email)->with('userName', $request->name);
+        return view('front.join-us')->with('formData', $formData)->with('email', $request->email)->with('first_name', $request->first_name)->with('last_name', $request->last_name);
     }
 
     public function resetOTP()
@@ -113,7 +115,7 @@ class MemberRegistrationController extends Controller
             'hasReferralCode' => 'false',
             'referral_code' => '',
         ];
-        return view('front.join-us')->with('formData', $formData)->with('email', session('email'))->with('userName', session('name'));
+        return view('front.join-us')->with('formData', $formData)->with('email', session('email'))->with('first_name', session('first_name'))->with('last_name', session('last_name'));
     }
 
 

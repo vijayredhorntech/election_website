@@ -86,18 +86,19 @@ class PaymentController extends Controller
                 // Create user with random password
                 $password = Str::random(12);
                 $user = User::create([
-                    'name' => $session->metadata['name'],
+                    'name' => $session->metadata['first_name'] . ' ' . $session->metadata['last_name'],
                     'email' => $session->metadata['email'],
                     'password' => Hash::make($password),
                 ]);
                 // Create member with inactive status
                 $member = Member::create([
                     'user_id' => $user->id,
-                    'enrollment_date'=> now(),
+                    'enrollment_date' => now(),
                     'profile_status' => 'inActive',
-                    'first_name' => $session->metadata['name'],
+                    'first_name' => $session->metadata['first_name'],
+                    'last_name' => $session->metadata['last_name'],
                     'email' => $session->metadata['email'],
-//                    'referrer_id'=>$referrar?->id
+                    //                    'referrer_id'=>$referrar?->id
                 ]);
 
                 // Create membership record
@@ -112,13 +113,13 @@ class PaymentController extends Controller
                 ]);
 
                 $data = [
-                    'name' => $session->metadata['name'],
+                    'name' => $session->metadata['first_name'],
                     'email' => $session->metadata['email'],
                     'password' => $password,
                 ];
 
                 // Send welcome email with credentials
-                 Mail::to($user->email)->send(new MemberShipMail($data));
+                Mail::to($user->email)->send(new MemberShipMail($data));
 
                 DB::commit();
 

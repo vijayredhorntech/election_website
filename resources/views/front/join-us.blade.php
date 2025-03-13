@@ -12,7 +12,6 @@
             border-color: #007bff;
             /* Change to desired color */
         }
-
     </style>
     @endpush
     <div class="about-us-section-area about-bg margin-bottom-60" style="background-image: url({{asset('assets/images/about-bg.png')}});">
@@ -57,12 +56,32 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input type="text" {{$formData['type']==='validate'?'disabled':''}} value="{{ $userName ?? old('name') }}" id="name" name="name" placeholder="Enter name" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
-                                            @error('name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group" style="margin-bottom: 4px">
+                                                    <input type="text" {{$formData['type']==='validate'?'disabled':''}} value="{{ $first_name ?? old('first_name') }}" id="first_name" name="first_name" placeholder="Enter first name" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
+                                                    @error('first_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group" style="margin-bottom: 4px">
+                                                    <input type="text" {{$formData['type']==='validate'?'disabled':''}} value="{{ $last_name ?? old('last_name') }}" id="last_name" name="last_name" placeholder="Enter last name" class="form-control" required="" aria-required="true" style="text-transform: uppercase; color: black; font-weight: 600; border: 1px solid darkgray">
+                                                    @error('last_name')<span style="color: orangered; font-weight: 500">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
+
+                                    <div class="col-md-12">
+                                        <!-- <div class="why-to-join-us"> -->
+                                        <!-- <div class="form-group"> -->
+                                        <p style="font-size: 16px">
+                                            If you have only one name use the same name on the first name
+                                        </p>
+                                        <!-- </div> -->
+                                    </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <input {{$formData['type']==='validate'?'disabled':''}} value="{{ $email ?? old('email') }}" type="email" id="email" name="email" placeholder="ENTER EMAIL" class="form-control" required="" aria-required="true" style="color: black; font-weight: 600; ">
@@ -143,7 +162,7 @@
                                     <div class="btn-wrapper" style="width: 100%; display: flex; justify-content: end">
                                         <button type="submit" class="boxed-btn btn-sanatory"> {{$formData['type']==='register'?'Generate Otp': 'Validate Otp'}} <span class="icon-paper-plan"></span></button>
                                     </div>
-                                    </div>
+                                </div>
 
                             </form>
                             <div class="why-to-join-us">
