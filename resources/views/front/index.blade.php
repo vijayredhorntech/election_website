@@ -330,7 +330,7 @@
                 <div class="col-lg-8 text-center">
                     <span class="section-subtitle">Get Involved</span>
                     <h2 class=" mb-4">Join One Nation Today</h2>
-                    <p class=" mb-4" style="color: black">Be part of a movement that values justice, education, and
+                    <p class=" mb-4" style="color: black; font-size: 16px">Be part of a movement that values justice, education, and
                         unity. Together, we can build a better Britain for everyone.</p>
                     <div class="cta-buttons">
                         <a href="{{ route('joinUs') }}" class="btn btn-primary btn-lg" style="margin-top: 20px">Become a Member <i
