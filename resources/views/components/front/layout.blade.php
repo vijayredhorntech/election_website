@@ -439,7 +439,7 @@
     {{$slot}}
 
     <!-- footer area start -->
-    <footer class="footer-area line-bg" style="background-image: url({{asset('assets/images/line.png')}});">
+    <footer class="footer-area line-bg" >
         <div class="footer-top issue style-01">
             <div class="container">
                 <div class="footer-bottom-border">
@@ -510,9 +510,9 @@
                                     </span>
                                 </h4>
                                 <ul>
-                                    <li style="color:white">62 King Street, Southall, Greater London UB2 4DB</li>
-                                    <li style="color:white">info@one-nation.org.uk</li>
-                                    <li style="color:white">07955555561</li>
+                                    <li style="color: black">62 King Street, Southall, Greater London UB2 4DB</li>
+                                    <li style="color: black">info@one-nation.org.uk</li>
+                                    <li style="color: black">07955555561</li>
                                 </ul>
                                 <div class="social-links mt-3">
                                     <a href="#" class="social-link" style="color: black"><i class="fab fa-twitter"></i></a>

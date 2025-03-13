@@ -21,7 +21,7 @@
                 <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Received From</span>
             </div>
             <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
-                <span style="font-size: 16px;font-family: Roboto; color: black">{{$membership->user->name}}</span>
+                <span style="font-size: 16px;font-family: Roboto; color: black">{{strtoupper($membership->user->name)}}</span>
             </div>
         </div>
         <div style="display: flex;padding-left: 30px; padding-right: 30px; margin-top: 30px; ">

@@ -11105,7 +11105,7 @@ input[type=checkbox] {
     Footer Area
 -------------------------*/
 .footer-area {
-  background-color: var(--heading-color);
+  background-color: #e9e9e9;
 }
 .footer-area.line-bg {
   background-size: cover;
@@ -11181,7 +11181,7 @@ input[type=checkbox] {
 .footer-top .footer-bottom-border {
   padding-top: 50px;
   padding-bottom: 20px;
-  border-bottom: 1px dashed #fff;
+  border-bottom: 1px dashed black;
 }
 .footer-top .subscribe-bg {
   background-repeat: no-repeat;
@@ -11208,7 +11208,7 @@ input[type=checkbox] {
 }
 
 .copyright-area-inner {
-  color: #fff;
+  color: black;
   font-size: 14px;
   line-height: 28px;
   font-weight: 300;
@@ -11270,8 +11270,7 @@ input[type=checkbox] {
   margin-bottom: 30px;
   padding: 30px;
   background-color: #fff;
-  -webkit-box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.07);
+
   border-radius: 10px;
 }
 .widget.style-01 {
@@ -11676,7 +11675,7 @@ input[type=checkbox] {
 }
 
 .widget.footer-widget {
-  background-color: transparent !important;
+  background-color: #e9e9e9 !important;
   padding: 0;
   margin-bottom: 30px;
 }
@@ -11727,7 +11726,7 @@ input[type=checkbox] {
   color: var(--main-color-two);
 }
 .widget.footer-widget ul li a {
-  color: #fff;
+  color: black;
   font-size: 15px;
   line-height: 25px;
   font-weight: 400;
@@ -11748,7 +11747,7 @@ input[type=checkbox] {
   text-transform: capitalize;
   position: relative;
   font-family: var(--body-font);
-  color: #fff;
+  color: black;
 }
 .widget.footer-widget .widget-title .line {
   margin-top: -15px;
