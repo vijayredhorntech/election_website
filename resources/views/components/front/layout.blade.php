@@ -198,13 +198,15 @@
 
 <body style="min-height: 100vh; position: relative">
 
-    <div id="cookie-popup" class="cookie-popup">
-        <p style="color: white; margin-top: 10px">This website uses cookies to ensure you get the best experience.
-            <a href="{{route('cookie-policy')}}" target="_blank">Learn More</a>
-        </p>
+<div id="cookie-popup" class="cookie-popup">
+    <p style="color: white; margin-top: 10px">This website uses cookies to ensure you get the best experience.
+        <a href="{{route('cookie-policy')}}" target="_blank">Learn More</a>
+    </p>
+    <div>
+        <button id="reject-cookies" style="background: #555;">Reject</button>
         <button id="accept-cookies">Accept</button>
     </div>
-
+</div>
 
     <div class="header-style-01">
         <!-- support bar area end -->
@@ -600,15 +602,22 @@
         document.addEventListener("DOMContentLoaded", function() {
             let cookiePopup = document.getElementById("cookie-popup");
             let acceptButton = document.getElementById("accept-cookies");
+            let rejectButton = document.getElementById("reject-cookies");
 
-            // Check if cookie consent is already given
-            if (localStorage.getItem("cookieConsent")) {
+            // Check if cookie consent is already given or rejected
+            if (localStorage.getItem("cookieConsent") !== null) {
                 cookiePopup.style.display = "none";
             }
 
             // Handle Accept Button Click
             acceptButton.addEventListener("click", function() {
                 localStorage.setItem("cookieConsent", "true");
+                cookiePopup.style.display = "none";
+            });
+
+            // Handle Reject Button Click
+            rejectButton.addEventListener("click", function() {
+                localStorage.setItem("cookieConsent", "false");
                 cookiePopup.style.display = "none";
             });
         });

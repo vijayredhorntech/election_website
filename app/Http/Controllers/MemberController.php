@@ -374,7 +374,7 @@ class MemberController extends Controller
         try {
             $user = auth()->user();
             $membership = $user->membership;
-            return view('admin.membership.receipt')->with('membership', $membership)->with('description', 'Membership Receipt');
+            return view('admin.membership.receipt')->with('membership', $membership)->with('description', 'Annual Membership Fee');
         } catch (\Exception $e) {
             CustomLog::error($e->getMessage());
             return back()->with('error', 'An error occurred while printing the receipt');

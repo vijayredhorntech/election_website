@@ -13,11 +13,10 @@
         <div style="width: 400px; height: 20px; background-color: #cb4940; position: absolute; top: 0px; right: -20px; transform: skew(40deg);"></div>
         <div style="width: 300px; height: 30px; border-left: 5px solid white; background-color: #b30d00; position: absolute; top: 0px; right: -20px; transform: skew(40deg);"></div>
         <img src="{{asset('assets/images/logo.png')}}" style="height: 100px; width: 100px; border-radius: 50%; position: absolute; right: 10px; top: 40px" alt="">
-        <div style="width: 100%; padding-top: 35px; padding-left: 30px; display: flex; flex-direction: column; color: black">
-            <span style="font-weight: bold; font-size: 30px; color: #B30D00FF; font-family: Roboto">Membership Payment Receipt</span>
-            <span style="font-family: Roboto; font-size: 16px; margin-top: 5px; color: black"> <span style="font-weight: bold; font-size: 20px; color: black">Date:</span> {{\Carbon\Carbon::parse($membership->start_date)->format('d/m/Y')}} </span>
+        <div style="width: 100%; padding-top: 65px; padding-left: 30px; display: flex; flex-direction: column; color: black">
+            <span style="font-weight: bold; font-size: 30px; color: #B30D00FF; font-family: Roboto">Payment Receipt</span>
         </div>
-        <div style="display: flex;padding-left: 30px; padding-right: 30px; margin-top: 50px; ">
+        <div style="display: flex;padding-left: 30px; padding-right: 30px; margin-top: 40px; ">
             <div style="width: 150px;border-bottom: 1px solid transparent;">
                 <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Received From</span>
             </div>
@@ -33,10 +32,10 @@
                 <span style="font-size: 16px;font-family: Roboto;color: black"> <span style="font-size: 18px">£</span> {{$membership->payment_amount}}</span>
             </div>
             <div style="width: 110px;border-bottom: 1px solid transparent;">
-                <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Type</span>
+                <span style="font-family: Roboto; font-size: 16px; font-weight: bold;color: black">Method</span>
             </div>
-            <div style="padding-left: 5px;border-bottom: 1px solid gray; width: 100%">
-                <span style="font-size: 16px;font-family: Roboto; color: black">{{ucfirst($membership->membership_type)}}</span>
+            <div style="padding-left: 30px;border-bottom: 1px solid gray; width: 100%">
+                <span style="font-size: 16px;font-family: Roboto; color: black">Online</span>
             </div>
         </div>
 
@@ -53,14 +52,20 @@
             <div style="width: 130px;border-bottom: 1px solid transparent; display: flex; justify-content: end">
                 <span style="font-family: Roboto; font-size: 16px; font-weight: bold; color: black">Received by</span>
             </div>
-            <div style="width: 160px;display: flex; justify-content: end; padding-left: 15px;  border-bottom: 1px solid gray; margin-top: 0px">
-                <span style="font-size: 16px;font-family: Roboto; color: black">One Nation Party</span>
+            <div style="width: 200px;display: flex; justify-content: end; padding-left: 15px;  border-bottom: 1px solid gray; margin-top: 0px">
+                <span style="font-size: 16px;font-family: Roboto; color: black">One Nation Political Party</span>
             </div>
+            <span style="font-size: 16px;font-family: Roboto; color: black; margin-top: 10px">Date: {{\Carbon\Carbon::parse($membership->start_date)->format('d M Y')}}
+
         </div>
         <div style="width: 100%; height: 20px; background-color: #750901; position: absolute; bottom: 0px; left: 2px;"></div>
         <div style="width: 400px; height: 30px; border-right: 5px solid white; background-color: #a82f24; position: absolute; bottom: 0px; left: -20px; transform: skew(40deg);"></div>
         <div style="width: 350px; height: 40px; border-right: 5px solid white; background-color: #b30d00; position: absolute; bottom: 0px; left: -20px; transform: skew(40deg);"></div>
 
+    </div>
+
+    <div style="display: flex; ">
+        <a style="background-color: #b30d00; color: white; padding: 5px 15px; border-radius: 3px; margin-top: 15px" href="{{route('memberProfile')}}">Back</a>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -69,9 +74,7 @@
                 link.href = canvas.toDataURL("image/png");
                 link.download = 'Payment_Receipt.png';
                 link.click();
-
-                // Redirect immediately after triggering the download
-                window.location.href = "{{ route('membership.index') }}";
+                {{--window.location.href = "{{ route('membership.index') }}";--}}
             });
         });
     </script>
