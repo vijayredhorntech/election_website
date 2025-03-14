@@ -80,6 +80,9 @@ class PaymentController extends Controller
 
             $session = Session::retrieve($request->session_id);
 
+            // get referrer_id from session
+            $referrer_id = session('referrer_id');
+
             if ($session->payment_status === 'paid') {
                 DB::beginTransaction();
 
@@ -98,8 +101,11 @@ class PaymentController extends Controller
                     'first_name' => $session->metadata['first_name'],
                     'last_name' => $session->metadata['last_name'],
                     'email' => $session->metadata['email'],
-                    //                    'referrer_id'=>$referrar?->id
+                    'referrer_id' => $referrer_id ?? null,
                 ]);
+
+                // forget referrer_id from session
+                session()->forget('referrer_id');
 
                 // Create membership record
                 Membership::create([

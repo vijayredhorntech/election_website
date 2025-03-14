@@ -47,11 +47,11 @@ class MemberRegistrationController extends Controller
             'hasReferralCode' => 'nullable',
             'referral_code' => 'nullable|regex:/^ONR[A-Z0-9]{4}$/',
         ]);
-        session()->forget('request_referral_code');
+        session()->forget('referrer_id');
         if ($request->hasReferralCode != null) {
             if ($request->referral_code != null) {
-                $referral = User::where('referral_code', $request->referral_code)->first();
-                if (!$referral) {
+                $user = User::where('referral_code', $request->referral_code)->first();
+                if (!$user) {
                     $formData = [
                         'url' => route('sendEmailVerificationOtp'),
                         'method' => 'get',
@@ -63,7 +63,7 @@ class MemberRegistrationController extends Controller
 
                     return view('front.join-us')->with('formData', $formData);
                 }
-                session(['request_referral_code' => $request->referral_code]);
+                session(['referrer_id' => $user->id]);
             }
         }
         if (User::where('email', $request->email)->exists()) {
