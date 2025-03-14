@@ -414,7 +414,7 @@ class MemberRegistrationController extends Controller
             RateLimiter::hit($memberKey, 300);
 
             $formData = [
-                'url' => route('verify_member'),
+                'url' => route('validateOtp'),
                 'method' => 'GET',
                 'type' => 'validate',
                 'member_id' => $member->custom_id,
@@ -428,7 +428,8 @@ class MemberRegistrationController extends Controller
             return back()->with('error', 'Failed to send OTP');
         }
     }
-    public function verify_member(Request $request)
+
+    public function validateOtp(Request $request)
     {
         $request->validate([
             'otp' => 'required|numeric|digits:6',
@@ -453,6 +454,20 @@ class MemberRegistrationController extends Controller
             return back()->with('error', 'Invalid OTP');
         }
 
+        // Clear OTP session data after successful verification
+        session()->forget(['otp', 'otp_expiry']);
+
+        session()->put('is_verified', true);
+
+        return redirect()->route('verify_member');
+    }
+
+    public function verify_member(Request $request)
+    {
+        if (!session('is_verified')) {
+            return redirect()->route('become_core_member')->with('error', 'Please verify your OTP first');
+        }
+
         $member_id = session('member_id');
         $member = Member::where('custom_id', $member_id)->first();
 
@@ -465,8 +480,7 @@ class MemberRegistrationController extends Controller
             return back()->with('error', 'We\'ve received your core membership request, and it\'s under review. No further submissions are needed at this time.');
         }
 
-        // Clear OTP session data after successful verification
-        session()->forget(['otp', 'otp_expiry', 'member_id']);
+
 
         return view('front.core-member-form')->with('member', $member);
     }
@@ -507,6 +521,8 @@ class MemberRegistrationController extends Controller
 
         // Create Core Member record
         $core_member = Core_member::create($requestData);
+
+        session()->forget(['is_verified', 'member_id']);
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
