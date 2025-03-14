@@ -486,70 +486,59 @@ class MemberRegistrationController extends Controller
     }
     public function core_member_form(Request $request, $id)
     {
-
-
+        // dd($request->all());
         if ($request->declaration != 'on') {
             return back()->with('error', 'Please accept the declaration');
         }
-        $request->validate([
-            'annual_income' => 'required',
-            'participated_in_social_movement' => 'required|boolean',
-            'comfortable_with_public_speaking' => 'required|boolean',
-            'willing_to_relocate' => 'required|boolean',
-            'how_much_time_for_party' => 'required',
-            'political_ideology' => 'required',
-            'leadership_experience' => 'required|boolean',
-            'experience_in_media_interaction' => 'required|boolean',
-            'communication_skill' => 'required',
-            'area_of_interest' => 'required',
-            'photo' => 'required|max:2048',
-            'id_proof' => 'required|max:2048',
-            'other_document' => 'max:2048',
+
+        $validatedData = Validator::make($request->all(), [
+            'primary_mobile_number' => 'required|numeric|digits_between:10,15',
+            'nationality' => 'required|string',
+            'profession' => 'required|string',
+            'employer' => 'nullable|string',
+            'relevant_experience' => 'required|string',
+            'why_join' => 'required|string',
+            'experience_in_political_campaigns' => 'required|boolean',
+            'experience_in_political_campaigns_details' => 'required_if:experience_in_political_campaigns,true',
+            'member_of_other_political_party' => 'required|boolean',
+            'reference_1' => 'nullable|string',
+            'reference_2' => 'nullable|string',
+            'date_of_application' => 'required|date',
+            'reviewed_by' => 'nullable|string',
+            'position_assigned' => 'nullable|string',
+            'date_of_review' => 'nullable|date',
+            'skills_expertise' => 'required|array',
+            'key_areas' => 'required|array',
+            'willing_to_travel' => 'required|boolean',
+            'signature' => 'required|file|max:2048',
         ]);
 
-        $requestData = $request->except(['user_id', 'photo', 'id_proof', 'other_document']);
+        if ($validatedData->fails()) {
+            // dd($validatedData->errors());
+            return back()->withErrors($validatedData)->withInput();
+        }
+
+        // dd($request->all());
+
+        $requestData = $request->except(['signature']);
         $requestData['user_id'] = $id;
-        $requestData['area_of_interest'] = json_encode($request->input('area_of_interest', []));
-        $requestData['political_issue_care'] = json_encode($request->input('political_issue_care', []));
 
-        // Handle radio buttons (set 1 if checked, 0 if unchecked)
-        $requestData['any_business'] = $request->has('any_business') ? 1 : 0;
-        $requestData['associated_with_other_party'] = $request->has('associated_with_other_party') ? 1 : 0;
-        $requestData['any_criminal_record'] = $request->has('any_criminal_record') ? 1 : 0;
-        $requestData['communication_skill'] = $request->input('communication_skill', 0); // Default to 0
-
-
+        // Convert arrays to JSON for storage
+        $requestData['skills_expertise'] = json_encode($request->input('skills_expertise', []));
+        $requestData['key_areas'] = json_encode($request->input('key_areas', []));
+        // dd($requestData);
         // Create Core Member record
         $core_member = Core_member::create($requestData);
+        // dd($core_member);
+        // Handle signature file upload
+        if ($request->hasFile('signature')) {
+            $file = $request->file('signature');
+            $filePath = $file->store('coreMemberSignatures', 'public');
+            $core_member->update([
+                'signature' => $filePath,
+            ]);
+        }
 
-        session()->forget(['is_verified', 'member_id']);
-
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->store('coreMemberPhoto', 'public');
-            $core_member->update([
-                'photo' => $filePath,
-            ]);
-        }
-        if ($request->hasFile('id_proof')) {
-            $file = $request->file('id_proof');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->store('coreMemberIdProof', 'public');
-            $core_member->update([
-                'id_proof' => $filePath,
-            ]);
-        }
-        if ($request->hasFile('other_document')) {
-            $file = $request->file('other_document');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->store('coreMemberOtherDocuments', 'public');
-            $core_member->update([
-                'other_document' => $filePath,
-            ]);
-        }
-        return redirect()->route('become_core_member')->with('success', 'Request to Become a Core Member Submitted
-Thank you for your interest in joining One Nation\'s Core Team. Your request has been received and is under review.
-');
+        return redirect()->route('become_core_member')->with('success', 'Request to Become a Core Member Submitted. Thank you for your interest in joining One Nation\'s Core Team. Your request has been received and is under review.');
     }
 }

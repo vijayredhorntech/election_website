@@ -6,34 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Core_member extends Model
 {
-
     protected $fillable = [
         'user_id',
-        'annual_income',
-        'any_business',
-        'any_criminal_record',
-        'participated_in_social_movement',
-        'comfortable_with_public_speaking',
-        'willing_to_relocate',
-        'how_much_time_for_party',
-        'political_ideology',
-        'political_issue_care',
-        'leadership_experience',
-        'experience_in_media_interaction',
-        'communication_skill',
-        'area_of_interest',
-        'who_inspired',
-        'expectations_from_party',
-        'contribution_to_party',
-        'have_social_media_presence',
-        'have_network_of_volunteers',
-        'willing_to_fundraise',
-        'photo',
-        'id_proof',
-        'other_document',
-
+        'profession',
+        'employer',
+        'relevant_experience',
+        'skills_expertise',
+        'why_join',
+        'nationality',
+        'primary_mobile_number',
+        'experience_in_political_campaigns',
+        'experience_in_political_campaigns_details',
+        'key_areas',
+        'willing_to_travel',
+        'member_of_other_political_party',
+        'reference_1',
+        'reference_2',
+        'date_of_application',
+        'reviewed_by',
+        'position_assigned',
+        'date_of_review',
+        'signature',
     ];
-
 
     public function user()
     {
