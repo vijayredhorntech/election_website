@@ -118,7 +118,7 @@
             padding: 0.75rem;
             background-color: #f9fafb;
             border-radius: 8px;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
         .checkbox-wrapper:hover {
@@ -143,6 +143,19 @@
             cursor: pointer;
             user-select: none;
             font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        /* When checkbox is checked */
+        .checkbox-wrapper input[type="checkbox"]:checked+label {
+            color: #b30d00;
+            font-weight: 600;
+            /* background-color: #b30d00; */
+        }
+
+        /* Change wrapper background when checked */
+        .checkbox-wrapper input[type="checkbox"]:checked~.checkbox-wrapper {
+            background-color: #b30d00;
         }
 
         .error {
@@ -278,7 +291,7 @@
                                 <label for="message">Message (Optional)</label>
                                 <textarea class="form-control" id="message" rows="3" placeholder="Enter your message here (optional)"></textarea>
                             </div>
-
+                            <!-- anonymous checkbox red when selected -->
                             <div class="checkbox-wrapper">
                                 <input type="checkbox" id="is_anonymous" name="is_anonymous">
                                 <label for="is_anonymous">Make this donation anonymous</label>
